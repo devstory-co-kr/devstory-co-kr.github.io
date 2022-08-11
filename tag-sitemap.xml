@@ -17,20 +17,6 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/tags/Project-Gentle-Map/</loc>
-        <lastmod>2022-08-11T02:28:20.222Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/tags/Flutter-Open-Sorce-Contributhon/</loc>
-        <lastmod>2022-08-11T02:28:20.222Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.devstory.co.kr/tags/Project-Endpoint-Detector/</loc>
         <lastmod>2022-08-11T02:28:20.222Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -38,7 +24,21 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/tags/Project-Gentle-Map/</loc>
+        <lastmod>2022-08-11T02:28:20.222Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/tags/Project-Devblog-Classifier/</loc>
+        <lastmod>2022-08-11T02:28:20.222Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/tags/Flutter-Open-Sorce-Contributhon/</loc>
         <lastmod>2022-08-11T02:28:20.222Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
