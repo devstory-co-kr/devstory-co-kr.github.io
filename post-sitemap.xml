@@ -9,7 +9,7 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/post/pj-gentle-map/</loc>
-        <lastmod>2022-09-10T10:08:22.785Z</lastmod>
+        <lastmod>2022-09-10T10:09:45.631Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -32,7 +32,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pj-too-real-03/</loc>
+        <loc>https://blog.devstory.co.kr/post/pl-python-collections-counter/</loc>
         <lastmod>2022-08-11T02:28:20.223Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -48,14 +48,6 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pl-python-collections-counter/</loc>
-        <lastmod>2022-08-11T02:28:20.223Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://blog.devstory.co.kr/post/pl-python-collections-deque/</loc>
         <lastmod>2022-08-11T02:28:20.223Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -64,7 +56,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pl-python-functools-reduce/</loc>
+        <loc>https://blog.devstory.co.kr/post/pj-too-real-03/</loc>
         <lastmod>2022-08-11T02:28:20.223Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -88,6 +80,14 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/post/pl-python-functools-reduce/</loc>
+        <lastmod>2022-08-11T02:28:20.223Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/post/pj-devblog-classifier/</loc>
         <lastmod>2022-08-11T02:28:20.222Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -104,7 +104,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pj-endpoint-detector/</loc>
+        <loc>https://blog.devstory.co.kr/post/pj-too-real-02/</loc>
         <lastmod>2022-08-11T02:28:20.222Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -120,7 +120,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pj-too-real-02/</loc>
+        <loc>https://blog.devstory.co.kr/post/pj-endpoint-detector/</loc>
         <lastmod>2022-08-11T02:28:20.222Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
