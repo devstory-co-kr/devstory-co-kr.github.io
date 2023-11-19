@@ -48,7 +48,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pj-too-real-04/</loc>
+        <loc>https://blog.devstory.co.kr/post/pj-too-real-03/</loc>
         <lastmod>2022-08-11T02:28:20.223Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -56,7 +56,15 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pl-python-collections-deque/</loc>
+        <loc>https://blog.devstory.co.kr/post/pl-python-collections-counter/</loc>
+        <lastmod>2022-08-11T02:28:20.223Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/pj-too-real-04/</loc>
         <lastmod>2022-08-11T02:28:20.223Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -80,23 +88,15 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/post/pl-python-collections-deque/</loc>
+        <lastmod>2022-08-11T02:28:20.223Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/post/pl-python-itertools/</loc>
-        <lastmod>2022-08-11T02:28:20.223Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/pl-python-collections-counter/</loc>
-        <lastmod>2022-08-11T02:28:20.223Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/pj-too-real-03/</loc>
         <lastmod>2022-08-11T02:28:20.223Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
