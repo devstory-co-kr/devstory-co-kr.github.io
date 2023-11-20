@@ -9,7 +9,7 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/post/draw-my-today/</loc>
-        <lastmod>2023-11-20T13:41:45.516Z</lastmod>
+        <lastmod>2023-11-20T23:52:17.536Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -112,7 +112,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/python-sort/</loc>
+        <loc>https://blog.devstory.co.kr/post/python-itertools/</loc>
         <lastmod>2023-11-20T04:48:33.606Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -120,7 +120,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/python-itertools/</loc>
+        <loc>https://blog.devstory.co.kr/post/python-sort/</loc>
         <lastmod>2023-11-20T04:48:33.606Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
