@@ -4,7 +4,7 @@
 
     <sitemap>
         <loc>https://blog.devstory.co.kr/post-sitemap.xml</loc>
-        <lastmod>2023-11-20T07:00:16.944Z</lastmod>
+        <lastmod>2023-11-20T07:08:31.223Z</lastmod>
     </sitemap>
 
     <sitemap>
@@ -14,12 +14,12 @@
 
     <sitemap>
         <loc>https://blog.devstory.co.kr/category-sitemap.xml</loc>
-        <lastmod>2023-11-20T07:00:16.944Z</lastmod>
+        <lastmod>2023-11-20T07:08:31.223Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>https://blog.devstory.co.kr/tag-sitemap.xml</loc>
-        <lastmod>2023-11-20T07:00:16.944Z</lastmod>
+        <lastmod>2023-11-20T07:08:31.223Z</lastmod>
     </sitemap>
 
 </sitemapindex>

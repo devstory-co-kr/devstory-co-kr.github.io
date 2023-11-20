@@ -9,14 +9,78 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/post/prography-8th/</loc>
-        <lastmod>2023-11-20T07:00:16.944Z</lastmod>
+        <lastmod>2023-11-20T07:08:31.223Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pj-endpoint-detector/</loc>
+        <loc>https://blog.devstory.co.kr/post/open-source-contributhon/</loc>
+        <lastmod>2023-11-20T07:07:55.704Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/python-collections-deque/</loc>
+        <lastmod>2023-11-20T07:07:45.674Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/python-collections-counter/</loc>
+        <lastmod>2023-11-20T07:07:45.673Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/too-real-01/</loc>
+        <lastmod>2023-11-20T07:05:38.111Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/too-real-04/</loc>
+        <lastmod>2023-11-20T07:05:38.111Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/too-real-03/</loc>
+        <lastmod>2023-11-20T07:05:38.111Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/too-real-02/</loc>
+        <lastmod>2023-11-20T07:05:38.109Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/draw-my-today/</loc>
+        <lastmod>2023-11-20T07:02:51.492Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/endpoint-detector/</loc>
         <lastmod>2023-11-20T06:55:39.037Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -24,7 +88,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pj-gentle-map/</loc>
+        <loc>https://blog.devstory.co.kr/post/gentle-map/</loc>
         <lastmod>2023-11-20T06:55:20.660Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -32,39 +96,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pj-too-real-01/</loc>
-        <lastmod>2023-11-20T06:54:58.757Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/pj-too-real-04/</loc>
-        <lastmod>2023-11-20T06:54:58.757Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/pj-too-real-03/</loc>
-        <lastmod>2023-11-20T05:35:51.826Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/pj-too-real-02/</loc>
-        <lastmod>2023-11-20T05:35:51.826Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/pj-devblog-classifier/</loc>
+        <loc>https://blog.devstory.co.kr/post/devblog-classifier/</loc>
         <lastmod>2023-11-20T04:48:33.617Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -72,7 +104,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pl-python-heapq/</loc>
+        <loc>https://blog.devstory.co.kr/post/python-heapq/</loc>
         <lastmod>2023-11-20T04:48:33.613Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -80,7 +112,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pl-python-collections-counter/</loc>
+        <loc>https://blog.devstory.co.kr/post/python-itertools/</loc>
         <lastmod>2023-11-20T04:48:33.606Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -88,7 +120,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pl-python-itertools/</loc>
+        <loc>https://blog.devstory.co.kr/post/python-sort/</loc>
         <lastmod>2023-11-20T04:48:33.606Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -96,23 +128,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pl-python-sort/</loc>
-        <lastmod>2023-11-20T04:48:33.606Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/flutter-open-source-contributhon/</loc>
-        <lastmod>2023-11-19T05:27:13.668Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/pl-python-functools-reduce/</loc>
+        <loc>https://blog.devstory.co.kr/post/python-functools-reduce/</loc>
         <lastmod>2023-11-19T05:26:58.304Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -120,15 +136,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/pl-python-collections-deque/</loc>
-        <lastmod>2023-11-19T05:26:58.300Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/pl-python-timeit/</loc>
+        <loc>https://blog.devstory.co.kr/post/python-timeit/</loc>
         <lastmod>2023-11-19T05:26:58.300Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
