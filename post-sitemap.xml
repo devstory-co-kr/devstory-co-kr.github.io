@@ -8,8 +8,16 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/post/draw-my-today/</loc>
+        <lastmod>2023-11-20T13:41:45.516Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/post/prography-8th/</loc>
-        <lastmod>2023-11-20T07:08:31.223Z</lastmod>
+        <lastmod>2023-11-20T11:30:06.930Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -48,7 +56,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-04/</loc>
+        <loc>https://blog.devstory.co.kr/post/too-real-03/</loc>
         <lastmod>2023-11-20T07:05:38.111Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -56,7 +64,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-03/</loc>
+        <loc>https://blog.devstory.co.kr/post/too-real-04/</loc>
         <lastmod>2023-11-20T07:05:38.111Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -66,14 +74,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/post/too-real-02/</loc>
         <lastmod>2023-11-20T07:05:38.109Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/draw-my-today/</loc>
-        <lastmod>2023-11-20T07:02:51.492Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -112,7 +112,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/python-itertools/</loc>
+        <loc>https://blog.devstory.co.kr/post/python-sort/</loc>
         <lastmod>2023-11-20T04:48:33.606Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -120,7 +120,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/python-sort/</loc>
+        <loc>https://blog.devstory.co.kr/post/python-itertools/</loc>
         <lastmod>2023-11-20T04:48:33.606Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

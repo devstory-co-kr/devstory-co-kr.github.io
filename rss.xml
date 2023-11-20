@@ -9,7 +9,7 @@
     <atom:link href="/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Mon, 20 Nov 2023 07:02:51 GMT</pubDate>
+    <pubDate>Mon, 20 Nov 2023 13:41:45 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -19,7 +19,7 @@
       <pubDate>Mon, 20 Nov 2023 05:23:18 GMT</pubDate>
       <description>
       
-        &lt;p&gt;일기를 작성하면 AI가 그림을 그려주는 “오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.&lt;br&gt;
+        &lt;p&gt;“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.&lt;br&gt;
       
       </description>
       
