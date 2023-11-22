@@ -20,7 +20,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Python 2.7과 3.5부터 탑재된 collections의 Counter에 대해 알아보도록 하겠습니다.\n\nCounter\nCounter는 dict의 하위 클래스로 key와 해당 값의 개수를 카운팅한 value 형태로 이루어진 해쉬 형태의 오브젝트입니다. value는 정수 값을 가질 수 있습니다.\n\nCounter 모듈은 다음과 같이 import하여 사용할 수 있습니다.1from collections import Counter\n\n\nConstructingCounter는 string, dict, argments, list 등 다양한 방법으로 생성할 수 있으며, 소스코드에서 볼 수 있다시피 Counter는 dict의 하위 클래스로 생성시 O(n)의 시간 복잡도를 가집니다.\n12345c = Counter()                          # Counter()c = Counter('gallahad')                # Counter(&#123;'a': 3, 'l': 2, 'g': 1, 'h': 1, 'd': 1&#125;)c = Counter(&#123;'red': 4, 'blue': 2&#125;)     # Counter(&#123;'red': 4, 'blue': 2&#125;)c = Counter(cats=4, dogs=8)            # Counter(&#123;'dogs': 8, 'cats': 4&#125;)c = Counter(['eggs', 'ham'])           # Counter(&#123;'eggs': 1, 'ham': 1&#125;)\n\n만약 생성하지 않은 키를 조회한다면 0을 반환합니다.\n12c = Counter(['eggs', 'ham'])           # Counter(&#123;'eggs': 1, 'ham': 1&#125;)c['sausage']                           # 0\n\nCounter는 dict의 하위 클래스이기 때문에 clear() 함수를 이용할 수 있습니다.\n12c = Counter(a=4, b=2, c=0, d=-2)     # Counter(&#123;'a': 4, 'b': 2, 'c': 0, 'd': -2&#125;)c.clear()                            # Counter()\n\n\nelements()Counter의 elements() 함수는 key를 해당 value 만큼 반복하여 반환합니다.\n12c = Counter(a=4, b=2, c=0, d=-2)list(c.elements())                     # ['a', 'a', 'a', 'a', 'b', 'b']\n\n\nmost_common()Counter의 most_common(N) 함수는 카운팅 값이 높은 순으로 N개의 tuple을 반환합니다. 소스코드를 보면 sort() 함수를 이용하고 있기 때문에 평균 O(nlogn)의 시간 복잡도를 가지고 있다고 볼 수 있습니다. sort()에 대한 자세한 사항은 포스팅을 참고해주세요.\n1Counter('abracadabra').most_common(3)  # [('a', 5), ('b', 2), ('r', 2)]\n\nmost_common()[:-N-1:-1]을 이용하면 카운팅 값이 낮은 순으로 N개의 tuple을 가져올 수 있습니다.\n123c = Counter(a=1, b=2, c=3, d=4, z=3) # Counter(&#123;'a': 1, 'b': 2, 'c': 3, 'd': 4, 'z': 3&#125;)c.most_common(2)                     # [('d', 4), ('c', 3)] - 큰 순으로 앞에서 2개c.most_common()[:-2-1:-1]            # [('a', 1), ('b', 2)] - 작은 순으로 앞에서 2개\n\n\nsubtract()Counter의 A.subtract(B) 함수는 Counter A에서 B의 값을 빼줍니다. 이 때 B의 값이 A에 존재하지 않거나 A의 값이 더 작은 경우 음의 정수값으로 반환합니다. 이 때 + 기호를 앞에 붙여주는 경우 value가 양의 정수인 값만 반환합니다.\n12345c = Counter(a=4, b=2, c=0, d=-2)d = Counter(a=1, b=2, c=3, d=4, z=3)c.subtract(d)c              # Counter(&#123;'a': 3, 'b': 0, 'c': -3, 'd': -6, 'z': -3&#125;)+c             # Counter(&#123;'a': 3&#125;)\n\nCounter 오브젝트는 서로 더하거나 뺄 수 있습니다. 이 때 빼기의 경우 subtract() 함수와 달리 양의 정수 값만을 반환합니다.\n1234c = Counter(a=4, b=2, c=0, d=-2)d = Counter(a=1, b=2, c=3, d=4, z=3)c - d            # Counter(&#123;'a': 3&#125;)c + d            # Counter(&#123;'a': 5, 'b': 4, 'c': 3, 'd': 2, 'z': 3&#125;)\n\n\n마치며python Collections의 Counter에 대해 알아보았습니다. 더 자세한 사항은 공식문서를 참고하시기 바랍니다.\n","dateCreated":"1971-05-26T11:47:24+09:00","dateModified":"2023-11-22T15:24:23+09:00","datePublished":"1971-05-26T11:47:24+09:00","description":"Python 2.7과 3.5부터 탑재된 collections의 Counter에 대해 알아보도록 하겠습니다.","headline":"Python Collections Counter","image":["https://user-images.githubusercontent.com/26322627/80858217-de3ee880-8c92-11ea-83a3-8133a274b35e.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/python-collections-counter/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/python-collections-counter/","keywords":"Python","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/80858217-de3ee880-8c92-11ea-83a3-8133a274b35e.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Python 2.7과 3.5부터 탑재된 collections의 Counter에 대해 알아보도록 하겠습니다.\n\nCounter\nCounter는 dict의 하위 클래스로 key와 해당 값의 개수를 카운팅한 value 형태로 이루어진 해쉬 형태의 오브젝트입니다. value는 정수 값을 가질 수 있습니다.\n\nCounter 모듈은 다음과 같이 import하여 사용할 수 있습니다.1from collections import Counter\n\n\nConstructingCounter는 string, dict, argments, list 등 다양한 방법으로 생성할 수 있으며, 소스코드에서 볼 수 있다시피 Counter는 dict의 하위 클래스로 생성시 O(n)의 시간 복잡도를 가집니다.\n12345c = Counter()                          # Counter()c = Counter('gallahad')                # Counter(&#123;'a': 3, 'l': 2, 'g': 1, 'h': 1, 'd': 1&#125;)c = Counter(&#123;'red': 4, 'blue': 2&#125;)     # Counter(&#123;'red': 4, 'blue': 2&#125;)c = Counter(cats=4, dogs=8)            # Counter(&#123;'dogs': 8, 'cats': 4&#125;)c = Counter(['eggs', 'ham'])           # Counter(&#123;'eggs': 1, 'ham': 1&#125;)\n\n만약 생성하지 않은 키를 조회한다면 0을 반환합니다.\n12c = Counter(['eggs', 'ham'])           # Counter(&#123;'eggs': 1, 'ham': 1&#125;)c['sausage']                           # 0\n\nCounter는 dict의 하위 클래스이기 때문에 clear() 함수를 이용할 수 있습니다.\n12c = Counter(a=4, b=2, c=0, d=-2)     # Counter(&#123;'a': 4, 'b': 2, 'c': 0, 'd': -2&#125;)c.clear()                            # Counter()\n\n\nelements()Counter의 elements() 함수는 key를 해당 value 만큼 반복하여 반환합니다.\n12c = Counter(a=4, b=2, c=0, d=-2)list(c.elements())                     # ['a', 'a', 'a', 'a', 'b', 'b']\n\n\nmost_common()Counter의 most_common(N) 함수는 카운팅 값이 높은 순으로 N개의 tuple을 반환합니다. 소스코드를 보면 sort() 함수를 이용하고 있기 때문에 평균 O(nlogn)의 시간 복잡도를 가지고 있다고 볼 수 있습니다. sort()에 대한 자세한 사항은 포스팅을 참고해주세요.\n1Counter('abracadabra').most_common(3)  # [('a', 5), ('b', 2), ('r', 2)]\n\nmost_common()[:-N-1:-1]을 이용하면 카운팅 값이 낮은 순으로 N개의 tuple을 가져올 수 있습니다.\n123c = Counter(a=1, b=2, c=3, d=4, z=3) # Counter(&#123;'a': 1, 'b': 2, 'c': 3, 'd': 4, 'z': 3&#125;)c.most_common(2)                     # [('d', 4), ('c', 3)] - 큰 순으로 앞에서 2개c.most_common()[:-2-1:-1]            # [('a', 1), ('b', 2)] - 작은 순으로 앞에서 2개\n\n\nsubtract()Counter의 A.subtract(B) 함수는 Counter A에서 B의 값을 빼줍니다. 이 때 B의 값이 A에 존재하지 않거나 A의 값이 더 작은 경우 음의 정수값으로 반환합니다. 이 때 + 기호를 앞에 붙여주는 경우 value가 양의 정수인 값만 반환합니다.\n12345c = Counter(a=4, b=2, c=0, d=-2)d = Counter(a=1, b=2, c=3, d=4, z=3)c.subtract(d)c              # Counter(&#123;'a': 3, 'b': 0, 'c': -3, 'd': -6, 'z': -3&#125;)+c             # Counter(&#123;'a': 3&#125;)\n\nCounter 오브젝트는 서로 더하거나 뺄 수 있습니다. 이 때 빼기의 경우 subtract() 함수와 달리 양의 정수 값만을 반환합니다.\n1234c = Counter(a=4, b=2, c=0, d=-2)d = Counter(a=1, b=2, c=3, d=4, z=3)c - d            # Counter(&#123;'a': 3&#125;)c + d            # Counter(&#123;'a': 5, 'b': 4, 'c': 3, 'd': 2, 'z': 3&#125;)\n\n\n마치며python Collections의 Counter에 대해 알아보았습니다. 더 자세한 사항은 공식문서를 참고하시기 바랍니다.\n","dateCreated":"1971-05-26T11:47:24+09:00","dateModified":"2023-11-22T17:26:02+09:00","datePublished":"1971-05-26T11:47:24+09:00","description":"Python 2.7과 3.5부터 탑재된 collections의 Counter에 대해 알아보도록 하겠습니다.","headline":"Python Collections Counter","image":["https://user-images.githubusercontent.com/26322627/80858217-de3ee880-8c92-11ea-83a3-8133a274b35e.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/python-collections-counter/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/python-collections-counter/","keywords":"Python","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/80858217-de3ee880-8c92-11ea-83a3-8133a274b35e.png"}</script>
     <meta name="description" content="Python 2.7과 3.5부터 탑재된 collections의 Counter에 대해 알아보도록 하겠습니다.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Python Collections Counter">
@@ -30,7 +30,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://user-images.githubusercontent.com/26322627/80858217-de3ee880-8c92-11ea-83a3-8133a274b35e.png">
 <meta property="article:published_time" content="1971-05-26T02:47:24.000Z">
-<meta property="article:modified_time" content="2023-11-22T06:24:23.546Z">
+<meta property="article:modified_time" content="2023-11-22T08:26:02.788Z">
 <meta property="article:author" content="DevStory">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -90,10 +90,10 @@
     </div>
     
         
-            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /#about">
         
         
-            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+            <img class="header-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
         
         </a>
     
@@ -110,8 +110,8 @@
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
-                <a href="/#about" aria-label="저자에 대해 더 알아보기">
-                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+                <a href="/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
                 </a>
                 <h4 class="sidebar-profile-name">DevStory</h4>
                 
@@ -124,37 +124,37 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/" title="홈">
+                        <a class="sidebar-button-link " href="/" title="Home">
                     
                         <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">홈</span>
+                        <span class="sidebar-button-desc">Home</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
+                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">카테고리</span>
+                        <span class="sidebar-button-desc">Categories</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-tags" title="태그">
+                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
                     
                         <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">태그</span>
+                        <span class="sidebar-button-desc">Tags</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
+                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">아카이브</span>
+                        <span class="sidebar-button-desc">Archives</span>
                     </a>
             </li>
             
@@ -164,28 +164,28 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">깃허브</span>
+                        <span class="sidebar-button-desc">GitHub</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
                     
                         <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">프로젝트</span>
+                        <span class="sidebar-button-desc">Projects</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
                     
                         <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">강의</span>
+                        <span class="sidebar-button-desc">Lecture</span>
                     </a>
             </li>
             
@@ -225,11 +225,11 @@
         <div class="post-meta">
     <time datetime="1971-05-26T11:47:24+09:00">
 	
-		    1971/05/26
+		    May 26, 1971
     	
     </time>
     
-        <span>카테고리 </span>
+        <span>in </span>
         
     <a class="category-link" href="/categories/Program-Language/">Program Language</a>
 
@@ -248,7 +248,8 @@
             <!-- NERO :: Add TOC -->
             <hr class="nero-toc-line">
             <blockquote>
-                <strong>목차</strong>
+                <strong>Table of Contents
+                </strong>
             </blockquote>
             <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Counter"><span class="nero-toc-text">Counter</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Constructing"><span class="nero-toc-text">Constructing</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#elements"><span class="nero-toc-text">elements()</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#most-common"><span class="nero-toc-text">most_common()</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#subtract"><span class="nero-toc-text">subtract()</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마치며"><span class="nero-toc-text">마치며</span></a></li></ol>
             <hr class="nero-toc-line">
@@ -314,7 +315,7 @@
     <div id="post-footer" class="post-footer main-content-wrap">
         
         <div class="post-footer-tags">
-            <span class="text-color-light text-small">태그</span><br>
+            <span class="text-color-light text-small">TAGGED IN</span><br>
             
     <a class="tag tag--primary tag--small t-link" href="/tags/Python/" rel="tag">Python</a>
 
@@ -327,17 +328,17 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/python-sort/" data-tooltip="Python Sort" aria-label="이전: Python Sort">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/python-sort/" data-tooltip="Python Sort" aria-label="PREVIOUS: Python Sort">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     <a class="post-action-btn btn btn--disabled" aria-hidden="true">
                         
-                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -345,7 +346,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -353,7 +354,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/python-collections-counter/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/python-collections-counter/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -361,7 +362,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/python-collections-counter/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/python-collections-counter/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -371,7 +372,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -406,17 +407,17 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/python-sort/" data-tooltip="Python Sort" aria-label="이전: Python Sort">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/python-sort/" data-tooltip="Python Sort" aria-label="PREVIOUS: Python Sort">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     <a class="post-action-btn btn btn--disabled" aria-hidden="true">
                         
-                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -424,7 +425,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -432,7 +433,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/python-collections-counter/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/python-collections-counter/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -440,7 +441,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/python-collections-counter/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/python-collections-counter/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -450,7 +451,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -468,16 +469,16 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/python-collections-counter/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/python-collections-counter/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/python-collections-counter/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/python-collections-counter/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
                     </a>
                 </li>
             
@@ -537,7 +538,7 @@
 
 <script src="/assets/js/script-hh0puos85akek5s0ltmkxazn1sj9ckkkxg9wbommekw9eoetrgotaueeus4x.min.js"></script>
 
-<!--SCRIPTS END-->
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
     
@@ -545,5 +546,5 @@
 
 
 
-    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
 </html>

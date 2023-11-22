@@ -20,7 +20,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.\n\n✔︎ 1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기2부. ARKit을 이용하여 iOS AR앱 만들기3부. Custom YOLO v3 모델 만들기4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기\n\n\n프로젝트 소개AR(Augmented Reality)을 이용한 다양한 어플리케이션들이 출시되고 있습니다. 그런데 AR 어플리케이션 속의 가상 오브젝트들은 여러가지 이유로 현실감이 많이 떨어져 서비스 몰입도를 낮추는 것 같습니다.\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n부자가 되고 싶은 자 AR을 개발해라(..?)출처 : http://www.etoland.co.kr/\n\n\n\n대부분의 AR 어플리케이션에서 사용되는 3D 모델들은 아래 Apple Sample Code인 Placing Objects and Handling 3D Interaction에 사용된 램프 모델과 같이 고정된 그림자 이미지를 가지고 있습니다. 이러한 고정된 그림자는 보통 어떠한 상황에서도 어색하지 않을 범용적인 형태의 그림자를 가지고 있지만, 상황에 따라 주변 물체와의 이질감을 유발하는 원인 중 하나입니다.\n개발에 사용된 언어, 프레임워크 및 툴\n\n\n✔︎ 개발 환경\n\n\nOS : macOS Mojave 10.14\nIDE : XCode / Jupyter Notebook\nLanguage : Swift / Python3\niOS : ARKit / SceneKit / Vision / CoreML\nData Labeling : labelImg\nDeep Learning : YOLO / keras-yolo3\n\n\n시연 영상\n\n\n\n\n기능 소개전체적인 어플리케이션은 다음과 같이 여섯 단계로 서비스 로직이 진행됩니다.\n\n✔︎ ARKit &amp; SceneKit을 이용한 AR 개발\n\n\n평면 탐지(Plane Detection)\n설치가능한 가상 오브젝트 추천\n가상 오브젝트 설치 및 인터랙션\n\n\n✔︎ 딥러닝을 이용한 조명 인식\n\n\nGoogle Vision API 방식\nYOLO(real time object detection) 방식\n\n\nARKit &amp; SceneKit을 이용한 AR 개발\n  \n\n\nYour browser doesn't support HTML5 Video :/\n1. 평면 탐지(Plane Detection)\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n2. 설치가능한 가상 오브젝트 추천\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n3. 가상 오브젝트 설치 및 인터랙션\n\n\n\n어플리케이션이 현실 공간을 인식하여 벽면이나 바닥을 인식합니다. 공간이 인식되면 현재 바라보고 있는 장소에 설치 가능한 가구를 목록을 보여주고, 원하는 가구를 선택하여 설치할 수 있습니다. 또한 설치된 가구를 원하는 장소로 이동하거나 회전하는 등의 기본적인 인터랙션이 가능합니다.\n\n딥러닝을 이용한 조명 인식본 어플리케이션에서는 두 가지 조명 인식 방식을 구현하였습니다. 하나는 Google Vision API를 이용한 방법이고, 다른 방법은 YOLO라는 딥러닝 모델을 이용한 방법으로 다음과 같은 특징을 가지고있습니다.\n\n\n\n\n\n✔︎ Google Vision API 방식\n✔︎ YOLO(real time object detection) 방식\n\n\n\n• 네트워크 통신 필요\n• 네트워크 통신 불필요\n\n\n• 실시간 조명 추적 불가능\n• 실시간 조명 추적 가능\n\n\n• 조명의 정확한 좌표를 얻을 수 없음\n• 조명의 2차원 좌표 획득 가능\n\n\n• 조명의 온오프 상태를 알 수 없음\n• 조명의 온오프 상태 구분가능\n\n\n• 범용적인 조명 인식이 가능\n• 학습된 5개의 조명만 인식가능\n\n\n\n1. Google Vision API 방식\n  \n    \n\n\nYour browser doesn't support HTML5 Video :/\nGoogle Vision API를 이용한 가상조명 설치\n\n  \n\n\nGoogle Vision API를 이용한 방식은 사용자가 조명을 바라보고 인식 버튼을 누르면 이미지를 Google Vision API 서버로 전달하여 조명 존재여부를 요청하고, 이미지 중앙좌표의 3차원 좌표를 hitTest 메소드를 통하여 획득합니다. 그리고 Google Vision API에서 조명이 존재한다고 반환하는 경우, 앞서 얻은 3차원 좌표에 가상 조명을 설치하는 방식입니다.\n이 방법의 경우 조명의 실제 3차원 좌표가 아닌 곳에 가상 조명이 설치된 가능성이 있고, 실시간으로 조명을 인식하는 것이 아니라 사용자가 인식하고자 하는 조명 개수만큼 인식 버튼을 눌러야한다는 단점이 있습니다. 그럼에도 불구하고 Google에서 학습한 방대한 모델을 이용하기 때문에 범용적인 조명을 인식할 수 있다는 장점을 가지고 있습니다.\n\n2. YOLO(real time object detection) 방식\n  \n\n\nYour browser doesn't support HTML5 Video :/\nYOLO 조명 on 상태 인식\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\nYOLO 조명 off 상태 인식\n\n\n\n이 방식은 Realtime Object Detection 모델 중 하나인 YOLO 모델을 이용한 방식입니다. YOLO 모델은, 해당 이미지 안에 존재하는 조명의 온오프 상태, 종류, 신뢰도(confidence) 그리고 바운딩 박스(2차원 박스의 대각선 두 점의 좌표)를 반환합니다. 매프레임마다 바운딩 박스 좌표를 hitTest 메소드에 입력하여 조명의 3차원 좌표를 계산하고, 조명의 상태에 따라 경우 해당 좌표에 가상 조명을 추가하거나 삭제합니다.\n모바일에 탑재한 YOLO 딥러닝 모델을 이용하기 때문에 네트워크 통신이 필요하지 않으며, 실시간으로 조명의 상태 및 좌표를 인식할 수 있다는 장점을 가지고 있습니다. 하지만 학습된 조명만 인식이 가능하다는 단점을 가지고 있습니다.\n\n마치며현실 조명에 대한 정보가 가상 오브젝트에 반영되었으므로, 아래 영상과 같이 오브젝트의 그림자가 조명과의 상대적 위치에 따라 현실감 있게 랜더링 되는 것을 보실 수 있습니다.\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n그림자가 조명을 중심으로 랜더링 됩니다.\n\n  \n\n\n그 뿐만 아니라 카메라를 통해 들어오는 밝기(lm)과 색 온도(Kelvin)를 매프레임마다 가상 조명에 실시간으로 반영해주고 있기 때문에 가상 오브젝트가 주변과 유사한 텍스쳐로 표현되어 더욱 현실감을 높여줍니다.\n","dateCreated":"2019-12-25T16:44:28+09:00","dateModified":"2023-11-22T15:24:23+09:00","datePublished":"2019-12-25T16:44:28+09:00","description":"딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.","headline":"1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기","image":["https://user-images.githubusercontent.com/26322627/70371587-496cd480-1918-11ea-839e-93f5f3402969.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/too-real-01/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/too-real-01/","keywords":"Too Real","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/70371587-496cd480-1918-11ea-839e-93f5f3402969.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.\n\n✔︎ 1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기2부. ARKit을 이용하여 iOS AR앱 만들기3부. Custom YOLO v3 모델 만들기4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기\n\n\n프로젝트 소개AR(Augmented Reality)을 이용한 다양한 어플리케이션들이 출시되고 있습니다. 그런데 AR 어플리케이션 속의 가상 오브젝트들은 여러가지 이유로 현실감이 많이 떨어져 서비스 몰입도를 낮추는 것 같습니다.\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n부자가 되고 싶은 자 AR을 개발해라(..?)출처 : http://www.etoland.co.kr/\n\n\n\n대부분의 AR 어플리케이션에서 사용되는 3D 모델들은 아래 Apple Sample Code인 Placing Objects and Handling 3D Interaction에 사용된 램프 모델과 같이 고정된 그림자 이미지를 가지고 있습니다. 이러한 고정된 그림자는 보통 어떠한 상황에서도 어색하지 않을 범용적인 형태의 그림자를 가지고 있지만, 상황에 따라 주변 물체와의 이질감을 유발하는 원인 중 하나입니다.\n개발에 사용된 언어, 프레임워크 및 툴\n\n\n✔︎ 개발 환경\n\n\nOS : macOS Mojave 10.14\nIDE : XCode / Jupyter Notebook\nLanguage : Swift / Python3\niOS : ARKit / SceneKit / Vision / CoreML\nData Labeling : labelImg\nDeep Learning : YOLO / keras-yolo3\n\n\n시연 영상\n\n\n\n\n기능 소개전체적인 어플리케이션은 다음과 같이 여섯 단계로 서비스 로직이 진행됩니다.\n\n✔︎ ARKit &amp; SceneKit을 이용한 AR 개발\n\n\n평면 탐지(Plane Detection)\n설치가능한 가상 오브젝트 추천\n가상 오브젝트 설치 및 인터랙션\n\n\n✔︎ 딥러닝을 이용한 조명 인식\n\n\nGoogle Vision API 방식\nYOLO(real time object detection) 방식\n\n\nARKit &amp; SceneKit을 이용한 AR 개발\n  \n\n\nYour browser doesn't support HTML5 Video :/\n1. 평면 탐지(Plane Detection)\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n2. 설치가능한 가상 오브젝트 추천\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n3. 가상 오브젝트 설치 및 인터랙션\n\n\n\n어플리케이션이 현실 공간을 인식하여 벽면이나 바닥을 인식합니다. 공간이 인식되면 현재 바라보고 있는 장소에 설치 가능한 가구를 목록을 보여주고, 원하는 가구를 선택하여 설치할 수 있습니다. 또한 설치된 가구를 원하는 장소로 이동하거나 회전하는 등의 기본적인 인터랙션이 가능합니다.\n\n딥러닝을 이용한 조명 인식본 어플리케이션에서는 두 가지 조명 인식 방식을 구현하였습니다. 하나는 Google Vision API를 이용한 방법이고, 다른 방법은 YOLO라는 딥러닝 모델을 이용한 방법으로 다음과 같은 특징을 가지고있습니다.\n\n\n\n\n\n✔︎ Google Vision API 방식\n✔︎ YOLO(real time object detection) 방식\n\n\n\n• 네트워크 통신 필요\n• 네트워크 통신 불필요\n\n\n• 실시간 조명 추적 불가능\n• 실시간 조명 추적 가능\n\n\n• 조명의 정확한 좌표를 얻을 수 없음\n• 조명의 2차원 좌표 획득 가능\n\n\n• 조명의 온오프 상태를 알 수 없음\n• 조명의 온오프 상태 구분가능\n\n\n• 범용적인 조명 인식이 가능\n• 학습된 5개의 조명만 인식가능\n\n\n\n1. Google Vision API 방식\n  \n    \n\n\nYour browser doesn't support HTML5 Video :/\nGoogle Vision API를 이용한 가상조명 설치\n\n  \n\n\nGoogle Vision API를 이용한 방식은 사용자가 조명을 바라보고 인식 버튼을 누르면 이미지를 Google Vision API 서버로 전달하여 조명 존재여부를 요청하고, 이미지 중앙좌표의 3차원 좌표를 hitTest 메소드를 통하여 획득합니다. 그리고 Google Vision API에서 조명이 존재한다고 반환하는 경우, 앞서 얻은 3차원 좌표에 가상 조명을 설치하는 방식입니다.\n이 방법의 경우 조명의 실제 3차원 좌표가 아닌 곳에 가상 조명이 설치된 가능성이 있고, 실시간으로 조명을 인식하는 것이 아니라 사용자가 인식하고자 하는 조명 개수만큼 인식 버튼을 눌러야한다는 단점이 있습니다. 그럼에도 불구하고 Google에서 학습한 방대한 모델을 이용하기 때문에 범용적인 조명을 인식할 수 있다는 장점을 가지고 있습니다.\n\n2. YOLO(real time object detection) 방식\n  \n\n\nYour browser doesn't support HTML5 Video :/\nYOLO 조명 on 상태 인식\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\nYOLO 조명 off 상태 인식\n\n\n\n이 방식은 Realtime Object Detection 모델 중 하나인 YOLO 모델을 이용한 방식입니다. YOLO 모델은, 해당 이미지 안에 존재하는 조명의 온오프 상태, 종류, 신뢰도(confidence) 그리고 바운딩 박스(2차원 박스의 대각선 두 점의 좌표)를 반환합니다. 매프레임마다 바운딩 박스 좌표를 hitTest 메소드에 입력하여 조명의 3차원 좌표를 계산하고, 조명의 상태에 따라 경우 해당 좌표에 가상 조명을 추가하거나 삭제합니다.\n모바일에 탑재한 YOLO 딥러닝 모델을 이용하기 때문에 네트워크 통신이 필요하지 않으며, 실시간으로 조명의 상태 및 좌표를 인식할 수 있다는 장점을 가지고 있습니다. 하지만 학습된 조명만 인식이 가능하다는 단점을 가지고 있습니다.\n\n마치며현실 조명에 대한 정보가 가상 오브젝트에 반영되었으므로, 아래 영상과 같이 오브젝트의 그림자가 조명과의 상대적 위치에 따라 현실감 있게 랜더링 되는 것을 보실 수 있습니다.\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n그림자가 조명을 중심으로 랜더링 됩니다.\n\n  \n\n\n그 뿐만 아니라 카메라를 통해 들어오는 밝기(lm)과 색 온도(Kelvin)를 매프레임마다 가상 조명에 실시간으로 반영해주고 있기 때문에 가상 오브젝트가 주변과 유사한 텍스쳐로 표현되어 더욱 현실감을 높여줍니다.\n","dateCreated":"2019-12-25T16:44:28+09:00","dateModified":"2023-11-22T17:26:18+09:00","datePublished":"2019-12-25T16:44:28+09:00","description":"딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.","headline":"1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기","image":["https://user-images.githubusercontent.com/26322627/70371587-496cd480-1918-11ea-839e-93f5f3402969.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/too-real-01/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/too-real-01/","keywords":"Too Real","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/70371587-496cd480-1918-11ea-839e-93f5f3402969.png"}</script>
     <meta name="description" content="딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기">
@@ -30,7 +30,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://user-images.githubusercontent.com/26322627/70371587-496cd480-1918-11ea-839e-93f5f3402969.png">
 <meta property="article:published_time" content="2019-12-25T07:44:28.000Z">
-<meta property="article:modified_time" content="2023-11-22T06:24:23.547Z">
+<meta property="article:modified_time" content="2023-11-22T08:26:18.668Z">
 <meta property="article:author" content="DevStory">
 <meta property="article:tag" content="Too Real">
 <meta name="twitter:card" content="summary">
@@ -90,10 +90,10 @@
     </div>
     
         
-            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /#about">
         
         
-            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+            <img class="header-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
         
         </a>
     
@@ -110,8 +110,8 @@
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
-                <a href="/#about" aria-label="저자에 대해 더 알아보기">
-                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+                <a href="/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
                 </a>
                 <h4 class="sidebar-profile-name">DevStory</h4>
                 
@@ -124,37 +124,37 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/" title="홈">
+                        <a class="sidebar-button-link " href="/" title="Home">
                     
                         <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">홈</span>
+                        <span class="sidebar-button-desc">Home</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
+                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">카테고리</span>
+                        <span class="sidebar-button-desc">Categories</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-tags" title="태그">
+                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
                     
                         <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">태그</span>
+                        <span class="sidebar-button-desc">Tags</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
+                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">아카이브</span>
+                        <span class="sidebar-button-desc">Archives</span>
                     </a>
             </li>
             
@@ -164,28 +164,28 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">깃허브</span>
+                        <span class="sidebar-button-desc">GitHub</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
                     
                         <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">프로젝트</span>
+                        <span class="sidebar-button-desc">Projects</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
                     
                         <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">강의</span>
+                        <span class="sidebar-button-desc">Lecture</span>
                     </a>
             </li>
             
@@ -225,11 +225,11 @@
         <div class="post-meta">
     <time datetime="2019-12-25T16:44:28+09:00">
 	
-		    2019/12/25
+		    Dec 25, 2019
     	
     </time>
     
-        <span>카테고리 </span>
+        <span>in </span>
         
     <a class="category-link" href="/categories/Project/">Project</a>
 
@@ -248,7 +248,8 @@
             <!-- NERO :: Add TOC -->
             <hr class="nero-toc-line">
             <blockquote>
-                <strong>목차</strong>
+                <strong>Table of Contents
+                </strong>
             </blockquote>
             <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#프로젝트-소개"><span class="nero-toc-text">프로젝트 소개</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#프로젝트-결과물"><span class="nero-toc-text">프로젝트 결과물</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#개발-환경"><span class="nero-toc-text">개발 환경</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#시연-영상"><span class="nero-toc-text">시연 영상</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#기능-소개"><span class="nero-toc-text">기능 소개</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARKit-amp-SceneKit을-이용한-AR-개발"><span class="nero-toc-text">ARKit &amp; SceneKit을 이용한 AR 개발</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#딥러닝을-이용한-조명-인식"><span class="nero-toc-text">딥러닝을 이용한 조명 인식</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-3"><a class="nero-toc-link" href="#1-Google-Vision-API-방식"><span class="nero-toc-text">1. Google Vision API 방식</span></a></li><li class="nero-toc-item nero-toc-level-3"><a class="nero-toc-link" href="#2-YOLO-real-time-object-detection-방식"><span class="nero-toc-text">2. YOLO(real time object detection) 방식</span></a></li></ol></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마치며"><span class="nero-toc-text">마치며</span></a></li></ol>
             <hr class="nero-toc-line">
@@ -447,7 +448,7 @@
     <div id="post-footer" class="post-footer main-content-wrap">
         
         <div class="post-footer-tags">
-            <span class="text-color-light text-small">태그</span><br>
+            <span class="text-color-light text-small">TAGGED IN</span><br>
             
     <a class="tag tag--primary tag--small t-link" href="/tags/Too-Real/" rel="tag">Too Real</a>
 
@@ -460,18 +461,18 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/devblog-classifier/" data-tooltip="딥러닝으로 문서 분류기 만들기" aria-label="이전: 딥러닝으로 문서 분류기 만들기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/devblog-classifier/" data-tooltip="딥러닝으로 문서 분류기 만들기" aria-label="PREVIOUS: 딥러닝으로 문서 분류기 만들기">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/too-real-02/" data-tooltip="2부. ARKit을 이용하여 iOS AR앱 만들기" aria-label="다음: 2부. ARKit을 이용하여 iOS AR앱 만들기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/too-real-02/" data-tooltip="2부. ARKit을 이용하여 iOS AR앱 만들기" aria-label="NEXT: 2부. ARKit을 이용하여 iOS AR앱 만들기">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -479,7 +480,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -487,7 +488,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/too-real-01/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/too-real-01/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -495,7 +496,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/too-real-01/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/too-real-01/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -505,7 +506,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -540,18 +541,18 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/devblog-classifier/" data-tooltip="딥러닝으로 문서 분류기 만들기" aria-label="이전: 딥러닝으로 문서 분류기 만들기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/devblog-classifier/" data-tooltip="딥러닝으로 문서 분류기 만들기" aria-label="PREVIOUS: 딥러닝으로 문서 분류기 만들기">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/too-real-02/" data-tooltip="2부. ARKit을 이용하여 iOS AR앱 만들기" aria-label="다음: 2부. ARKit을 이용하여 iOS AR앱 만들기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/too-real-02/" data-tooltip="2부. ARKit을 이용하여 iOS AR앱 만들기" aria-label="NEXT: 2부. ARKit을 이용하여 iOS AR앱 만들기">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -559,7 +560,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -567,7 +568,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/too-real-01/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/too-real-01/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -575,7 +576,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/too-real-01/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/too-real-01/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -585,7 +586,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -603,16 +604,16 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/too-real-01/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/too-real-01/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/too-real-01/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/too-real-01/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
                     </a>
                 </li>
             
@@ -672,7 +673,7 @@
 
 <script src="/assets/js/script-hh0puos85akek5s0ltmkxazn1sj9ckkkxg9wbommekw9eoetrgotaueeus4x.min.js"></script>
 
-<!--SCRIPTS END-->
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
     
@@ -680,5 +681,5 @@
 
 
 
-    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
 </html>
