@@ -3,64 +3,64 @@
 
 
     <url>
-        <loc>https://blog.devstory.co.kr/tags/%25EC%2598%25A4%25EB%258A%2598-%25ED%2595%2598%25EB%25A3%25A8%25EB%25A5%25BC-%25EA%25B7%25B8%25EB%25A0%25A4%25EC%25A4%2598-AI-%25EA%25B7%25B8%25EB%25A6%25BC-%25EC%259D%25BC%25EA%25B8%25B0/</loc>
-        <lastmod>2023-11-20T23:52:17.536Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/tags/Project/</loc>
-        <lastmod>2023-11-20T23:52:17.536Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/tags/Prography-8%25EA%25B8%25B0/</loc>
-        <lastmod>2023-11-20T11:30:06.930Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/tags/Flutter/</loc>
-        <lastmod>2023-11-20T07:07:55.704Z</lastmod>
+        <loc>https://blog.devstory.co.kr/tags/Too-Real/</loc>
+        <lastmod>2023-11-22T06:24:23.548Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.devstory.co.kr/tags/Python/</loc>
-        <lastmod>2023-11-20T07:07:45.674Z</lastmod>
+        <lastmod>2023-11-22T06:24:23.547Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/tags/Too-Real/</loc>
-        <lastmod>2023-11-20T07:05:38.111Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/tags/Endpoint-Detector/</loc>
-        <lastmod>2023-11-20T06:55:39.037Z</lastmod>
+        <loc>https://blog.devstory.co.kr/tags/Prography-8%25EA%25B8%25B0/</loc>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.devstory.co.kr/tags/Gentle-Map/</loc>
-        <lastmod>2023-11-20T06:55:20.660Z</lastmod>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/tags/Project/</loc>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/tags/Endpoint-Detector/</loc>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/tags/Flutter/</loc>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/tags/%25EC%2598%25A4%25EB%258A%2598-%25ED%2595%2598%25EB%25A3%25A8%25EB%25A5%25BC-%25EA%25B7%25B8%25EB%25A0%25A4%25EC%25A4%2598-AI-%25EA%25B7%25B8%25EB%25A6%25BC-%25EC%259D%25BC%25EA%25B8%25B0/</loc>
+        <lastmod>2023-11-22T06:24:23.544Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.devstory.co.kr/tags/Devblog-Classifier/</loc>
-        <lastmod>2023-11-20T04:48:33.617Z</lastmod>
+        <lastmod>2023-11-22T06:24:23.544Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

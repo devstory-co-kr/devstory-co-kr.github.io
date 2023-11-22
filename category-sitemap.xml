@@ -9,21 +9,21 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/categories/Project/</loc>
-        <lastmod>2023-11-20T23:52:17.536Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/categories/Flutter/</loc>
-        <lastmod>2023-11-20T07:07:55.704Z</lastmod>
+        <lastmod>2023-11-22T06:24:23.548Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.devstory.co.kr/categories/Program-Language/</loc>
-        <lastmod>2023-11-20T07:07:45.674Z</lastmod>
+        <lastmod>2023-11-22T06:24:23.547Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/categories/Flutter/</loc>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

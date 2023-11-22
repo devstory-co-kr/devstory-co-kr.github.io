@@ -8,112 +8,8 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/draw-my-today/</loc>
-        <lastmod>2023-11-20T23:52:17.536Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/prography-8th/</loc>
-        <lastmod>2023-11-20T11:30:06.930Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/open-source-contributhon/</loc>
-        <lastmod>2023-11-20T07:07:55.704Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/python-collections-deque/</loc>
-        <lastmod>2023-11-20T07:07:45.674Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/python-collections-counter/</loc>
-        <lastmod>2023-11-20T07:07:45.673Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-01/</loc>
-        <lastmod>2023-11-20T07:05:38.111Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-03/</loc>
-        <lastmod>2023-11-20T07:05:38.111Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://blog.devstory.co.kr/post/too-real-04/</loc>
-        <lastmod>2023-11-20T07:05:38.111Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-02/</loc>
-        <lastmod>2023-11-20T07:05:38.109Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/endpoint-detector/</loc>
-        <lastmod>2023-11-20T06:55:39.037Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/gentle-map/</loc>
-        <lastmod>2023-11-20T06:55:20.660Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/devblog-classifier/</loc>
-        <lastmod>2023-11-20T04:48:33.617Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/python-heapq/</loc>
-        <lastmod>2023-11-20T04:48:33.613Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/python-itertools/</loc>
-        <lastmod>2023-11-20T04:48:33.606Z</lastmod>
+        <lastmod>2023-11-22T06:24:23.548Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -121,15 +17,7 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/post/python-sort/</loc>
-        <lastmod>2023-11-20T04:48:33.606Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/python-functools-reduce/</loc>
-        <lastmod>2023-11-19T05:26:58.304Z</lastmod>
+        <lastmod>2023-11-22T06:24:23.547Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -137,7 +25,119 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/post/python-timeit/</loc>
-        <lastmod>2023-11-19T05:26:58.300Z</lastmod>
+        <lastmod>2023-11-22T06:24:23.547Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/too-real-01/</loc>
+        <lastmod>2023-11-22T06:24:23.547Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/too-real-02/</loc>
+        <lastmod>2023-11-22T06:24:23.547Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/too-real-03/</loc>
+        <lastmod>2023-11-22T06:24:23.547Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/python-collections-counter/</loc>
+        <lastmod>2023-11-22T06:24:23.546Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/python-functools-reduce/</loc>
+        <lastmod>2023-11-22T06:24:23.546Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/python-heapq/</loc>
+        <lastmod>2023-11-22T06:24:23.546Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/python-itertools/</loc>
+        <lastmod>2023-11-22T06:24:23.546Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/python-collections-deque/</loc>
+        <lastmod>2023-11-22T06:24:23.546Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/endpoint-detector/</loc>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/gentle-map/</loc>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/open-source-contributhon/</loc>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/prography-8th/</loc>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/devblog-classifier/</loc>
+        <lastmod>2023-11-22T06:24:23.544Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/draw-my-today/</loc>
+        <lastmod>2023-11-22T06:24:23.544Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

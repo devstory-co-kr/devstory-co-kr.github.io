@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
@@ -12,7 +12,7 @@
     <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
     <link rel="canonical" href="https://blog.devstory.co.kr/post/python-functools-reduce/">
     
-        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero,네로,AR,">
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
     
     
         <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
@@ -20,7 +20,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture?lang=ko"],"image":"devstory.png"},"articleBody":"Python의 functools의 reduce() 함수에 대해서 알아보도록 하겠습니다.\n\nReducereduce는 누계값과 현재 요소의 값을 받는 함수와, iterable 그리고 초기값을 받는 함수입니다.\n123456789def reduce(function, iterable, initializer=None):    it = iter(iterable)    if initializer is None:        value = next(it)    else:        value = initializer    for element in it:        value = function(value, element)    return value\n\nreduce의 정의를 한 줄로 설명하기 어려운데, 사용법을 보면 금방 이해할 수 있습니다.\n배열의 모든 원소의 합 구하기123from functools import reducea = [1, 2, 3]total = reduce(lambda acc, cur: acc + cur, a) # ((1 + 2) + 3) = 6\n\n최댓값 구하기123from functools import reducea = [1, 2, 3]total = reduce(lambda pre, cur: cur if pre &lt; cur else pre, a) # 3\n\nreduce는 내부적으로 iterable을 쓰기 때문에 for문 보다 간결하고 성능이 뛰어납니다.\n","dateCreated":"1971-05-27T16:35:24+09:00","dateModified":"2023-11-19T14:26:58+09:00","datePublished":"1971-05-27T16:35:24+09:00","description":"Python의 functools의 reduce() 함수에 대해서 알아보도록 하겠습니다.","headline":"Python Reduce","image":["https://user-images.githubusercontent.com/26322627/80858217-de3ee880-8c92-11ea-83a3-8133a274b35e.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/python-functools-reduce/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture?lang=ko"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/python-functools-reduce/","keywords":"Python","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/80858217-de3ee880-8c92-11ea-83a3-8133a274b35e.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Python의 functools의 reduce() 함수에 대해서 알아보도록 하겠습니다.\n\nReducereduce는 누계값과 현재 요소의 값을 받는 함수와, iterable 그리고 초기값을 받는 함수입니다.\n123456789def reduce(function, iterable, initializer=None):    it = iter(iterable)    if initializer is None:        value = next(it)    else:        value = initializer    for element in it:        value = function(value, element)    return value\n\nreduce의 정의를 한 줄로 설명하기 어려운데, 사용법을 보면 금방 이해할 수 있습니다.\n배열의 모든 원소의 합 구하기123from functools import reducea = [1, 2, 3]total = reduce(lambda acc, cur: acc + cur, a) # ((1 + 2) + 3) = 6\n\n최댓값 구하기123from functools import reducea = [1, 2, 3]total = reduce(lambda pre, cur: cur if pre &lt; cur else pre, a) # 3\n\nreduce는 내부적으로 iterable을 쓰기 때문에 for문 보다 간결하고 성능이 뛰어납니다.\n","dateCreated":"1971-05-27T16:35:24+09:00","dateModified":"2023-11-22T15:24:23+09:00","datePublished":"1971-05-27T16:35:24+09:00","description":"Python의 functools의 reduce() 함수에 대해서 알아보도록 하겠습니다.","headline":"Python Reduce","image":["https://user-images.githubusercontent.com/26322627/80858217-de3ee880-8c92-11ea-83a3-8133a274b35e.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/python-functools-reduce/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/python-functools-reduce/","keywords":"Python","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/80858217-de3ee880-8c92-11ea-83a3-8133a274b35e.png"}</script>
     <meta name="description" content="Python의 functools의 reduce() 함수에 대해서 알아보도록 하겠습니다.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Python Reduce">
@@ -30,7 +30,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://user-images.githubusercontent.com/26322627/80858217-de3ee880-8c92-11ea-83a3-8133a274b35e.png">
 <meta property="article:published_time" content="1971-05-27T07:35:24.000Z">
-<meta property="article:modified_time" content="2023-11-19T05:26:58.304Z">
+<meta property="article:modified_time" content="2023-11-22T06:24:23.546Z">
 <meta property="article:author" content="DevStory">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-vipjebgadeo17lqngz5n6ac81wsm3cqpwuyjvartknkptdlamos31bso9iow.min.css">
+<link rel="stylesheet" href="/assets/css/style-5toom7w8tzu2rtez13zdloernoyoysdjq2q2tcbfz5imexi7unxmlefzt29m.min.css">
 
     <!--STYLES END-->
 
@@ -90,10 +90,10 @@
     </div>
     
         
-            <a class="header-right-picture " href="#about" aria-label="Open the link: /#about">
+            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
         
         
-            <img class="header-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
         
         </a>
     
@@ -110,8 +110,8 @@
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
-                <a href="/#about" aria-label="Read more about the author">
-                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+                <a href="/#about" aria-label="저자에 대해 더 알아보기">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
                 </a>
                 <h4 class="sidebar-profile-name">DevStory</h4>
                 
@@ -124,37 +124,37 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/" title="Home">
+                        <a class="sidebar-button-link " href="/" title="홈">
                     
                         <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Home</span>
+                        <span class="sidebar-button-desc">홈</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">카테고리</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                        <a class="sidebar-button-link " href="/all-tags" title="태그">
                     
                         <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Tags</span>
+                        <span class="sidebar-button-desc">태그</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">아카이브</span>
                     </a>
             </li>
             
@@ -164,28 +164,28 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
+                        <span class="sidebar-button-desc">깃허브</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
                     
                         <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Projects</span>
+                        <span class="sidebar-button-desc">프로젝트</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture?lang=ko" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
                     
                         <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Lecture</span>
+                        <span class="sidebar-button-desc">강의</span>
                     </a>
             </li>
             
@@ -225,11 +225,11 @@
         <div class="post-meta">
     <time datetime="1971-05-27T16:35:24+09:00">
 	
-		    May 27, 1971
+		    1971/05/27
     	
     </time>
     
-        <span>in </span>
+        <span>카테고리 </span>
         
     <a class="category-link" href="/categories/Program-Language/">Program Language</a>
 
@@ -288,7 +288,7 @@
     <div id="post-footer" class="post-footer main-content-wrap">
         
         <div class="post-footer-tags">
-            <span class="text-color-light text-small">TAGGED IN</span><br>
+            <span class="text-color-light text-small">태그</span><br>
             
     <a class="tag tag--primary tag--small t-link" href="/tags/Python/" rel="tag">Python</a>
 
@@ -301,18 +301,18 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/python-timeit/" data-tooltip="Python Timeit" aria-label="PREVIOUS: Python Timeit">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/python-timeit/" data-tooltip="Python Timeit" aria-label="이전: Python Timeit">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/python-sort/" data-tooltip="Python Sort" aria-label="NEXT: Python Sort">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/python-sort/" data-tooltip="Python Sort" aria-label="다음: Python Sort">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -320,7 +320,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -328,7 +328,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/python-functools-reduce/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/python-functools-reduce/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -336,7 +336,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/python-functools-reduce/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/python-functools-reduce/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -346,7 +346,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -381,18 +381,18 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/python-timeit/" data-tooltip="Python Timeit" aria-label="PREVIOUS: Python Timeit">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/python-timeit/" data-tooltip="Python Timeit" aria-label="이전: Python Timeit">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/python-sort/" data-tooltip="Python Sort" aria-label="NEXT: Python Sort">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/python-sort/" data-tooltip="Python Sort" aria-label="다음: Python Sort">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -400,7 +400,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -408,7 +408,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/python-functools-reduce/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/python-functools-reduce/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -416,7 +416,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/python-functools-reduce/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/python-functools-reduce/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -426,7 +426,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -444,16 +444,16 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/python-functools-reduce/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/python-functools-reduce/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/python-functools-reduce/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/python-functools-reduce/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
                     </a>
                 </li>
             
@@ -476,7 +476,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
         
             <h4 id="about-card-name">DevStory</h4>
         
@@ -511,9 +511,9 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-qfgmqutdartcbammijxm0gshr2pnkjej4zq4mkm4be2oqqljktpcrgy7s3wg.min.js"></script>
+<script src="/assets/js/script-hh0puos85akek5s0ltmkxazn1sj9ckkkxg9wbommekw9eoetrgotaueeus4x.min.js"></script>
 
-<!--SCRIPTS END-->
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
     
@@ -521,5 +521,5 @@
 
 
 
-    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
 </html>

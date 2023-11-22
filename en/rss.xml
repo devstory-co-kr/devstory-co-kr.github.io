@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>DevStory</title>
+    <link>https://blog.devstory.co.kr/en/</link>
+    
+    <atom:link href="/en/rss.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>DevStory Blog</description>
+    <pubDate>Wed, 22 Nov 2023 06:34:36 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Draw My Today - AI Picture Draw</title>
+      <link>https://blog.devstory.co.kr/en/post/draw-my-today/</link>
+      <guid>https://blog.devstory.co.kr/en/post/draw-my-today/</guid>
+      <pubDate>Mon, 20 Nov 2023 05:23:18 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;“Draw My Today - AI Picture Draw” 서비스를 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/draw-my-today/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Prography 8기 후기</title>
+      <link>https://blog.devstory.co.kr/en/post/prography-8th/</link>
+      <guid>https://blog.devstory.co.kr/en/post/prography-8th/</guid>
+      <pubDate>Sun, 19 Nov 2023 05:23:18 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;6개월간 Prography 8기 Flutter 파트로 활동 후기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/prography-8th/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>오픈소스 컨트리뷰톤 후기 (Flutter Contribution)</title>
+      <link>https://blog.devstory.co.kr/en/post/open-source-contributhon/</link>
+      <guid>https://blog.devstory.co.kr/en/post/open-source-contributhon/</guid>
+      <pubDate>Sun, 13 Sep 2020 12:43:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;6주간 오픈소스 컨트리뷰톤에 참여하여 Flutter 프로젝트에 기여한 경험을 공유합니다. 🏃‍♂️🏃‍♀️&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/open-source-contributhon/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>지도 제작 웹사이트 GentleMap</title>
+      <link>https://blog.devstory.co.kr/en/post/gentle-map/</link>
+      <guid>https://blog.devstory.co.kr/en/post/gentle-map/</guid>
+      <pubDate>Thu, 30 Apr 2020 06:02:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Vue.js &amp;amp; Firebase 기반으로 주소가 담긴 Excel 파일을 파싱하여 지도를 만들어주는 반응형 웹 어플리케이션 &lt;a href=&quot;https://gentle-map.devstory.co.kr/&quot; target=&quot;_blank&quot; rel=&quot;external nofollow noopener noreferrer&quot;&gt;GentleMap&lt;/a&gt;을 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/gentle-map/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>딥러닝으로 문장의 끝점 검출기 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/endpoint-detector/</link>
+      <guid>https://blog.devstory.co.kr/en/post/endpoint-detector/</guid>
+      <pubDate>Sat, 25 Apr 2020 12:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;문장의 끝점(마침표, 물음표)을 검출하는 딥러닝 모델을 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/endpoint-detector/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>딥러닝으로 문서 분류기 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/devblog-classifier/</link>
+      <guid>https://blog.devstory.co.kr/en/post/devblog-classifier/</guid>
+      <pubDate>Tue, 18 Feb 2020 12:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Daily Devblog 서비스를 위한 개발 문서 분류기를 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/devblog-classifier/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/too-real-01/</link>
+      <guid>https://blog.devstory.co.kr/en/post/too-real-01/</guid>
+      <pubDate>Wed, 25 Dec 2019 07:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/too-real-01/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>2부. ARKit을 이용하여 iOS AR앱 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/too-real-02/</link>
+      <guid>https://blog.devstory.co.kr/en/post/too-real-02/</guid>
+      <pubDate>Tue, 24 Dec 2019 07:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;ARKit을 이용하여 현실감 있는 iOS AR 어플리케이션 개발 내용을 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/too-real-02/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>3부. Custom YOLO v3 모델 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/too-real-03/</link>
+      <guid>https://blog.devstory.co.kr/en/post/too-real-03/</guid>
+      <pubDate>Mon, 23 Dec 2019 07:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;실시간 객체 탐지 모델인 YOLO 모델을 학습하는 방법에 대해 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/too-real-03/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기</title>
+      <link>https://blog.devstory.co.kr/en/post/too-real-04/</link>
+      <guid>https://blog.devstory.co.kr/en/post/too-real-04/</guid>
+      <pubDate>Sun, 22 Dec 2019 07:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;CoreML을 이용하여 iOS 어플리케이션에 YOLO v3 모델을 탑재하는 방법에 대해 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/too-real-04/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Python Itertools</title>
+      <link>https://blog.devstory.co.kr/en/post/python-itertools/</link>
+      <guid>https://blog.devstory.co.kr/en/post/python-itertools/</guid>
+      <pubDate>Tue, 09 Nov 1971 09:47:24 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;이번 포스팅에서는 Python 2.7과 3.5부터 탑재된 &lt;code&gt;itertools&lt;/code&gt;의 유용하고 자주 쓸만한 함수들을 익혀보도록 하겠습니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/python-itertools/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Python Heapq</title>
+      <link>https://blog.devstory.co.kr/en/post/python-heapq/</link>
+      <guid>https://blog.devstory.co.kr/en/post/python-heapq/</guid>
+      <pubDate>Fri, 04 Jun 1971 08:01:24 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Python의 &lt;code&gt;Heqpq&lt;/code&gt;에 대해 알아보도록 하겠습니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/python-heapq/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Python Collections Deque</title>
+      <link>https://blog.devstory.co.kr/en/post/python-collections-deque/</link>
+      <guid>https://blog.devstory.co.kr/en/post/python-collections-deque/</guid>
+      <pubDate>Sun, 30 May 1971 07:56:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Python 2.4부터 탑재된 &lt;code&gt;collections&lt;/code&gt;의 &lt;code&gt;deque&lt;/code&gt;에 대해 알아보도록 하겠습니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/python-collections-deque/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Python Timeit</title>
+      <link>https://blog.devstory.co.kr/en/post/python-timeit/</link>
+      <guid>https://blog.devstory.co.kr/en/post/python-timeit/</guid>
+      <pubDate>Sun, 30 May 1971 06:52:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Python &lt;code&gt;timeit&lt;/code&gt;를 이용하여 코드의 실행시간을 측정하는 방법을 대해 알아보겠습니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/python-timeit/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Python Reduce</title>
+      <link>https://blog.devstory.co.kr/en/post/python-functools-reduce/</link>
+      <guid>https://blog.devstory.co.kr/en/post/python-functools-reduce/</guid>
+      <pubDate>Thu, 27 May 1971 07:35:24 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Python의 &lt;code&gt;functools&lt;/code&gt;의 &lt;code&gt;reduce()&lt;/code&gt; 함수에 대해서 알아보도록 하겠습니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/python-functools-reduce/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Python Sort</title>
+      <link>https://blog.devstory.co.kr/en/post/python-sort/</link>
+      <guid>https://blog.devstory.co.kr/en/post/python-sort/</guid>
+      <pubDate>Wed, 26 May 1971 05:41:24 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Python의 &lt;code&gt;sort()&lt;/code&gt;에 대해서 알아보도록 하겠습니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/python-sort/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Python Collections Counter</title>
+      <link>https://blog.devstory.co.kr/en/post/python-collections-counter/</link>
+      <guid>https://blog.devstory.co.kr/en/post/python-collections-counter/</guid>
+      <pubDate>Wed, 26 May 1971 02:47:24 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Python 2.7과 3.5부터 탑재된 &lt;code&gt;collections&lt;/code&gt;의 &lt;code&gt;Counter&lt;/code&gt;에 대해 알아보도록 하겠습니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/python-collections-counter/#disqus_thread</comments>
+    </item>
+    
+  </channel>
+</rss>

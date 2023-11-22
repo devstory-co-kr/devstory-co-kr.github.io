@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
@@ -12,7 +12,7 @@
     <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
     <link rel="canonical" href="https://blog.devstory.co.kr/post/draw-my-today/">
     
-        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero,네로,AR,">
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
     
     
         <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
@@ -20,7 +20,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture?lang=ko"],"image":"devstory.png"},"articleBody":"“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.\n\n오늘 하루를 그려줘 - AI 그림 일기일상을 예술적으로 기록하는 AI 기반 감정 일기 앱👉 Android : 링크👉 iOS : 링크\n\n\n오늘 하루를 그려줘 - AI 그림 일기는 Prography 8기에서 만난 5명의 팀원들과 6개월간 개발하였으며, 사용자가 입력한 감정과 이야기를 토대로 AI가 개성 넘치는 그림 일기를 생성해주는 서비스입니다.\nSNS에서 자주 보이는 날이 오기를.. 🙏\n\n기술 스택Application Architecture\n\n상태 관리는 Cubit을 활용하였으며, 이미지의 평균 색상을 추출하여 배경으로 사용하는 등의 연산이 많이 필요한 작업들은 Repository에 Cache Layer를 추가하여 소중한 휴대폰의 배터리를 아끼도록 구현하였습니다.\nBackend Architecture\n\n또한 코드 리뷰와 테스트 코드로 코드 품질도 관리하고 있으며, 전체 코드는 오픈 소스로 운영되고 있기에 링크에서 진행사항을 확인할 수 있습니다.\n프롬프트 엔지니어링은 생각보다 매웠다\n\n\n생성형 AI는 한 번 이상한 응답을 하면 서비스에 주는 타격이 크기 때문에, 프롬프트 엔지니어링의 많은 시간과 노력이 AI를 통제하는데 들어갑니다.\n\n초기에 이용하던 DALLE는 Negative Prompt를 지원하지 않기 때문에 Stable Diffusion이나 Karlo를 알아보게 되었고, 현재는 일정 사용량 무료로 쓸 수 있으며 Negative Prompt 및 매개 변수 튜닝까지 가능한 Karlo로 서비스하고 있습니다. 참고로 Karlo의 Prompt Engineering은 karlo.ai 사이트에서 손쉽게 테스트할 수 있습니다.\n향후에는 다양한 화풍과 등장 인물을 커스텀 할 수 있도록 구현할 예정이며, Karlo에선 NSFW(Not Safe For Work, 폭력적이거나 선정적임) 지표를 정량적으로 반환해 주는데 통제 변수 뿐만 아니라 목표 변수까지 정량적 지표로 수집할 수 있는 시스템을 구축하면 더욱 양질의 이미지를 생성할 수 있는 프롬프트 엔지니어링을 데이터 기반으로 관리할 수 있을거라 생각됩니다.\nDemo프로젝트 발표 자료는 링크에서 확인하실 수 있습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n시연 영상\n\n\n마무리이번 프로젝트에서 프롬프트 엔지니어링에서 우열곡절이 많았지만 붓 터치감이 느껴지는 화풍으로 이미지를 일관성 있게 생성하는데 성공할 수 있었습니다.\n","dateCreated":"2023-11-20T14:23:18+09:00","dateModified":"2023-11-21T08:52:17+09:00","datePublished":"2023-11-20T14:23:18+09:00","description":"“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.","headline":"오늘 하루를 그려줘 - AI 그림 일기","image":["logo.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/draw-my-today/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture?lang=ko"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/draw-my-today/","keywords":"Project, 오늘 하루를 그려줘 - AI 그림 일기","thumbnailUrl":"logo.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.\n\n오늘 하루를 그려줘 - AI 그림 일기일상을 예술적으로 기록하는 AI 기반 감정 일기 앱👉 Android : 링크👉 iOS : 링크\n\n\n오늘 하루를 그려줘 - AI 그림 일기는 Prography 8기에서 만난 5명의 팀원들과 6개월간 개발하였으며, 사용자가 입력한 감정과 이야기를 토대로 AI가 개성 넘치는 그림 일기를 생성해주는 서비스입니다.\nSNS에서 자주 보이는 날이 오기를.. 🙏\n\n기술 스택Application Architecture\n\n상태 관리는 Cubit을 활용하였으며, 이미지의 평균 색상을 추출하여 배경으로 사용하는 등의 연산이 많이 필요한 작업들은 Repository에 Cache Layer를 추가하여 소중한 휴대폰의 배터리를 아끼도록 구현하였습니다.\nBackend Architecture\n\n또한 코드 리뷰와 테스트 코드로 코드 품질도 관리하고 있으며, 전체 코드는 오픈 소스로 운영되고 있기에 링크에서 진행사항을 확인할 수 있습니다.\n프롬프트 엔지니어링은 생각보다 매웠다\n\n\n생성형 AI는 한 번 이상한 응답을 하면 서비스에 주는 타격이 크기 때문에, 프롬프트 엔지니어링의 많은 시간과 노력이 AI를 통제하는데 들어갑니다.\n\n초기에 이용하던 DALLE는 Negative Prompt를 지원하지 않기 때문에 Stable Diffusion이나 Karlo를 알아보게 되었고, 현재는 일정 사용량 무료로 쓸 수 있으며 Negative Prompt 및 매개 변수 튜닝까지 가능한 Karlo로 서비스하고 있습니다. 참고로 Karlo의 Prompt Engineering은 karlo.ai 사이트에서 손쉽게 테스트할 수 있습니다.\n향후에는 다양한 화풍과 등장 인물을 커스텀 할 수 있도록 구현할 예정이며, Karlo에선 NSFW(Not Safe For Work, 폭력적이거나 선정적임) 지표를 정량적으로 반환해 주는데 통제 변수 뿐만 아니라 목표 변수까지 정량적 지표로 수집할 수 있는 시스템을 구축하면 더욱 양질의 이미지를 생성할 수 있는 프롬프트 엔지니어링을 데이터 기반으로 관리할 수 있을거라 생각됩니다.\nDemo프로젝트 발표 자료는 링크에서 확인하실 수 있습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n시연 영상\n\n\n마무리이번 프로젝트에서 프롬프트 엔지니어링에서 우열곡절이 많았지만 붓 터치감이 느껴지는 화풍으로 이미지를 일관성 있게 생성하는데 성공할 수 있었습니다.\n","dateCreated":"2023-11-20T14:23:18+09:00","dateModified":"2023-11-22T15:24:23+09:00","datePublished":"2023-11-20T14:23:18+09:00","description":"“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.","headline":"오늘 하루를 그려줘 - AI 그림 일기","image":["logo.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/draw-my-today/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/draw-my-today/","keywords":"Project, 오늘 하루를 그려줘 - AI 그림 일기","thumbnailUrl":"logo.png"}</script>
     <meta name="description" content="“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="오늘 하루를 그려줘 - AI 그림 일기">
@@ -30,7 +30,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://blog.devstory.co.kr/post/draw-my-today/logo.png">
 <meta property="article:published_time" content="2023-11-20T05:23:18.000Z">
-<meta property="article:modified_time" content="2023-11-20T23:52:17.536Z">
+<meta property="article:modified_time" content="2023-11-22T06:24:23.544Z">
 <meta property="article:author" content="DevStory">
 <meta property="article:tag" content="Project">
 <meta property="article:tag" content="오늘 하루를 그려줘 - AI 그림 일기">
@@ -42,7 +42,7 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-vipjebgadeo17lqngz5n6ac81wsm3cqpwuyjvartknkptdlamos31bso9iow.min.css">
+<link rel="stylesheet" href="/assets/css/style-5toom7w8tzu2rtez13zdloernoyoysdjq2q2tcbfz5imexi7unxmlefzt29m.min.css">
 
     <!--STYLES END-->
 
@@ -91,10 +91,10 @@
     </div>
     
         
-            <a class="header-right-picture " href="#about" aria-label="Open the link: /#about">
+            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
         
         
-            <img class="header-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
         
         </a>
     
@@ -111,8 +111,8 @@
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
-                <a href="/#about" aria-label="Read more about the author">
-                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+                <a href="/#about" aria-label="저자에 대해 더 알아보기">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
                 </a>
                 <h4 class="sidebar-profile-name">DevStory</h4>
                 
@@ -125,37 +125,37 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/" title="Home">
+                        <a class="sidebar-button-link " href="/" title="홈">
                     
                         <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Home</span>
+                        <span class="sidebar-button-desc">홈</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">카테고리</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                        <a class="sidebar-button-link " href="/all-tags" title="태그">
                     
                         <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Tags</span>
+                        <span class="sidebar-button-desc">태그</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">아카이브</span>
                     </a>
             </li>
             
@@ -165,28 +165,28 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
+                        <span class="sidebar-button-desc">깃허브</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
                     
                         <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Projects</span>
+                        <span class="sidebar-button-desc">프로젝트</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture?lang=ko" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
                     
                         <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Lecture</span>
+                        <span class="sidebar-button-desc">강의</span>
                     </a>
             </li>
             
@@ -226,11 +226,11 @@
         <div class="post-meta">
     <time datetime="2023-11-20T14:23:18+09:00">
 	
-		    Nov 20, 2023
+		    2023/11/20
     	
     </time>
     
-        <span>in </span>
+        <span>카테고리 </span>
         
     <a class="category-link" href="/categories/Project/">Project</a>
 
@@ -353,7 +353,7 @@
     <div id="post-footer" class="post-footer main-content-wrap">
         
         <div class="post-footer-tags">
-            <span class="text-color-light text-small">TAGGED IN</span><br>
+            <span class="text-color-light text-small">태그</span><br>
             
     <a class="tag tag--primary tag--small t-link" href="/tags/Project/" rel="tag">Project</a> <a class="tag tag--primary tag--small t-link" href="/tags/%EC%98%A4%EB%8A%98-%ED%95%98%EB%A3%A8%EB%A5%BC-%EA%B7%B8%EB%A0%A4%EC%A4%98-AI-%EA%B7%B8%EB%A6%BC-%EC%9D%BC%EA%B8%B0/" rel="tag">오늘 하루를 그려줘 - AI 그림 일기</a>
 
@@ -368,15 +368,15 @@
                     <a class="post-action-btn btn btn--disabled" aria-hidden="true">
                         
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/prography-8th/" data-tooltip="Prography 8기 후기" aria-label="NEXT: Prography 8기 후기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/prography-8th/" data-tooltip="Prography 8기 후기" aria-label="다음: Prography 8기 후기">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -384,7 +384,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -392,7 +392,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/draw-my-today/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/draw-my-today/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -400,7 +400,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/draw-my-today/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/draw-my-today/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -410,7 +410,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -447,15 +447,15 @@
                     <a class="post-action-btn btn btn--disabled" aria-hidden="true">
                         
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/prography-8th/" data-tooltip="Prography 8기 후기" aria-label="NEXT: Prography 8기 후기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/prography-8th/" data-tooltip="Prography 8기 후기" aria-label="다음: Prography 8기 후기">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -463,7 +463,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -471,7 +471,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/draw-my-today/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/draw-my-today/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -479,7 +479,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/draw-my-today/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/draw-my-today/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -489,7 +489,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -507,16 +507,16 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/draw-my-today/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/draw-my-today/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/draw-my-today/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/draw-my-today/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
                     </a>
                 </li>
             
@@ -539,7 +539,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
         
             <h4 id="about-card-name">DevStory</h4>
         
@@ -574,9 +574,9 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-qfgmqutdartcbammijxm0gshr2pnkjej4zq4mkm4be2oqqljktpcrgy7s3wg.min.js"></script>
+<script src="/assets/js/script-hh0puos85akek5s0ltmkxazn1sj9ckkkxg9wbommekw9eoetrgotaueeus4x.min.js"></script>
 
-<!--SCRIPTS END-->
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
     
@@ -584,5 +584,5 @@
 
 
 
-    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
 </html>

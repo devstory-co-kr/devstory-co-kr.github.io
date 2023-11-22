@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
@@ -12,7 +12,7 @@
     <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
     <link rel="canonical" href="https://blog.devstory.co.kr/post/open-source-contributhon/">
     
-        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero,네로,AR,">
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
     
     
         <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
@@ -20,7 +20,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture?lang=ko"],"image":"devstory.png"},"articleBody":"6주간 오픈소스 컨트리뷰톤에 참여하여 Flutter 프로젝트에 기여한 경험을 공유합니다. 🏃‍♂️🏃‍♀️\n\n오픈소스 컨트리뷰톤이란?Flutter Moum팀 PR : Merged 28 / Open 11 / Closed 6\n\nFlutter 프로젝트에 기여하는 방법은 이슈를 선정한 뒤 해결책을 PR(Pull Request)를 보내는 방식으로 진행되었고, 저는 4주간 총 5개의 PR을 진행하였습니다.\n\n진행한 이슈 목록\n\n\n  \n  Add rowSpacing property to Table issue\n\n\n  \n  ReorderableListView list items jump down on dragging issue\n\n\n\n  \n  ReorderableListView dropping animation issue\n\n\n  \n  SwitchListTile.adaptive has splash effect on iOS & macOS issue\n\n\n  \n  Tab indicator flies off issue\n\n\n\n1. [Closed] Add rowSpacing property to Table issue\n✔︎ Issue : Padding inside Table #52248✔︎ PR : [Table] adds rowSpacing property #63322\n\n처음으로 진행했던 이슈는 Table Widget의 TableRow 사이에 간격을 조절하는 rowSpacing이라는 새로운 property를 추가하자라는 이슈였습니다.\nbefore & after\n\n이틀 뒤 예전에 Column과 Row에 Spacing 속성을 추가하자는 이슈이 있었는데, 다른 대체할 방법이 많고 두 Widget은 복잡도가 너무 높은 상태라 거절당했던 사례와 비슷한 것 같다는 부정적인 코멘트가 달렸습니다. 이에 대해 반론을 열심히 준비하여 올렸지만, 다른 분도 비슷한 이유로 부정적인 코멘트를 달아주시면서 아쉽지만 첫 PR은 Closed 되었습니다.\n\n진행하면서 배우고 느낀점\n\n\n모든 이슈가 검증되어있고, 구현만 하고 해결만 한다면 merge 되는게 아님\nlabeling이 달렸다고 검증된 이슈가 되는건 아님\n처음으로 진행했던 PR인데, Wrap에 spacing이라는 유사한 기능이 있다는 것을 알고 참고하여 생각보다 쉽게 진행할 수 있었음\n아무 PR이나 다 받아주면 오픈소스가 엉망이 되어버리기 때문에 리뷰어들이 자신의 생각을 말하고 토론하는 문화가 신선했음\n영어가 부족하여 토론에 자신이 없는점이 너무 아쉬움(영어 공부에 대한 동기부여가 됨)\n쉬운 이슈보다는 Merger가 될 만한 의미있는 이슈를 잘 고르는게 더 중요한 것 같음\nGithub 내에서 이슈 링크를 걸면 밑에 history가 남는다는 것을 알게됨before\n  Discord에서 Flutter hackers 채널에서 실시간으로 다른 개발자들과 소통할 수 있다\n\n용기를 얻어 PR을 올릴 준비를 하였는데, _dropAreaMargin을 삭제하는게 더 맞는 것 같았지만 Breaking Changes가 되지 않기 위해 최대한 조금만 변경해도 동일한 결과를 얻을 수 있는 수정을 선택하여 PR을 올렸습니다.\nPR을 올린지 12일이 되던 날 reviewer가 assign 되었습니다. 7일 뒤 역시나 수정보다는 삭제하는 방법으로 이슈를 해결하는게 좋을 것 같다고 리뷰를 해주셨고, 추가로 Golden Test를 해달라고 하였습니다. 삭제하는 방법으로 고치는건 해결했지만, Golden Test라는 단어도 처음 들어봐서 당황했는데, 다행히 멘티님들 중에 Golden Test를 해보신 경험이 있어 이것 저것 조언을 얻을 수 있었습니다. 이후 동료 멘티님이 올린 PR도 참고하고 다른 Golden Test들도 참고하여 시행착오 끝에 커밋을 올릴 수 있었습니다.\nGolden Test는 스크린샷을 찍어 이미지로 추출하여 UI 테스트를 하는 테스트 방법으로, 아래와 같이 테스트 코드상에서 이미지로 추출하고 싶은 Widget을 지정해 준 뒤 matchesGoldenFile()을 실행하여 이미지로 추출할 수 있습니다.\n1234await expectLater(  find.byType(RepaintBoundary),  matchesGoldenFile('test_name.subtest.subfile.png'),);\n\n이후 --update-goldens 옵션을 넣어 flutter test --update-goldens test/foo/bar_test.dart 이렇게 테스트 코드를 실행해주면 Flutter 프로젝트 하위의 bin/cache/pkg/skia_goldens/packages/flutter/test/ 경로로 이미지가 추출됩니다.\n아래 이미지는 ReorderableListView에서 항목을 집어들었을 때 하위에 여백이 생기는지 테스트하기 위해 3개의 항목 중 두 번째 파란색을 집어든 상태의 Widget을 matchesGoldenFile()로 실행하여 추출한 이미지입니다.\n\n  ReorderableListTest horizontal drop area\n\n\n이렇게 추출된 이미지를 PR의 Description에 넣고 커밋을 올렸는데, Test 코드에 Key를 const로 선언하지 않아 lint error가 발생했습니다. 커밋을 올리기 전에 flutter analyze --flutter-repo로 검사를 했다면 로컬에서 미리 알 수 있었던 애러인데 깜빡해서 바쁜 리뷰어들의 시간을 빼앗았습니다. 🙏애러를 고친 뒤 다시 커밋을 올리고 2020년 9월 12일 토요일 드디어 머리털나고 처음으로 말로만 듣던 LGTM을 영접하게 되었습니다. 🎉🎉🎉\nbefore\n  before\n  프사와 닉네임이 일치하는 LongCatIsLooong님..\n\n코멘트를 받고 생각해보니, InkWell이 ListTile에 속해있고 이 위젯은 플랫폼에 따라 다르게 구현되어있지 않은데, 이를 사용하는 SwitchListTile에서만 플랫폼에 따라 다르게 구현하는건 근본적으로 잘못된 해결방법인 것 같았습니다. 즉 ListTile.adaptive 또는 iOS의 전용 CupertinoListTile과 같은 Widget들이 나와야 올바르게 문제를 해결 할 수 있을것 같다는 생각이 들었습니다.\n실제 iOS에서는 UITableViewCell이라 불리는 ListTile과 같은 역할을 하는 컴포넌트가 별도로 존재하고 있고 이에 상응하는 Widget을 구현하자라는 논의도 #19228에서 진행되고 있었습니다. 일단 본 Issue는 부모 Widget과 연관되어 문제가 확대되었고, 이로인해 진행은 잠정 중단되었습니다.\n\n진행하면서 배우고 느낀점\n\n\n토론을 통해 본질적인 문제의 원인과 더 나은 해결방법을 찾아가는 과정을 경험함\n1차원적인 해결책을 가지고 PR을 올리기 보다는 좀 더 깊이 생각해보고 토론한 뒤에 진행하는게 중요하다는 사실을 깨달음\n이슈 또한 합리적인 의심을 통해 고민해봐야하는 대상이라는 사실을 알게됨\nCat person이 많아서 괜시리 좋았음\n\n\n5. [Merged] Tab indicator flies off issue\n✔︎ Issue : Tab indicator flies off when tabs are tapped in quick succession #48000✔︎ PR : [Tabs] Fix tab indicator flies off #65463\n\n마지막으로 진행했던 이슈는, Flutter의 메인 Contributor중 한 명인 Hixie님이 제보한 이슈입니다.\nbefore\n  화면상에서 indicator가 사라져버리는 이유\n\n불필요한 코드를 삭제하고, 본 문제에 대해 정상적으로 작동하는지 확인할 수 있는 테스트 코드만 추가하여 PR을 올렸습니다.\n그런데 해당 코드가 올바르게 작동하지 않는 예외 케이스를 발견하였고, 이를 해결하기 위해 리뷰어와 아이디어 논의를 진행하였습니다. 그러던 중 리뷰어님이 심플하면서 완벽한 알고리즘을 제시했고, 이를 구현하여 PR을 올렸고 드디어 Merged 되었습니다.\n\n진행하면서 배우고 느낀점\n\n\n멘토님도 예전에 Tab 관련해서 진행을 했었던 적이 있는데, 이 부분에 잘못 구현된 코드들이 많이 산재하고 있다고 들음. 직접 잘못 구현된 코드들을 보고나니 리뷰어들이 왜 그렇게 까탈스럽게 리뷰했는지 이해가 되고, 그들의 역할이 얼마나 중요한지 알게 됨\nDartPad로 코드 조각을 구현하여 공유하는 방법을 배움\n지금까지 진행했던 이슈 중 가장 어려웠던 이슈로 알고리즘의 중요성을 느낌\n\n\n후기오픈소스 컨트리뷰션은 쉽지 않았습니다. 처음 개발 환경을 구축하는 것 부터 어려웠고 진입장벽으로 봐야하는 영어 문서는 굉장히 방대했고, 심사숙고 끝에 이슈를 선택하여 힘겹게 작성한 첫 번째 PR은 이슈와 함께 거절당했습니다. 이슈만 해결되면 Merge 될 줄 착각하고있었던 저는 쉬운 이슈만 골라서 접근했다가 그게 아니라는 것을 깨달았고 이후 Merge 가능성이 있는 이슈들을 나름 판단하여 PR을 보냈지만 그 사이에 6주가 훌쩍 지나가버렸습니다. 귓동냥으로만 들었던 LGTM은 이미 전설속의 단어처럼 느껴졌고, 활동기간이 끝나가는 시점에서 “나는 의미있는 활동을 한 것일까?” 생각이 들곤 했습니다.\n그러나 오픈소스 활동을 하기 전과 후의 나를 비교해보면, Github와 Git에 대한 이해도가 현저히 높아졌고, 직접 Flutter 내부 소스를 열어보면서 내부 동작원리에 대해 이전보다 깊게 이해할 수 있게되었을 뿐만 아니라 테스트 코드를 작성해본 경험이 부족했었는데, 수두룩하게 쌓여있는 비슷한 사례의 테스트 코드들을 참고하면서 자연스럽게 테스트란 무엇이고 어떻게 하는지에 대한 모범 사례들을 배울 수 있었습니다. 또한 내 코드를 뛰어난 개발자들에게 내 코드를 리뷰받을 수 있다는 것 자체가 얼마나 흔치않은 기회인지 깨달으면서 정말 많은 것들을 배우고 받았다는 것을 알게 되었습니다.\n만약 혼자서 오픈소스 생태계에 뛰어들었다면, 개발환경 구축단계에서 포기했을것 같습니다. 하지만 멘토님들의 족집게 같은 특강과 함께 삽질을 하며 노력한 동료 멘티님들이 계셨기 때문에 끝까지 포기하지 않고 완주할 수 있었습니다.\n드디어 contributor 라벨을 받았습니다 😍\n\n\nps. 2020.09.29 최종 수상팀 결과\u001c발표를 했는데.. 무려 대상.. 🙊","dateCreated":"2020-09-13T21:43:00+09:00","dateModified":"2023-11-20T16:07:55+09:00","datePublished":"2020-09-13T21:43:00+09:00","description":"6주간 오픈소스 컨트리뷰톤에 참여하여 Flutter 프로젝트에 기여한 경험을 공유합니다. 🏃‍♂️🏃‍♀️","headline":"오픈소스 컨트리뷰톤 후기 (Flutter Contribution)","image":["https://user-images.githubusercontent.com/26322627/93009770-ba37d000-f5bf-11ea-8b7f-178ac91e935c.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/open-source-contributhon/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture?lang=ko"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/open-source-contributhon/","keywords":"Flutter","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/93009770-ba37d000-f5bf-11ea-8b7f-178ac91e935c.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"6주간 오픈소스 컨트리뷰톤에 참여하여 Flutter 프로젝트에 기여한 경험을 공유합니다. 🏃‍♂️🏃‍♀️\n\n오픈소스 컨트리뷰톤이란?Flutter Moum팀 PR : Merged 28 / Open 11 / Closed 6\n\nFlutter 프로젝트에 기여하는 방법은 이슈를 선정한 뒤 해결책을 PR(Pull Request)를 보내는 방식으로 진행되었고, 저는 4주간 총 5개의 PR을 진행하였습니다.\n\n진행한 이슈 목록\n\n\n  \n  Add rowSpacing property to Table issue\n\n\n  \n  ReorderableListView list items jump down on dragging issue\n\n\n\n  \n  ReorderableListView dropping animation issue\n\n\n  \n  SwitchListTile.adaptive has splash effect on iOS & macOS issue\n\n\n  \n  Tab indicator flies off issue\n\n\n\n1. [Closed] Add rowSpacing property to Table issue\n✔︎ Issue : Padding inside Table #52248✔︎ PR : [Table] adds rowSpacing property #63322\n\n처음으로 진행했던 이슈는 Table Widget의 TableRow 사이에 간격을 조절하는 rowSpacing이라는 새로운 property를 추가하자라는 이슈였습니다.\nbefore & after\n\n이틀 뒤 예전에 Column과 Row에 Spacing 속성을 추가하자는 이슈이 있었는데, 다른 대체할 방법이 많고 두 Widget은 복잡도가 너무 높은 상태라 거절당했던 사례와 비슷한 것 같다는 부정적인 코멘트가 달렸습니다. 이에 대해 반론을 열심히 준비하여 올렸지만, 다른 분도 비슷한 이유로 부정적인 코멘트를 달아주시면서 아쉽지만 첫 PR은 Closed 되었습니다.\n\n진행하면서 배우고 느낀점\n\n\n모든 이슈가 검증되어있고, 구현만 하고 해결만 한다면 merge 되는게 아님\nlabeling이 달렸다고 검증된 이슈가 되는건 아님\n처음으로 진행했던 PR인데, Wrap에 spacing이라는 유사한 기능이 있다는 것을 알고 참고하여 생각보다 쉽게 진행할 수 있었음\n아무 PR이나 다 받아주면 오픈소스가 엉망이 되어버리기 때문에 리뷰어들이 자신의 생각을 말하고 토론하는 문화가 신선했음\n영어가 부족하여 토론에 자신이 없는점이 너무 아쉬움(영어 공부에 대한 동기부여가 됨)\n쉬운 이슈보다는 Merger가 될 만한 의미있는 이슈를 잘 고르는게 더 중요한 것 같음\nGithub 내에서 이슈 링크를 걸면 밑에 history가 남는다는 것을 알게됨before\n  Discord에서 Flutter hackers 채널에서 실시간으로 다른 개발자들과 소통할 수 있다\n\n용기를 얻어 PR을 올릴 준비를 하였는데, _dropAreaMargin을 삭제하는게 더 맞는 것 같았지만 Breaking Changes가 되지 않기 위해 최대한 조금만 변경해도 동일한 결과를 얻을 수 있는 수정을 선택하여 PR을 올렸습니다.\nPR을 올린지 12일이 되던 날 reviewer가 assign 되었습니다. 7일 뒤 역시나 수정보다는 삭제하는 방법으로 이슈를 해결하는게 좋을 것 같다고 리뷰를 해주셨고, 추가로 Golden Test를 해달라고 하였습니다. 삭제하는 방법으로 고치는건 해결했지만, Golden Test라는 단어도 처음 들어봐서 당황했는데, 다행히 멘티님들 중에 Golden Test를 해보신 경험이 있어 이것 저것 조언을 얻을 수 있었습니다. 이후 동료 멘티님이 올린 PR도 참고하고 다른 Golden Test들도 참고하여 시행착오 끝에 커밋을 올릴 수 있었습니다.\nGolden Test는 스크린샷을 찍어 이미지로 추출하여 UI 테스트를 하는 테스트 방법으로, 아래와 같이 테스트 코드상에서 이미지로 추출하고 싶은 Widget을 지정해 준 뒤 matchesGoldenFile()을 실행하여 이미지로 추출할 수 있습니다.\n1234await expectLater(  find.byType(RepaintBoundary),  matchesGoldenFile('test_name.subtest.subfile.png'),);\n\n이후 --update-goldens 옵션을 넣어 flutter test --update-goldens test/foo/bar_test.dart 이렇게 테스트 코드를 실행해주면 Flutter 프로젝트 하위의 bin/cache/pkg/skia_goldens/packages/flutter/test/ 경로로 이미지가 추출됩니다.\n아래 이미지는 ReorderableListView에서 항목을 집어들었을 때 하위에 여백이 생기는지 테스트하기 위해 3개의 항목 중 두 번째 파란색을 집어든 상태의 Widget을 matchesGoldenFile()로 실행하여 추출한 이미지입니다.\n\n  ReorderableListTest horizontal drop area\n\n\n이렇게 추출된 이미지를 PR의 Description에 넣고 커밋을 올렸는데, Test 코드에 Key를 const로 선언하지 않아 lint error가 발생했습니다. 커밋을 올리기 전에 flutter analyze --flutter-repo로 검사를 했다면 로컬에서 미리 알 수 있었던 애러인데 깜빡해서 바쁜 리뷰어들의 시간을 빼앗았습니다. 🙏애러를 고친 뒤 다시 커밋을 올리고 2020년 9월 12일 토요일 드디어 머리털나고 처음으로 말로만 듣던 LGTM을 영접하게 되었습니다. 🎉🎉🎉\nbefore\n  before\n  프사와 닉네임이 일치하는 LongCatIsLooong님..\n\n코멘트를 받고 생각해보니, InkWell이 ListTile에 속해있고 이 위젯은 플랫폼에 따라 다르게 구현되어있지 않은데, 이를 사용하는 SwitchListTile에서만 플랫폼에 따라 다르게 구현하는건 근본적으로 잘못된 해결방법인 것 같았습니다. 즉 ListTile.adaptive 또는 iOS의 전용 CupertinoListTile과 같은 Widget들이 나와야 올바르게 문제를 해결 할 수 있을것 같다는 생각이 들었습니다.\n실제 iOS에서는 UITableViewCell이라 불리는 ListTile과 같은 역할을 하는 컴포넌트가 별도로 존재하고 있고 이에 상응하는 Widget을 구현하자라는 논의도 #19228에서 진행되고 있었습니다. 일단 본 Issue는 부모 Widget과 연관되어 문제가 확대되었고, 이로인해 진행은 잠정 중단되었습니다.\n\n진행하면서 배우고 느낀점\n\n\n토론을 통해 본질적인 문제의 원인과 더 나은 해결방법을 찾아가는 과정을 경험함\n1차원적인 해결책을 가지고 PR을 올리기 보다는 좀 더 깊이 생각해보고 토론한 뒤에 진행하는게 중요하다는 사실을 깨달음\n이슈 또한 합리적인 의심을 통해 고민해봐야하는 대상이라는 사실을 알게됨\nCat person이 많아서 괜시리 좋았음\n\n\n5. [Merged] Tab indicator flies off issue\n✔︎ Issue : Tab indicator flies off when tabs are tapped in quick succession #48000✔︎ PR : [Tabs] Fix tab indicator flies off #65463\n\n마지막으로 진행했던 이슈는, Flutter의 메인 Contributor중 한 명인 Hixie님이 제보한 이슈입니다.\nbefore\n  화면상에서 indicator가 사라져버리는 이유\n\n불필요한 코드를 삭제하고, 본 문제에 대해 정상적으로 작동하는지 확인할 수 있는 테스트 코드만 추가하여 PR을 올렸습니다.\n그런데 해당 코드가 올바르게 작동하지 않는 예외 케이스를 발견하였고, 이를 해결하기 위해 리뷰어와 아이디어 논의를 진행하였습니다. 그러던 중 리뷰어님이 심플하면서 완벽한 알고리즘을 제시했고, 이를 구현하여 PR을 올렸고 드디어 Merged 되었습니다.\n\n진행하면서 배우고 느낀점\n\n\n멘토님도 예전에 Tab 관련해서 진행을 했었던 적이 있는데, 이 부분에 잘못 구현된 코드들이 많이 산재하고 있다고 들음. 직접 잘못 구현된 코드들을 보고나니 리뷰어들이 왜 그렇게 까탈스럽게 리뷰했는지 이해가 되고, 그들의 역할이 얼마나 중요한지 알게 됨\nDartPad로 코드 조각을 구현하여 공유하는 방법을 배움\n지금까지 진행했던 이슈 중 가장 어려웠던 이슈로 알고리즘의 중요성을 느낌\n\n\n후기오픈소스 컨트리뷰션은 쉽지 않았습니다. 처음 개발 환경을 구축하는 것 부터 어려웠고 진입장벽으로 봐야하는 영어 문서는 굉장히 방대했고, 심사숙고 끝에 이슈를 선택하여 힘겹게 작성한 첫 번째 PR은 이슈와 함께 거절당했습니다. 이슈만 해결되면 Merge 될 줄 착각하고있었던 저는 쉬운 이슈만 골라서 접근했다가 그게 아니라는 것을 깨달았고 이후 Merge 가능성이 있는 이슈들을 나름 판단하여 PR을 보냈지만 그 사이에 6주가 훌쩍 지나가버렸습니다. 귓동냥으로만 들었던 LGTM은 이미 전설속의 단어처럼 느껴졌고, 활동기간이 끝나가는 시점에서 “나는 의미있는 활동을 한 것일까?” 생각이 들곤 했습니다.\n그러나 오픈소스 활동을 하기 전과 후의 나를 비교해보면, Github와 Git에 대한 이해도가 현저히 높아졌고, 직접 Flutter 내부 소스를 열어보면서 내부 동작원리에 대해 이전보다 깊게 이해할 수 있게되었을 뿐만 아니라 테스트 코드를 작성해본 경험이 부족했었는데, 수두룩하게 쌓여있는 비슷한 사례의 테스트 코드들을 참고하면서 자연스럽게 테스트란 무엇이고 어떻게 하는지에 대한 모범 사례들을 배울 수 있었습니다. 또한 내 코드를 뛰어난 개발자들에게 내 코드를 리뷰받을 수 있다는 것 자체가 얼마나 흔치않은 기회인지 깨달으면서 정말 많은 것들을 배우고 받았다는 것을 알게 되었습니다.\n만약 혼자서 오픈소스 생태계에 뛰어들었다면, 개발환경 구축단계에서 포기했을것 같습니다. 하지만 멘토님들의 족집게 같은 특강과 함께 삽질을 하며 노력한 동료 멘티님들이 계셨기 때문에 끝까지 포기하지 않고 완주할 수 있었습니다.\n드디어 contributor 라벨을 받았습니다 😍\n\n\nps. 2020.09.29 최종 수상팀 결과\u001c발표를 했는데.. 무려 대상.. 🙊","dateCreated":"2020-09-13T21:43:00+09:00","dateModified":"2023-11-22T15:24:23+09:00","datePublished":"2020-09-13T21:43:00+09:00","description":"6주간 오픈소스 컨트리뷰톤에 참여하여 Flutter 프로젝트에 기여한 경험을 공유합니다. 🏃‍♂️🏃‍♀️","headline":"오픈소스 컨트리뷰톤 후기 (Flutter Contribution)","image":["https://user-images.githubusercontent.com/26322627/93009770-ba37d000-f5bf-11ea-8b7f-178ac91e935c.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/open-source-contributhon/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/open-source-contributhon/","keywords":"Flutter","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/93009770-ba37d000-f5bf-11ea-8b7f-178ac91e935c.png"}</script>
     <meta name="description" content="6주간 오픈소스 컨트리뷰톤에 참여하여 Flutter 프로젝트에 기여한 경험을 공유합니다. 🏃‍♂️🏃‍♀️">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="오픈소스 컨트리뷰톤 후기 (Flutter Contribution)">
@@ -30,7 +30,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://user-images.githubusercontent.com/26322627/93009770-ba37d000-f5bf-11ea-8b7f-178ac91e935c.png">
 <meta property="article:published_time" content="2020-09-13T12:43:00.000Z">
-<meta property="article:modified_time" content="2023-11-20T07:07:55.704Z">
+<meta property="article:modified_time" content="2023-11-22T06:24:23.545Z">
 <meta property="article:author" content="DevStory">
 <meta property="article:tag" content="Flutter">
 <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-vipjebgadeo17lqngz5n6ac81wsm3cqpwuyjvartknkptdlamos31bso9iow.min.css">
+<link rel="stylesheet" href="/assets/css/style-5toom7w8tzu2rtez13zdloernoyoysdjq2q2tcbfz5imexi7unxmlefzt29m.min.css">
 
     <!--STYLES END-->
 
@@ -90,10 +90,10 @@
     </div>
     
         
-            <a class="header-right-picture " href="#about" aria-label="Open the link: /#about">
+            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
         
         
-            <img class="header-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
         
         </a>
     
@@ -110,8 +110,8 @@
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
-                <a href="/#about" aria-label="Read more about the author">
-                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+                <a href="/#about" aria-label="저자에 대해 더 알아보기">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
                 </a>
                 <h4 class="sidebar-profile-name">DevStory</h4>
                 
@@ -124,37 +124,37 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/" title="Home">
+                        <a class="sidebar-button-link " href="/" title="홈">
                     
                         <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Home</span>
+                        <span class="sidebar-button-desc">홈</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">카테고리</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                        <a class="sidebar-button-link " href="/all-tags" title="태그">
                     
                         <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Tags</span>
+                        <span class="sidebar-button-desc">태그</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">아카이브</span>
                     </a>
             </li>
             
@@ -164,28 +164,28 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
+                        <span class="sidebar-button-desc">깃허브</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
                     
                         <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Projects</span>
+                        <span class="sidebar-button-desc">프로젝트</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture?lang=ko" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
                     
                         <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Lecture</span>
+                        <span class="sidebar-button-desc">강의</span>
                     </a>
             </li>
             
@@ -225,11 +225,11 @@
         <div class="post-meta">
     <time datetime="2020-09-13T21:43:00+09:00">
 	
-		    Sep 13, 2020
+		    2020/09/13
     	
     </time>
     
-        <span>in </span>
+        <span>카테고리 </span>
         
     <a class="category-link" href="/categories/Flutter/">Flutter</a>
 
@@ -499,7 +499,7 @@
     <div id="post-footer" class="post-footer main-content-wrap">
         
         <div class="post-footer-tags">
-            <span class="text-color-light text-small">TAGGED IN</span><br>
+            <span class="text-color-light text-small">태그</span><br>
             
     <a class="tag tag--primary tag--small t-link" href="/tags/Flutter/" rel="tag">Flutter</a>
 
@@ -512,18 +512,18 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/prography-8th/" data-tooltip="Prography 8기 후기" aria-label="PREVIOUS: Prography 8기 후기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/prography-8th/" data-tooltip="Prography 8기 후기" aria-label="이전: Prography 8기 후기">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/gentle-map/" data-tooltip="지도 제작 웹사이트 GentleMap" aria-label="NEXT: 지도 제작 웹사이트 GentleMap">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/gentle-map/" data-tooltip="지도 제작 웹사이트 GentleMap" aria-label="다음: 지도 제작 웹사이트 GentleMap">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -531,7 +531,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -539,7 +539,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/open-source-contributhon/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/open-source-contributhon/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -547,7 +547,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/open-source-contributhon/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/open-source-contributhon/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -557,7 +557,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -592,18 +592,18 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/prography-8th/" data-tooltip="Prography 8기 후기" aria-label="PREVIOUS: Prography 8기 후기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/prography-8th/" data-tooltip="Prography 8기 후기" aria-label="이전: Prography 8기 후기">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/gentle-map/" data-tooltip="지도 제작 웹사이트 GentleMap" aria-label="NEXT: 지도 제작 웹사이트 GentleMap">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/gentle-map/" data-tooltip="지도 제작 웹사이트 GentleMap" aria-label="다음: 지도 제작 웹사이트 GentleMap">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -611,7 +611,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -619,7 +619,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/open-source-contributhon/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/open-source-contributhon/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -627,7 +627,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/open-source-contributhon/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/open-source-contributhon/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -637,7 +637,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -655,16 +655,16 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/open-source-contributhon/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/open-source-contributhon/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/open-source-contributhon/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/open-source-contributhon/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
                     </a>
                 </li>
             
@@ -687,7 +687,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
         
             <h4 id="about-card-name">DevStory</h4>
         
@@ -722,9 +722,9 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-qfgmqutdartcbammijxm0gshr2pnkjej4zq4mkm4be2oqqljktpcrgy7s3wg.min.js"></script>
+<script src="/assets/js/script-hh0puos85akek5s0ltmkxazn1sj9ckkkxg9wbommekw9eoetrgotaueeus4x.min.js"></script>
 
-<!--SCRIPTS END-->
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
     
@@ -732,5 +732,5 @@
 
 
 
-    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
 </html>

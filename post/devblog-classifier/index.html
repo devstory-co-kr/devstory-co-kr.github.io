@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
@@ -12,7 +12,7 @@
     <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
     <link rel="canonical" href="https://blog.devstory.co.kr/post/devblog-classifier/">
     
-        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero,네로,AR,">
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
     
     
         <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
@@ -20,7 +20,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture?lang=ko"],"image":"devstory.png"},"articleBody":"Daily Devblog 서비스를 위한 개발 문서 분류기를 개발한 이야기를 공유합니다.\n프로젝트 소개필자는 IT 블로그의 글을 모아서 매일 오전 10시에 이메일로 발송해주는 Daily Devblog라는 좋은 서비스를 구독하고 있습니다. 발송되는 글들은 Awesome Devblog에서 제공받는데, 가끔씩 IT와 관련 없는 글이 등장하기도 합니다. 큰 문제는 아니지만 서비스를 애용하는 구독자로서, 약간의 도움이라도 되었으면 하는 바람으로 딥러닝을 이용하여 간단한 문서 분류기를 만들어보았습니다. 🎉\n\n개발에 사용된 코드 및 데이터는 아래 링크에서 확인하실 수 있습니다.\n\nGithub\n전처리 및 라벨링 된 데이터\n\n\n\n개발 과정전체 개발 순서는 데이터 수집 및 전처리, 단어 임베딩 모델 개발 그리고 문서 분류모델 개발 순으로 진행하였습니다.\n\nData Crawling &amp; Labeling데이터는 Awesome Devblog에서 제공해주는 데이터를 이용하였습니다.\ndata sample12345678910111213&#123;   _id        : &quot;5e566644e0ffb12d4cae83ba&quot;,  title      : &quot;[영화 소감] 1917. 때론 영웅은 옆으로 달린다.&quot;,  link       : &quot;http:&#x2F;&#x2F;blog.hwang.gg&#x2F;20200226&#x2F;&quot;,  date       : &quot;2020-02-26T11:45:20.000Z&quot;,  description: &quot;한국 사회에서 조직 문화 개선을 위해서 우리는 목숨을 내던지고 옆으로 달려야 하는가?&quot;,  author     : &quot;황건구&quot;,  imgUrl     : &quot;http:&#x2F;&#x2F;blog.hwang.gg&#x2F;favicon.png&quot;,  tags       : [ ],  count      : 0,  postImage  : &quot;&quot;,  _class     : &quot;com.sarojaba.awesomedevblog.feed.Feed&quot; &#125;\n2020년 2월 초 기준으로 전체 34,620개의 글이 존재하였고, 이 중 10,382개의 글을 직접 라벨링하였습니다. 라벨링 작업이 가장 힘들었습니다.. 전체 데이터의 1/3 밖에 라벨링을 못했지만 일단 결과를 보고 싶어 다음 과정을 진행하였습니다.\n라벨링 기준1234     분류           라벨      개수아직 라벨링 안된 글    -1     24,238개개발과 관련 있는 글     1      7,634개개발과 관련 없는 글     0      2,748개\n\n라벨링을 완료한 1만개 데이터 중 개발과 관련있는 글과 관련없는 글의 비율은 약 3:1로 개발과 관련있는 글이 더 많았습니다.\n대표 문장 길이에 대한 Log-Histogram\n\nAwesome Devblog에서 제공하는 데이터 중 link을 이용하면 본문 html을 받아올 수 있지만, 오래되어 존재하지 link도 상당히 많아 이번에는 간단히 title, tags, description만을 다음과 같이 전처리하여 이용하였습니다.\n전처리 과정123456789배열로 이루어진 tags를 띄어쓰기를 기준으로 join영어, 한글, 공백만 남김html tag 삭제\\n, \\r 삭제2회 이상의 공백은 하나로 변환영어 대문자 소문자로 변환앞뒤 공백 삭제(strip)제목이 공백인 데이터 제외제목에 &#39;about&#39;이 단어가 들어간 데이터 제외\n\n제목에 ‘about’이 단어가 들어간 데이터는 하나같이 블로그 주인에 대한 소개글로 Daily Devblog에 노출될 필요가 없다고 판단하여 제외하였고, tags, title, description을 합쳐서 하나의 대표 문장인 text를 만들었습니다.\n학습에 쓰이는 데이터 예시1234&#123;  text  : &quot;영화 소감 때론 영웅은 옆으로 달린다 한국 사회에서 조직 문화 개선을 위해서 우리는 목숨을 내던지고 옆으로 달려야 하는가&quot;  label : 0&#125;\n\n","dateCreated":"2020-02-18T21:44:28+09:00","dateModified":"2023-11-20T13:48:33+09:00","datePublished":"2020-02-18T21:44:28+09:00","description":"Daily Devblog 서비스를 위한 개발 문서 분류기를 개발한 이야기를 공유합니다.","headline":"딥러닝으로 문서 분류기 만들기","image":["https://user-images.githubusercontent.com/26322627/74600889-dc757800-50da-11ea-9e55-97010103b606.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/devblog-classifier/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture?lang=ko"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/devblog-classifier/","keywords":"Devblog Classifier","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/74600889-dc757800-50da-11ea-9e55-97010103b606.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Daily Devblog 서비스를 위한 개발 문서 분류기를 개발한 이야기를 공유합니다.\n프로젝트 소개필자는 IT 블로그의 글을 모아서 매일 오전 10시에 이메일로 발송해주는 Daily Devblog라는 좋은 서비스를 구독하고 있습니다. 발송되는 글들은 Awesome Devblog에서 제공받는데, 가끔씩 IT와 관련 없는 글이 등장하기도 합니다. 큰 문제는 아니지만 서비스를 애용하는 구독자로서, 약간의 도움이라도 되었으면 하는 바람으로 딥러닝을 이용하여 간단한 문서 분류기를 만들어보았습니다. 🎉\n\n개발에 사용된 코드 및 데이터는 아래 링크에서 확인하실 수 있습니다.\n\nGithub\n전처리 및 라벨링 된 데이터\n\n\n\n개발 과정전체 개발 순서는 데이터 수집 및 전처리, 단어 임베딩 모델 개발 그리고 문서 분류모델 개발 순으로 진행하였습니다.\n\nData Crawling &amp; Labeling데이터는 Awesome Devblog에서 제공해주는 데이터를 이용하였습니다.\ndata sample12345678910111213&#123;   _id        : &quot;5e566644e0ffb12d4cae83ba&quot;,  title      : &quot;[영화 소감] 1917. 때론 영웅은 옆으로 달린다.&quot;,  link       : &quot;http:&#x2F;&#x2F;blog.hwang.gg&#x2F;20200226&#x2F;&quot;,  date       : &quot;2020-02-26T11:45:20.000Z&quot;,  description: &quot;한국 사회에서 조직 문화 개선을 위해서 우리는 목숨을 내던지고 옆으로 달려야 하는가?&quot;,  author     : &quot;황건구&quot;,  imgUrl     : &quot;http:&#x2F;&#x2F;blog.hwang.gg&#x2F;favicon.png&quot;,  tags       : [ ],  count      : 0,  postImage  : &quot;&quot;,  _class     : &quot;com.sarojaba.awesomedevblog.feed.Feed&quot; &#125;\n2020년 2월 초 기준으로 전체 34,620개의 글이 존재하였고, 이 중 10,382개의 글을 직접 라벨링하였습니다. 라벨링 작업이 가장 힘들었습니다.. 전체 데이터의 1/3 밖에 라벨링을 못했지만 일단 결과를 보고 싶어 다음 과정을 진행하였습니다.\n라벨링 기준1234     분류           라벨      개수아직 라벨링 안된 글    -1     24,238개개발과 관련 있는 글     1      7,634개개발과 관련 없는 글     0      2,748개\n\n라벨링을 완료한 1만개 데이터 중 개발과 관련있는 글과 관련없는 글의 비율은 약 3:1로 개발과 관련있는 글이 더 많았습니다.\n대표 문장 길이에 대한 Log-Histogram\n\nAwesome Devblog에서 제공하는 데이터 중 link을 이용하면 본문 html을 받아올 수 있지만, 오래되어 존재하지 link도 상당히 많아 이번에는 간단히 title, tags, description만을 다음과 같이 전처리하여 이용하였습니다.\n전처리 과정123456789배열로 이루어진 tags를 띄어쓰기를 기준으로 join영어, 한글, 공백만 남김html tag 삭제\\n, \\r 삭제2회 이상의 공백은 하나로 변환영어 대문자 소문자로 변환앞뒤 공백 삭제(strip)제목이 공백인 데이터 제외제목에 &#39;about&#39;이 단어가 들어간 데이터 제외\n\n제목에 ‘about’이 단어가 들어간 데이터는 하나같이 블로그 주인에 대한 소개글로 Daily Devblog에 노출될 필요가 없다고 판단하여 제외하였고, tags, title, description을 합쳐서 하나의 대표 문장인 text를 만들었습니다.\n학습에 쓰이는 데이터 예시1234&#123;  text  : &quot;영화 소감 때론 영웅은 옆으로 달린다 한국 사회에서 조직 문화 개선을 위해서 우리는 목숨을 내던지고 옆으로 달려야 하는가&quot;  label : 0&#125;\n\n","dateCreated":"2020-02-18T21:44:28+09:00","dateModified":"2023-11-22T15:24:23+09:00","datePublished":"2020-02-18T21:44:28+09:00","description":"Daily Devblog 서비스를 위한 개발 문서 분류기를 개발한 이야기를 공유합니다.","headline":"딥러닝으로 문서 분류기 만들기","image":["https://user-images.githubusercontent.com/26322627/74600889-dc757800-50da-11ea-9e55-97010103b606.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/devblog-classifier/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/devblog-classifier/","keywords":"Devblog Classifier","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/74600889-dc757800-50da-11ea-9e55-97010103b606.png"}</script>
     <meta name="description" content="Daily Devblog 서비스를 위한 개발 문서 분류기를 개발한 이야기를 공유합니다.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="딥러닝으로 문서 분류기 만들기">
@@ -30,7 +30,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://user-images.githubusercontent.com/26322627/74600889-dc757800-50da-11ea-9e55-97010103b606.png">
 <meta property="article:published_time" content="2020-02-18T12:44:28.000Z">
-<meta property="article:modified_time" content="2023-11-20T04:48:33.617Z">
+<meta property="article:modified_time" content="2023-11-22T06:24:23.544Z">
 <meta property="article:author" content="DevStory">
 <meta property="article:tag" content="Devblog Classifier">
 <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-vipjebgadeo17lqngz5n6ac81wsm3cqpwuyjvartknkptdlamos31bso9iow.min.css">
+<link rel="stylesheet" href="/assets/css/style-5toom7w8tzu2rtez13zdloernoyoysdjq2q2tcbfz5imexi7unxmlefzt29m.min.css">
 
     <!--STYLES END-->
 
@@ -90,10 +90,10 @@
     </div>
     
         
-            <a class="header-right-picture " href="#about" aria-label="Open the link: /#about">
+            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
         
         
-            <img class="header-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
         
         </a>
     
@@ -110,8 +110,8 @@
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
-                <a href="/#about" aria-label="Read more about the author">
-                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+                <a href="/#about" aria-label="저자에 대해 더 알아보기">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
                 </a>
                 <h4 class="sidebar-profile-name">DevStory</h4>
                 
@@ -124,37 +124,37 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/" title="Home">
+                        <a class="sidebar-button-link " href="/" title="홈">
                     
                         <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Home</span>
+                        <span class="sidebar-button-desc">홈</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">카테고리</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                        <a class="sidebar-button-link " href="/all-tags" title="태그">
                     
                         <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Tags</span>
+                        <span class="sidebar-button-desc">태그</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">아카이브</span>
                     </a>
             </li>
             
@@ -164,28 +164,28 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
+                        <span class="sidebar-button-desc">깃허브</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
                     
                         <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Projects</span>
+                        <span class="sidebar-button-desc">프로젝트</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture?lang=ko" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
                     
                         <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Lecture</span>
+                        <span class="sidebar-button-desc">강의</span>
                     </a>
             </li>
             
@@ -225,11 +225,11 @@
         <div class="post-meta">
     <time datetime="2020-02-18T21:44:28+09:00">
 	
-		    Feb 18, 2020
+		    2020/02/18
     	
     </time>
     
-        <span>in </span>
+        <span>카테고리 </span>
         
     <a class="category-link" href="/categories/Project/">Project</a>
 
@@ -335,7 +335,7 @@
     <div id="post-footer" class="post-footer main-content-wrap">
         
         <div class="post-footer-tags">
-            <span class="text-color-light text-small">TAGGED IN</span><br>
+            <span class="text-color-light text-small">태그</span><br>
             
     <a class="tag tag--primary tag--small t-link" href="/tags/Devblog-Classifier/" rel="tag">Devblog Classifier</a>
 
@@ -348,18 +348,18 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/endpoint-detector/" data-tooltip="딥러닝으로 문장의 끝점 검출기 만들기" aria-label="PREVIOUS: 딥러닝으로 문장의 끝점 검출기 만들기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/endpoint-detector/" data-tooltip="딥러닝으로 문장의 끝점 검출기 만들기" aria-label="이전: 딥러닝으로 문장의 끝점 검출기 만들기">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/too-real-01/" data-tooltip="1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기" aria-label="NEXT: 1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/too-real-01/" data-tooltip="1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기" aria-label="다음: 1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -367,7 +367,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -375,7 +375,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/devblog-classifier/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/devblog-classifier/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -383,7 +383,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/devblog-classifier/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/devblog-classifier/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -393,7 +393,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -428,18 +428,18 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/endpoint-detector/" data-tooltip="딥러닝으로 문장의 끝점 검출기 만들기" aria-label="PREVIOUS: 딥러닝으로 문장의 끝점 검출기 만들기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/endpoint-detector/" data-tooltip="딥러닝으로 문장의 끝점 검출기 만들기" aria-label="이전: 딥러닝으로 문장의 끝점 검출기 만들기">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/post/too-real-01/" data-tooltip="1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기" aria-label="NEXT: 1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/too-real-01/" data-tooltip="1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기" aria-label="다음: 1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -447,7 +447,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -455,7 +455,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/devblog-classifier/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/devblog-classifier/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -463,7 +463,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/devblog-classifier/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/devblog-classifier/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -473,7 +473,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -491,16 +491,16 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/devblog-classifier/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/devblog-classifier/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/devblog-classifier/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/devblog-classifier/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
                     </a>
                 </li>
             
@@ -523,7 +523,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <img id="about-card-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
         
             <h4 id="about-card-name">DevStory</h4>
         
@@ -558,9 +558,9 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-qfgmqutdartcbammijxm0gshr2pnkjej4zq4mkm4be2oqqljktpcrgy7s3wg.min.js"></script>
+<script src="/assets/js/script-hh0puos85akek5s0ltmkxazn1sj9ckkkxg9wbommekw9eoetrgotaueeus4x.min.js"></script>
 
-<!--SCRIPTS END-->
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
     
@@ -568,5 +568,5 @@
 
 
 
-    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
 </html>

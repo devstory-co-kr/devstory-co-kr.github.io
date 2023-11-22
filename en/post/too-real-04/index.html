@@ -1,0 +1,684 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기 - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/en/post/too-real-04/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,Deep Learning,Mobile,Android,iOS,cat,nero-angela,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/en/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"CoreML을 이용하여 iOS 어플리케이션에 YOLO v3 모델을 탑재하는 방법에 대해 공유합니다.\n\n1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기2부. ARKit을 이용하여 iOS AR앱 만들기3부. Custom YOLO v3 모델 만들기✔︎ 4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기\n\n\nCoreML 이용방법CoreML은 애플의 머신러닝 프레임워크로, iOS 어플리케이션에 손쉽게 머신러닝 모델을 올릴 수 있도록 도와줍니다.\n\n✔︎ 진행 순서\n\n\nCoreML Tools를 이용하여 mlmodel 만들기\nCoreML을 이용하여 iOS에 모델 올리기\n\n\nCoreML Tools를 이용하여 mlmodel 만들기CoreML을 이용하여 모델을 올리기 위해선 먼저 모델을 .mlmodel 형태로 변환해야하는데, CoreML Tools를 이용하면 손쉽게 변환 할 수 있습니다. CoreML Tools는 Darknet 포멧을 지원하지 않기 때문에 앞서 Darknet 모델을 Keras 모델로 변환하여 학습을 진행하였습니다.\nCoreML Tools를 이용하여 keras 모델을 mlmodel로 변환12345678import coremltoolscoreml_model = coremltools.converters.keras.convert('model_data/light_tiny_model.h5',                                                    image_input_names='image',                                                    input_names='image',                                                    output_names=['13'],                                                    image_scale=1/255.0)coreml_model.output_description['13'] = '13 x 13 x 30'coreml_model.save('model_data/light_tiny_model.mlmodel')\n\n3부에서 학습하여 만든 Tiny YOLO 모델은 이미지를 13 x 13 Grid로 나누어 5개의 클래스에 대해 Grid 당 3개의 박스를 예측하기 때문에 13 x 13 x 30의 결과를 반환하기 때문에 위와같이 output을 설정해주었습니다.\n\nN x N x (C + 5) x B)\n\n\nN x N : Grid\nC : 학습한 Object 수(Classes)\n5 : 탐지한 Object의 Bounding Box 정보(x, y, w, h, confidence)\nB : Grid cell당 박스 수\n\n\nCoreML을 이용하여 iOS에 모델 올리기light_tiny_model.mlmodel 모델을 iOS 프로젝트에 추가하면, 다음과 같이 사용할 수 있습니다.\nLoad mlmodel12import CoreMLlet model = light_tiny_model()\n\nModel은 인자로 416 x 416 size인 CVPixelBuffer를 받는 prediction 함수를 가지고있습니다.\nmodel prediction1model.prediction(image: CVPixelBuffer)\n\nCVPixelBuffer는 ARSessionDeligate의 session(_:didUpdate:) 함수의 ARFrame.capturedImage를 이용하여 실시간 CVPixelBuffer를 얻을 수 있습니다.\n매프레임마다 호출되는 함수123func session(_ session: ARSession, didUpdate frame: ARFrame) &#123;    model.prediction(image: frame.capturedImage)&#125;\n\n\nModel Input Image Preprocessing\n프로젝트에 많은 참고가 된 TinyYOLO-CoreML에서는 ARSessionDelegate가 아닌 AVCaptureVideoDataOutputSampleBufferDelegate를 이용하고 있습니다.\n\n동일한 아이폰에서 ARKit의 ARSessionDelegate과 AVFoundation의 AVCaptureVideoDataOutputSampleBufferDelegate는 서로 다른 이미지를 반환합니다.\n1234567// AVCaptureVideoDataOutputSampleBufferDelegateCVPixelBuffer Height : 1280CVPixelBuffer Width  : 720// ARSessionDelegateCVPixelBuffer Height : 1440CVPixelBuffer Width  : 1920\n\n이번 프로젝트에서 사용하는 ARSessionDelegate는 왼쪽으로 회전된 이미지를 반환하므로 이미지를 오른쪽으로 회전시키고, Model의 input size인 416 x 416으로 변환하는 전처리가 필요합니다.\n전처리 방법으로 Core Image와 Vision 두 프레임워크를 이용한 방법을 공유하겠습니다.\n\n✔︎ 진행 순서\n\n\nCore Image Framework\nVision Framework\n\n\n이번 글에서는 다루지 않았지만 성능 향상을 위해 이미지 전처리 부분을 DispatchSemaphore와 DispatchQueue 등을 이용하여 병렬로 처리하였습니다. 관련 내용은 TinyYOLO-CoreML를 참고해주세요.\n\n\nCore Image FrameworkCore Image은 iOS에서 지원하는 이미지 분석 및 처리 프레임워크입니다. Core Image를 이용하여 CVPixelBuffer를 YOLO Model의 input에 적합하도록 변환해보도록 하겠습니다.\nCore Image Framework를 이용한 전처리123456789101112131415161718192021222324let ModelInputWidth = 416let ModelInputHeight = 416func getResizedPixelBufferByCoreImage(pixelBuffer: CVPixelBuffer) -&gt; CVPixelBuffer &#123;  var resizedPixelBuffer: CVPixelBuffer?  CVPixelBufferCreate(nil, ModelInputWidth, ModelInputHeight, kCVPixelFormatType_32BGRA, nil, &amp;resizedPixelBuffer)  let ciImage = CIImage(cvPixelBuffer: pixelBuffer)  // Rotate  let rotatedImage = ciImage.oriented(forExifOrientation: Int32(CGImagePropertyOrientation.right.rawValue))  // Scale to YOLO input size  let sx = CGFloat(ModelInputWidth) / CGFloat(CVPixelBufferGetHeight(pixelBuffer))  let sy = CGFloat(ModelInputHeight) / CGFloat(CVPixelBufferGetWidth(pixelBuffer))  let scaleTransform = CGAffineTransform(scaleX: sx, y: sy)  let scaledImage = rotatedImage.transformed(by: scaleTransform)  // render : image into a pixel buffer.  ciContext.render(scaledImage, to: resizedPixelBuffer)  // Model Predict  predict(image: resizedPixelBuffer)&#125;\n\n이렇게 가공된 이미지를 model.prediction 함수에 전달합니다. output._13은 CoreML Tools를 이용한 mlmodel 변환시 입력한 output_names=[&#39;13&#39;] 입니다.\nYOLO model predict12345678let model = light_tiny_model()func predict(image: CVPixelBuffer) throws -&gt; [Prediction]? &#123;  if let output = try? model.prediction(image: image) &#123;    return computeBoundingBoxes(features: output._13)  &#125; else &#123;    return nil  &#125;&#125;\n\noutput.grid는 각 grid당 13 x 13 x 30 크기의 MLMultiArray 타입의 결과로 computeBoundingBoxes() 함수로 전달하여 결과에 대한 후처리를 진행합니다.\n\nVision Framework 앞서 이미지를 전처리를 Core Image Framework로 구현하였는데, Vision Framework를 이용하여 구현하는 다른 방법도 있습니다.\nVision Framework 세팅123456789101112131415161718192021222324252627282930313233let request: VNCoreMLRequest// 초기 세팅func setUpVision() &#123;  guard let visionModel = try? VNCoreMLModel(for: yolo.model.model) else &#123;    print(\"Error: could not create Vision model\")    return  &#125;  request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)  request.imageCropAndScaleOption = .scaleFill&#125;// 완료시 호출 함수func visionRequestDidComplete(request: VNRequest, error: Error?) &#123;  guard let observations = request.results as? [VNCoreMLFeatureValueObservation] else &#123; return &#125;  // 13 x 13 x 30에 해당하는 결과 찾기  if observationsIndex == nil &#123;    for (i, observation) in observations.enumerated() &#123;      guard let feature = observation.featureValue.multiArrayValue else &#123; continue &#125;      if feature.count == featureCount &#123;        self.observationsIndex = i        break      &#125;    &#125;  &#125;  if observationsIndex != nil &#123;    if let output = observations[observationsIndex!].featureValue.multiArrayValue &#123;      computeBoundingBoxes(features: output)    &#125;  &#125;&#125;\n\nVision framework를 이용한 이미지 전처리1234567func getResizedPixelBufferByVision(pixelBuffer: CVPixelBuffer, request: VNCoreMLRequest) &#123;  // orientation 옵션에 .right를 주어 오른쪽으로 회전  let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .right)  // 수행 완료시 visionRequestDidComplete()를 호출  handler.perform([request])&#125;\n\noutput은 각 grid당 13 x 13 x 30 크기의 MLMultiArray 타입의 결과로 computeBoundingBoxes() 함수로 전달하여 결과에 대한 후처리를 진행합니다.\n\nModel Output PostprocessingModel은 각 이미지당 13 x 13 x 30 텐서를 반환합니다.\n\nN x N x (C + 5) x B)\n\n\nN x N : Grid\nC : 학습한 Object 수(Classes)\n5 : 탐지한 Object의 Bounding Box 정보(x, y, w, h, confidence)\nB : Grid cell당 박스 수\n\n전체 Bounding Box를 그대로 화면에 나타낸다면 대략 다음과 같은 결과가 나옵니다.\nYOLO output을 필터링하여 나타낸 이미지출처 - https://machinethink.net\n\n\n✔︎ 진행 순서\n\n\nCompute Bounding Boxes\nBounding Box 그리기\n\n\nCompute Bounding Boxes\n[분석] YOLO 포스팅에서는 YOLO Model의 ouput을 다음과 같이 설명합니다.\n\n\nInput image를 N X N grid로 나눕니다.\n각각의 grid cell은 B개의 Bounding Box와 각 Bounding Box에 대한 confidence score를 갖습니다.(만약 cell에 object가 존재하지 않는다면 confidence score는 0)\n각각의 grid cell은 C개의 conditional class probability를 갖습니다.\n각각의 Bounding Box는 x, y, w, h, confidence로 구성됩니다.(x, y): Bounding Box의 중심점을 의미하며, grid cell의 범위에 대한 상대값이 입력(w, h): 전체 이미지의 width, height에 대한 상대값이 입력\n예1: 만약 x가 grid cell의 가장 왼쪽에 있다면 x = 0, y가 grid cell의 중간에 있다면 y = 0.5\n예2: bbox의 width가 이미지 width의 절반이라면 w = 0.5\n\n위와 같은 output을 아래 computeBoundingBoxes() 함수를 이용하여 정리해줍니다.\nBounding Box 필터링12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273let anchors: [Float] = [1.08, 1.19, 3.42, 4.41, 6.63, 11.38, 9.42, 5.11, 16.62, 10.52]func computeBoundingBoxes(features: MLMultiArray, featureCount: Int) -&gt; [Prediction] &#123;  var predictions = [Prediction]()  let blockSize: Float = 32  let gridHeight = 13  let gridWidth = 13  let boxesPerCell = 3  let numClasses = labels.count  let featurePointer = UnsafeMutablePointer&lt;Double&gt;(OpaquePointer(features.dataPointer))  let channelStride = features.strides[0].intValue  let yStride = features.strides[1].intValue  let xStride = features.strides[2].intValue  @inline(__always) func offset(_ channel: Int, _ x: Int, _ y: Int) -&gt; Int &#123;    return channel*channelStride + y*yStride + x*xStride  &#125;  for cy in 0..&lt; gridHeight &#123;    for cx in 0..&lt; gridWidth &#123;      for b in 0..&lt; boxesPerCell &#123;        let channel = b*(numClasses + 5)        // Grid 상의 x, y 위치        let tx = Float(featurePointer[offset(channel    , cx, cy)])        let ty = Float(featurePointer[offset(channel + 1, cx, cy)])        let tw = Float(featurePointer[offset(channel + 2, cx, cy)])        let th = Float(featurePointer[offset(channel + 3, cx, cy)])        let tc = Float(featurePointer[offset(channel + 4, cx, cy)])        // 박스의 중심좌표 (x, y)        let x = (Float(cx) + sigmoid(tx)) * blockSize        let y = (Float(cy) + sigmoid(ty)) * blockSize        // 박스의 with, height        let w = exp(tw) * anchors[2*b    ] * blockSize        let h = exp(th) * anchors[2*b + 1] * blockSize        // 박스안에 물체가 있을 확률        let confidence = sigmoid(tc)        var classes = [Float](repeating: 0, count: numClasses)        for c in 0..&lt; numClasses &#123;          classes[c] = Float(featurePointer[offset(channel + 5 + c, cx, cy)])        &#125;        classes = softmax(classes)        // 박스안에 있는 class        let (detectedClass, bestClassScore) = classes.argmax()        let confidenceInClass = bestClassScore * confidence        if confidenceInClass &gt; confidenceThreshold &#123;          let rect = CGRect(x: CGFloat(x - w/2), y: CGFloat(y - h/2),                            width: CGFloat(w), height: CGFloat(h))          let prediction = Prediction(classIndex: detectedClass,                                      score: confidenceInClass,                                      rect: rect)          predictions.append(prediction)        &#125;      &#125;    &#125;  &#125;  /* 중첩되는 Bounding Box 제거   * - boxes: Bounding Box와 score 배열   * - limit: 선택가능한 최대 박스 개수   * - threshold: 중첩 박스여부 판단 기준   */  return nonMaxSuppression(boxes: predictions,                           limit: 10,                           threshold: 0.5)&#125;\n\n\ncomputeBoundingBoxes에 대한 자세한 설명은 Real-time object detection with YOLO를 참고하시기 바랍니다.\n\ncomputeBoundingBoxes() 함수는 불필요한 박스를 제외하고 신뢰도 있는 최종 Prediction 배열을 반환합니다.\nPrediction에는 Bounding Box, 박스안에 존재하는 class 그리고 score가 들어있습니다.12345struct Prediction &#123;  let classIndex: Int  let score: Float  let rect: CGRect&#125;\n\n\nTinyYOLO-CoreML를 참조하여 구현하였기에 전체 코드는 해당 프로젝트를 참고하시기 바랍니다.\n\n\nBounding Box 그리기처음 ARSessionDelegate에서 얻은 이미지는 16:9가 아닌 16:12의 비율을 가지고 있고, 해당 이미지를 416 x 416으로 변환하여 모델에 입력하였습니다.\nARSessionDelegate에서 rotate right하여 얻은 이미지 사이즈12CVPixelBuffer Height : 1920CVPixelBuffer Width  : 1440\n\n따라서 Model이 반환하는 Bounding Box를 실제 모바일 화면에 그리기 위해 CGRect 구조체의 x, y, width, height를 getScreenRect() 함수를 구현하여 스케일을 조정하였습니다.\nYOLO Model이 학습한 Class\n\n매 프레임마다 Model이 현재 프레임상에 존재하는 조명의 위치와 종류를 예측하는데, Bounding Box의 중심점이 다음 연속한 3프레임의 Bounding Box속에 존재하면서 동일한 클래스를 예측하는 경우, 해당 클래스에 해당하는 조명이 실제한다고 판단하여 행동을 취하도록 구현하였습니다. 예를들어 3회 연속 ON 상태의 조명을 인식하면 해당 위치에 SCNLight를 설치하고, 반대로 OFF 상태의 조명을 인식하면 해당 마지막 Bounding Box속에 존재하는 SCNLight를 삭제하였습니다.\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\nYOLO 조명 on 상태 인식\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\nYOLO 조명 off 상태 인식\n\n\n\n화면상에 노란색 구슬은 SCNLight 설치여부를 볼 수 있도록 시각화한 가상 오브젝트입니다.\n\n마치며처음엔 CoreML을 이용하여 YOLO Model을 올리면 끝날 줄 알았는데, Model의 input과 output에 대한 처리에 대한 부분이 생각보다 힘들었습니다. 😭\n이상으로 딥러닝을 이용하여 더욱 현실감 있는 AR 앱 만들기 4부작을 마치도록하겠습니다. 🎉긴 글 읽어주셔서 감사합니다.\n\n1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기2부. ARKit을 이용하여 iOS AR앱 만들기3부. Custom YOLO v3 모델 만들기✔︎ 4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기\n\n","dateCreated":"2019-12-22T16:44:28+09:00","dateModified":"2023-11-22T15:24:23+09:00","datePublished":"2019-12-22T16:44:28+09:00","description":"CoreML을 이용하여 iOS 어플리케이션에 YOLO v3 모델을 탑재하는 방법에 대해 공유합니다.","headline":"4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기","image":["https://user-images.githubusercontent.com/26322627/80857774-74710f80-8c8f-11ea-9ce1-cafa28395c42.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/too-real-04/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/too-real-04/","keywords":"Too Real","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/80857774-74710f80-8c8f-11ea-9ce1-cafa28395c42.png"}</script>
+    <meta name="description" content="CoreML을 이용하여 iOS 어플리케이션에 YOLO v3 모델을 탑재하는 방법에 대해 공유합니다.">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기">
+<meta property="og:url" content="https://blog.devstory.co.kr/en/post/too-real-04/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="CoreML을 이용하여 iOS 어플리케이션에 YOLO v3 모델을 탑재하는 방법에 대해 공유합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26322627/80857774-74710f80-8c8f-11ea-9ce1-cafa28395c42.png">
+<meta property="article:published_time" content="2019-12-22T07:44:28.000Z">
+<meta property="article:modified_time" content="2023-11-22T06:24:23.548Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Too Real">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26322627/80857774-74710f80-8c8f-11ea-9ce1-cafa28395c42.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/en/assets/css/style-5toom7w8tzu2rtez13zdloernoyoysdjq2q2tcbfz5imexi7unxmlefzt29m.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/en/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /en/#about">
+        
+        
+            <img class="header-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/en/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/" title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Projects</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Lecture</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-12-22T16:44:28+09:00">
+	
+		    Dec 22, 2019
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/en/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>목차</strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#CoreML-이용방법"><span class="nero-toc-text">CoreML 이용방법</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#CoreML-Tools를-이용하여-mlmodel-만들기"><span class="nero-toc-text">CoreML Tools를 이용하여 mlmodel 만들기</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#CoreML을-이용하여-iOS에-모델-올리기"><span class="nero-toc-text">CoreML을 이용하여 iOS에 모델 올리기</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Model-Input-Image-Preprocessing"><span class="nero-toc-text">Model Input Image Preprocessing</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Core-Image-Framework"><span class="nero-toc-text">Core Image Framework</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Vision-Framework"><span class="nero-toc-text">Vision Framework</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Model-Output-Postprocessing"><span class="nero-toc-text">Model Output Postprocessing</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Compute-Bounding-Boxes"><span class="nero-toc-text">Compute Bounding Boxes</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Bounding-Box-그리기"><span class="nero-toc-text">Bounding Box 그리기</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#YOLO-Model을-이용한-실시간-조명탐지-구현"><span class="nero-toc-text">YOLO Model을 이용한 실시간 조명탐지 구현</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#조명의-3차원-좌표-획득"><span class="nero-toc-text">조명의 3차원 좌표 획득</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#실시간-조명-설치-및-해제"><span class="nero-toc-text">실시간 조명 설치 및 해제</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마치며"><span class="nero-toc-text">마치며</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>CoreML을 이용하여 iOS 어플리케이션에 YOLO v3 모델을 탑재하는 방법에 대해 공유합니다.<br><a id="more"></a></p>
+<blockquote>
+<p><a href="/post/too-real-01/">1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기</a><br><a href="/post/too-real-02/">2부. ARKit을 이용하여 iOS AR앱 만들기</a><br><a href="/post/too-real-03/">3부. Custom YOLO v3 모델 만들기</a><br>✔︎ 4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기</p>
+</blockquote>
+<hr>
+<h1 id="CoreML-이용방법"><a href="#CoreML-이용방법" class="headerlink" title="CoreML 이용방법"></a>CoreML 이용방법</h1><p><a href="https://developer.apple.com/documentation/coreml" target="_blank" rel="external nofollow noopener noreferrer">CoreML</a>은 애플의 머신러닝 프레임워크로, iOS 어플리케이션에 손쉽게 머신러닝 모델을 올릴 수 있도록 도와줍니다.</p>
+<blockquote>
+<p>✔︎ 진행 순서</p>
+</blockquote>
+<ul>
+<li>CoreML Tools를 이용하여 mlmodel 만들기</li>
+<li>CoreML을 이용하여 iOS에 모델 올리기</li>
+</ul>
+<hr>
+<h2 id="CoreML-Tools를-이용하여-mlmodel-만들기"><a href="#CoreML-Tools를-이용하여-mlmodel-만들기" class="headerlink" title="CoreML Tools를 이용하여 mlmodel 만들기"></a>CoreML Tools를 이용하여 mlmodel 만들기</h2><p>CoreML을 이용하여 모델을 올리기 위해선 먼저 모델을 <code>.mlmodel</code> 형태로 변환해야하는데, <a href="https://pypi.org/project/coremltools/" target="_blank" rel="external nofollow noopener noreferrer">CoreML Tools</a>를 이용하면 손쉽게 변환 할 수 있습니다. <code>CoreML Tools</code>는 Darknet 포멧을 지원하지 않기 때문에 앞서 Darknet 모델을 Keras 모델로 변환하여 학습을 진행하였습니다.</p>
+<figure class="highlight python"><figcaption><span>CoreML Tools를 이용하여 keras 모델을 mlmodel로 변환</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> coremltools</span><br><span class="line">coreml_model = coremltools.converters.keras.convert(<span class="string">'model_data/light_tiny_model.h5'</span>,</span><br><span class="line">                                                    image_input_names=<span class="string">'image'</span>,</span><br><span class="line">                                                    input_names=<span class="string">'image'</span>,</span><br><span class="line">                                                    output_names=[<span class="string">'13'</span>],</span><br><span class="line">                                                    image_scale=<span class="number">1</span>/<span class="number">255.0</span>)</span><br><span class="line">coreml_model.output_description[<span class="string">'13'</span>] = <span class="string">'13 x 13 x 30'</span></span><br><span class="line">coreml_model.save(<span class="string">'model_data/light_tiny_model.mlmodel'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>3부에서 학습하여 만든 Tiny YOLO 모델은 이미지를 <code>13 x 13</code> Grid로 나누어 5개의 클래스에 대해 Grid 당 3개의 박스를 예측하기 때문에 <code>13 x 13 x 30</code>의 결과를 반환하기 때문에 위와같이 output을 설정해주었습니다.</p>
+<blockquote>
+<p>N x N x (C + 5) x B)</p>
+</blockquote>
+<ul>
+<li>N x N : Grid</li>
+<li>C : 학습한 Object 수(Classes)</li>
+<li>5 : 탐지한 Object의 Bounding Box 정보(x, y, w, h, confidence)</li>
+<li>B : Grid cell당 박스 수</li>
+</ul>
+<hr>
+<h2 id="CoreML을-이용하여-iOS에-모델-올리기"><a href="#CoreML을-이용하여-iOS에-모델-올리기" class="headerlink" title="CoreML을 이용하여 iOS에 모델 올리기"></a>CoreML을 이용하여 iOS에 모델 올리기</h2><p><code>light_tiny_model.mlmodel</code> 모델을 iOS 프로젝트에 추가하면, 다음과 같이 사용할 수 있습니다.</p>
+<figure class="highlight swift"><figcaption><span>Load mlmodel</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> CoreML</span><br><span class="line"><span class="keyword">let</span> model = light_tiny_model()</span><br></pre></td></tr></table></figure>
+
+<p>Model은 인자로 <code>416 x 416</code> size인 <a href="https://developer.apple.com/documentation/corevideo/cvpixelbuffer-q2e" target="_blank" rel="external nofollow noopener noreferrer">CVPixelBuffer</a>를 받는 prediction 함수를 가지고있습니다.</p>
+<figure class="highlight swift"><figcaption><span>model prediction</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.prediction(image: <span class="type">CVPixelBuffer</span>)</span><br></pre></td></tr></table></figure>
+
+<p>CVPixelBuffer는 ARSessionDeligate의 <a href="https://developer.apple.com/documentation/arkit/arsessiondelegate/2865611-session" target="_blank" rel="external nofollow noopener noreferrer">session(_:didUpdate:)</a> 함수의 <a href="https://developer.apple.com/documentation/arkit/arframe/2867984-capturedimage" target="_blank" rel="external nofollow noopener noreferrer">ARFrame.capturedImage</a>를 이용하여 실시간 CVPixelBuffer를 얻을 수 있습니다.</p>
+<figure class="highlight swift"><figcaption><span>매프레임마다 호출되는 함수</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">session</span><span class="params">(<span class="number">_</span> session: ARSession, didUpdate frame: ARFrame)</span></span> &#123;</span><br><span class="line">    model.prediction(image: frame.capturedImage)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Model-Input-Image-Preprocessing"><a href="#Model-Input-Image-Preprocessing" class="headerlink" title="Model Input Image Preprocessing"></a>Model Input Image Preprocessing</h1><blockquote>
+<p>프로젝트에 많은 참고가 된 <a href="https://github.com/hollance/YOLO-CoreML-MPSNNGraph/tree/master/TinyYOLO-CoreML" target="_blank" rel="external nofollow noopener noreferrer">TinyYOLO-CoreML</a>에서는 <code>ARSessionDelegate</code>가 아닌 <code>AVCaptureVideoDataOutputSampleBufferDelegate</code>를 이용하고 있습니다.</p>
+</blockquote>
+<p>동일한 아이폰에서 ARKit의 <a href="https://developer.apple.com/documentation/arkit/arsessiondelegate" target="_blank" rel="external nofollow noopener noreferrer">ARSessionDelegate</a>과 AVFoundation의 <a href="https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutputsamplebufferdelegate" target="_blank" rel="external nofollow noopener noreferrer">AVCaptureVideoDataOutputSampleBufferDelegate</a>는 서로 다른 이미지를 반환합니다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AVCaptureVideoDataOutputSampleBufferDelegate</span></span><br><span class="line"><span class="type">CVPixelBuffer</span> <span class="type">Height</span> : <span class="number">1280</span></span><br><span class="line"><span class="type">CVPixelBuffer</span> <span class="type">Width</span>  : <span class="number">720</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ARSessionDelegate</span></span><br><span class="line"><span class="type">CVPixelBuffer</span> <span class="type">Height</span> : <span class="number">1440</span></span><br><span class="line"><span class="type">CVPixelBuffer</span> <span class="type">Width</span>  : <span class="number">1920</span></span><br></pre></td></tr></table></figure>
+
+<p>이번 프로젝트에서 사용하는 <code>ARSessionDelegate</code>는 왼쪽으로 회전된 이미지를 반환하므로 이미지를 <code>오른쪽으로 회전</code>시키고, Model의 input size인 <code>416 x 416으로 변환</code>하는 전처리가 필요합니다.</p>
+<p>전처리 방법으로 <a href="https://developer.apple.com/documentation/coreimage" target="_blank" rel="external nofollow noopener noreferrer">Core Image</a>와 <a href="https://developer.apple.com/documentation/vision" target="_blank" rel="external nofollow noopener noreferrer">Vision</a> 두 프레임워크를 이용한 방법을 공유하겠습니다.</p>
+<blockquote>
+<p>✔︎ 진행 순서</p>
+</blockquote>
+<ul>
+<li>Core Image Framework</li>
+<li>Vision Framework</li>
+</ul>
+<blockquote>
+<p>이번 글에서는 다루지 않았지만 성능 향상을 위해 이미지 전처리 부분을 <a href="https://developer.apple.com/documentation/dispatch/dispatchsemaphore" target="_blank" rel="external nofollow noopener noreferrer">DispatchSemaphore</a>와 <a href="https://developer.apple.com/documentation/dispatch/dispatchqueue" target="_blank" rel="external nofollow noopener noreferrer">DispatchQueue</a> 등을 이용하여 병렬로 처리하였습니다. 관련 내용은 <a href="https://github.com/hollance/YOLO-CoreML-MPSNNGraph/tree/master/TinyYOLO-CoreML" target="_blank" rel="external nofollow noopener noreferrer">TinyYOLO-CoreML</a>를 참고해주세요.</p>
+</blockquote>
+<hr>
+<h2 id="Core-Image-Framework"><a href="#Core-Image-Framework" class="headerlink" title="Core Image Framework"></a>Core Image Framework</h2><p><a href="https://developer.apple.com/documentation/coreimage" target="_blank" rel="external nofollow noopener noreferrer">Core Image</a>은 iOS에서 지원하는 이미지 분석 및 처리 프레임워크입니다. Core Image를 이용하여 CVPixelBuffer를 YOLO Model의 input에 적합하도록 변환해보도록 하겠습니다.</p>
+<figure class="highlight swift"><figcaption><span>Core Image Framework를 이용한 전처리</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="type">ModelInputWidth</span> = <span class="number">416</span></span><br><span class="line"><span class="keyword">let</span> <span class="type">ModelInputHeight</span> = <span class="number">416</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getResizedPixelBufferByCoreImage</span><span class="params">(pixelBuffer: CVPixelBuffer)</span></span> -&gt; <span class="type">CVPixelBuffer</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> resizedPixelBuffer: <span class="type">CVPixelBuffer?</span></span><br><span class="line">  <span class="type">CVPixelBufferCreate</span>(<span class="literal">nil</span>, <span class="type">ModelInputWidth</span>, <span class="type">ModelInputHeight</span>, kCVPixelFormatType_32BGRA, <span class="literal">nil</span>, &amp;resizedPixelBuffer)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> ciImage = <span class="type">CIImage</span>(cvPixelBuffer: pixelBuffer)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Rotate</span></span><br><span class="line">  <span class="keyword">let</span> rotatedImage = ciImage.oriented(forExifOrientation: <span class="type">Int32</span>(<span class="type">CGImagePropertyOrientation</span>.<span class="keyword">right</span>.rawValue))</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Scale to YOLO input size</span></span><br><span class="line">  <span class="keyword">let</span> sx = <span class="type">CGFloat</span>(<span class="type">ModelInputWidth</span>) / <span class="type">CGFloat</span>(<span class="type">CVPixelBufferGetHeight</span>(pixelBuffer))</span><br><span class="line">  <span class="keyword">let</span> sy = <span class="type">CGFloat</span>(<span class="type">ModelInputHeight</span>) / <span class="type">CGFloat</span>(<span class="type">CVPixelBufferGetWidth</span>(pixelBuffer))</span><br><span class="line">  <span class="keyword">let</span> scaleTransform = <span class="type">CGAffineTransform</span>(scaleX: sx, y: sy)</span><br><span class="line">  <span class="keyword">let</span> scaledImage = rotatedImage.transformed(by: scaleTransform)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// render : image into a pixel buffer.</span></span><br><span class="line">  ciContext.render(scaledImage, to: resizedPixelBuffer)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Model Predict</span></span><br><span class="line">  predict(image: resizedPixelBuffer)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이렇게 가공된 이미지를 <code>model.prediction</code> 함수에 전달합니다. <code>output._13</code>은 CoreML Tools를 이용한 mlmodel 변환시 입력한 <code>output_names=[&#39;13&#39;]</code> 입니다.</p>
+<figure class="highlight swift"><figcaption><span>YOLO model predict</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> model = light_tiny_model()</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">predict</span><span class="params">(image: CVPixelBuffer)</span></span> <span class="keyword">throws</span> -&gt; [<span class="type">Prediction</span>]? &#123;</span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">let</span> output = <span class="keyword">try</span>? model.prediction(image: image) &#123;</span><br><span class="line">    <span class="keyword">return</span> computeBoundingBoxes(features: output.<span class="number">_13</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>output.grid</code>는 각 grid당 <code>13 x 13 x 30</code> 크기의 <a href="https://developer.apple.com/documentation/coreml/mlmultiarray" target="_blank" rel="external nofollow noopener noreferrer">MLMultiArray</a> 타입의 결과로 <code>computeBoundingBoxes()</code> 함수로 전달하여 결과에 대한 후처리를 진행합니다.</p>
+<hr>
+<h2 id="Vision-Framework"><a href="#Vision-Framework" class="headerlink" title="Vision Framework"></a>Vision Framework</h2><p> 앞서 이미지를 전처리를 <code>Core Image Framework</code>로 구현하였는데, <a href="https://developer.apple.com/documentation/vision" target="_blank" rel="external nofollow noopener noreferrer">Vision</a> Framework를 이용하여 구현하는 다른 방법도 있습니다.</p>
+<figure class="highlight swift"><figcaption><span>Vision Framework 세팅</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> request: <span class="type">VNCoreMLRequest</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 초기 세팅</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">setUpVision</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> visionModel = <span class="keyword">try</span>? <span class="type">VNCoreMLModel</span>(<span class="keyword">for</span>: yolo.model.model) <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Error: could not create Vision model"</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  request = <span class="type">VNCoreMLRequest</span>(model: visionModel, completionHandler: visionRequestDidComplete)</span><br><span class="line">  request.imageCropAndScaleOption = .scaleFill</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 완료시 호출 함수</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">visionRequestDidComplete</span><span class="params">(request: VNRequest, error: Error?)</span></span> &#123;</span><br><span class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> observations = request.results <span class="keyword">as</span>? [<span class="type">VNCoreMLFeatureValueObservation</span>] <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 13 x 13 x 30에 해당하는 결과 찾기</span></span><br><span class="line">  <span class="keyword">if</span> observationsIndex == <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (i, observation) <span class="keyword">in</span> observations.enumerated() &#123;</span><br><span class="line">      <span class="keyword">guard</span> <span class="keyword">let</span> feature = observation.featureValue.multiArrayValue <span class="keyword">else</span> &#123; <span class="keyword">continue</span> &#125;</span><br><span class="line">      <span class="keyword">if</span> feature.<span class="built_in">count</span> == featureCount &#123;</span><br><span class="line">        <span class="keyword">self</span>.observationsIndex = i</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> observationsIndex != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> output = observations[observationsIndex!].featureValue.multiArrayValue &#123;</span><br><span class="line">      computeBoundingBoxes(features: output)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight swift"><figcaption><span>Vision framework를 이용한 이미지 전처리</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getResizedPixelBufferByVision</span><span class="params">(pixelBuffer: CVPixelBuffer, request: VNCoreMLRequest)</span></span> &#123;</span><br><span class="line">  <span class="comment">// orientation 옵션에 .right를 주어 오른쪽으로 회전</span></span><br><span class="line">  <span class="keyword">let</span> handler = <span class="type">VNImageRequestHandler</span>(cvPixelBuffer: pixelBuffer, orientation: .<span class="keyword">right</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 수행 완료시 visionRequestDidComplete()를 호출</span></span><br><span class="line">  handler.perform([request])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>output</code>은 각 grid당 <code>13 x 13 x 30</code> 크기의 <a href="https://developer.apple.com/documentation/coreml/mlmultiarray" target="_blank" rel="external nofollow noopener noreferrer">MLMultiArray</a> 타입의 결과로 <code>computeBoundingBoxes()</code> 함수로 전달하여 결과에 대한 후처리를 진행합니다.</p>
+<hr>
+<h1 id="Model-Output-Postprocessing"><a href="#Model-Output-Postprocessing" class="headerlink" title="Model Output Postprocessing"></a>Model Output Postprocessing</h1><p>Model은 각 이미지당 <code>13 x 13 x 30</code> 텐서를 반환합니다.</p>
+<blockquote>
+<p>N x N x (C + 5) x B)</p>
+</blockquote>
+<ul>
+<li>N x N : Grid</li>
+<li>C : 학습한 Object 수(Classes)</li>
+<li>5 : 탐지한 Object의 Bounding Box 정보(x, y, w, h, confidence)</li>
+<li>B : Grid cell당 박스 수</li>
+</ul>
+<p>전체 Bounding Box를 그대로 화면에 나타낸다면 대략 다음과 같은 결과가 나옵니다.</p>
+<div class="figure center" style><a class="fancybox" href="https://user-images.githubusercontent.com/26322627/71397817-f73ee980-2661-11ea-9eb5-07123bd0d588.png" target="_blank" rel="external nofollow noopener noreferrer" title="YOLO output을 나타낸 이미지<br>출처 - <a href=https://machinethink.net/blog/object-detection-with-yolo/>https://machinethink.net</a>" data-caption="YOLO output을 나타낸 이미지<br>출처 - <a href=https://machinethink.net/blog/object-detection-with-yolo/>https://machinethink.net</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="https://user-images.githubusercontent.com/26322627/71397817-f73ee980-2661-11ea-9eb5-07123bd0d588.png" style="width:300px;" alt="YOLO output을 나타낸 이미지<br>출처 - <a href=https://machinethink.net/blog/object-detection-with-yolo/>https://machinethink.net</a>"></a><span class="caption">YOLO output을 나타낸 이미지<br>출처 - <a href="https://machinethink.net/blog/object-detection-with-yolo/" rel="external nofollow noopener noreferrer" target="_blank">https://machinethink.net</a></span></div>
+
+<p>무수히 많은 박스 중에서 실제 물체의 위치에 해당하는 결과만 필터링하여 아래와 같이 깔끔한 Bounding Box를 그리기 위해선 output에 대한 후처리가 필요합니다.</p>
+<div class="figure center" style><a class="fancybox" href="https://user-images.githubusercontent.com/26322627/71397849-0de54080-2662-11ea-924f-155b89afab87.png" target="_blank" rel="external nofollow noopener noreferrer" title="YOLO output을 필터링하여 나타낸 이미지<br>출처 - <a href=https://machinethink.net/blog/object-detection-with-yolo/>https://machinethink.net</a>" data-caption="YOLO output을 필터링하여 나타낸 이미지<br>출처 - <a href=https://machinethink.net/blog/object-detection-with-yolo/>https://machinethink.net</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="https://user-images.githubusercontent.com/26322627/71397849-0de54080-2662-11ea-924f-155b89afab87.png" style="width:300px;" alt="YOLO output을 필터링하여 나타낸 이미지<br>출처 - <a href=https://machinethink.net/blog/object-detection-with-yolo/>https://machinethink.net</a>"></a><span class="caption">YOLO output을 필터링하여 나타낸 이미지<br>출처 - <a href="https://machinethink.net/blog/object-detection-with-yolo/" rel="external nofollow noopener noreferrer" target="_blank">https://machinethink.net</a></span></div>
+
+<blockquote>
+<p>✔︎ 진행 순서</p>
+</blockquote>
+<ul>
+<li>Compute Bounding Boxes</li>
+<li>Bounding Box 그리기</li>
+</ul>
+<hr>
+<h2 id="Compute-Bounding-Boxes"><a href="#Compute-Bounding-Boxes" class="headerlink" title="Compute Bounding Boxes"></a>Compute Bounding Boxes</h2><blockquote>
+<p><a href="https://curt-park.github.io/2017-03-26/yolo/" target="_blank" rel="external nofollow noopener noreferrer">[분석] YOLO</a> 포스팅에서는 YOLO Model의 ouput을 다음과 같이 설명합니다.</p>
+</blockquote>
+<ul>
+<li>Input image를 N X N grid로 나눕니다.</li>
+<li>각각의 grid cell은 B개의 Bounding Box와 각 Bounding Box에 대한 confidence score를 갖습니다.<br>(만약 cell에 object가 존재하지 않는다면 confidence score는 0)</li>
+<li>각각의 grid cell은 C개의 conditional class probability를 갖습니다.</li>
+<li>각각의 Bounding Box는 x, y, w, h, confidence로 구성됩니다.<br>(x, y): Bounding Box의 중심점을 의미하며, grid cell의 범위에 대한 상대값이 입력<br>(w, h): 전체 이미지의 width, height에 대한 상대값이 입력</li>
+<li>예1: 만약 x가 grid cell의 가장 왼쪽에 있다면 x = 0, y가 grid cell의 중간에 있다면 y = 0.5</li>
+<li>예2: bbox의 width가 이미지 width의 절반이라면 w = 0.5</li>
+</ul>
+<p>위와 같은 output을 아래 <code>computeBoundingBoxes()</code> 함수를 이용하여 정리해줍니다.</p>
+<figure class="highlight swift"><figcaption><span>Bounding Box 필터링</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> anchors: [<span class="type">Float</span>] = [<span class="number">1.08</span>, <span class="number">1.19</span>, <span class="number">3.42</span>, <span class="number">4.41</span>, <span class="number">6.63</span>, <span class="number">11.38</span>, <span class="number">9.42</span>, <span class="number">5.11</span>, <span class="number">16.62</span>, <span class="number">10.52</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">computeBoundingBoxes</span><span class="params">(features: MLMultiArray, featureCount: Int)</span></span> -&gt; [<span class="type">Prediction</span>] &#123;</span><br><span class="line">  <span class="keyword">var</span> predictions = [<span class="type">Prediction</span>]()</span><br><span class="line">  <span class="keyword">let</span> blockSize: <span class="type">Float</span> = <span class="number">32</span></span><br><span class="line">  <span class="keyword">let</span> gridHeight = <span class="number">13</span></span><br><span class="line">  <span class="keyword">let</span> gridWidth = <span class="number">13</span></span><br><span class="line">  <span class="keyword">let</span> boxesPerCell = <span class="number">3</span></span><br><span class="line">  <span class="keyword">let</span> numClasses = labels.<span class="built_in">count</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> featurePointer = <span class="type">UnsafeMutablePointer</span>&lt;<span class="type">Double</span>&gt;(<span class="type">OpaquePointer</span>(features.dataPointer))</span><br><span class="line">  <span class="keyword">let</span> channelStride = features.strides[<span class="number">0</span>].intValue</span><br><span class="line">  <span class="keyword">let</span> yStride = features.strides[<span class="number">1</span>].intValue</span><br><span class="line">  <span class="keyword">let</span> xStride = features.strides[<span class="number">2</span>].intValue</span><br><span class="line"></span><br><span class="line">  @inline(__always) <span class="function"><span class="keyword">func</span> <span class="title">offset</span><span class="params">(<span class="number">_</span> channel: Int, <span class="number">_</span> x: Int, <span class="number">_</span> y: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> channel*channelStride + y*yStride + x*xStride</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> cy <span class="keyword">in</span> <span class="number">0</span>..&lt; gridHeight &#123;</span><br><span class="line">    <span class="keyword">for</span> cx <span class="keyword">in</span> <span class="number">0</span>..&lt; gridWidth &#123;</span><br><span class="line">      <span class="keyword">for</span> b <span class="keyword">in</span> <span class="number">0</span>..&lt; boxesPerCell &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> channel = b*(numClasses + <span class="number">5</span>)</span><br><span class="line">        <span class="comment">// Grid 상의 x, y 위치</span></span><br><span class="line">        <span class="keyword">let</span> tx = <span class="type">Float</span>(featurePointer[offset(channel    , cx, cy)])</span><br><span class="line">        <span class="keyword">let</span> ty = <span class="type">Float</span>(featurePointer[offset(channel + <span class="number">1</span>, cx, cy)])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> tw = <span class="type">Float</span>(featurePointer[offset(channel + <span class="number">2</span>, cx, cy)])</span><br><span class="line">        <span class="keyword">let</span> th = <span class="type">Float</span>(featurePointer[offset(channel + <span class="number">3</span>, cx, cy)])</span><br><span class="line">        <span class="keyword">let</span> tc = <span class="type">Float</span>(featurePointer[offset(channel + <span class="number">4</span>, cx, cy)])</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 박스의 중심좌표 (x, y)</span></span><br><span class="line">        <span class="keyword">let</span> x = (<span class="type">Float</span>(cx) + sigmoid(tx)) * blockSize</span><br><span class="line">        <span class="keyword">let</span> y = (<span class="type">Float</span>(cy) + sigmoid(ty)) * blockSize</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 박스의 with, height</span></span><br><span class="line">        <span class="keyword">let</span> w = exp(tw) * anchors[<span class="number">2</span>*b    ] * blockSize</span><br><span class="line">        <span class="keyword">let</span> h = exp(th) * anchors[<span class="number">2</span>*b + <span class="number">1</span>] * blockSize</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 박스안에 물체가 있을 확률</span></span><br><span class="line">        <span class="keyword">let</span> confidence = sigmoid(tc)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> classes = [<span class="type">Float</span>](repeating: <span class="number">0</span>, <span class="built_in">count</span>: numClasses)</span><br><span class="line">        <span class="keyword">for</span> <span class="built_in">c</span> <span class="keyword">in</span> <span class="number">0</span>..&lt; numClasses &#123;</span><br><span class="line">          classes[<span class="built_in">c</span>] = <span class="type">Float</span>(featurePointer[offset(channel + <span class="number">5</span> + <span class="built_in">c</span>, cx, cy)])</span><br><span class="line">        &#125;</span><br><span class="line">        classes = softmax(classes)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 박스안에 있는 class</span></span><br><span class="line">        <span class="keyword">let</span> (detectedClass, bestClassScore) = classes.argmax()</span><br><span class="line">        <span class="keyword">let</span> confidenceInClass = bestClassScore * confidence</span><br><span class="line">        <span class="keyword">if</span> confidenceInClass &gt; confidenceThreshold &#123;</span><br><span class="line">          <span class="keyword">let</span> rect = <span class="type">CGRect</span>(x: <span class="type">CGFloat</span>(x - w/<span class="number">2</span>), y: <span class="type">CGFloat</span>(y - h/<span class="number">2</span>),</span><br><span class="line">                            width: <span class="type">CGFloat</span>(w), height: <span class="type">CGFloat</span>(h))</span><br><span class="line">          <span class="keyword">let</span> prediction = <span class="type">Prediction</span>(classIndex: detectedClass,</span><br><span class="line">                                      score: confidenceInClass,</span><br><span class="line">                                      rect: rect)</span><br><span class="line">          predictions.append(prediction)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 중첩되는 Bounding Box 제거</span></span><br><span class="line"><span class="comment">   * - boxes: Bounding Box와 score 배열</span></span><br><span class="line"><span class="comment">   * - limit: 선택가능한 최대 박스 개수</span></span><br><span class="line"><span class="comment">   * - threshold: 중첩 박스여부 판단 기준</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">return</span> nonMaxSuppression(boxes: predictions,</span><br><span class="line">                           limit: <span class="number">10</span>,</span><br><span class="line">                           threshold: <span class="number">0.5</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>computeBoundingBoxes에 대한 자세한 설명은 <a href="https://machinethink.net/blog/object-detection-with-yolo/" target="_blank" rel="external nofollow noopener noreferrer">Real-time object detection with YOLO</a>를 참고하시기 바랍니다.</p>
+</blockquote>
+<p><code>computeBoundingBoxes()</code> 함수는 불필요한 박스를 제외하고 신뢰도 있는 최종 <code>Prediction</code> 배열을 반환합니다.</p>
+<figure class="highlight swift"><figcaption><span>Prediction에는 Bounding Box, 박스안에 존재하는 class 그리고 score가 들어있습니다.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Prediction</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> classIndex: <span class="type">Int</span></span><br><span class="line">  <span class="keyword">let</span> score: <span class="type">Float</span></span><br><span class="line">  <span class="keyword">let</span> rect: <span class="type">CGRect</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://github.com/hollance/YOLO-CoreML-MPSNNGraph/tree/master/TinyYOLO-CoreML" target="_blank" rel="external nofollow noopener noreferrer">TinyYOLO-CoreML</a>를 참조하여 구현하였기에 전체 코드는 해당 프로젝트를 참고하시기 바랍니다.</p>
+</blockquote>
+<hr>
+<h2 id="Bounding-Box-그리기"><a href="#Bounding-Box-그리기" class="headerlink" title="Bounding Box 그리기"></a>Bounding Box 그리기</h2><p>처음 <code>ARSessionDelegate</code>에서 얻은 이미지는 <code>16:9</code>가 아닌 <code>16:12</code>의 비율을 가지고 있고, 해당 이미지를 <code>416 x 416</code>으로 변환하여 모델에 입력하였습니다.</p>
+<figure class="highlight swift"><figcaption><span>ARSessionDelegate에서 rotate right하여 얻은 이미지 사이즈</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">CVPixelBuffer</span> <span class="type">Height</span> : <span class="number">1920</span></span><br><span class="line"><span class="type">CVPixelBuffer</span> <span class="type">Width</span>  : <span class="number">1440</span></span><br></pre></td></tr></table></figure>
+
+<p>따라서 Model이 반환하는 Bounding Box를 실제 모바일 화면에 그리기 위해 <a href="https://developer.apple.com/documentation/coregraphics/cgrect" target="_blank" rel="external nofollow noopener noreferrer">CGRect</a> 구조체의 x, y, width, height를 <code>getScreenRect()</code> 함수를 구현하여 스케일을 조정하였습니다.<br><br></p>
+<div class="figure center" style><a class="fancybox" href="https://user-images.githubusercontent.com/26322627/71437302-62f18700-2734-11ea-8f6a-874d2a062e3e.png" target="_blank" rel="external nofollow noopener noreferrer" title="CGRect 구조" data-caption="CGRect 구조" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="https://user-images.githubusercontent.com/26322627/71437302-62f18700-2734-11ea-8f6a-874d2a062e3e.png" style="width:350px;" alt="CGRect 구조"></a><span class="caption">CGRect 구조</span></div>
+
+<figure class="highlight swift"><figcaption><span>Bounding Box Rescale</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="type">ModelInputWidth</span> = <span class="number">416</span></span><br><span class="line"><span class="keyword">let</span> <span class="type">ModelInputHeight</span> = <span class="number">416</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getScreenRect</span><span class="params">(prediction: Prediction, screenWidth: CGFloat, screenHeight: CGFloat)</span></span> -&gt; <span class="type">CGRect</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> rect = prediction.rect</span><br><span class="line">  <span class="keyword">let</span> scaleX = screenWidth / <span class="type">CGFloat</span>(<span class="type">ModelInputWidth</span>)</span><br><span class="line">  <span class="keyword">let</span> scaleY = screenHeight / <span class="type">CGFloat</span>(<span class="type">ModelInputHeight</span>)</span><br><span class="line">  <span class="keyword">let</span> x1 = rect.origin.x</span><br><span class="line">  <span class="keyword">let</span> x2 = rect.origin.x + rect.size.width</span><br><span class="line">  <span class="keyword">let</span> xc = screenWidth/<span class="number">2</span></span><br><span class="line">  <span class="keyword">let</span> wx1 = xc - x1</span><br><span class="line">  <span class="keyword">let</span> wx2 = xc - x2</span><br><span class="line">  <span class="keyword">let</span> swx1 = wx1 * <span class="number">12</span> / <span class="number">9</span></span><br><span class="line">  <span class="keyword">let</span> swx2 = wx2 * <span class="number">12</span> / <span class="number">9</span></span><br><span class="line"></span><br><span class="line">  rect.origin.x = xc - swx1</span><br><span class="line">  rect.size.width = <span class="built_in">abs</span>(swx1 - swx2)</span><br><span class="line">  rect.origin.x *= scaleX</span><br><span class="line">  rect.origin.y *= scaleY</span><br><span class="line">  rect.size.width *= scaleX</span><br><span class="line">  rect.size.height *= scaleY</span><br><span class="line">  <span class="keyword">return</span> rect</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이렇게 최종적으로 후처리된 결과를 <a href="https://developer.apple.com/documentation/uikit/uibezierpath" target="_blank" rel="external nofollow noopener noreferrer">UIBezierPath</a>를 이용하여 화면에 실시간으로 나타내었습니다.</p>
+<figure class="highlight swift"><figcaption><span>Draw Bounding Box</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">show</span><span class="params">(frame: CGRect, label: String, color: UIColor)</span></span> &#123;</span><br><span class="line">  <span class="type">CATransaction</span>.setDisableActions(<span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> path = <span class="type">UIBezierPath</span>(rect: frame)</span><br><span class="line">  shapeLayer.path = path.cgPath</span><br><span class="line">  shapeLayer.strokeColor = color.cgColor</span><br><span class="line">  shapeLayer.isHidden = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  textLayer.string = label</span><br><span class="line">  textLayer.backgroundColor = color.cgColor</span><br><span class="line">  textLayer.isHidden = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> attributes = [</span><br><span class="line">    <span class="type">NSAttributedString</span>.<span class="type">Key</span>.font: textLayer.font <span class="keyword">as</span> <span class="type">Any</span></span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> textRect = label.boundingRect(with: <span class="type">CGSize</span>(width: <span class="number">400</span>, height: <span class="number">100</span>),</span><br><span class="line">                                    options: .truncatesLastVisibleLine,</span><br><span class="line">                                    attributes: attributes, context: <span class="literal">nil</span>)</span><br><span class="line">  <span class="keyword">let</span> textSize = <span class="type">CGSize</span>(width: textRect.width + <span class="number">12</span>, height: textRect.height)</span><br><span class="line">  <span class="keyword">let</span> textOrigin = <span class="type">CGPoint</span>(x: frame.origin.x - <span class="number">2</span>, y: frame.origin.y - textSize.height)</span><br><span class="line">  textLayer.frame = <span class="type">CGRect</span>(origin: textOrigin, size: textSize)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="YOLO-Model을-이용한-실시간-조명탐지-구현"><a href="#YOLO-Model을-이용한-실시간-조명탐지-구현" class="headerlink" title="YOLO Model을 이용한 실시간 조명탐지 구현"></a>YOLO Model을 이용한 실시간 조명탐지 구현</h1><blockquote>
+<p>✔︎ 진행순서</p>
+</blockquote>
+<ul>
+<li>조명의 3차원 좌표 획득</li>
+<li>실시간 조명 설치 및 해제</li>
+</ul>
+<hr>
+<h2 id="조명의-3차원-좌표-획득"><a href="#조명의-3차원-좌표-획득" class="headerlink" title="조명의 3차원 좌표 획득"></a>조명의 3차원 좌표 획득</h2><p>YOLO Model이 탐지한 Bounding Box의 중심 좌표와 ARKit의 <a href="https://developer.apple.com/documentation/arkit/arscnview/2875544-hittest" target="_blank" rel="external nofollow noopener noreferrer">hitTest()</a>를 이용하면 오브젝트의 3차원 좌표를 획득할 수 있습니다.</p>
+<figure class="highlight swift"><figcaption><span>hitTest() 함수를 이용하여 3D 좌표 획득</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getARAnchorPosition</span><span class="params">(point: CGPoint, ResultType type: ARHitTestResult.ResultType = .featurePoint)</span></span> -&gt; <span class="type">SCNVector3?</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> hitTestResults = hitTest(point, types: type)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> hitTestResult = hitTestResults.first <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</span><br><span class="line">  <span class="keyword">let</span> translation = hitTestResult.worldTransform.translation <span class="comment">// 3차원 좌표</span></span><br><span class="line">  <span class="keyword">let</span> x = translation.x</span><br><span class="line">  <span class="keyword">let</span> y = translation.y</span><br><span class="line">  <span class="keyword">let</span> z = translation.z</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="type">SCNVector3</span>(x, y, z)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="실시간-조명-설치-및-해제"><a href="#실시간-조명-설치-및-해제" class="headerlink" title="실시간 조명 설치 및 해제"></a>실시간 조명 설치 및 해제</h2><p>이번 프로젝트의 YOLO Model은 총 5개의 클래스를 학습하였습니다. 그 중 램프와 전구는 ON/OFF 상태를 구분할 수 있도록 별도의 클래스로 구분하였기에 조명의 상태를 추적할 수 있습니다.</p>
+<div class="figure " style><a class="fancybox" href="https://user-images.githubusercontent.com/26322627/70859476-81e36280-1f57-11ea-976b-697018feb25d.png" target="_blank" rel="external nofollow noopener noreferrer" title="YOLO Model이 학습한 Class" data-caption="YOLO Model이 학습한 Class" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="https://user-images.githubusercontent.com/26322627/70859476-81e36280-1f57-11ea-976b-697018feb25d.png" alt="YOLO Model이 학습한 Class"></a><span class="caption">YOLO Model이 학습한 Class</span></div>
+
+<p>매 프레임마다 Model이 현재 프레임상에 존재하는 조명의 위치와 종류를 예측하는데, Bounding Box의 중심점이 다음 연속한 3프레임의 Bounding Box속에 존재하면서 동일한 클래스를 예측하는 경우, 해당 클래스에 해당하는 조명이 실제한다고 판단하여 행동을 취하도록 구현하였습니다. 예를들어 3회 연속 ON 상태의 조명을 인식하면 해당 위치에 SCNLight를 설치하고, 반대로 OFF 상태의 조명을 인식하면 해당 마지막 Bounding Box속에 존재하는 SCNLight를 삭제하였습니다.</p>
+<div class="nero-grid">
+  <div><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="YOLO 조명 on 상태 인식">
+<source src="/post/too-real/04.install_scnlight.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">YOLO 조명 on 상태 인식</span>
+</div></div>
+  <div><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="YOLO 조명 off 상태 인식">
+<source src="/post/too-real/05.remove_scnlight.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">YOLO 조명 off 상태 인식</span>
+</div></div>
+</div>
+
+<p>화면상에 노란색 구슬은 SCNLight 설치여부를 볼 수 있도록 시각화한 가상 오브젝트입니다.</p>
+<hr>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>처음엔 CoreML을 이용하여 YOLO Model을 올리면 끝날 줄 알았는데, Model의 input과 output에 대한 처리에 대한 부분이 생각보다 힘들었습니다. 😭</p>
+<p>이상으로 딥러닝을 이용하여 더욱 현실감 있는 AR 앱 만들기 4부작을 마치도록하겠습니다. 🎉<br>긴 글 읽어주셔서 감사합니다.</p>
+<blockquote>
+<p><a href="/post/too-real-01/">1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기</a><br><a href="/post/too-real-02/">2부. ARKit을 이용하여 iOS AR앱 만들기</a><br><a href="/post/too-real-03/">3부. Custom YOLO v3 모델 만들기</a><br>✔︎ 4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기</p>
+</blockquote>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">TAGGED IN</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/en/tags/Too-Real/" rel="tag">Too Real</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/too-real-03/" data-tooltip="3부. Custom YOLO v3 모델 만들기" aria-label="PREVIOUS: 3부. Custom YOLO v3 모델 만들기">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/python-itertools/" data-tooltip="Python Itertools" aria-label="NEXT: Python Itertools">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/too-real-04/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/too-real-04/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="nero-angela/nero-angela.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2023 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/too-real-03/" data-tooltip="3부. Custom YOLO v3 모델 만들기" aria-label="PREVIOUS: 3부. Custom YOLO v3 모델 만들기">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/python-itertools/" data-tooltip="Python Itertools" aria-label="NEXT: Python Itertools">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/too-real-04/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/too-real-04/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/too-real-04/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/too-real-04/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/en/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/en/assets/js/script-hh0puos85akek5s0ltmkxazn1sj9ckkkxg9wbommekw9eoetrgotaueeus4x.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>
