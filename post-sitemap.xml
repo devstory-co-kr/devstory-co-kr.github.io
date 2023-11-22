@@ -32,7 +32,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-01/</loc>
+        <loc>https://blog.devstory.co.kr/post/too-real-02/</loc>
         <lastmod>2023-11-22T06:24:23.547Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -40,7 +40,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-02/</loc>
+        <loc>https://blog.devstory.co.kr/post/too-real-01/</loc>
         <lastmod>2023-11-22T06:24:23.547Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -57,6 +57,14 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/post/python-collections-counter/</loc>
+        <lastmod>2023-11-22T06:24:23.546Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/python-collections-deque/</loc>
         <lastmod>2023-11-22T06:24:23.546Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -88,22 +96,6 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/python-collections-deque/</loc>
-        <lastmod>2023-11-22T06:24:23.546Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/endpoint-detector/</loc>
-        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://blog.devstory.co.kr/post/gentle-map/</loc>
         <lastmod>2023-11-22T06:24:23.545Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -113,6 +105,14 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/post/open-source-contributhon/</loc>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/endpoint-detector/</loc>
         <lastmod>2023-11-22T06:24:23.545Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

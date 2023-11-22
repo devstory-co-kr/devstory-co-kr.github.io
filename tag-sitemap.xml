@@ -24,20 +24,6 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/tags/Gentle-Map/</loc>
-        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/tags/Project/</loc>
-        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.devstory.co.kr/tags/Endpoint-Detector/</loc>
         <lastmod>2023-11-22T06:24:23.545Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -46,6 +32,20 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/tags/Flutter/</loc>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/tags/Gentle-Map/</loc>
+        <lastmod>2023-11-22T06:24:23.545Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/tags/Project/</loc>
         <lastmod>2023-11-22T06:24:23.545Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
