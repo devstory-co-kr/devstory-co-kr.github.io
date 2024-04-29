@@ -8,6 +8,30 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/post/flutter-i18n-01/</loc>
+        <lastmod>2024-04-29T08:16:33.184Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/flutter-i18n-02/</loc>
+        <lastmod>2024-04-29T07:57:19.439Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/too-real-01/</loc>
+        <lastmod>2024-04-29T07:40:48.830Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/post/draw-my-today/</loc>
         <lastmod>2024-01-04T14:00:09.253Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -34,14 +58,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/post/too-real-02/</loc>
         <lastmod>2023-11-22T08:26:21.038Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-01/</loc>
-        <lastmod>2023-11-22T08:26:18.668Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

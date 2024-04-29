@@ -8,8 +8,15 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/categories/Flutter/</loc>
+        <lastmod>2024-04-29T08:16:33.184Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/categories/Project/</loc>
-        <lastmod>2024-01-04T14:00:05.314Z</lastmod>
+        <lastmod>2024-04-29T07:40:48.830Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -17,13 +24,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/categories/Program-Language/</loc>
         <lastmod>2023-11-22T08:26:16.728Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/categories/Flutter/</loc>
-        <lastmod>2023-11-22T08:25:55.014Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

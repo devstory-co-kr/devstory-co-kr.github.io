@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/tags/I18n/</loc>
+        <lastmod>2024-04-29T08:16:33.184Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Flutter/</loc>
+        <lastmod>2024-04-29T08:16:33.184Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Too-Real/</loc>
+        <lastmod>2024-04-29T07:40:48.830Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/tags/Draw-My-Today-AI-Picture-Diary/</loc>
         <lastmod>2024-01-04T14:00:05.314Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -17,13 +38,6 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Too-Real/</loc>
-        <lastmod>2023-11-22T08:26:24.829Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.devstory.co.kr/en/tags/Python/</loc>
         <lastmod>2023-11-22T08:26:16.728Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -33,13 +47,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Prography-8%25EA%25B8%25B0/</loc>
         <lastmod>2023-11-22T08:25:58.315Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Flutter/</loc>
-        <lastmod>2023-11-22T08:25:55.014Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
