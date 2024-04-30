@@ -6,7 +6,7 @@
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="DevStory">
-    <title>2부. Flutter 다국어 지원 - 도구 소개 - DevStory</title>
+    <title>Part 2. Flutter Multilingual Support - Tool Introduction - DevStory</title>
     <meta name="author" content="DevStory">
     <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
     <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
@@ -20,17 +20,17 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Flutter 다국어 지원을 효율적으로 끝낼 수 있는 도구를 소개합니다.\n\n1부. Flutter 다국어 지원 - 언어 선정✔︎  2부. Flutter 다국어 지원 - 도구 소개\n\n\n1부에서 소개한 다국어 지원시 만나는 문제들을 해결하기 위해 다음 도구들을 제작하였습니다.\n\nText Balancer : 줄 바꿈 문제 해결 \nFlutter Translator : ARB, Metadata, Changelog 번역 및 검사 \nFigma Translator : 스토어 템플릿 생성 및 번역 \n\n\n\nText Balancer\nText Balancer는 균형 잡힌 줄 바꿈을 자동으로 지원하는 Flutter 패키지입니다.\n\n줄 바꿈 알고리즘은 링크를 참고하였습니다.\n\n가변 폭 폰트를 지원하고, 원하는 라인수를 지정할 수 있으며 단어 기준으로 줄 바꿈(Word Break)하도록 구현하였습니다.\n\nFlutter Translator\nFlutter Translator는 Flutter 프로젝트의 ARB, Metadata, Changelog 그리고 Xcode Strings 파일을 번역하고 검사하는 기능을 갖춘 VSCode 확장 프로그램입니다.\n\n\n\nFigma Translator Plugin을 이용하면 원하는 언어로 스토어에서 사용할 스크린샷을 빠르게 만들 수 있습니다.\n스토어 템플릿 생성Create Templates 명령어를 실행하여 원하는 플랫폼의 스토어 템플릿을 생성할 수 있습니다. 원하는 디바이스와 언어 그리고 템플릿 배율을 지정할 수 있으며, 언어의 텍스트 방향에 따라 UI가 많이 달라지므로 Text Direction 별 템플릿을 생성할 수 있도록 구현하였습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\nAndroid LTR 언어(79개) 템플릿 생성\n\n\n템플릿은 컴포넌트와 선택한 언어 개수에 해당하는 인스턴스 형태로 생성되므로 컴포넌트에 디자인을 넣으면 각 언어별 인스턴스에 반영됩니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\nFigma 컴포넌트 좋아요 👍\n\n\n\n생성된 프레임 이름은 Fastlane 배포시 사용되는 각 플랫폼 별 경로로 생성됩니다.\n123456789Android&#x2F;ko-KR&#x2F;images&#x2F;featureGraphicAndroid&#x2F;ko-KR&#x2F;images&#x2F;phoneScreenshots&#x2F;01_ko-KRAndroid&#x2F;ko-KR&#x2F;images&#x2F;sevenInchScreenshots&#x2F;01_ko-KRAndroid&#x2F;ko-KR&#x2F;images&#x2F;tenInchScreenshots&#x2F;01_ko-KRiOS&#x2F;ko&#x2F;01_APP_IPHONE_55_01iOS&#x2F;ko&#x2F;01_APP_IPHONE_65_01iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_129_01iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_3GEN_129_01\n전체 스크린샷을 추출한 뒤 rsync 명령어를 이용하면 손쉽게 Flutter 프로젝트에 추가할 수 있습니다.\n\nAndroid : rsync -a 추출경로/Android/ ./android/fastlane/metadata/android/\niOS : rsync -a 추출경로/iOS/ ./ios/fastlane/screenshots/\n\n\n\n\n\n템플릿 번역프레임을 선택한 뒤 Translate 명령어를 실행하면 프레임 이름에 명시된 언어로 번역을 진행합니다. 번역 예외가 필요한 항목들은 Exclude Keywords 설정에 추가하여 관리할 수 있으며, 한 번 번역한 내용은 로컬에 캐싱됩니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n클릭 한 번으로 79개 언어로 번역해 줍니다 👍\n\n\n하나의 텍스트에서 여러 텍스트 스타일을 사용하는 경우에도, 기존 스타일을 유지하면서 번역됩니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n이런 기능이 왜 필요하냐고요? 저도 알고 싶지 않았어요..🫠\n\n\n번역시 텍스트가 길어지는 경우, 줄 바꿈이 되거나 레이아웃을 벗어나는 문제가 있습니다. Auto Size 옵션을 활용하면 라인 수를 유지하면서 폰트 사이즈를 줄일 수 있습니다. 단, 텍스트의 제약조건을 Auto Height로 설정해야 동작합니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n레이아웃 제약 조건에 따라 동작이 다를 수 있습니다.\n\n\n마무리Flutter 앱 다국어 지원을 진행하면서 생각보다 다양한 문제를 만나 힘들었지만, 예전부터 만들어 보고 싶었던 VSCode 확장 프로그램과 Figma Plugin 개발을 경험할 수 있어서 즐겁게 진행할 수 있었습니다.\n만약 Flutter 다국어 작업을 진행하실 예정이라면 다음 도구들을 사용해 보시고, 오픈소스로 되어 있으니 부족한 부분은 이슈 제보 부탁드립니다. (아직 테스트 코드가 없어요..😇)\n\n\nFigma Plugin : Figma Translator\nFlutter Package : Text Balancer\nVSCode Extension : Flutter Translator\n\n\n","dateCreated":"2024-04-29T16:37:00+09:00","dateModified":"2024-04-29T23:39:37+09:00","datePublished":"2024-04-29T16:37:00+09:00","description":"Flutter 다국어 지원을 효율적으로 끝낼 수 있는 도구를 소개합니다.","headline":"2부. Flutter 다국어 지원 - 도구 소개","image":["https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/flutter-i18n-02/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/flutter-i18n-02/","keywords":"Flutter, I18n","thumbnailUrl":"https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default"}</script>
-    <meta name="description" content="Flutter 다국어 지원을 효율적으로 끝낼 수 있는 도구를 소개합니다.">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Introducing tools that can efficiently complete Flutter multilingual support.👉 한국어 버전\n\nPart 1. Flutter Multilingual Support - Select language✔︎ Part 2. Flutter Multilingual Support - Tool Introduction\n\n\nThe following tools were created to solve the problems encountered when supporting multilingual languages introduced in Part 1.\n\nText Balancer : Troubleshooting line breaks \nFlutter Translator : ARB, Metadata, Changelog translation and inspection \nFigma Translator : Create and translate store templates \n\n\n\nText Balancer\nText Balancer is a Flutter package that automatically supports balanced line breaks.\n\n줄 바꿈 알고리즘은 링크를 참고하였습니다.\n\nIt supports variable width fonts, allows you to specify the number of lines you want, and is implemented to Word Break based on words.\n\nFlutter Translator\nFlutter Translator is a VSCode extension with the ability to translate and inspect ARB, Metadata, Changelog, and Xcode Strings files on Flutter projects.\n\n\n\nWith the Figma Translator Plugin, you can quickly create screenshots for your store in multiple languages.\nCreate Store TemplatesYou can create store templates for your desired platform by running the Create Templates command. You can specify the desired device, language, and template scale, and since the UI varies greatly depending on the text direction of the language, we have implemented creation of templates for each text direction.\n\n\n\nYour browser doesn't support HTML5 Video :/\nCreate templates for Android LTR languages(79)\n\n\nTemplates are created in the form of instances corresponding to the number of components and selected languages, so when you put a design into a component, it is reflected in the instances for each language.\n\n\n\nYour browser doesn't support HTML5 Video :/\nI like Figma 👍\n\n\n\nThe generated frame name is created as a path for each platform used when distributing Fastlane.\n123456789Android&#x2F;ko-KR&#x2F;images&#x2F;featureGraphicAndroid&#x2F;ko-KR&#x2F;images&#x2F;phoneScreenshots&#x2F;01_ko-KRAndroid&#x2F;ko-KR&#x2F;images&#x2F;sevenInchScreenshots&#x2F;01_ko-KRAndroid&#x2F;ko-KR&#x2F;images&#x2F;tenInchScreenshots&#x2F;01_ko-KRiOS&#x2F;ko&#x2F;01_APP_IPHONE_55_01iOS&#x2F;ko&#x2F;01_APP_IPHONE_65_01iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_129_01iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_3GEN_129_01\nAfter extracting the entire screenshot, you can easily add it to your Flutter project using the rsync command.\n\nAndroid : rsync -a &lt;PATH&gt;/Android/ ./android/fastlane/metadata/android/\niOS : rsync -a &lt;PATH&gt;/iOS/ ./ios/fastlane/screenshots/\n\n\n\n\n\n템플릿 번역프레임을 선택한 뒤 Translate 명령어를 실행하면 프레임 이름에 명시된 언어로 번역을 진행합니다. 번역 예외가 필요한 항목들은 Exclude Keywords 설정에 추가하여 관리할 수 있으며, 한 번 번역한 내용은 로컬에 캐싱됩니다.\nIf you select a frame and run the Translate command, translation will be performed in the language specified in the frame name. Items that require translation exclusion can be managed by adding them to the Exclude Keywords setting, and once translated content is cached locally.\n\n\n\nYour browser doesn't support HTML5 Video :/\nTranslate to 79 languages ​​with one click 👍\n\n\nEven if a single text uses multiple text styles, it will be translated while maintaining the existing styles.\n\n\n\nYour browser doesn't support HTML5 Video :/\nA feature that was more difficult to implement than expected..🫠\n\n\nIf the text becomes long during translation, there may be issues with line breaks or deviating from the layout. Using the Auto Size option, you can reduce the font size while maintaining the number of lines. However, it will work only if the text constraints are set to Auto Height.\n\n\n\nYour browser doesn't support HTML5 Video :/\nBehavior may vary depending on layout constraints.\n\n\nFinishIt was difficult to meet various problems while supporting the Flutter app in multiple languages, but I was able to experience the VSCode extension and Figma Plugin development that I wanted to make for a long time, so I was able to proceed with it happily.\nAll of the tools are open source, so ask for your interest and use. 😁\n\nText Balancer \nFlutter Translator \nFigma Translator \n\n\n\n","dateCreated":"2024-04-29T16:37:00+09:00","dateModified":"2024-04-30T15:29:40+09:00","datePublished":"2024-04-29T16:37:00+09:00","description":"Introducing tools that can efficiently complete Flutter multilingual support.👉 한국어 버전","headline":"Part 2. Flutter Multilingual Support - Tool Introduction","image":["https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/flutter-i18n-02/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/flutter-i18n-02/","keywords":"Flutter, I18n","thumbnailUrl":"https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default"}</script>
+    <meta name="description" content="Introducing tools that can efficiently complete Flutter multilingual support.👉 한국어 버전">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="2부. Flutter 다국어 지원 - 도구 소개">
+<meta property="og:title" content="Part 2. Flutter Multilingual Support - Tool Introduction">
 <meta property="og:url" content="https://blog.devstory.co.kr/en/post/flutter-i18n-02/index.html">
 <meta property="og:site_name" content="DevStory">
-<meta property="og:description" content="Flutter 다국어 지원을 효율적으로 끝낼 수 있는 도구를 소개합니다.">
+<meta property="og:description" content="Introducing tools that can efficiently complete Flutter multilingual support.👉 한국어 버전">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default">
 <meta property="article:published_time" content="2024-04-29T07:37:00.000Z">
-<meta property="article:modified_time" content="2024-04-29T14:39:37.114Z">
+<meta property="article:modified_time" content="2024-04-30T06:29:40.960Z">
 <meta property="article:author" content="DevStory">
 <meta property="article:tag" content="Flutter">
 <meta property="article:tag" content="I18n">
@@ -219,7 +219,7 @@
     <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            2부. Flutter 다국어 지원 - 도구 소개
+            Part 2. Flutter Multilingual Support - Tool Introduction
         </h1>
     
     
@@ -252,7 +252,7 @@
                 <strong>Table of Contents
                 </strong>
             </blockquote>
-            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Text-Balancer"><span class="nero-toc-text">Text Balancer</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Flutter-Translator"><span class="nero-toc-text">Flutter Translator</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARB-번역"><span class="nero-toc-text">ARB 번역</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARB-번역-예외"><span class="nero-toc-text">ARB 번역 예외</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARB-수정-amp-삭제"><span class="nero-toc-text">ARB 수정 &amp; 삭제</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARB-번역-검사"><span class="nero-toc-text">ARB 번역 검사</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Xcode-Strings-번역"><span class="nero-toc-text">Xcode Strings 번역</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Metadata-생성"><span class="nero-toc-text">Metadata 생성</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Metadata-번역"><span class="nero-toc-text">Metadata 번역</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Metadata-검사"><span class="nero-toc-text">Metadata 검사</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Changelog-번역"><span class="nero-toc-text">Changelog 번역</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Changelog-번역-1"><span class="nero-toc-text">Changelog 번역</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Figma-Translator"><span class="nero-toc-text">Figma Translator</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#스토어-템플릿-생성"><span class="nero-toc-text">스토어 템플릿 생성</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#템플릿-번역"><span class="nero-toc-text">템플릿 번역</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마무리"><span class="nero-toc-text">마무리</span></a></li></ol>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Text-Balancer"><span class="nero-toc-text">Text Balancer</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Flutter-Translator"><span class="nero-toc-text">Flutter Translator</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARB-Translation"><span class="nero-toc-text">ARB Translation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARB-Translation-Exclusion"><span class="nero-toc-text">ARB Translation Exclusion</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARB-Update-amp-Delete"><span class="nero-toc-text">ARB Update &amp; Delete</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARB-Translation-Check"><span class="nero-toc-text">ARB Translation Check</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Xcode-Strings-Translation"><span class="nero-toc-text">Xcode Strings Translation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Metadata-creation"><span class="nero-toc-text">Metadata creation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Metadata-Translation"><span class="nero-toc-text">Metadata Translation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Metadata-Check"><span class="nero-toc-text">Metadata Check</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Changelog-Translation"><span class="nero-toc-text">Changelog Translation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Changelog-Translation-1"><span class="nero-toc-text">Changelog Translation</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Figma-Translator"><span class="nero-toc-text">Figma Translator</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Create-Store-Templates"><span class="nero-toc-text">Create Store Templates</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#템플릿-번역"><span class="nero-toc-text">템플릿 번역</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Finish"><span class="nero-toc-text">Finish</span></a></li></ol>
             <hr class="nero-toc-line">
             <style>
                 .nero-toc-line {
@@ -271,137 +271,137 @@
             
 
 
-            <p>Flutter 다국어 지원을 효율적으로 끝낼 수 있는 도구를 소개합니다.<br><a id="more"></a></p>
+            <p>Introducing tools that can efficiently complete Flutter multilingual support.<br><a href="/post/flutter-i18n-02/">👉 한국어 버전</a><br><a id="more"></a></p>
 <blockquote>
-<p><a href="/post/flutter-i18n-01/">1부. Flutter 다국어 지원 - 언어 선정</a><br>✔︎  2부. Flutter 다국어 지원 - 도구 소개</p>
+<p><a href="/en/post/flutter-i18n-01/">Part 1. Flutter Multilingual Support - Select language</a><br>✔︎ Part 2. Flutter Multilingual Support - Tool Introduction</p>
 </blockquote>
 <hr>
-<div class="alert info"><p><a href="/post/flutter-i18n-01/">1부</a>에서 소개한 다국어 지원시 만나는 문제들을 해결하기 위해 다음 도구들을 제작하였습니다.</p>
+<div class="alert info"><p>The following tools were created to solve the problems encountered when supporting multilingual languages introduced in <a href="/en/post/flutter-i18n-01/">Part 1</a>.</p>
 <ul>
-<li><a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">Text Balancer</a> : 줄 바꿈 문제 해결 <a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Flutter-Package-02569B?logo=flutter&logoColor=fff&style=flat&labelColor=02569B" alt="flutter"></a></li>
-<li><a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">Flutter Translator</a> : ARB, Metadata, Changelog 번역 및 검사 <a href="https://marketplace.visualstudio.com/items?itemName=DevStory.flutter-translator" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visualstudiocode&logoColor=fff&style=flat&labelColor=007ACC" alt="VSCode Badge"></a></li>
-<li><a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">Figma Translator</a> : 스토어 템플릿 생성 및 번역 <a href="https://www.figma.com/community/plugin/1318492589926015701" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Figma-Plugin-F24E1E?logo=figma&logoColor=fff&style=flat&labelColor=F24E1E" alt="Figma"></a></li>
+<li><a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">Text Balancer</a> : Troubleshooting line breaks <a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Flutter-Package-02569B?logo=flutter&logoColor=fff&style=flat&labelColor=02569B" alt="flutter"></a></li>
+<li><a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">Flutter Translator</a> : ARB, Metadata, Changelog translation and inspection <a href="https://marketplace.visualstudio.com/items?itemName=DevStory.flutter-translator" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visualstudiocode&logoColor=fff&style=flat&labelColor=007ACC" alt="VSCode Badge"></a></li>
+<li><a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">Figma Translator</a> : Create and translate store templates <a href="https://www.figma.com/community/plugin/1318492589926015701" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Figma-Plugin-F24E1E?logo=figma&logoColor=fff&style=flat&labelColor=F24E1E" alt="Figma"></a></li>
 </ul>
 </div>
 
 <h1 id="Text-Balancer"><a href="#Text-Balancer" class="headerlink" title="Text Balancer"></a>Text Balancer</h1><blockquote>
-<p><a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">Text Balancer</a>는 균형 잡힌 줄 바꿈을 자동으로 지원하는 Flutter 패키지입니다.<br><a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Flutter-Package-02569B?logo=flutter&logoColor=fff&style=flat&labelColor=02569B" alt="flutter"></a></p>
+<p><a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">Text Balancer</a> is a Flutter package that automatically supports balanced line breaks.<br><a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Flutter-Package-02569B?logo=flutter&logoColor=fff&style=flat&labelColor=02569B" alt="flutter"></a></p>
 </blockquote>
-<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/text-balancer.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/text-balancer.png" alt></a></div>
+<div class="figure center" style><a class="fancybox" href="/en/post/flutter-i18n/text-balancer.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/flutter-i18n/text-balancer.png" alt></a></div>
 
-<p>Text Balancer 패키지를 이용하면 줄 바꿈 기호를 사용하지 않아도 되므로, <strong>텍스트 줄 바꿈 문제를 해결</strong>할 수 있습니다.</p>
-<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/text-balancer.gif" title="줄 바꿈 알고리즘은 <a href=https://xxyxyz.org/line-breaking#:~:text=j%0A%20%20%20%20return%20lines-,Dynamic%20programming,-The%20deficiency%20of>링크</a>를 참고하였습니다." data-caption="줄 바꿈 알고리즘은 <a href=https://xxyxyz.org/line-breaking#:~:text=j%0A%20%20%20%20return%20lines-,Dynamic%20programming,-The%20deficiency%20of>링크</a>를 참고하였습니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/text-balancer.gif" alt="줄 바꿈 알고리즘은 <a href=https://xxyxyz.org/line-breaking#:~:text=j%0A%20%20%20%20return%20lines-,Dynamic%20programming,-The%20deficiency%20of>링크</a>를 참고하였습니다."></a><span class="caption">줄 바꿈 알고리즘은 <a href="https://xxyxyz.org/line-breaking#:~:text=j%0A%20%20%20%20return%20lines-,Dynamic%20programming,-The%20deficiency%20of" rel="external nofollow noopener noreferrer" target="_blank">링크</a>를 참고하였습니다.</span></div>
+<p>The Text Balancer package eliminates the need to use the line break symbol, so you can <strong>solve the text line break problem</strong>.</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/flutter-i18n/text-balancer.gif" title="줄 바꿈 알고리즘은 <a href=https://xxyxyz.org/line-breaking#:~:text=j%0A%20%20%20%20return%20lines-,Dynamic%20programming,-The%20deficiency%20of>링크</a>를 참고하였습니다." data-caption="줄 바꿈 알고리즘은 <a href=https://xxyxyz.org/line-breaking#:~:text=j%0A%20%20%20%20return%20lines-,Dynamic%20programming,-The%20deficiency%20of>링크</a>를 참고하였습니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/flutter-i18n/text-balancer.gif" alt="줄 바꿈 알고리즘은 <a href=https://xxyxyz.org/line-breaking#:~:text=j%0A%20%20%20%20return%20lines-,Dynamic%20programming,-The%20deficiency%20of>링크</a>를 참고하였습니다."></a><span class="caption">줄 바꿈 알고리즘은 <a href="https://xxyxyz.org/line-breaking#:~:text=j%0A%20%20%20%20return%20lines-,Dynamic%20programming,-The%20deficiency%20of" rel="external nofollow noopener noreferrer" target="_blank">링크</a>를 참고하였습니다.</span></div>
 
-<p><strong>가변 폭 폰트를 지원</strong>하고, <strong>원하는 라인수를 지정</strong>할 수 있으며 <strong>단어 기준으로 줄 바꿈(Word Break)</strong>하도록 구현하였습니다.</p>
+<p>It <strong>supports variable width fonts</strong>, allows you to <strong>specify the number of lines</strong> you want, and is implemented to <strong>Word Break based on words</strong>.</p>
 <hr>
 <h1 id="Flutter-Translator"><a href="#Flutter-Translator" class="headerlink" title="Flutter Translator"></a>Flutter Translator</h1><blockquote>
-<p><a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">Flutter Translator</a>는 Flutter 프로젝트의 <strong>ARB</strong>, <strong>Metadata</strong>, <strong>Changelog</strong> 그리고 <strong>Xcode Strings</strong> 파일을 번역하고 검사하는 기능을 갖춘 <strong>VSCode 확장 프로그램</strong>입니다.<br><a href="https://marketplace.visualstudio.com/items?itemName=DevStory.flutter-translator" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visualstudiocode&logoColor=fff&style=flat&labelColor=007ACC" alt="VSCode Badge"></a></p>
+<p><a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">Flutter Translator</a> is a VSCode extension with the ability to translate and inspect ARB, Metadata, Changelog, and Xcode Strings files on Flutter projects.<br><a href="https://marketplace.visualstudio.com/items?itemName=DevStory.flutter-translator" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visualstudiocode&logoColor=fff&style=flat&labelColor=007ACC" alt="VSCode Badge"></a></p>
 </blockquote>
-<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/flutter-translator.png" title="Android Studio Plugin은 아직 없어요..😅" data-caption="Android Studio Plugin은 아직 없어요..😅" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/flutter-translator.png" alt="Android Studio Plugin은 아직 없어요..😅"></a><span class="caption">Android Studio Plugin은 아직 없어요..😅</span></div>
+<div class="figure center" style><a class="fancybox" href="/en/post/flutter-i18n/flutter-translator.png" title="There is no Android Studio Plugin yet..😅" data-caption="There is no Android Studio Plugin yet..😅" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/flutter-i18n/flutter-translator.png" alt="There is no Android Studio Plugin yet..😅"></a><span class="caption">There is no Android Studio Plugin yet..😅</span></div>
 
-<p>Flutter Translator 확장 프로그램을 이용하면 <strong>개발자의 생산성을 유지하면서 다국어를 손쉽게 지원</strong>할 수 있습니다.</p>
-<h2 id="ARB-번역"><a href="#ARB-번역" class="headerlink" title="ARB 번역"></a>ARB 번역</h2><p>번역 소스가 될 ARB 파일을 준비한 뒤 <code>ARB - Translator</code> 명령어를 실행하면 소스 ARB 파일을 다른 언어로 번역할 수 있습니다.</p>
+<p>The Flutter Translator extension makes <strong>it easy to support multiple languages ​​while maintaining developer productivity</strong>.</p>
+<h2 id="ARB-Translation"><a href="#ARB-Translation" class="headerlink" title="ARB Translation"></a>ARB Translation</h2><p>You can translate the source ARB file into another language by running the <code>ARB - Translate</code> command.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="ARB 번역이 쉬워졌어요.">
-<source src="/post/flutter-i18n/flutter-translator-arb-translate.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="ARB translation has become easier.">
+<source src="/en/post/flutter-i18n/flutter-translator-arb-translate.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">ARB 번역이 쉬워졌어요.</span>
+<span class="caption">ARB translation has become easier.</span>
 </div>
 
-<p>사용중인 번역 API는 빈번하게 호출되는 경우 429 상태 코드를 반환하는 이슈가 있는데, 중간 결과물이 증발하지 않도록 번역 작업을 <strong>배치로 구현</strong>하였기 때문에 번역이 중단되더라도 이어서 진행할 수 있습니다.</p>
+<p>Because it is implemented in batches, <strong>translation can continue even if it is interrupted</strong>.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="대량의 텍스트를 한국어와 일본어로 번역해 보았습니다.">
-<source src="/post/flutter-i18n/flutter-translator-bulk.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="Translated a large amount of text into Korean and Japanese.">
+<source src="/en/post/flutter-i18n/flutter-translator-bulk.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">대량의 텍스트를 한국어와 일본어로 번역해 보았습니다.</span>
+<span class="caption">Translated a large amount of text into Korean and Japanese.</span>
 </div>
 
-<p>동일한 요청을 재호출하지 않도록 <strong>캐싱 기능</strong>이 구현되어 있습니다.</p>
+<p><strong>Caching functionality</strong> is implemented to avoid re-invoking the same request.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="캐시 On/Off 명령어가 구현되어 있습니다.">
-<source src="/post/flutter-i18n/flutter-translator-cache.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="Cache On/Off instructions are implemented.">
+<source src="/en/post/flutter-i18n/flutter-translator-cache.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">캐시 On/Off 명령어가 구현되어 있습니다.</span>
+<span class="caption">Cache On/Off instructions are implemented.</span>
 </div>
 
-<p>또한 소스 ARB 파일의 변경 사항을 추적하여 <strong>변경된 항목만 번역을 진행</strong>합니다.</p>
+<p>Tracks changes to source ARB files so that <strong>only changed items are translated</strong>.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="오타 수정과 같이 소스 ARB만 수정하고 싶은 경우엔 <code>ARB - Exclude Translation</code> 명령어를 실행하시면 됩니다.">
-<source src="/post/flutter-i18n/flutter-translator-history.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt>
+<source src="/en/post/flutter-i18n/flutter-translator-history.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">오타 수정과 같이 소스 ARB만 수정하고 싶은 경우엔 <code>ARB - Exclude Translation</code> 명령어를 실행하시면 됩니다.</span>
 </div>
 
-<h2 id="ARB-번역-예외"><a href="#ARB-번역-예외" class="headerlink" title="ARB 번역 예외"></a>ARB 번역 예외</h2><p>기본적으로 ARB 파일에서 중괄호로 감싸진 매개변수 이름은 번역 예외가 되도록 구현하였습니다. 그 외는 <code>Translation - Exclude</code> 명령어를 실행하여 예외 문구를 추가할 수 있습니다.</p>
+<h2 id="ARB-Translation-Exclusion"><a href="#ARB-Translation-Exclusion" class="headerlink" title="ARB Translation Exclusion"></a>ARB Translation Exclusion</h2><p>Basically, parameter names enclosed in curly braces in the ARB file are implemented as translation exclusion. Otherwise, you can add exclusion text by executing the <code>Translation - Exclude</code> command.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="회사명이나 이메일 주소 등 원하는 예외 문구를 추가할 수 있어요.">
-<source src="/post/flutter-i18n/flutter-translator-exclude.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="You can add any exclusion text you want, such as a company name or email address.">
+<source src="/en/post/flutter-i18n/flutter-translator-exclude.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">회사명이나 이메일 주소 등 원하는 예외 문구를 추가할 수 있어요.</span>
+<span class="caption">You can add any exclusion text you want, such as a company name or email address.</span>
 </div>
 
-<p>Google 번역 v3 버전에선 <a href="https://cloud.google.com/translate/docs/advanced/glossary#stopwords" target="_blank" rel="external nofollow noopener noreferrer">불용어집</a>을 생성하여 번역 예외 처리를 진행할 수 있지만, 무료 v2 번역 API를 사용하였기에 번역 예외가 필요한 항목을 이모티콘이나 대명사로 <strong>인코딩</strong>한 뒤 번역 후 <strong>디코딩</strong>하는 방식으로 진행하였습니다.</p>
-<p>다만 언어마다 인코딩시 살아남는 텍스트가 다르기 때문에 <strong>여러 방법으로 번역한 뒤, 결과를 수치화하여 최고점 번역을 선택</strong>하는 방식으로 구현하였습니다. (번역 결과 수치화에는 <code>매개변수 개수</code>, <code>괄호 수</code>, <code>줄 바꿈 수</code>, <code>번역 예외 키워드 수</code>를 이용합니다.)</p>
+
+<p>In the v3 version of Google Translate, you can handle translation exceptions by creating a <a href="https://cloud.google.com/translate/docs/advanced/glossary#stopwords" target="_blank" rel="external nofollow noopener noreferrer">stopwords</a>, but since the v2 translation API was used, items requiring translation exclusion were <strong>encoded</strong> as emoticons or pronouns, then translated and <strong>decoded</strong>.</p>
+<p>Since the text that survives encoding is different for each language, I translated it in several ways, then quantified the results and selected the translation with the highest score. (The number of parameters, number of parentheses, number of line breaks, and number of translation exclusion keywords were used to quantify the translation results.)</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="검사 항목에서 만점이 나오면 번역을 종료합니다.">
-<source src="/post/flutter-i18n/flutter-translator-scoring.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="Translation ends when a perfect score is obtained on the test items.">
+<source src="/en/post/flutter-i18n/flutter-translator-scoring.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">검사 항목에서 만점이 나오면 번역을 종료합니다.</span>
+<span class="caption">Translation ends when a perfect score is obtained on the test items.</span>
 </div>
 
-<h2 id="ARB-수정-amp-삭제"><a href="#ARB-수정-amp-삭제" class="headerlink" title="ARB 수정 &amp; 삭제"></a>ARB 수정 &amp; 삭제</h2><p>프로젝트를 진행하다 보면 ARB 파일의 키를 변경하고 싶은 경우가 생깁니다. <code>ARB - Change Keys</code> 명령을 이용하면 변경하고 싶은 키들을 쉼표 기반으로 입력하여 한 번에 변경할 수 있습니다. 또한 <code>ARB - Delete Keys</code> 명령어를 이용하면 사용하지 않는 키들을 간단히 삭제할 수 있습니다.</p>
+<h2 id="ARB-Update-amp-Delete"><a href="#ARB-Update-amp-Delete" class="headerlink" title="ARB Update &amp; Delete"></a>ARB Update &amp; Delete</h2><p>You may want to change the key of the ARB file. You can easily change the keys using the <code>ARB - Change Keys</code> command. You can also delete unused keys using the <code>ARB - Delete Keys</code> command.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="72개 언어를 지원해도 키 변경 및 삭제가 두렵지 않아요.">
-<source src="/post/flutter-i18n/flutter-translator-arb-update-delete-key.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="You can work as if you only support one language.">
+<source src="/en/post/flutter-i18n/flutter-translator-arb-update-delete-key.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">72개 언어를 지원해도 키 변경 및 삭제가 두렵지 않아요.</span>
+<span class="caption">You can work as if you only support one language.</span>
 </div>
 
-<h2 id="ARB-번역-검사"><a href="#ARB-번역-검사" class="headerlink" title="ARB 번역 검사"></a>ARB 번역 검사</h2><p><code>ARB - Check</code> 명령어를 이용하면 빠르게 다음 항목들을 검사할 수 있습니다.</p>
+<h2 id="ARB-Translation-Check"><a href="#ARB-Translation-Check" class="headerlink" title="ARB Translation Check"></a>ARB Translation Check</h2><p>You can quickly check the following items using the <code>ARB - Check</code> command.</p>
 <ul>
-<li><strong>괄호 개수 일치 여부</strong></li>
-<li><strong>미번역 항목 존재 여부</strong></li>
-<li><strong>매개변수 개수 일치 여부</strong></li>
-<li><strong>매개변수 이름 일치 여부</strong></li>
-<li><strong>줄바꿈 기호 개수 일치 여부</strong></li>
-<li><strong>번역 예외 적용 여부</strong></li>
-<li><strong>HTML 엔티티 디코딩 여부</strong> : <code>&amp;lt;</code> 같이 디코딩되지 않은 <a href="https://www.w3.org/wiki/Common_HTML_entities_used_for_typography" target="_blank" rel="external nofollow noopener noreferrer">HTML 엔티티</a>가 존재 여부를 확인합니다.</li>
+<li><strong>Whether the number of parentheses matches</strong></li>
+<li><strong>Whether the number of parameters matches</strong></li>
+<li><strong>Whether the number of line breaks matches</strong></li>
+<li><strong>Whether the parameter names matches</strong></li>
+<li><strong>Whether the untranslated item exists</strong></li>
+<li><strong>Whether the translation exclusion is applied</strong></li>
+<li><strong>Whether the HTML entities are decoded</strong> : <code>&amp;lt;</code> Likewise, it checks for the presence of undecoded <a href="https://www.w3.org/wiki/Common_HTML_entities_used_for_typography" target="_blank" rel="external nofollow noopener noreferrer">HTML entities</a>.</li>
 </ul>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="매개변수 이름과 번역 예외 키워드 검사">
-<source src="/post/flutter-i18n/flutter-translator-arb-check.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="Checking parameter names and translation exclusion keywords">
+<source src="/en/post/flutter-i18n/flutter-translator-arb-check.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">매개변수 이름과 번역 예외 키워드 검사</span>
+<span class="caption">Checking parameter names and translation exclusion keywords</span>
 </div>
 
-<p>검출된 항목을 선택하면 좌측에 소스 ARB 파일을, 우측에는 문제가 되는 ARB 파일을 보여줍니다. 일부 문제는 캐시를 끄고 재번역하여 해결되기도 하지만, 수작업이 필요한 경우도 있기 때문에 Google 번역 웹사이트로 이동하는 기능을 구현해 두었습니다.</p>
-<h2 id="Xcode-Strings-번역"><a href="#Xcode-Strings-번역" class="headerlink" title="Xcode Strings 번역"></a>Xcode Strings 번역</h2><p><code>Xcode Strings - Translate</code> 명령어를 이용하면 iOS 권한 요청 문구가 작성된 <code>InfoPlist.strings</code> 파일을 원하는 언어로 번역할 수 있습니다.</p>
+<p>When you select a detected item, the source ARB file is displayed on the left and the target ARB file is displayed on the right. Some problems can be solved by turning off the cache and retranslating, but in some cases, manual work is required, so I’ve implemented a feature that takes you to the Google Translate website.</p>
+<h2 id="Xcode-Strings-Translation"><a href="#Xcode-Strings-Translation" class="headerlink" title="Xcode Strings Translation"></a>Xcode Strings Translation</h2><p>Using the <code>Xcode Strings - Translate</code> command, you can translate the <code>InfoPlist.strings</code> file containing the iOS permission request text into your desired language.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls poster="InfoPlist.strings 파일 번역" alt>
-<source src="/post/flutter-i18n/flutter-translator-xcode-strings.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="Translating the InfoPlist.strings file">
+<source src="/en/post/flutter-i18n/flutter-translator-xcode-strings.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Translating the InfoPlist.strings file</span>
 </div>
 
-<h2 id="Metadata-생성"><a href="#Metadata-생성" class="headerlink" title="Metadata 생성"></a>Metadata 생성</h2><p><code>Metadata - Create</code> 명령을 사용하여 각 플랫폼에서 지원하는 언어의 Metadata 폴더를 생성할 수 있습니다. <strong>LTR</strong>과 <strong>RTL</strong> 언어 표시를 해두었으니 손쉽게 원하는 카테고리의 언어를 선택할 수 있습니다.</p>
+<h2 id="Metadata-creation"><a href="#Metadata-creation" class="headerlink" title="Metadata creation"></a>Metadata creation</h2><p>You can use the <code>Metadata - Create</code> command to create Metadata folders for languages ​​supported by each platform. <strong>LTR</strong> and <strong>RTL</strong> languages ​​are marked so you can easily select the language of the desired category.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="Android & iOS LTR 언어 Metadata 생성">
-<source src="/post/flutter-i18n/flutter-translator-metadata-create.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="Android & iOS LTR language metadata creation">
+<source src="/en/post/flutter-i18n/flutter-translator-metadata-create.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">Android & iOS LTR 언어 Metadata 생성</span>
+<span class="caption">Android & iOS LTR language metadata creation</span>
 </div>
 
-<p>생성되는 폴더는 fastlane의 <a href="https://docs.fastlane.tools/actions/upload_to_play_store/" target="_blank" rel="external nofollow noopener noreferrer">upload_to_play_store</a>와 <a href="https://docs.fastlane.tools/actions/deliver/" target="_blank" rel="external nofollow noopener noreferrer">deliver</a>에서 지원하는 형태로 생성됩니다.</p>
+<p>The created folder is in a format supported by fastlane’s <a href="https://docs.fastlane.tools/actions/upload_to_play_store/" target="_blank" rel="external nofollow noopener noreferrer">upload_to_play_store</a> and <a href="https://docs.fastlane.tools/actions/deliver/" target="_blank" rel="external nofollow noopener noreferrer">deliver</a> is created.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">├── android</span><br><span class="line">│    └── fastlane</span><br><span class="line">│        └── metadata</span><br><span class="line">│            └── android</span><br><span class="line">│                ├── en-US</span><br><span class="line">│                │   └── changelogs</span><br><span class="line">│                │       ├── full_description.txt</span><br><span class="line">│                │       ├── short_description.txt</span><br><span class="line">│                │       ├── title.txt</span><br><span class="line">│                │       └── video.txt</span><br><span class="line">│                └── ko-KR</span><br><span class="line">│                    └── ...</span><br><span class="line">└── ios</span><br><span class="line">    └── fastlane</span><br><span class="line">        └── metadata</span><br><span class="line">            ├── en-US</span><br><span class="line">            │   ├── description.txt</span><br><span class="line">            │   ├── keywords.txt</span><br><span class="line">            │   ├── marketing_url.txt</span><br><span class="line">            │   ├── name.txt</span><br><span class="line">            │   ├── privacy_url.txt</span><br><span class="line">            │   ├── subtitle.txt</span><br><span class="line">            │   └── support_url.txt</span><br><span class="line">            └── ko</span><br><span class="line">                └── ...</span><br></pre></td></tr></table></figure>
 
-<h2 id="Metadata-번역"><a href="#Metadata-번역" class="headerlink" title="Metadata 번역"></a>Metadata 번역</h2><p>소스가 될 언어의 Metadata를 작성한 뒤 <code>Metadata - Translate</code> 명령어를 실행하여 다른 언어로 번역할 수 있습니다.</p>
+<h2 id="Metadata-Translation"><a href="#Metadata-Translation" class="headerlink" title="Metadata Translation"></a>Metadata Translation</h2><p>You can translate metadata into another language by running the <code>Metadata - Translate</code> command.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="Metadata 번역">
-<source src="/post/flutter-i18n/flutter-translator-metadata-translate.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt>
+<source src="/en/post/flutter-i18n/flutter-translator-metadata-translate.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">Metadata 번역</span>
 </div>
 
-<h2 id="Metadata-검사"><a href="#Metadata-검사" class="headerlink" title="Metadata 검사"></a>Metadata 검사</h2><p><code>Metadata - Check</code> 명령어를 통해 각 Metadata의 최대 글자 수를 초과하는지 검사할 수 있습니다.</p>
+<h2 id="Metadata-Check"><a href="#Metadata-Check" class="headerlink" title="Metadata Check"></a>Metadata Check</h2><p>You can check whether the maximum number of characters for each metadata is exceeded using the <code>Metadata - Check</code> command.</p>
 <table>
 <thead>
 <tr>
@@ -412,107 +412,108 @@
 </thead>
 <tbody><tr>
 <td>Metadata</td>
-<td>title (최대 30 글자)<br>short_description (최대 80 글자)<br>full_description (최대 4,000 글자)</td>
-<td>name (최대 30 글자)<br>subtitle (최대 30 글자)<br>keywords (최대 100 글자)<br>description (최대 4,000 글자)<br>promotional_text (최대 170 글자)</td>
+<td>title (30 letters)<br>short_description (80 letters)<br>full_description (4,000 letters)</td>
+<td>name (30 letters)<br>subtitle (30 letters)<br>keywords (100 letters)<br>description (4,000 letters)<br>promotional_text (170 letters)</td>
 </tr>
 </tbody></table>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="Metadata 글자 수 검사">
-<source src="/post/flutter-i18n/flutter-translator-metadata-check.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="Metadata character count check">
+<source src="/en/post/flutter-i18n/flutter-translator-metadata-check.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">Metadata 글자 수 검사</span>
+<span class="caption">Metadata character count check</span>
 </div>
 
-<h2 id="Changelog-번역"><a href="#Changelog-번역" class="headerlink" title="Changelog 번역"></a>Changelog 번역</h2><p>앱 배포시 변경 사항을 스토어에서 지원 언어로 작성할 수 있습니다. fastlane의 <a href="https://docs.fastlane.tools/actions/upload_to_play_store/" target="_blank" rel="external nofollow noopener noreferrer">upload_to_play_store</a>와 <a href="https://docs.fastlane.tools/actions/deliver/" target="_blank" rel="external nofollow noopener noreferrer">deliver</a>의 경우 다음과 같은 형태로 changelog를 작성하면 됩니다.</p>
+<h2 id="Changelog-Translation"><a href="#Changelog-Translation" class="headerlink" title="Changelog Translation"></a>Changelog Translation</h2><p>When distributing your app, you can make changes to the Store in any supported language. For fastlane’s <a href="https://docs.fastlane.tools/actions/upload_to_play_store/" target="_blank" rel="external nofollow noopener noreferrer">upload_to_play_store</a> and <a href="https://docs.fastlane.tools/actions/deliver/" target="_blank" rel="external nofollow noopener noreferrer">deliver</a>, you can write a changelog in the following format.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">├── android</span><br><span class="line">│    └── fastlane</span><br><span class="line">│        └── metadata</span><br><span class="line">│            └── android</span><br><span class="line">│                ├── en-US</span><br><span class="line">│                │   └── changelogs</span><br><span class="line">│                │       ├── default.txt</span><br><span class="line">│                │       ├── 1.txt</span><br><span class="line">│                │       └── 2.txt</span><br><span class="line">│                └── ko-KR</span><br><span class="line">│                    └── changelogs</span><br><span class="line">│                        ├── default.txt</span><br><span class="line">│                        ├── 1.txt</span><br><span class="line">│                        └── 2.txt</span><br><span class="line">└── ios</span><br><span class="line">    └── fastlane</span><br><span class="line">        └── metadata</span><br><span class="line">            ├── en-US</span><br><span class="line">            │   └── release_notes.txt</span><br><span class="line">            └── ko</span><br><span class="line">                └── release_notes.txt</span><br></pre></td></tr></table></figure>
-<p><code>Changelog - Create</code> 명령어를 실행하면, Android는 <code>pubspec.yaml</code> 파일의 <code>version</code>에 명시된 빌드 넘버로 <code>&lt;buildNumber&gt;.txt</code> 파일을 생성하고, iOS는 <code>release_notes.txt</code> 파일을 생성합니다.</p>
+<p>When you run the <code>Changelog - Create</code> command, Android creates a <code>&lt;buildNumber&gt;.txt</code> file with the build number specified in the <code>version</code> of the <code>pubspec.yaml</code> file, and iOS creates a <code>release_notes.txt</code> file.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="Changelog 생성">
-<source src="/post/flutter-i18n/flutter-translator-changelog-create.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="Create changelog">
+<source src="/en/post/flutter-i18n/flutter-translator-changelog-create.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">Changelog 생성</span>
+<span class="caption">Create changelog</span>
 </div>
 
-<h2 id="Changelog-번역-1"><a href="#Changelog-번역-1" class="headerlink" title="Changelog 번역"></a>Changelog 번역</h2><p>소스가 될 언어의 Changelog를 작성한 뒤 <code>Changelog - Translate</code> 명령을 실행하면 다른 언어로 번역을 진행합니다.</p>
+<h2 id="Changelog-Translation-1"><a href="#Changelog-Translation-1" class="headerlink" title="Changelog Translation"></a>Changelog Translation</h2><p>You can translate the Changelog into another language by running the <code>Changelog - Translate</code> command.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="Changelog 번역 및 검사">
-<source src="/post/flutter-i18n/flutter-translator-changelog-translate.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="Changelog translation and inspection">
+<source src="/en/post/flutter-i18n/flutter-translator-changelog-translate.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">Changelog 번역 및 검사</span>
+<span class="caption">Changelog translation and inspection</span>
 </div>
 
 <h1 id="Figma-Translator"><a href="#Figma-Translator" class="headerlink" title="Figma Translator"></a>Figma Translator</h1><blockquote>
-<p><a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">Figma Translator</a>는 <strong>스토어 템플릿을 생성하고 번역하는 Figma Plugin</strong>입니다.<br><a href="https://www.figma.com/community/plugin/1318492589926015701" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Figma-Plugin-F24E1E?logo=figma&logoColor=fff&style=flat&labelColor=F24E1E" alt="Figma"></a></p>
+<p><a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">Figma Translator</a> is a <strong>Figma Plugin that creates and translates store templates</strong>.<br><a href="https://www.figma.com/community/plugin/1318492589926015701" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Figma-Plugin-F24E1E?logo=figma&logoColor=fff&style=flat&labelColor=F24E1E" alt="Figma"></a></p>
 </blockquote>
-<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/figma-translator.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/figma-translator.png" alt></a></div>
+<div class="figure center" style><a class="fancybox" href="/en/post/flutter-i18n/figma-translator.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/flutter-i18n/figma-translator.png" alt></a></div>
 
-<p>Figma Translator Plugin을 이용하면 <strong>원하는 언어로 스토어에서 사용할 스크린샷을 빠르게 만들 수 있습니다.</strong></p>
-<h2 id="스토어-템플릿-생성"><a href="#스토어-템플릿-생성" class="headerlink" title="스토어 템플릿 생성"></a>스토어 템플릿 생성</h2><p><code>Create Templates</code> 명령어를 실행하여 <strong>원하는 플랫폼의 스토어 템플릿을 생성</strong>할 수 있습니다. <strong>원하는 디바이스와 언어 그리고 템플릿 배율을 지정</strong>할 수 있으며, 언어의 텍스트 방향에 따라 UI가 많이 달라지므로 <strong>Text Direction 별 템플릿을 생성</strong>할 수 있도록 구현하였습니다.</p>
+<p>With the Figma Translator Plugin, you can <strong>quickly create screenshots for your store in multiple languages</strong>.</p>
+<h2 id="Create-Store-Templates"><a href="#Create-Store-Templates" class="headerlink" title="Create Store Templates"></a>Create Store Templates</h2><p>You can <strong>create store templates for your desired platform</strong> by running the <code>Create Templates</code> command. <strong>You can specify the desired device, language, and template scale</strong>, and since the UI varies greatly depending on the text direction of the language, we have implemented <strong>creation of templates for each text direction</strong>.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="Android LTR 언어(79개) 템플릿 생성">
-<source src="/post/flutter-i18n/figma-translator-create-template.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="Create templates for Android LTR languages(79)">
+<source src="/en/post/flutter-i18n/figma-translator-create-template.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">Android LTR 언어(79개) 템플릿 생성</span>
+<span class="caption">Create templates for Android LTR languages(79)</span>
 </div>
 
-<p>템플릿은 <a href="https://help.figma.com/hc/en-us/articles/360038662654-Guide-to-components-in-Figma" target="_blank" rel="external nofollow noopener noreferrer">컴포넌트</a>와 선택한 언어 개수에 해당하는 <a href="https://help.figma.com/hc/en-us/articles/360039150173-Create-and-insert-component-instances" target="_blank" rel="external nofollow noopener noreferrer">인스턴스</a> 형태로 생성되므로 컴포넌트에 디자인을 넣으면 각 언어별 인스턴스에 반영됩니다.</p>
+<p>Templates are created in the form of <a href="https://help.figma.com/hc/en-us/articles/360039150173-Create-and-insert-component-instances" target="_blank" rel="external nofollow noopener noreferrer">instances</a> corresponding to the number of <a href="https://help.figma.com/hc/en-us/articles/360038662654-Guide-to-components-in-Figma" target="_blank" rel="external nofollow noopener noreferrer">components</a> and selected languages, so when you put a design into a component, it is reflected in the instances for each language.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="Figma 컴포넌트 좋아요 👍">
-<source src="/post/flutter-i18n/figma-translator-template.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="I like Figma 👍">
+<source src="/en/post/flutter-i18n/figma-translator-template.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">Figma 컴포넌트 좋아요 👍</span>
+<span class="caption">I like Figma 👍</span>
 </div>
 
 
-<p>생성된 프레임 이름은 Fastlane 배포시 사용되는 각 플랫폼 별 경로로 생성됩니다.</p>
+<p>The generated frame name is created as a path for each platform used when distributing Fastlane.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Android&#x2F;ko-KR&#x2F;images&#x2F;featureGraphic</span><br><span class="line">Android&#x2F;ko-KR&#x2F;images&#x2F;phoneScreenshots&#x2F;01_ko-KR</span><br><span class="line">Android&#x2F;ko-KR&#x2F;images&#x2F;sevenInchScreenshots&#x2F;01_ko-KR</span><br><span class="line">Android&#x2F;ko-KR&#x2F;images&#x2F;tenInchScreenshots&#x2F;01_ko-KR</span><br><span class="line"></span><br><span class="line">iOS&#x2F;ko&#x2F;01_APP_IPHONE_55_01</span><br><span class="line">iOS&#x2F;ko&#x2F;01_APP_IPHONE_65_01</span><br><span class="line">iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_129_01</span><br><span class="line">iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_3GEN_129_01</span><br></pre></td></tr></table></figure>
-<div class="alert info"><p>전체 스크린샷을 추출한 뒤 <a href="https://en.wikipedia.org/wiki/Rsync" target="_blank" rel="external nofollow noopener noreferrer">rsync</a> 명령어를 이용하면 손쉽게 Flutter 프로젝트에 추가할 수 있습니다.</p>
+<div class="alert info"><p>After extracting the entire screenshot, you can easily add it to your Flutter project using the <a href="https://en.wikipedia.org/wiki/Rsync" target="_blank" rel="external nofollow noopener noreferrer">rsync</a> command.</p>
 <ul>
-<li>Android : <code>rsync -a 추출경로/Android/ ./android/fastlane/metadata/android/</code></li>
-<li>iOS : <code>rsync -a 추출경로/iOS/ ./ios/fastlane/screenshots/</code></li>
+<li>Android : <code>rsync -a &lt;PATH&gt;/Android/ ./android/fastlane/metadata/android/</code></li>
+<li>iOS : <code>rsync -a &lt;PATH&gt;/iOS/ ./ios/fastlane/screenshots/</code></li>
 </ul>
 </div>
 
 
 
 <h2 id="템플릿-번역"><a href="#템플릿-번역" class="headerlink" title="템플릿 번역"></a>템플릿 번역</h2><p>프레임을 선택한 뒤 <code>Translate</code> 명령어를 실행하면 <strong>프레임 이름에 명시된 언어로 번역을 진행</strong>합니다. 번역 예외가 필요한 항목들은 <strong>Exclude Keywords</strong> 설정에 추가하여 관리할 수 있으며, 한 번 번역한 내용은 로컬에 캐싱됩니다.</p>
+<p>If you select a frame and run the <code>Translate</code> command, <strong>translation will be performed in the language specified in the frame name</strong>. Items that require translation exclusion can be managed by adding them to the <strong>Exclude Keywords</strong> setting, and once translated content is cached locally.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="클릭 한 번으로 79개 언어로 번역해 줍니다 👍">
-<source src="/post/flutter-i18n/figma-translator-translate.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="Translate to 79 languages ​​with one click 👍">
+<source src="/en/post/flutter-i18n/figma-translator-translate.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">클릭 한 번으로 79개 언어로 번역해 줍니다 👍</span>
+<span class="caption">Translate to 79 languages ​​with one click 👍</span>
 </div>
 
-<p>하나의 텍스트에서 여러 텍스트 스타일을 사용하는 경우에도, 기존 스타일을 유지하면서 번역됩니다.</p>
+<p>Even if a single text uses multiple text styles, it will be translated while maintaining the existing styles.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="이런 기능이 왜 필요하냐고요? 저도 알고 싶지 않았어요..🫠">
-<source src="/post/flutter-i18n/figma-translator-style-segments.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="A feature that was more difficult to implement than expected..🫠">
+<source src="/en/post/flutter-i18n/figma-translator-style-segments.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">이런 기능이 왜 필요하냐고요? 저도 알고 싶지 않았어요..🫠</span>
+<span class="caption">A feature that was more difficult to implement than expected..🫠</span>
 </div>
 
-<p>번역시 텍스트가 길어지는 경우, 줄 바꿈이 되거나 레이아웃을 벗어나는 문제가 있습니다. <strong>Auto Size</strong> 옵션을 활용하면 라인 수를 유지하면서 폰트 사이즈를 줄일 수 있습니다. 단, 텍스트의 제약조건을 <code>Auto Height</code>로 설정해야 동작합니다.</p>
+<p>If the text becomes long during translation, there may be issues with line breaks or deviating from the layout. Using the <strong>Auto Size</strong> option, you can reduce the font size while maintaining the number of lines. However, it will work only if the text constraints are set to <code>Auto Height</code>.</p>
 <div class="figure " style>
-<video class="fig-video" muted controls alt="레이아웃 제약 조건에 따라 동작이 다를 수 있습니다.">
-<source src="/post/flutter-i18n/figma-translator-auto-size.mp4" type="video/mp4">
+<video class="fig-video" muted controls alt="Behavior may vary depending on layout constraints.">
+<source src="/en/post/flutter-i18n/figma-translator-auto-size.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">레이아웃 제약 조건에 따라 동작이 다를 수 있습니다.</span>
+<span class="caption">Behavior may vary depending on layout constraints.</span>
 </div>
 
-<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>Flutter 앱 다국어 지원을 진행하면서 생각보다 다양한 문제를 만나 힘들었지만, 예전부터 만들어 보고 싶었던 <strong>VSCode 확장 프로그램</strong>과 <strong>Figma Plugin 개발</strong>을 경험할 수 있어서 즐겁게 진행할 수 있었습니다.</p>
-<p>만약 Flutter 다국어 작업을 진행하실 예정이라면 다음 도구들을 사용해 보시고, 오픈소스로 되어 있으니 부족한 부분은 이슈 제보 부탁드립니다. (아직 테스트 코드가 없어요..😇)</p>
-<blockquote>
+<h1 id="Finish"><a href="#Finish" class="headerlink" title="Finish"></a>Finish</h1><p>It was difficult to meet various problems while supporting the Flutter app in multiple languages, but I was able to experience the <strong>VSCode extension</strong> and <strong>Figma Plugin development</strong> that I wanted to make for a long time, so I was able to proceed with it happily.</p>
+<div class="alert info"><p>All of the tools are open source, so ask for your interest and use. 😁</p>
 <ul>
-<li>Figma Plugin : <a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">Figma Translator</a></li>
-<li>Flutter Package : <a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">Text Balancer</a></li>
-<li>VSCode Extension : <a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">Flutter Translator</a></li>
+<li><a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">Text Balancer</a> <a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Flutter-Package-02569B?logo=flutter&logoColor=fff&style=flat&labelColor=02569B" alt="flutter"></a></li>
+<li><a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">Flutter Translator</a> <a href="https://marketplace.visualstudio.com/items?itemName=DevStory.flutter-translator" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visualstudiocode&logoColor=fff&style=flat&labelColor=007ACC" alt="VSCode Badge"></a></li>
+<li><a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">Figma Translator</a> <a href="https://www.figma.com/community/plugin/1318492589926015701" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Figma-Plugin-F24E1E?logo=figma&logoColor=fff&style=flat&labelColor=F24E1E" alt="Figma"></a></li>
 </ul>
-</blockquote>
-<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/multi-language.png" title="VoCat은 72개 언어를, 오늘 하루를 그려줘는 10개 언어를 추가했습니다 👍" data-caption="VoCat은 72개 언어를, 오늘 하루를 그려줘는 10개 언어를 추가했습니다 👍" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/multi-language.png" alt="VoCat은 72개 언어를, 오늘 하루를 그려줘는 10개 언어를 추가했습니다 👍"></a><span class="caption">VoCat은 72개 언어를, 오늘 하루를 그려줘는 10개 언어를 추가했습니다 👍</span></div>
+</div>
 
-<p>이번 프로젝트에서 다루지 못한 <strong>RTL</strong> 언어는 향후 기회가 되면 도전해 보도록 하겠습니다 :)</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/flutter-i18n/multi-language.png" title="Added 72 languages for VoCat and 10 languages for Draw My Today 👍" data-caption="Added 72 languages for VoCat and 10 languages for Draw My Today 👍" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/flutter-i18n/multi-language.png" alt="Added 72 languages for VoCat and 10 languages for Draw My Today 👍"></a><span class="caption">Added 72 languages for VoCat and 10 languages for Draw My Today 👍</span></div>
+
+<p>If I get a chance in the future, I will try <strong>RTL</strong> language too :)</p>
 <blockquote>
-<p><a href="/post/flutter-i18n-01/">1부. Flutter 다국어 지원 - 언어 선정</a><br>✔︎  2부. Flutter 다국어 지원 - 도구 소개</p>
+<p><a href="/en/post/flutter-i18n-01/">Part 1. Flutter Multilingual Support - Select language</a><br>✔︎ Part 2. Flutter Multilingual Support - Tool Introduction</p>
 </blockquote>
 
 
@@ -535,7 +536,7 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/flutter-i18n-01/" data-tooltip="1부. Flutter 다국어 지원 - 언어 선정" aria-label="PREVIOUS: 1부. Flutter 다국어 지원 - 언어 선정">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/flutter-i18n-01/" data-tooltip="Part 1. Flutter Multilingual Support - Select Language" aria-label="PREVIOUS: Part 1. Flutter Multilingual Support - Select Language">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -615,7 +616,7 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/flutter-i18n-01/" data-tooltip="1부. Flutter 다국어 지원 - 언어 선정" aria-label="PREVIOUS: 1부. Flutter 다국어 지원 - 언어 선정">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/flutter-i18n-01/" data-tooltip="Part 1. Flutter Multilingual Support - Select Language" aria-label="PREVIOUS: Part 1. Flutter Multilingual Support - Select Language">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -747,7 +748,7 @@
 
 <script src="/en/assets/js/script-ns7aja6hsmnfiw4ua6fg96oeai1kwt6gogdu1wugdtfo94hclh9hyzodhabh.min.js"></script>
 
-<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<!--SCRIPTS END-->
 
 
     
@@ -755,5 +756,5 @@
 
 
 
-    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
+    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>

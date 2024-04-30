@@ -9,17 +9,17 @@
     <atom:link href="/en/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Mon, 29 Apr 2024 08:16:33 GMT</pubDate>
+    <pubDate>Tue, 30 Apr 2024 06:29:23 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>1부. Flutter 다국어 지원 - 언어 선정</title>
+      <title>Part 1. Flutter Multilingual Support - Select Language</title>
       <link>https://blog.devstory.co.kr/en/post/flutter-i18n-01/</link>
       <guid>https://blog.devstory.co.kr/en/post/flutter-i18n-01/</guid>
       <pubDate>Mon, 29 Apr 2024 07:38:00 GMT</pubDate>
       <description>
       
-        &lt;p&gt;Flutter 프로젝트에 72개 언어를 추가한 이야기를 공유합니다.&lt;br&gt;
+        &lt;p&gt;Share the story of adding 72 languages to a Flutter project.&lt;br&gt;&lt;a href=&quot;/post/flutter-i18n-01/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
       
       </description>
       
@@ -28,13 +28,13 @@
     </item>
     
     <item>
-      <title>2부. Flutter 다국어 지원 - 도구 소개</title>
+      <title>Part 2. Flutter Multilingual Support - Tool Introduction</title>
       <link>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</link>
       <guid>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</guid>
       <pubDate>Mon, 29 Apr 2024 07:37:00 GMT</pubDate>
       <description>
       
-        &lt;p&gt;Flutter 다국어 지원을 효율적으로 끝낼 수 있는 도구를 소개합니다.&lt;br&gt;
+        &lt;p&gt;Introducing tools that can efficiently complete Flutter multilingual support.&lt;br&gt;&lt;a href=&quot;/post/flutter-i18n-02/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
       
       </description>
       
