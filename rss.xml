@@ -9,7 +9,7 @@
     <atom:link href="/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Tue, 30 Apr 2024 06:30:10 GMT</pubDate>
+    <pubDate>Mon, 06 May 2024 14:50:22 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -28,13 +28,13 @@
     </item>
     
     <item>
-      <title>2부. Flutter 다국어 지원 - 도구 소개</title>
+      <title>2부. Flutter 다국어 지원 - 도구 만들기</title>
       <link>https://blog.devstory.co.kr/post/flutter-i18n-02/</link>
       <guid>https://blog.devstory.co.kr/post/flutter-i18n-02/</guid>
       <pubDate>Mon, 29 Apr 2024 07:37:00 GMT</pubDate>
       <description>
       
-        &lt;p&gt;Flutter 다국어 지원을 효율적으로 끝낼 수 있는 도구를 소개합니다.&lt;br&gt;&lt;a href=&quot;/en/post/flutter-i18n-02/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;
+        &lt;p&gt;Flutter 다국어 지원을 효율적으로 끝낼 수 있는 도구를 만들어 보았습니다.&lt;br&gt;&lt;a href=&quot;/en/post/flutter-i18n-02/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;
       
       </description>
       
