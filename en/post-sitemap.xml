@@ -8,8 +8,8 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</loc>
-        <lastmod>2024-05-06T14:51:27.020Z</lastmod>
+        <loc>https://blog.devstory.co.kr/en/post/gentle-map/</loc>
+        <lastmod>2024-05-06T15:14:56.475Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,7 +17,15 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-01/</loc>
-        <lastmod>2024-05-06T14:50:51.809Z</lastmod>
+        <lastmod>2024-05-06T15:05:53.504Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</loc>
+        <lastmod>2024-05-06T15:05:51.162Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -130,14 +138,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/post/open-source-contributhon/</loc>
         <lastmod>2023-11-22T08:25:55.014Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/gentle-map/</loc>
-        <lastmod>2023-11-22T08:25:52.132Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

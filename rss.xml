@@ -9,11 +9,11 @@
     <atom:link href="/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Mon, 06 May 2024 14:50:22 GMT</pubDate>
+    <pubDate>Mon, 06 May 2024 15:06:19 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>1부. Flutter 다국어 지원 - 언어 선정</title>
+      <title>1부. Flutter 다국어 지원 - 준비</title>
       <link>https://blog.devstory.co.kr/post/flutter-i18n-01/</link>
       <guid>https://blog.devstory.co.kr/post/flutter-i18n-01/</guid>
       <pubDate>Mon, 29 Apr 2024 07:38:00 GMT</pubDate>

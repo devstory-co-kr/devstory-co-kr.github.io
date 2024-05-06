@@ -3,15 +3,22 @@
 
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Gentle-Map/</loc>
+        <lastmod>2024-05-06T15:14:56.475Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/tags/I18n/</loc>
-        <lastmod>2024-05-06T14:51:27.020Z</lastmod>
+        <lastmod>2024-05-06T15:05:53.504Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Flutter/</loc>
-        <lastmod>2024-05-06T14:51:27.020Z</lastmod>
+        <lastmod>2024-05-06T15:05:53.504Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -47,13 +54,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Prography-8%25EA%25B8%25B0/</loc>
         <lastmod>2023-11-22T08:25:58.315Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Gentle-Map/</loc>
-        <lastmod>2023-11-22T08:25:52.132Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
