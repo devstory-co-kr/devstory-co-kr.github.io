@@ -20,7 +20,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"I have created tools that can efficiently complete Flutter multilingual support.👉 한국어 버전\n\nPart 1. Flutter Multilingual Support - Ready✔︎ Part 2. Flutter Multilingual Support - Tool Making\n\n\nThe following tools were created to solve the problems encountered when supporting multilingual languages introduced in Part 1.\n\nText Balancer : Troubleshooting line breaks \nFlutter Translator : ARB, Metadata, Changelog translation and inspection \nFigma Translator : Create and translate store templates \n\n\n\nText Balancer\nText Balancer is a Flutter package that automatically supports balanced line breaks.\n\n줄 바꿈 알고리즘은 링크를 참고하였습니다.\n\nIt supports variable width fonts, allows you to specify the number of lines you want, and is implemented to Word Break based on words.\n\nFlutter Translator\nFlutter Translator is a VSCode extension with the ability to translate and inspect ARB, Metadata, Changelog, and Xcode Strings files on Flutter projects.\n\n\n\nWith the Figma Translator Plugin, you can quickly create screenshots for your store in multiple languages.\nCreate Store TemplatesYou can create store templates for your desired platform by running the Create Templates command. You can specify the desired device, language, and template scale, and since the UI varies greatly depending on the text direction of the language, we have implemented creation of templates for each text direction.\n\n\n\nYour browser doesn't support HTML5 Video :/\nCreate templates for Android LTR languages(79)\n\n\nTemplates are created in the form of instances corresponding to the number of components and selected languages, so when you put a design into a component, it is reflected in the instances for each language.\n\n\n\nYour browser doesn't support HTML5 Video :/\nI like Figma 👍\n\n\n\nThe generated frame name is created as a path for each platform used when distributing Fastlane.\n123456789Android&#x2F;ko-KR&#x2F;images&#x2F;featureGraphicAndroid&#x2F;ko-KR&#x2F;images&#x2F;phoneScreenshots&#x2F;01_ko-KRAndroid&#x2F;ko-KR&#x2F;images&#x2F;sevenInchScreenshots&#x2F;01_ko-KRAndroid&#x2F;ko-KR&#x2F;images&#x2F;tenInchScreenshots&#x2F;01_ko-KRiOS&#x2F;ko&#x2F;01_APP_IPHONE_55_01iOS&#x2F;ko&#x2F;01_APP_IPHONE_65_01iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_129_01iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_3GEN_129_01\nAfter extracting the entire screenshot, you can easily add it to your Flutter project using the rsync command.\n\nAndroid : rsync -a &lt;PATH&gt;/Android/ ./android/fastlane/metadata/android/\niOS : rsync -a &lt;PATH&gt;/iOS/ ./ios/fastlane/screenshots/\n\n\n\n\n\n템플릿 번역프레임을 선택한 뒤 Translate 명령어를 실행하면 프레임 이름에 명시된 언어로 번역을 진행합니다. 번역 예외가 필요한 항목들은 Exclude Keywords 설정에 추가하여 관리할 수 있으며, 한 번 번역한 내용은 로컬에 캐싱됩니다.\nIf you select a frame and run the Translate command, translation will be performed in the language specified in the frame name. Items that require translation exclusion can be managed by adding them to the Exclude Keywords setting, and once translated content is cached locally.\n\n\n\nYour browser doesn't support HTML5 Video :/\nTranslate to 79 languages ​​with one click 👍\n\n\nEven if a single text uses multiple text styles, it will be translated while maintaining the existing styles.\n\n\n\nYour browser doesn't support HTML5 Video :/\nA feature that was more difficult to implement than expected..🫠\n\n\nIf the text becomes long during translation, there may be issues with line breaks or deviating from the layout. Using the Auto Size option, you can reduce the font size while maintaining the number of lines. However, it will work only if the text constraints are set to Auto Height.\n\n\n\nYour browser doesn't support HTML5 Video :/\nBehavior may vary depending on layout constraints.\n\n\nFinishIt was difficult to meet various problems while supporting the Flutter app in multiple languages, but I was able to experience the VSCode extension and Figma Plugin development that I wanted to make for a long time, so I was able to proceed with it happily.\nAll of the tools are open source, so ask for your interest and use. 😁\n\nText Balancer \nFlutter Translator \nFigma Translator \n\n\n\n","dateCreated":"2024-04-29T16:37:00+09:00","dateModified":"2024-05-07T00:05:51+09:00","datePublished":"2024-04-29T16:37:00+09:00","description":"I have created tools that can efficiently complete Flutter multilingual support.👉 한국어 버전","headline":"Part 2. Flutter Multilingual Support - Tool Making","image":["https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/flutter-i18n-02/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/flutter-i18n-02/","keywords":"Flutter, I18n","thumbnailUrl":"https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"I have created tools that can efficiently complete Flutter multilingual support.👉 한국어 버전\n\nPart 1. Flutter Multilingual Support - Ready✔︎ Part 2. Flutter Multilingual Support - Tool Making\n\n\nThe following tools were created to solve the problems encountered when supporting multilingual languages introduced in Part 1.\n\nText Balancer : Balanced text wrapping Flutter Package.\n\n  \n\n\n  \n\n\nFlutter Translator : Flutter multi-language support VSCode Extension.\n\n  \n\n\n  \n\n\nFigma Translator : Create and translate store templates Figma Plugin.\n\n  \n\n\n  \n\n\n\n\n\nText Balancer\nText Balancer is a Flutter package that automatically supports balanced line breaks.\n\n줄 바꿈 알고리즘은 링크를 참고하였습니다.\n\nIt supports variable width fonts, allows you to specify the number of lines you want, and is implemented to Word Break based on words.\n\nFlutter Translator\nFlutter Translator is a VSCode extension with the ability to translate and inspect ARB, Metadata, Changelog, and Xcode Strings files on Flutter projects.\n\n\n\nWith the Figma Translator Plugin, you can quickly create screenshots for your store in multiple languages.\nCreate Store TemplatesYou can create store templates for your desired platform by running the Create Templates command. You can specify the desired device, language, and template scale, and since the UI varies greatly depending on the text direction of the language, I have implemented creation of templates for each text direction.\n\n\n\nYour browser doesn't support HTML5 Video :/\nCreate templates for Android LTR languages(79)\n\n\nTemplates are created in the form of instances corresponding to the number of components and selected languages, so when you put a design into a component, it is reflected in the instances for each language.\n\n\n\nYour browser doesn't support HTML5 Video :/\nI like Figma 👍\n\n\n\nThe generated frame name is created as a path for each platform used when distributing Fastlane.\n123456789Android&#x2F;ko-KR&#x2F;images&#x2F;featureGraphicAndroid&#x2F;ko-KR&#x2F;images&#x2F;phoneScreenshots&#x2F;01_ko-KRAndroid&#x2F;ko-KR&#x2F;images&#x2F;sevenInchScreenshots&#x2F;01_ko-KRAndroid&#x2F;ko-KR&#x2F;images&#x2F;tenInchScreenshots&#x2F;01_ko-KRiOS&#x2F;ko&#x2F;01_APP_IPHONE_55_01iOS&#x2F;ko&#x2F;01_APP_IPHONE_65_01iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_129_01iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_3GEN_129_01\nAfter extracting the entire screenshot, you can easily add it to your Flutter project using the rsync command.\n\nAndroid : rsync -a &lt;PATH&gt;/Android/ ./android/fastlane/metadata/android/\niOS : rsync -a &lt;PATH&gt;/iOS/ ./ios/fastlane/screenshots/\n\n\n\n\n\n템플릿 번역프레임을 선택한 뒤 Translate 명령어를 실행하면 프레임 이름에 명시된 언어로 번역을 진행합니다. 번역 예외가 필요한 항목들은 Exclude Keywords 설정에 추가하여 관리할 수 있으며, 한 번 번역한 내용은 로컬에 캐싱됩니다.\nIf you select a frame and run the Translate command, translation will be performed in the language specified in the frame name. Items that require translation exclusion can be managed by adding them to the Exclude Keywords setting, and once translated content is cached locally.\n\n\n\nYour browser doesn't support HTML5 Video :/\nTranslate to 79 languages ​​with one click 👍\n\n\nEven if a single text uses multiple text styles, it will be translated while maintaining the existing styles.\n\n\n\nYour browser doesn't support HTML5 Video :/\nA feature that was more difficult to implement than expected..🫠\n\n\nIf the text becomes long during translation, there may be issues with line breaks or deviating from the layout. Using the Auto Size option, you can reduce the font size while maintaining the number of lines. However, it will work only if the text constraints are set to Auto Height.\n\n\n\nYour browser doesn't support HTML5 Video :/\nBehavior may vary depending on layout constraints.\n\n\nFinishIt was difficult to meet various problems while supporting the Flutter app in multiple languages, but I was able to experience the VSCode extension and Figma Plugin development that I wanted to make for a long time, so I was able to proceed with it happily.\nAll of the tools are open source, so ask for your interest and use. 😁\n\nText Balancer : Balanced text wrapping Flutter Package.\n\n  \n\n\n  \n\n\nFlutter Translator : Flutter multi-language support VSCode Extension.\n\n  \n\n\n  \n\n\nFigma Translator : Create and translate store templates Figma Plugin.\n\n  \n\n\n  \n\n\n\n\n\n","dateCreated":"2024-04-29T16:37:00+09:00","dateModified":"2024-05-08T15:07:01+09:00","datePublished":"2024-04-29T16:37:00+09:00","description":"I have created tools that can efficiently complete Flutter multilingual support.👉 한국어 버전","headline":"Part 2. Flutter Multilingual Support - Tool Making","image":["https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/flutter-i18n-02/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/flutter-i18n-02/","keywords":"Flutter, I18n","thumbnailUrl":"https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default"}</script>
     <meta name="description" content="I have created tools that can efficiently complete Flutter multilingual support.👉 한국어 버전">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Part 2. Flutter Multilingual Support - Tool Making">
@@ -30,7 +30,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default">
 <meta property="article:published_time" content="2024-04-29T07:37:00.000Z">
-<meta property="article:modified_time" content="2024-05-06T15:05:51.162Z">
+<meta property="article:modified_time" content="2024-05-08T06:07:01.317Z">
 <meta property="article:author" content="DevStory">
 <meta property="article:tag" content="Flutter">
 <meta property="article:tag" content="I18n">
@@ -42,7 +42,7 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/en/assets/css/style-tklhajtbaoghxzgj2nnzvhbqqf0vfxdthzjpgcbvycltpceatn7pyglle39g.min.css">
+<link rel="stylesheet" href="/en/assets/css/style-kjnmdyzatajvdajcmwc9ltpxlxj4dirfsgh3wkqkfftrcsmj4wszhs7njfqx.min.css">
 
     <!--STYLES END-->
 
@@ -278,9 +278,30 @@
 <hr>
 <div class="alert info"><p>The following tools were created to solve the problems encountered when supporting multilingual languages introduced in <a href="/en/post/flutter-i18n-01/">Part 1</a>.</p>
 <ul>
-<li><a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">Text Balancer</a> : Troubleshooting line breaks <a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Flutter-Package-02569B?logo=flutter&logoColor=fff&style=flat&labelColor=02569B" alt="flutter"></a></li>
-<li><a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">Flutter Translator</a> : ARB, Metadata, Changelog translation and inspection <a href="https://marketplace.visualstudio.com/items?itemName=DevStory.flutter-translator" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visualstudiocode&logoColor=fff&style=flat&labelColor=007ACC" alt="VSCode Badge"></a></li>
-<li><a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">Figma Translator</a> : Create and translate store templates <a href="https://www.figma.com/community/plugin/1318492589926015701" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Figma-Plugin-F24E1E?logo=figma&logoColor=fff&style=flat&labelColor=F24E1E" alt="Figma"></a></li>
+<li><strong>Text Balancer</strong> : Balanced text wrapping Flutter Package.<div class="nero-badge">
+<a href="https://github.com/nero-angela/flutter_text_balancer" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github">
+</a>
+<a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/Flutter-Package-02569B?logo=flutter&logoColor=fff&style=flat&labelColor=02569B">
+</a>
+</div></li>
+<li><strong>Flutter Translator</strong> : Flutter multi-language support VSCode Extension.<div class="nero-badge">
+<a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github">
+</a>
+<a href="https://marketplace.visualstudio.com/items?itemName=DevStory.flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visualstudiocode&logoColor=fff&style=flat&labelColor=007ACC">
+</a>
+</div></li>
+<li><strong>Figma Translator</strong> : Create and translate store templates Figma Plugin.<div class="nero-badge">
+<a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github">
+</a>
+<a href="https://www.figma.com/community/plugin/1318492589926015701" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/Figma-Plugin-F24E1E?logo=figma&logoColor=fff&style=flat&labelColor=F24E1E">
+</a>
+</div></li>
 </ul>
 </div>
 
@@ -447,7 +468,7 @@
 <div class="figure center" style><a class="fancybox" href="/en/post/flutter-i18n/figma-translator.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/flutter-i18n/figma-translator.png" alt></a></div>
 
 <p>With the Figma Translator Plugin, you can <strong>quickly create screenshots for your store in multiple languages</strong>.</p>
-<h2 id="Create-Store-Templates"><a href="#Create-Store-Templates" class="headerlink" title="Create Store Templates"></a>Create Store Templates</h2><p>You can <strong>create store templates for your desired platform</strong> by running the <code>Create Templates</code> command. <strong>You can specify the desired device, language, and template scale</strong>, and since the UI varies greatly depending on the text direction of the language, we have implemented <strong>creation of templates for each text direction</strong>.</p>
+<h2 id="Create-Store-Templates"><a href="#Create-Store-Templates" class="headerlink" title="Create Store Templates"></a>Create Store Templates</h2><p>You can <strong>create store templates for your desired platform</strong> by running the <code>Create Templates</code> command. <strong>You can specify the desired device, language, and template scale</strong>, and since the UI varies greatly depending on the text direction of the language, I have implemented <strong>creation of templates for each text direction</strong>.</p>
 <div class="figure " style>
 <video class="fig-video" muted controls alt="Create templates for Android LTR languages(79)">
 <source src="/en/post/flutter-i18n/figma-translator-create-template.mp4" type="video/mp4">
@@ -503,9 +524,30 @@
 <h1 id="Finish"><a href="#Finish" class="headerlink" title="Finish"></a>Finish</h1><p>It was difficult to meet various problems while supporting the Flutter app in multiple languages, but I was able to experience the <strong>VSCode extension</strong> and <strong>Figma Plugin development</strong> that I wanted to make for a long time, so I was able to proceed with it happily.</p>
 <div class="alert info"><p>All of the tools are open source, so ask for your interest and use. 😁</p>
 <ul>
-<li><a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">Text Balancer</a> <a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Flutter-Package-02569B?logo=flutter&logoColor=fff&style=flat&labelColor=02569B" alt="flutter"></a></li>
-<li><a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">Flutter Translator</a> <a href="https://marketplace.visualstudio.com/items?itemName=DevStory.flutter-translator" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visualstudiocode&logoColor=fff&style=flat&labelColor=007ACC" alt="VSCode Badge"></a></li>
-<li><a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">Figma Translator</a> <a href="https://www.figma.com/community/plugin/1318492589926015701" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Figma-Plugin-F24E1E?logo=figma&logoColor=fff&style=flat&labelColor=F24E1E" alt="Figma"></a></li>
+<li><strong>Text Balancer</strong> : Balanced text wrapping Flutter Package.<div class="nero-badge">
+<a href="https://github.com/nero-angela/flutter_text_balancer" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github">
+</a>
+<a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/Flutter-Package-02569B?logo=flutter&logoColor=fff&style=flat&labelColor=02569B">
+</a>
+</div></li>
+<li><strong>Flutter Translator</strong> : Flutter multi-language support VSCode Extension.<div class="nero-badge">
+<a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github">
+</a>
+<a href="https://marketplace.visualstudio.com/items?itemName=DevStory.flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visualstudiocode&logoColor=fff&style=flat&labelColor=007ACC">
+</a>
+</div></li>
+<li><strong>Figma Translator</strong> : Create and translate store templates Figma Plugin.<div class="nero-badge">
+<a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github">
+</a>
+<a href="https://www.figma.com/community/plugin/1318492589926015701" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/Figma-Plugin-F24E1E?logo=figma&logoColor=fff&style=flat&labelColor=F24E1E">
+</a>
+</div></li>
 </ul>
 </div>
 
@@ -746,9 +788,9 @@
 <div id="cover" style="background-image:url('/en/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/en/assets/js/script-ns7aja6hsmnfiw4ua6fg96oeai1kwt6gogdu1wugdtfo94hclh9hyzodhabh.min.js"></script>
+<script src="/en/assets/js/script-dbl2kiaxul0tc2sowrwrgrojrtakqteayckaxqbim9dpzaslx1obfrhe21xk.min.js"></script>
 
-<!--SCRIPTS END-->
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
     
@@ -756,5 +798,5 @@
 
 
 
-    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
 </html>

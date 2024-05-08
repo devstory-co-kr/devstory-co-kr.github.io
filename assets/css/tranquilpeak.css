@@ -3318,3 +3318,8 @@ summary::-webkit-details-marker {
 
 summary:focus {
   outline-style: none; }
+
+.nero-badge {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; }

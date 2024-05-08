@@ -8,16 +8,8 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/en/post/gentle-map/</loc>
-        <lastmod>2024-05-06T15:14:56.475Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-01/</loc>
-        <lastmod>2024-05-06T15:05:53.504Z</lastmod>
+        <lastmod>2024-05-08T06:09:55.969Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -25,7 +17,15 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</loc>
-        <lastmod>2024-05-06T15:05:51.162Z</lastmod>
+        <lastmod>2024-05-08T06:07:01.317Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/post/gentle-map/</loc>
+        <lastmod>2024-05-06T15:14:56.475Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
