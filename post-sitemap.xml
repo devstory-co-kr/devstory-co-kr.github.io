@@ -8,8 +8,16 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/post/flutter-i18n-01/</loc>
+        <lastmod>2024-09-03T12:52:07.527Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/post/worcation-sokcho/</loc>
-        <lastmod>2024-09-03T05:16:51.406Z</lastmod>
+        <lastmod>2024-09-03T12:39:40.902Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -18,14 +26,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/post/draw-my-today/</loc>
         <lastmod>2024-05-10T02:43:00.073Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/flutter-i18n-01/</loc>
-        <lastmod>2024-05-08T06:08:26.783Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
