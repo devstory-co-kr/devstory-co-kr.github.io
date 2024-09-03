@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/post/worcation-sokcho/</loc>
+        <lastmod>2024-09-03T05:06:37.402Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</loc>
         <lastmod>2024-06-03T03:57:49.836Z</lastmod>
         <changefreq>weekly</changefreq>

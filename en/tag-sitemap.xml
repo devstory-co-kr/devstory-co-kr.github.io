@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Worcation/</loc>
+        <lastmod>2024-09-03T05:06:37.402Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/tags/I18n/</loc>
         <lastmod>2024-06-03T03:57:49.836Z</lastmod>
         <changefreq>weekly</changefreq>

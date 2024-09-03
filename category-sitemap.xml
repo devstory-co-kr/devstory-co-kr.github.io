@@ -8,6 +8,13 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/categories/Worcation/</loc>
+        <lastmod>2024-09-03T05:06:37.402Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/categories/Project/</loc>
         <lastmod>2024-05-10T02:43:00.073Z</lastmod>
         <changefreq>weekly</changefreq>
