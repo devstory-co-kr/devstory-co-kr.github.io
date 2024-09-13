@@ -9,8 +9,23 @@
     <atom:link href="/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Tue, 03 Sep 2024 12:39:40 GMT</pubDate>
+    <pubDate>Fri, 13 Sep 2024 10:58:34 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>1부. Trouble Painter - 드로잉 마피아 게임 소개</title>
+      <link>https://blog.devstory.co.kr/post/trouble-painter-01/</link>
+      <guid>https://blog.devstory.co.kr/post/trouble-painter-01/</guid>
+      <pubDate>Thu, 12 Sep 2024 22:27:02 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;YAPP 24기로 활동하며 만든  “Trouble Painter - 드로잉 마피아 게임” 서비스를 소개합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/post/trouble-painter-01/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>속초 워케이션 후기</title>
@@ -295,21 +310,6 @@
       
       
       <comments>https://blog.devstory.co.kr/post/python-sort/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Python Collections Counter</title>
-      <link>https://blog.devstory.co.kr/post/python-collections-counter/</link>
-      <guid>https://blog.devstory.co.kr/post/python-collections-counter/</guid>
-      <pubDate>Wed, 26 May 1971 02:47:24 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;Python 2.7과 3.5부터 탑재된 &lt;code&gt;collections&lt;/code&gt;의 &lt;code&gt;Counter&lt;/code&gt;에 대해 알아보도록 하겠습니다.&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/post/python-collections-counter/#disqus_thread</comments>
     </item>
     
   </channel>

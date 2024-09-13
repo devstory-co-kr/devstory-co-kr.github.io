@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>https://blog.devstory.co.kr/tags/Trouble-Painter/</loc>
+        <lastmod>2024-09-13T10:58:34.057Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/tags/Project/</loc>
+        <lastmod>2024-09-13T10:58:34.057Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/tags/%25EC%2598%25A4%25EB%258A%2598-%25ED%2595%2598%25EB%25A3%25A8%25EB%25A5%25BC-%25EA%25B7%25B8%25EB%25A0%25A4%25EC%25A4%2598-AI-%25EA%25B7%25B8%25EB%25A6%25BC-%25EC%259D%25BC%25EA%25B8%25B0/</loc>
+        <lastmod>2024-09-12T07:15:54.286Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/tags/I18n/</loc>
         <lastmod>2024-09-03T12:52:07.527Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -19,20 +40,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/tags/Worcation/</loc>
         <lastmod>2024-09-03T12:39:40.902Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/tags/%25EC%2598%25A4%25EB%258A%2598-%25ED%2595%2598%25EB%25A3%25A8%25EB%25A5%25BC-%25EA%25B7%25B8%25EB%25A0%25A4%25EC%25A4%2598-AI-%25EA%25B7%25B8%25EB%25A6%25BC-%25EC%259D%25BC%25EA%25B8%25B0/</loc>
-        <lastmod>2024-05-10T02:43:00.073Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/tags/Project/</loc>
-        <lastmod>2024-05-10T02:43:00.073Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
