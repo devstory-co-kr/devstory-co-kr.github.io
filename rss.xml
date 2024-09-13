@@ -9,7 +9,7 @@
     <atom:link href="/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Fri, 13 Sep 2024 11:08:56 GMT</pubDate>
+    <pubDate>Fri, 13 Sep 2024 11:10:37 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -19,7 +19,7 @@
       <pubDate>Thu, 12 Sep 2024 22:27:02 GMT</pubDate>
       <description>
       
-        &lt;p&gt;YAPP 24기로 활동하며 만든  “Trouble Painter - 드로잉 마피아 게임” 서비스를 소개합니다.&lt;br&gt;
+        &lt;p&gt;Flutter로 만든 “Trouble Painter - 드로잉 마피아 게임” 서비스를 소개합니다.&lt;br&gt;
       
       </description>
       
