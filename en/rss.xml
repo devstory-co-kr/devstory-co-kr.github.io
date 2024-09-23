@@ -9,29 +9,14 @@
     <atom:link href="/en/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Mon, 23 Sep 2024 08:04:01 GMT</pubDate>
+    <pubDate>Mon, 23 Sep 2024 08:05:37 GMT</pubDate>
     <generator>http://hexo.io/</generator>
-    
-    <item>
-      <title>2부. Trouble Painter 개발 이야기</title>
-      <link>https://blog.devstory.co.kr/en/post/trouble-painter-02/</link>
-      <guid>https://blog.devstory.co.kr/en/post/trouble-painter-02/</guid>
-      <pubDate>Mon, 23 Sep 2024 07:53:36 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;Flutter로 실시간 드로잉 마피아 게임을 만든 이야기를 공유합니다.&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/en/post/trouble-painter-02/#disqus_thread</comments>
-    </item>
     
     <item>
       <title>1부. Trouble Painter 드로잉 마피아 게임 소개</title>
       <link>https://blog.devstory.co.kr/en/post/trouble-painter-01/</link>
       <guid>https://blog.devstory.co.kr/en/post/trouble-painter-01/</guid>
-      <pubDate>Thu, 12 Sep 2024 22:27:02 GMT</pubDate>
+      <pubDate>Mon, 23 Sep 2024 07:53:36 GMT</pubDate>
       <description>
       
         &lt;p&gt;“Trouble Painter - 드로잉 마피아 게임” 서비스를 소개합니다.&lt;br&gt;
@@ -40,6 +25,21 @@
       
       
       <comments>https://blog.devstory.co.kr/en/post/trouble-painter-01/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>2부. Trouble Painter 개발 이야기</title>
+      <link>https://blog.devstory.co.kr/en/post/trouble-painter-02/</link>
+      <guid>https://blog.devstory.co.kr/en/post/trouble-painter-02/</guid>
+      <pubDate>Thu, 12 Sep 2024 22:27:02 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Flutter로 실시간 드로잉 마피아 게임을 만든 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/trouble-painter-02/#disqus_thread</comments>
     </item>
     
     <item>
