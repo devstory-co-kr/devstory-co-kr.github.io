@@ -7909,7 +7909,7 @@ p {
 ul,
 ol,
 dl {
-  margin: 0 0 0.5em 0;
+  margin: 0.5em 0 0.5em 0;
   padding-inline-start: 25px; }
 
 a, a:hover, a:active, a:visited {

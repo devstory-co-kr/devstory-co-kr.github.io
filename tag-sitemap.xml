@@ -4,14 +4,21 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/tags/Trouble-Painter/</loc>
-        <lastmod>2024-09-13T11:11:39.130Z</lastmod>
+        <lastmod>2024-09-23T07:47:49.646Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.devstory.co.kr/tags/Project/</loc>
-        <lastmod>2024-09-13T11:11:39.130Z</lastmod>
+        <lastmod>2024-09-23T07:47:49.646Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/tags/Too-Real/</loc>
+        <lastmod>2024-09-23T07:47:10.594Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -47,13 +54,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/tags/Gentle-Map/</loc>
         <lastmod>2024-05-06T15:14:56.475Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/tags/Too-Real/</loc>
-        <lastmod>2024-04-29T07:40:48.830Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

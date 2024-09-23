@@ -9,11 +9,26 @@
     <atom:link href="/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Fri, 13 Sep 2024 11:11:39 GMT</pubDate>
+    <pubDate>Mon, 23 Sep 2024 07:47:49 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>1부. Trouble Painter - 드로잉 마피아 게임</title>
+      <title>2부. Trouble Painter 개발 이야기</title>
+      <link>https://blog.devstory.co.kr/post/trouble-painter-02/</link>
+      <guid>https://blog.devstory.co.kr/post/trouble-painter-02/</guid>
+      <pubDate>Thu, 12 Sep 2024 22:27:02 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Flutter로 실시간 드로잉 마피아 게임을 만든 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/post/trouble-painter-02/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>1부. Trouble Painter 드로잉 마피아 게임 소개</title>
       <link>https://blog.devstory.co.kr/post/trouble-painter-01/</link>
       <guid>https://blog.devstory.co.kr/post/trouble-painter-01/</guid>
       <pubDate>Thu, 12 Sep 2024 22:27:02 GMT</pubDate>
@@ -295,21 +310,6 @@
       
       
       <comments>https://blog.devstory.co.kr/post/python-functools-reduce/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>Python Sort</title>
-      <link>https://blog.devstory.co.kr/post/python-sort/</link>
-      <guid>https://blog.devstory.co.kr/post/python-sort/</guid>
-      <pubDate>Wed, 26 May 1971 05:41:24 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;Python의 &lt;code&gt;sort()&lt;/code&gt;에 대해서 알아보도록 하겠습니다.&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/post/python-sort/#disqus_thread</comments>
     </item>
     
   </channel>
