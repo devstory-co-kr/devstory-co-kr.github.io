@@ -9,7 +9,7 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/en/post/trouble-painter-01/</loc>
-        <lastmod>2024-09-24T01:35:44.736Z</lastmod>
+        <lastmod>2024-09-24T08:15:05.345Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,7 +17,31 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/en/post/trouble-painter-02/</loc>
-        <lastmod>2024-09-24T01:35:22.586Z</lastmod>
+        <lastmod>2024-09-24T08:14:48.694Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/post/draw-my-today/</loc>
+        <lastmod>2024-09-24T04:01:18.431Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</loc>
+        <lastmod>2024-09-24T02:34:23.753Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-01/</loc>
+        <lastmod>2024-09-24T02:34:20.717Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -34,30 +58,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/post/worcation-sokcho/</loc>
         <lastmod>2024-09-03T12:39:40.902Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</loc>
-        <lastmod>2024-06-03T03:57:49.836Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/draw-my-today/</loc>
-        <lastmod>2024-05-10T02:42:59.107Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-01/</loc>
-        <lastmod>2024-05-08T06:09:55.969Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

@@ -9,17 +9,17 @@
     <atom:link href="/en/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Tue, 24 Sep 2024 01:35:44 GMT</pubDate>
+    <pubDate>Tue, 24 Sep 2024 08:15:05 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>1부. Trouble Painter 드로잉 마피아 게임 소개</title>
+      <title>Part 1. Trouble Painter - Drawing Mafia Game</title>
       <link>https://blog.devstory.co.kr/en/post/trouble-painter-01/</link>
       <guid>https://blog.devstory.co.kr/en/post/trouble-painter-01/</guid>
       <pubDate>Mon, 23 Sep 2024 07:53:36 GMT</pubDate>
       <description>
       
-        &lt;p&gt;“Trouble Painter - 드로잉 마피아 게임” 서비스를 소개합니다.&lt;br&gt;
+        &lt;p&gt;Introducing the service “Trouble Painter - Drawing Mafia Game”.&lt;br&gt;&lt;a href=&quot;/post/trouble-painter-01/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
       
       </description>
       
@@ -28,13 +28,13 @@
     </item>
     
     <item>
-      <title>2부. Flutter로 실시간 드로잉 마피아게임 만든 이야기</title>
+      <title>Part 2. Create a real-time drawing game with Flutter</title>
       <link>https://blog.devstory.co.kr/en/post/trouble-painter-02/</link>
       <guid>https://blog.devstory.co.kr/en/post/trouble-painter-02/</guid>
       <pubDate>Thu, 12 Sep 2024 22:27:02 GMT</pubDate>
       <description>
       
-        &lt;p&gt;Trouble Painter 개발 과정을 공유합니다.&lt;br&gt;
+        &lt;p&gt;Sharing my Trouble Painter making log.&lt;br&gt;&lt;a href=&quot;/post/trouble-painter-02/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
       
       </description>
       

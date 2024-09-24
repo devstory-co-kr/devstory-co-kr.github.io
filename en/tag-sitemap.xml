@@ -4,14 +4,35 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Trouble-Painter/</loc>
-        <lastmod>2024-09-24T01:35:44.736Z</lastmod>
+        <lastmod>2024-09-24T08:15:05.345Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Project/</loc>
-        <lastmod>2024-09-24T01:35:44.736Z</lastmod>
+        <lastmod>2024-09-24T08:15:05.345Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Draw-My-Today-AI-Picture-Diary/</loc>
+        <lastmod>2024-09-24T04:01:18.431Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/I18n/</loc>
+        <lastmod>2024-09-24T02:34:23.753Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Flutter/</loc>
+        <lastmod>2024-09-24T02:34:23.753Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -26,27 +47,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Worcation/</loc>
         <lastmod>2024-09-03T12:39:40.902Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/I18n/</loc>
-        <lastmod>2024-06-03T03:57:49.836Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Flutter/</loc>
-        <lastmod>2024-06-03T03:57:49.836Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Draw-My-Today-AI-Picture-Diary/</loc>
-        <lastmod>2024-05-10T02:42:59.107Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
