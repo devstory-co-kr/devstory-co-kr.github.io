@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/post/endpoint-detector/</loc>
+        <lastmod>2024-10-14T08:56:10.458Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/post/trouble-painter-01/</loc>
         <lastmod>2024-09-24T08:15:05.345Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -162,14 +170,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/post/open-source-contributhon/</loc>
         <lastmod>2023-11-22T08:25:55.014Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/endpoint-detector/</loc>
-        <lastmod>2023-11-22T08:25:16.643Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

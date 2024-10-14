@@ -3,6 +3,13 @@
 
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Endpoint-Detector/</loc>
+        <lastmod>2024-10-14T08:56:10.458Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/tags/Trouble-Painter/</loc>
         <lastmod>2024-09-24T08:15:05.345Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -68,13 +75,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Prography-8%25EA%25B8%25B0/</loc>
         <lastmod>2023-11-22T08:25:58.315Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Endpoint-Detector/</loc>
-        <lastmod>2023-11-22T08:25:16.643Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
