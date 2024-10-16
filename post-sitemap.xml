@@ -8,6 +8,22 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/post/trouble-painter-02/</loc>
+        <lastmod>2024-10-16T15:08:09.350Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/trouble-painter-01/</loc>
+        <lastmod>2024-10-16T15:07:17.313Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/post/too-real-01/</loc>
         <lastmod>2024-10-16T04:43:03.659Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -18,22 +34,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/post/endpoint-detector/</loc>
         <lastmod>2024-10-14T08:56:10.458Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/trouble-painter-02/</loc>
-        <lastmod>2024-09-24T08:15:11.113Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/trouble-painter-01/</loc>
-        <lastmod>2024-09-24T04:06:02.633Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
