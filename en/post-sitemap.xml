@@ -104,62 +104,6 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/en/post/python-timeit/</loc>
-        <lastmod>2023-11-22T08:26:16.728Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/python-sort/</loc>
-        <lastmod>2023-11-22T08:26:14.844Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/python-itertools/</loc>
-        <lastmod>2023-11-22T08:26:12.968Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/python-heapq/</loc>
-        <lastmod>2023-11-22T08:26:11.402Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/python-functools-reduce/</loc>
-        <lastmod>2023-11-22T08:26:08.856Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/python-collections-deque/</loc>
-        <lastmod>2023-11-22T08:26:06.456Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/python-collections-counter/</loc>
-        <lastmod>2023-11-22T08:26:02.788Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://blog.devstory.co.kr/en/post/prography-8th/</loc>
         <lastmod>2023-11-22T08:25:58.315Z</lastmod>
         <changefreq>weekly</changefreq>
