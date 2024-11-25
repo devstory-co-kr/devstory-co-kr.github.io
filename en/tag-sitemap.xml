@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/tags/I18n/</loc>
+        <lastmod>2024-11-25T09:09:00.995Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Flutter/</loc>
+        <lastmod>2024-11-25T09:09:00.995Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/tags/Draw-My-Today-AI-Picture-Diary/</loc>
         <lastmod>2024-11-08T03:08:32.776Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -33,20 +47,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Endpoint-Detector/</loc>
         <lastmod>2024-10-14T08:56:10.458Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/I18n/</loc>
-        <lastmod>2024-09-24T02:34:23.753Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Flutter/</loc>
-        <lastmod>2024-09-24T02:34:23.753Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

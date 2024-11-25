@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</loc>
+        <lastmod>2024-11-25T09:09:00.995Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/post/draw-my-today/</loc>
         <lastmod>2024-11-08T03:08:32.776Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -42,14 +50,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/post/endpoint-detector/</loc>
         <lastmod>2024-10-14T08:56:10.458Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</loc>
-        <lastmod>2024-09-24T02:34:23.753Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
