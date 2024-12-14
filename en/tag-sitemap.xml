@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Trouble-Painter/</loc>
+        <lastmod>2024-12-14T06:51:53.583Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Project/</loc>
+        <lastmod>2024-12-14T06:51:53.583Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/tags/I18n/</loc>
         <lastmod>2024-11-25T09:09:00.995Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -19,20 +33,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Draw-My-Today-AI-Picture-Diary/</loc>
         <lastmod>2024-11-08T03:08:32.776Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Project/</loc>
-        <lastmod>2024-11-08T03:08:32.776Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Trouble-Painter/</loc>
-        <lastmod>2024-10-16T15:08:29.034Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
