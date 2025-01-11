@@ -15,14 +15,14 @@
     </url>
     
     <url>
-        <loc>https://blog.devstory.co.kr/en/all-categories/</loc>
+        <loc>https://blog.devstory.co.kr/en/all-tags/</loc>
         <lastmod>2022-08-11T02:28:20.224Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>https://blog.devstory.co.kr/en/all-tags/</loc>
+        <loc>https://blog.devstory.co.kr/en/all-categories/</loc>
         <lastmod>2022-08-11T02:28:20.224Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
