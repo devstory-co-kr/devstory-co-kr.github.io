@@ -9,8 +9,23 @@
     <atom:link href="/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Sat, 14 Dec 2024 06:52:01 GMT</pubDate>
+    <pubDate>Sat, 11 Jan 2025 06:06:28 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>영월 워케이션 후기</title>
+      <link>https://blog.devstory.co.kr/post/worcation-yeongwol/</link>
+      <guid>https://blog.devstory.co.kr/post/worcation-yeongwol/</guid>
+      <pubDate>Thu, 09 Jan 2025 00:00:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;영월 2박 3일 워케이션 후기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/post/worcation-yeongwol/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>1부. Trouble Painter - 드로잉 마피아 게임</title>

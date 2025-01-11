@@ -8,6 +8,22 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/post/worcation-yeongwol/</loc>
+        <lastmod>2025-01-11T06:06:28.775Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/post/worcation-sokcho/</loc>
+        <lastmod>2025-01-11T06:01:28.637Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/post/trouble-painter-02/</loc>
         <lastmod>2024-12-14T06:51:53.583Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -58,14 +74,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/post/flutter-i18n-01/</loc>
         <lastmod>2024-09-24T02:34:20.717Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/worcation-sokcho/</loc>
-        <lastmod>2024-09-03T12:39:40.902Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
