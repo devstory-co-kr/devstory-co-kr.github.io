@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>Part 1. Trouble Painter - Drawing Mafia Game - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/en/post/trouble-painter-01/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,Deep Learning,Mobile,Android,iOS,cat,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/en/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Introducing the service “Trouble Painter - Drawing Mafia Game”.👉 한국어 버전\n\n\n✔︎ Part 1. Trouble Painter - Drawing Mafia GamePart 2. Create a real-time drawing game with Flutter\n\n\n\nColors are randomly assigned\n  If a cute hamster appears you are a trouble painter!\n  Trouble painter screen\n  The player with the most votes will be named the Trouble Painter.\n\n5. Keyword GuessingIf you find Trouble Painter in the vote, the keyword guessing time will begin. Good Painters can see the keyword that Trouble Painter enters in real time.\n\n  Good painters can see the keywords entered by trouble painter in real time\n\n\nFor the Trouble Painter, who fights alone without any teammates, we’ve implemented an AI Hint feature using the Gemini API. This feature allows Gemini to look at the drawings made by players and give hints to the Trouble Painter.\n\n\n\nYour browser doesn't support HTML5 Video :/\nGemini provides hints for the keyword Motocycle\n\n\n\nThis is how Gemini expressed the keyword motorcycle after looking at the picture.It’s a small, swift machine that can slip through narrow alleys with ease. Quick and agile, it cuts through the wind, roaming freely wherever it goes.\n\n6. Game ResultsThe victory conditions for each role are as follows, and you will be moved to the waiting room 15 seconds after the game ends.\nGood Painter Victory\n\nThe Trouble Painter was found through voting, and the keyword was not exposed.\n\nTrouble Painter Victory\n\nThe identity was not revealed.\nThe identity was revealed, but the keyword was guessed correctly.\n\n\n\n  Trouble Painter’s victoryfor guessing the keyword\n  YAPP 24TH DEMO DAY Winner ✌️\n\n\n✔︎ Part 1. Trouble Painter - Drawing Mafia GamePart 2. Create a real-time drawing game with Flutter\n\n\nThis project was open sourced and can be found at the Github link below.👉 Flutter : Link👉 Backend : Link\n\n\n\nIn the next article, I will share the development of Trouble Painter :)\n","dateCreated":"2024-09-23T16:53:36+09:00","dateModified":"2025-12-03T23:01:23+09:00","datePublished":"2024-09-23T16:53:36+09:00","description":"Introducing the service “Trouble Painter - Drawing Mafia Game”.👉 한국어 버전","headline":"Part 1. Trouble Painter - Drawing Mafia Game","image":["https://github.com/user-attachments/assets/19991269-da07-405a-922c-5ba5a8d0baa7"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/trouble-painter-01/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/trouble-painter-01/","keywords":"Project, Trouble Painter","thumbnailUrl":"https://github.com/user-attachments/assets/19991269-da07-405a-922c-5ba5a8d0baa7"}</script>
+    <meta name="description" content="Introducing the service “Trouble Painter - Drawing Mafia Game”.👉 한국어 버전">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Part 1. Trouble Painter - Drawing Mafia Game">
+<meta property="og:url" content="https://blog.devstory.co.kr/en/post/trouble-painter-01/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="Introducing the service “Trouble Painter - Drawing Mafia Game”.👉 한국어 버전">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://github.com/user-attachments/assets/19991269-da07-405a-922c-5ba5a8d0baa7">
+<meta property="article:published_time" content="2024-09-23T07:53:36.000Z">
+<meta property="article:modified_time" content="2025-12-03T14:01:23.403Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Project">
+<meta property="article:tag" content="Trouble Painter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/user-attachments/assets/19991269-da07-405a-922c-5ba5a8d0baa7">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/en/assets/css/style-q2rdk1cybwoxo4yajy2m45gicrehcvcblucs91up9vjbijk9mupjrtjv7x57.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/en/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /en/#about">
+        
+        
+            <img class="header-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/en/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/" title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Projects</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Lecture</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Part 1. Trouble Painter - Drawing Mafia Game
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-09-23T16:53:36+09:00">
+	
+		    Sep 23, 2024
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/en/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>Table of Contents
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Service-Introduction"><span class="nero-toc-text">Service Introduction</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#1-Create-and-invite-a-game"><span class="nero-toc-text">1. Create and invite a game</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#2-Role-selection"><span class="nero-toc-text">2. Role selection</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#3-Keyword-drawing"><span class="nero-toc-text">3. Keyword drawing</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#4-Touble-Painter-Vote"><span class="nero-toc-text">4. Touble Painter Vote</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#5-Keyword-Guessing"><span class="nero-toc-text">5. Keyword Guessing</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#6-Game-Results"><span class="nero-toc-text">6. Game Results</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Play-video"><span class="nero-toc-text">Play video</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Finish"><span class="nero-toc-text">Finish</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>Introducing the service “Trouble Painter - Drawing Mafia Game”.<br><a href="/post/trouble-painter-01/">👉 한국어 버전</a><br><a id="more"></a></p>
+<hr>
+<blockquote>
+<p>✔︎ Part 1. Trouble Painter - Drawing Mafia Game<br><a href="/en/post/trouble-painter-02/">Part 2. Create a real-time drawing game with Flutter</a></p>
+</blockquote>
+<br>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/en1-min.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/en1-min.png" alt></a></div>
+
+<h1 id="Service-Introduction"><a href="#Service-Introduction" class="headerlink" title="Service Introduction"></a>Service Introduction</h1><blockquote><p><strong>Trouble Painter</strong> is a <strong>drawing mafia game</strong> where you find <strong>trouble painter</strong> hiding among good painters.</p>
+<!-- 👉 Android & iOS : <a href="https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install" target="_blank" rel="noopener">download link</a> --></blockquote>
+<br>
+
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/en2-min.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/en2-min.png" alt></a></div>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/en3-min.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/en3-min.png" alt></a></div>
+
+<h2 id="1-Create-and-invite-a-game"><a href="#1-Create-and-invite-a-game" class="headerlink" title="1. Create and invite a game"></a>1. Create and invite a game</h2><p>If you want to play with friends, create a room and press the <code>Invite</code> button.<br>Show the generated <strong>QR code</strong> or <strong>Share the invitation code</strong> You can invite your friends. A minimum of 3 or more users must gather to play, and up to 10 people can play together :)</p>
+<br>
+<div class="nero-grid">
+  <div><div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/waiting1.png" title="Colors are randomly assigned" data-caption="Colors are randomly assigned" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/waiting1.png" alt="Colors are randomly assigned"></a><span class="caption">Colors are randomly assigned</span></div></div>
+  <div><div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/waiting2.png" title="Share QR code or invitation code" data-caption="Share QR code or invitation code" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/waiting2.png" alt="Share QR code or invitation code"></a><span class="caption">Share QR code or invitation code</span></div></div>
+</div>
+
+<p>We have prepared three methods so that you can easily join a room created by a friend.</p>
+<ul>
+<li><strong>Enter the game via QR code</strong>: <code>Enter Invitation Code</code> → <code>Scan QR code</code></li>
+<li><strong>Enter through URL Scheme</strong>: Click the invitation link shared by a friend</li>
+<li><strong>Invitation Enter by directly entering the code</strong>: <code>Enter Invitation Code</code> → <code>Enter Invitation Code</code></li>
+</ul>
+<br>
+<div class="nero-grid">
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="Scan QR code to enter">
+<source src="/en/post/trouble-painter/qr-scan.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Scan QR code to enter</span>
+</div></div>
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="Enter with URL Scheme">
+<source src="/en/post/trouble-painter/url-scheme.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Enter with URL Scheme</span>
+</div></div>
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="Enter the invitation code directly">
+<source src="/en/post/trouble-painter/direct-input.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Enter the invitation code directly</span>
+</div></div>
+</div>
+
+<h2 id="2-Role-selection"><a href="#2-Role-selection" class="headerlink" title="2. Role selection"></a>2. Role selection</h2><p>When the game starts, one <span style="color:#FF774C"><strong>trouble painter</strong></span> will be randomly selected, and all other players will play the role of <span style="color:#05BC94"><strong>good painter</strong></span>.</p>
+<p><span style="color:#FF774C"><strong>Trouble Painter</strong></span></p>
+<ul>
+<li>You start painting by drawing without knowing the <strong>keyword</strong>.</li>
+<li>You must not be discovered by good painters.</li>
+<li>Even if your identity is discovered, you can win by matching the drawing <strong>keyword</strong>.</li>
+</ul>
+<p><span style="color:#05BC94"><strong>Good Painter</strong></span></p>
+<ul>
+<li>Knows the <strong>keyword</strong> to draw in the picture.</li>
+<li>You shouldn’t let the trouble painter know your keywords.</li>
+<li>Look at the picture and find out who the trouble painter is.</li>
+</ul>
+<div class="nero-grid">
+  <div><div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/ready-mafia.png" title="If a cute hamster appears<br> you are a trouble painter!" data-caption="If a cute hamster appears<br> you are a trouble painter!" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/ready-mafia.png" alt="If a cute hamster appears<br> you are a trouble painter!"></a><span class="caption">If a cute hamster appears<br> you are a trouble painter!</span></div></div>
+  <div><div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/ready-citizen.png" title="If a cozy bear appears<br> you are a good painter!" data-caption="If a cozy bear appears<br> you are a good painter!" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/ready-citizen.png" alt="If a cozy bear appears<br> you are a good painter!"></a><span class="caption">If a cozy bear appears<br> you are a good painter!</span></div></div>
+</div>
+
+<h2 id="3-Keyword-drawing"><a href="#3-Keyword-drawing" class="headerlink" title="3. Keyword drawing"></a>3. Keyword drawing</h2><p>The game is played over two rounds, with each player taking turns drawing. When it is your turn, the background color changes, and since <strong>you can only draw one stroke per turn</strong>, a drawing animation will appear as a guide, saying <code>Draw only one stroke</code>.</p>
+<p>At first, you draw <strong>one stroke</strong>. This condition may feel frustrating, but if you play a few games with friends, you will experience that the <strong>less</strong> and <strong>abstractly</strong> you draw, the more fun the game becomes 😋</p>
+<div class="nero-grid">
+  <div><div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/drawing-mafia.png" title="Trouble painter screen" data-caption="Trouble painter screen" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/drawing-mafia.png" alt="Trouble painter screen"></a><span class="caption">Trouble painter screen</span></div></div>
+  <div><div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/drawing-citizen.png" title="Good painter screen" data-caption="Good painter screen" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/drawing-citizen.png" alt="Good painter screen"></a><span class="caption">Good painter screen</span></div></div>
+</div>
+
+<p>The picture can be drawn with a randomly selected color when entering the room. It takes <strong>15 seconds per turn</strong>, and if you want to edit the picture, you can press the <code>Clear</code> button at the bottom right. You can also enjoy a faster game by using the <code>Pass Turn</code> button.</p>
+<p>Also, <strong>six reactions</strong> have been implemented so that you can communicate with other users even when it is not your turn. 🙌</p>
+<br>
+<div class="nero-grid">
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="Drawing video">
+<source src="/en/post/trouble-painter/drawing.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Drawing video</span>
+</div></div>
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="Reaction video">
+<source src="/en/post/trouble-painter/reaction.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Reaction video</span>
+</div></div>
+</div>
+
+<h2 id="4-Touble-Painter-Vote"><a href="#4-Touble-Painter-Vote" class="headerlink" title="4. Touble Painter Vote"></a>4. Touble Painter Vote</h2><p>It’s time to find <span style="color:#FF774C"><strong>Trouble Painter</strong></span> through real-time voting. Please vote for the player who seems to have drawn without knowing the keyword since the background color of the profile and the drawing line color are the same! 🗳️</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/vote.png" title="The player with the most votes will be named the <span style=color:#FF774C>Trouble Painter</span>." data-caption="The player with the most votes will be named the <span style=color:#FF774C>Trouble Painter</span>." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/vote.png" style="width:auto;height:auto;max-width:250px;" alt="The player with the most votes will be named the <span style=color:#FF774C>Trouble Painter</span>."></a><span class="caption">The player with the most votes will be named the <span style="color:#FF774C">Trouble Painter</span>.</span></div>
+
+<h2 id="5-Keyword-Guessing"><a href="#5-Keyword-Guessing" class="headerlink" title="5. Keyword Guessing"></a>5. Keyword Guessing</h2><p>If you find <span style="color:#FF774C"><strong>Trouble Painter</strong></span> in the vote, the keyword guessing time will begin. <span style="color:#05BC94"><strong>Good Painters</strong></span> can see the keyword that <span style="color:#FF774C"><strong>Trouble Painter</strong></span> enters in real time.</p>
+<div class="nero-grid">
+  <div><div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/guess-mafia.png" title="Trouble painter keyword input screen" data-caption="Trouble painter keyword input screen" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/guess-mafia.png" alt="Trouble painter keyword input screen"></a><span class="caption">Trouble painter keyword input screen</span></div></div>
+  <div><div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/guess-citizen.png" title="Good painters can see the keywords entered by trouble painter in real time" data-caption="Good painters can see the keywords entered by trouble painter in real time" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/guess-citizen.png" alt="Good painters can see the keywords entered by trouble painter in real time"></a><span class="caption">Good painters can see the keywords entered by trouble painter in real time</span></div></div>
+</div>
+
+<p>For the <span style="color:#FF774C"><strong>Trouble Painter</strong></span>, who fights alone without any teammates, we’ve implemented an AI Hint feature using the Gemini API. This feature allows Gemini to look at the drawings made by players and give hints to the <span style="color:#FF774C"><strong>Trouble Painter</strong></span>.<br><br></p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Gemini provides hints for the keyword <b>Motocycle</b>">
+<source src="/en/post/trouble-painter/gemini.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Gemini provides hints for the keyword <b>Motocycle</b></span>
+</div>
+
+<blockquote>
+<p><strong>This is how Gemini expressed the keyword motorcycle after looking at the picture.</strong><br>It’s a small, swift machine that can slip through narrow alleys with ease. Quick and agile, it cuts through the wind, roaming freely wherever it goes.</p>
+</blockquote>
+<h2 id="6-Game-Results"><a href="#6-Game-Results" class="headerlink" title="6. Game Results"></a>6. Game Results</h2><p>The victory conditions for each role are as follows, and you will be moved to the waiting room 15 seconds after the game ends.</p>
+<p><strong><span style="color:#05BC94">Good Painter</span> Victory</strong></p>
+<ul>
+<li>The <span style="color:#FF774C">Trouble Painter</span> was found through voting, and the keyword was not exposed.</li>
+</ul>
+<p><strong><span style="color:#FF774C">Trouble Painter</span> Victory</strong></p>
+<ul>
+<li>The identity was not revealed.</li>
+<li>The identity was revealed, but the <strong>keyword</strong> was guessed correctly.</li>
+</ul>
+<br>
+<div class="nero-grid">
+  <div><div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/result-citizen.png" title="Good Painter’s victory" data-caption="Good Painter’s victory" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/result-citizen.png" alt="Good Painter’s victory"></a><span class="caption">Good Painter’s victory</span></div></div>
+  <div><div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/result-mafia1.png" title="Trouble Painter’s victory<br>for guessing the keyword" data-caption="Trouble Painter’s victory<br>for guessing the keyword" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/result-mafia1.png" alt="Trouble Painter’s victory<br>for guessing the keyword"></a><span class="caption">Trouble Painter’s victory<br>for guessing the keyword</span></div></div>
+  <div><div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/result-mafia2.png" title="Trouble Painter’s victory<br>for not being revealed" data-caption="Trouble Painter’s victory<br>for not being revealed" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/result-mafia2.png" alt="Trouble Painter’s victory<br>for not being revealed"></a><span class="caption">Trouble Painter’s victory<br>for not being revealed</span></div></div>
+</div>
+
+
+<h1 id="Play-video"><a href="#Play-video" class="headerlink" title="Play video"></a>Play video</h1><iframe width="100%" height="500" src="https://www.youtube.com/embed/u1H3SAcCDmo?cc_load_policy=1&mute=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h1 id="Finish"><a href="#Finish" class="headerlink" title="Finish"></a>Finish</h1><p>This project was created with 7 team members from the 24th group of IT club <a href="https://www.yapp.co.kr/" target="_blank" rel="external nofollow noopener noreferrer">YAPP</a>.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/winner.png" title="YAPP 24TH DEMO DAY Winner ✌️" data-caption="YAPP 24TH DEMO DAY Winner ✌️" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/winner.png" alt="YAPP 24TH DEMO DAY Winner ✌️"></a><span class="caption">YAPP 24TH DEMO DAY Winner ✌️</span></div>
+
+<blockquote>
+<p>✔︎ Part 1. Trouble Painter - Drawing Mafia Game<br><a href="/en/post/trouble-painter-02/">Part 2. Create a real-time drawing game with Flutter</a></p>
+</blockquote>
+<blockquote>
+<p>This project was open sourced and can be found at the Github link below.<br>👉 Flutter : <a href="https://github.com/trouble-painter/app" target="_blank" rel="external nofollow noopener noreferrer">Link</a><br>👉 Backend : <a href="https://github.com/YAPP-Github/24th-App-Team-2-BE" target="_blank" rel="external nofollow noopener noreferrer">Link</a></p>
+</blockquote>
+<!-- > If you want to play Trouble Painter, please download it from the link below 🫶
+👉 Android & iOS : <a href="https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install" target="_blank" rel="noopener">Download Link</a> -->
+
+<p>In the next article, I will share the development of Trouble Painter :)</p>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">TAGGED IN</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/en/tags/Project/" rel="tag">Project</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/Trouble-Painter/" rel="tag">Trouble Painter</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/worcation-yeongwol/" data-tooltip="영월 워케이션 후기" aria-label="PREVIOUS: 영월 워케이션 후기">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/trouble-painter-02/" data-tooltip="Part 2. Create a real-time drawing game with Flutter" aria-label="NEXT: Part 2. Create a real-time drawing game with Flutter">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/trouble-painter-01/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/trouble-painter-01/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/worcation-yeongwol/" data-tooltip="영월 워케이션 후기" aria-label="PREVIOUS: 영월 워케이션 후기">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/trouble-painter-02/" data-tooltip="Part 2. Create a real-time drawing game with Flutter" aria-label="NEXT: Part 2. Create a real-time drawing game with Flutter">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/trouble-painter-01/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/trouble-painter-01/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/trouble-painter-01/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/trouble-painter-01/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/en/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/en/assets/js/script-fydcx2lyr7ndxsamrdsov38ymqbr3zoihxcwqjt19ahs2hw2vsroxvj0pqei.min.js"></script>
+
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+
+
+
+    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
+</html>

@@ -1,0 +1,688 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기 - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/post/too-real-01/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.\n\n✔︎ 1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기2부. ARKit을 이용하여 iOS AR앱 만들기3부. Custom YOLO v3 모델 만들기4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기\n\n\n프로젝트 소개AR(Augmented Reality)을 이용한 다양한 어플리케이션들이 출시되고 있습니다. 그런데 AR 어플리케이션 속의 가상 오브젝트들은 여러가지 이유로 현실감이 많이 떨어져 서비스 몰입도를 낮추는 것 같습니다.\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n부자가 되고 싶은 자 AR을 개발해라(..?)출처 : http://www.etoland.co.kr/\n\n\n\n대부분의 AR 어플리케이션에서 사용되는 3D 모델들은 아래 Apple Sample Code인 Placing Objects and Handling 3D Interaction에 사용된 램프 모델과 같이 고정된 그림자 이미지를 가지고 있습니다. 이러한 고정된 그림자는 보통 어떠한 상황에서도 어색하지 않을 범용적인 형태의 그림자를 가지고 있지만, 상황에 따라 주변 물체와의 이질감을 유발하는 원인 중 하나입니다.\n개발에 사용된 언어, 프레임워크 및 툴\n\n\n✔︎ 개발 환경\n\n\nOS : macOS Mojave 10.14\nIDE : Xcode / Jupyter Notebook\nLanguage : Swift / Python3\niOS : ARKit / SceneKit / Vision / CoreML\nData Labeling : labelImg\nDeep Learning : YOLO / keras-yolo3\n\n\n시연 영상\n\n\n\n\n기능 소개전체적인 어플리케이션은 다음과 같이 여섯 단계로 서비스 로직이 진행됩니다.\n\n✔︎ ARKit &amp; SceneKit을 이용한 AR 개발\n\n\n평면 탐지(Plane Detection)\n설치가능한 가상 오브젝트 추천\n가상 오브젝트 설치 및 인터랙션\n\n\n✔︎ 딥러닝을 이용한 조명 인식\n\n\nGoogle Vision API 방식\nYOLO(real time object detection) 방식\n\n\nARKit &amp; SceneKit을 이용한 AR 개발\n  \n\n\nYour browser doesn't support HTML5 Video :/\n1. 평면 탐지(Plane Detection)\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n2. 설치가능한 가상 오브젝트 추천\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n3. 가상 오브젝트 설치 및 인터랙션\n\n\n\n어플리케이션이 현실 공간을 인식하여 벽면이나 바닥을 인식합니다. 공간이 인식되면 현재 바라보고 있는 장소에 설치 가능한 가구를 목록을 보여주고, 원하는 가구를 선택하여 설치할 수 있습니다. 또한 설치된 가구를 원하는 장소로 이동하거나 회전하는 등의 기본적인 인터랙션이 가능합니다.\n\n딥러닝을 이용한 조명 인식본 어플리케이션에서는 두 가지 조명 인식 방식을 구현하였습니다. 하나는 Google Vision API를 이용한 방법이고, 다른 방법은 YOLO라는 딥러닝 모델을 이용한 방법으로 다음과 같은 특징을 가지고있습니다.\n\n\n\n\n\n✔︎ Google Vision API 방식\n✔︎ YOLO(real time object detection) 방식\n\n\n\n• 네트워크 통신 필요\n• 네트워크 통신 불필요\n\n\n• 실시간 조명 추적 불가능\n• 실시간 조명 추적 가능\n\n\n• 조명의 정확한 좌표를 얻을 수 없음\n• 조명의 2차원 좌표 획득 가능\n\n\n• 조명의 온오프 상태를 알 수 없음\n• 조명의 온오프 상태 구분가능\n\n\n• 범용적인 조명 인식이 가능\n• 학습된 5개의 조명만 인식가능\n\n\n\n1. Google Vision API 방식\n  \n    \n\n\nYour browser doesn't support HTML5 Video :/\nGoogle Vision API를 이용한 가상조명 설치\n\n  \n\n\nGoogle Vision API를 이용한 방식은 사용자가 조명을 바라보고 인식 버튼을 누르면 이미지를 Google Vision API 서버로 전달하여 조명 존재여부를 요청하고, 이미지 중앙좌표의 3차원 좌표를 hitTest 메소드를 통하여 획득합니다. 그리고 Google Vision API에서 조명이 존재한다고 반환하는 경우, 앞서 얻은 3차원 좌표에 가상 조명을 설치하는 방식입니다.\n이 방법의 경우 조명의 실제 3차원 좌표가 아닌 곳에 가상 조명이 설치된 가능성이 있고, 실시간으로 조명을 인식하는 것이 아니라 사용자가 인식하고자 하는 조명 개수만큼 인식 버튼을 눌러야한다는 단점이 있습니다. 그럼에도 불구하고 Google에서 학습한 방대한 모델을 이용하기 때문에 범용적인 조명을 인식할 수 있다는 장점을 가지고 있습니다.\n\n2. YOLO(real time object detection) 방식\n  \n\n\nYour browser doesn't support HTML5 Video :/\nYOLO 조명 on 상태 인식\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\nYOLO 조명 off 상태 인식\n\n\n\n이 방식은 Realtime Object Detection 모델 중 하나인 YOLO 모델을 이용한 방식입니다. YOLO 모델은, 해당 이미지 안에 존재하는 조명의 온오프 상태, 종류, 신뢰도(confidence) 그리고 바운딩 박스(2차원 박스의 대각선 두 점의 좌표)를 반환합니다. 매프레임마다 바운딩 박스 좌표를 hitTest 메소드에 입력하여 조명의 3차원 좌표를 계산하고, 조명의 상태에 따라 경우 해당 좌표에 가상 조명을 추가하거나 삭제합니다.\n모바일에 탑재한 YOLO 딥러닝 모델을 이용하기 때문에 네트워크 통신이 필요하지 않으며, 실시간으로 조명의 상태 및 좌표를 인식할 수 있다는 장점을 가지고 있습니다. 하지만 학습된 조명만 인식이 가능하다는 단점을 가지고 있습니다.\n\n마치며현실 조명에 대한 정보가 가상 오브젝트에 반영되었으므로, 아래 영상과 같이 오브젝트의 그림자가 조명과의 상대적 위치에 따라 현실감 있게 랜더링 되는 것을 보실 수 있습니다.\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n그림자가 조명을 중심으로 랜더링 됩니다.\n\n  \n\n\n그 뿐만 아니라 카메라를 통해 들어오는 밝기(lm)과 색 온도(Kelvin)를 매프레임마다 가상 조명에 실시간으로 반영해주고 있기 때문에 가상 오브젝트가 주변과 유사한 텍스쳐로 표현되어 더욱 현실감을 높여줍니다.\n","dateCreated":"2019-12-25T16:44:28+09:00","dateModified":"2025-04-30T19:54:58+09:00","datePublished":"2019-12-25T16:44:28+09:00","description":"딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.","headline":"1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기","image":["https://user-images.githubusercontent.com/26322627/70371587-496cd480-1918-11ea-839e-93f5f3402969.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/too-real-01/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/too-real-01/","keywords":"Too Real","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/70371587-496cd480-1918-11ea-839e-93f5f3402969.png"}</script>
+    <meta name="description" content="딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기">
+<meta property="og:url" content="https://blog.devstory.co.kr/post/too-real-01/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26322627/70371587-496cd480-1918-11ea-839e-93f5f3402969.png">
+<meta property="article:published_time" content="2019-12-25T07:44:28.000Z">
+<meta property="article:modified_time" content="2025-04-30T10:54:58.091Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Too Real">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26322627/70371587-496cd480-1918-11ea-839e-93f5f3402969.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-q2rdk1cybwoxo4yajy2m45gicrehcvcblucs91up9vjbijk9mupjrtjv7x57.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /#about">
+        
+        
+            <img class="header-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/" title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Projects</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Lecture</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-12-25T16:44:28+09:00">
+	
+		    Dec 25, 2019
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>Table of Contents
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#프로젝트-소개"><span class="nero-toc-text">프로젝트 소개</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#프로젝트-결과물"><span class="nero-toc-text">프로젝트 결과물</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#개발-환경"><span class="nero-toc-text">개발 환경</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#시연-영상"><span class="nero-toc-text">시연 영상</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#기능-소개"><span class="nero-toc-text">기능 소개</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARKit-amp-SceneKit을-이용한-AR-개발"><span class="nero-toc-text">ARKit &amp; SceneKit을 이용한 AR 개발</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#딥러닝을-이용한-조명-인식"><span class="nero-toc-text">딥러닝을 이용한 조명 인식</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-3"><a class="nero-toc-link" href="#1-Google-Vision-API-방식"><span class="nero-toc-text">1. Google Vision API 방식</span></a></li><li class="nero-toc-item nero-toc-level-3"><a class="nero-toc-link" href="#2-YOLO-real-time-object-detection-방식"><span class="nero-toc-text">2. YOLO(real time object detection) 방식</span></a></li></ol></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마치며"><span class="nero-toc-text">마치며</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.<br><a id="more"></a></p>
+<blockquote>
+<p>✔︎ 1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기<br><a href="/post/too-real-02/">2부. ARKit을 이용하여 iOS AR앱 만들기</a><br><a href="/post/too-real-03/">3부. Custom YOLO v3 모델 만들기</a><br><a href="/post/too-real-04/">4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기</a></p>
+</blockquote>
+<hr>
+<h1 id="프로젝트-소개"><a href="#프로젝트-소개" class="headerlink" title="프로젝트 소개"></a>프로젝트 소개</h1><p><strong>AR(Augmented Reality)</strong>을 이용한 다양한 어플리케이션들이 출시되고 있습니다. 그런데 AR 어플리케이션 속의 가상 오브젝트들은 여러가지 이유로 현실감이 많이 떨어져 서비스 몰입도를 낮추는 것 같습니다.<br><br></p>
+<div class="nero-grid">
+  <div><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="부자가 되고 싶은 자 AR을 개발해라(..?)<br>출처 : <a href=http://www.etoland.co.kr/plugin/mobile/board.php?bo_table=etohumor01&wr_id=1589967>http://www.etoland.co.kr/</a>">
+<source src="/post/too-real/ar-example.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">부자가 되고 싶은 자 AR을 개발해라(..?)<br>출처 : <a href="http://www.etoland.co.kr/plugin/mobile/board.php?bo_table=etohumor01&wr_id=1589967" rel="external nofollow noopener noreferrer" target="_blank">http://www.etoland.co.kr/</a></span>
+</div></div>
+</div>
+
+<p>대부분의 AR 어플리케이션에서 사용되는 3D 모델들은 아래 Apple Sample Code인 <a href="https://developer.apple.com/documentation/arkit/placing_objects_and_handling_3d_interaction" target="_blank" rel="external nofollow noopener noreferrer">Placing Objects and Handling 3D Interaction</a>에 사용된 램프 모델과 같이 <u>고정된 그림자 이미지</u>를 가지고 있습니다. 이러한 고정된 그림자는 보통 어떠한 상황에서도 어색하지 않을 범용적인 형태의 그림자를 가지고 있지만, 상황에 따라 주변 물체와의 이질감을 유발하는 원인 중 하나입니다.<br><br></p>
+<div class="figure " style><a class="fancybox" href="https://user-images.githubusercontent.com/26322627/69901403-6d826000-13c4-11ea-9282-4b58dac120ac.png" target="_blank" rel="external nofollow noopener noreferrer" title="Apple의 Sample Code에 사용된 램프 모델<br>출처 - <a href=https://developer.apple.com/documentation/arkit/placing_objects_and_handling_3d_interaction>Placing Objects and Handling 3D Interaction</a>" data-caption="Apple의 Sample Code에 사용된 램프 모델<br>출처 - <a href=https://developer.apple.com/documentation/arkit/placing_objects_and_handling_3d_interaction>Placing Objects and Handling 3D Interaction</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="https://user-images.githubusercontent.com/26322627/69901403-6d826000-13c4-11ea-9282-4b58dac120ac.png" alt="Apple의 Sample Code에 사용된 램프 모델<br>출처 - <a href=https://developer.apple.com/documentation/arkit/placing_objects_and_handling_3d_interaction>Placing Objects and Handling 3D Interaction</a>"></a><span class="caption">Apple의 Sample Code에 사용된 램프 모델<br>출처 - <a href="https://developer.apple.com/documentation/arkit/placing_objects_and_handling_3d_interaction" rel="external nofollow noopener noreferrer" target="_blank">Placing Objects and Handling 3D Interaction</a></span></div>
+
+<p>고정된 그림자 이미지가 아닌, 임의의 가상 조명을 생성하여 오브젝트에 그림자를 랜더링하는 몇몇 AR 어플리케이션들이 있지만, 가상 조명의 위치나 밝기가 현실에 존재하는 실제 조명과 달라 부조화스러운 그림자를 생성해 오히려 현실감을 떨어뜨렸습니다.</p>
+<p>따라서 이번 프로젝트에서는 부조화스러운 그림자 문제를 현실 조명의 <strong>위치</strong>와 <strong>밝기</strong> 정보를 수집하여 해결해 보도록 하겠습니다.</p>
+<blockquote>
+<p>✔︎ 프로젝트 목표<br>현실의 조명의 위치와 밝기 정보가 반영된, 더욱 현실감 있는 AR 어플리케이션 만들어보자!</p>
+</blockquote>
+<!-- TODO :: before와 after 이미지 넣고 이걸 이렇게! 추가하기 -->
+
+<hr>
+<h1 id="프로젝트-결과물"><a href="#프로젝트-결과물" class="headerlink" title="프로젝트 결과물"></a>프로젝트 결과물</h1><hr>
+<h2 id="개발-환경"><a href="#개발-환경" class="headerlink" title="개발 환경"></a>개발 환경</h2><p>1인 개발로 총 4개월이 소요되었으며, 다음과 같은 언어와 프레임워크를 사용하여 개발하였습니다.</p>
+<div class="figure " style><a class="fancybox" href="https://user-images.githubusercontent.com/26322627/70038098-10bcba80-15fb-11ea-94d2-314f8d598601.png" target="_blank" rel="external nofollow noopener noreferrer" title="개발에 사용된 언어, 프레임워크 및 툴" data-caption="개발에 사용된 언어, 프레임워크 및 툴" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="https://user-images.githubusercontent.com/26322627/70038098-10bcba80-15fb-11ea-94d2-314f8d598601.png" alt="개발에 사용된 언어, 프레임워크 및 툴"></a><span class="caption">개발에 사용된 언어, 프레임워크 및 툴</span></div>
+
+<blockquote>
+<p>✔︎ 개발 환경</p>
+</blockquote>
+<ul>
+<li>OS : macOS Mojave 10.14</li>
+<li>IDE : Xcode / Jupyter Notebook</li>
+<li>Language : Swift / Python3</li>
+<li>iOS : <a href="https://developer.apple.com/documentation/arkit" target="_blank" rel="external nofollow noopener noreferrer">ARKit</a> / <a href="https://developer.apple.com/documentation/scenekit" target="_blank" rel="external nofollow noopener noreferrer">SceneKit</a> / <a href="https://developer.apple.com/documentation/vision" target="_blank" rel="external nofollow noopener noreferrer">Vision</a> / <a href="https://developer.apple.com/documentation/coreml" target="_blank" rel="external nofollow noopener noreferrer">CoreML</a></li>
+<li>Data Labeling : <a href="https://github.com/tzutalin/labelImg" target="_blank" rel="external nofollow noopener noreferrer">labelImg</a></li>
+<li>Deep Learning : <a href="https://pjreddie.com/darknet/yolo/" target="_blank" rel="external nofollow noopener noreferrer">YOLO</a> / <a href="https://github.com/qqwweee/keras-yolo3" target="_blank" rel="external nofollow noopener noreferrer">keras-yolo3</a></li>
+</ul>
+<hr>
+<h2 id="시연-영상"><a href="#시연-영상" class="headerlink" title="시연 영상"></a>시연 영상</h2><iframe width="100%" height="500" src="https://www.youtube.com/embed/RQI3aS3rBvI?cc_load_policy=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<!-- iOS 앱은 [App Store](https://apps.apple.com/kr/app/tooreal/id1473239669)에 게시해 두었습니다. -->
+
+<hr>
+<h1 id="기능-소개"><a href="#기능-소개" class="headerlink" title="기능 소개"></a>기능 소개</h1><p>전체적인 어플리케이션은 다음과 같이 여섯 단계로 서비스 로직이 진행됩니다.</p>
+<blockquote>
+<p>✔︎ ARKit &amp; SceneKit을 이용한 AR 개발</p>
+</blockquote>
+<ul>
+<li>평면 탐지(Plane Detection)</li>
+<li>설치가능한 가상 오브젝트 추천</li>
+<li>가상 오브젝트 설치 및 인터랙션</li>
+</ul>
+<blockquote>
+<p>✔︎ 딥러닝을 이용한 조명 인식</p>
+</blockquote>
+<ul>
+<li>Google Vision API 방식</li>
+<li>YOLO(real time object detection) 방식</li>
+</ul>
+<hr>
+<h2 id="ARKit-amp-SceneKit을-이용한-AR-개발"><a href="#ARKit-amp-SceneKit을-이용한-AR-개발" class="headerlink" title="ARKit &amp; SceneKit을 이용한 AR 개발"></a>ARKit &amp; SceneKit을 이용한 AR 개발</h2><div class="nero-grid">
+  <div><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="1. 평면 탐지(Plane Detection)">
+<source src="/post/too-real/01.plane_detection.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">1. 평면 탐지(Plane Detection)</span>
+</div></div>
+  <div><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="2. 설치가능한 가상 오브젝트 추천">
+<source src="/post/too-real/02.object_recommendation.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">2. 설치가능한 가상 오브젝트 추천</span>
+</div></div>
+  <div><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="3. 가상 오브젝트 설치 및 인터랙션">
+<source src="/post/too-real/03.install_object.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">3. 가상 오브젝트 설치 및 인터랙션</span>
+</div></div>
+</div>
+
+<p>어플리케이션이 현실 공간을 인식하여 벽면이나 바닥을 인식합니다. 공간이 인식되면 현재 바라보고 있는 장소에 설치 가능한 가구를 목록을 보여주고, 원하는 가구를 선택하여 설치할 수 있습니다. 또한 설치된 가구를 원하는 장소로 이동하거나 회전하는 등의 기본적인 인터랙션이 가능합니다.</p>
+<hr>
+<h2 id="딥러닝을-이용한-조명-인식"><a href="#딥러닝을-이용한-조명-인식" class="headerlink" title="딥러닝을 이용한 조명 인식"></a>딥러닝을 이용한 조명 인식</h2><p>본 어플리케이션에서는 두 가지 조명 인식 방식을 구현하였습니다. 하나는 <a href="https://cloud.google.com/vision" target="_blank" rel="external nofollow noopener noreferrer">Google Vision API</a>를 이용한 방법이고, 다른 방법은 <a href="https://pjreddie.com/darknet/yolo/" target="_blank" rel="external nofollow noopener noreferrer">YOLO</a>라는 딥러닝 모델을 이용한 방법으로 다음과 같은 특징을 가지고있습니다.</p>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>✔︎ Google Vision API 방식</th>
+<th>✔︎ YOLO(real time object detection) 방식</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>• 네트워크 통신 필요</td>
+<td>• 네트워크 통신 불필요</td>
+</tr>
+<tr>
+<td>• 실시간 조명 추적 불가능</td>
+<td>• 실시간 조명 추적 가능</td>
+</tr>
+<tr>
+<td>• 조명의 정확한 좌표를 얻을 수 없음</td>
+<td>• 조명의 2차원 좌표 획득 가능</td>
+</tr>
+<tr>
+<td>• 조명의 온오프 상태를 알 수 없음</td>
+<td>• 조명의 온오프 상태 구분가능</td>
+</tr>
+<tr>
+<td>• 범용적인 조명 인식이 가능</td>
+<td>• 학습된 5개의 조명만 인식가능</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="1-Google-Vision-API-방식"><a href="#1-Google-Vision-API-방식" class="headerlink" title="1. Google Vision API 방식"></a>1. Google Vision API 방식</h3><div class="nero-grid">
+  <div>
+    <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Google Vision API를 이용한 가상조명 설치">
+<source src="/post/too-real/07.install_scnlight_by_google_vision_api.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Google Vision API를 이용한 가상조명 설치</span>
+</div>
+  </div>
+</div>
+
+<p><code>Google Vision API</code>를 이용한 방식은 사용자가 조명을 바라보고 인식 버튼을 누르면 이미지를 Google Vision API 서버로 전달하여 조명 존재여부를 요청하고, 이미지 중앙좌표의 3차원 좌표를 <a href="https://developer.apple.com/documentation/arkit/arframe/2875718-hittest" target="_blank" rel="external nofollow noopener noreferrer">hitTest</a> 메소드를 통하여 획득합니다. 그리고 <code>Google Vision API</code>에서 조명이 존재한다고 반환하는 경우, 앞서 얻은 3차원 좌표에 가상 조명을 설치하는 방식입니다.</p>
+<p>이 방법의 경우 조명의 실제 3차원 좌표가 아닌 곳에 가상 조명이 설치된 가능성이 있고, 실시간으로 조명을 인식하는 것이 아니라 사용자가 인식하고자 하는 조명 개수만큼 인식 버튼을 눌러야한다는 단점이 있습니다. 그럼에도 불구하고 Google에서 학습한 방대한 모델을 이용하기 때문에 범용적인 조명을 인식할 수 있다는 장점을 가지고 있습니다.</p>
+<hr>
+<h3 id="2-YOLO-real-time-object-detection-방식"><a href="#2-YOLO-real-time-object-detection-방식" class="headerlink" title="2. YOLO(real time object detection) 방식"></a>2. YOLO(real time object detection) 방식</h3><div class="nero-grid">
+  <div><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="YOLO 조명 on 상태 인식">
+<source src="/post/too-real/04.install_scnlight.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">YOLO 조명 on 상태 인식</span>
+</div></div>
+  <div><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="YOLO 조명 off 상태 인식">
+<source src="/post/too-real/05.remove_scnlight.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">YOLO 조명 off 상태 인식</span>
+</div></div>
+</div>
+
+<p>이 방식은 Realtime Object Detection 모델 중 하나인 <a href="https://pjreddie.com/darknet/yolo/" target="_blank" rel="external nofollow noopener noreferrer">YOLO</a> 모델을 이용한 방식입니다. <code>YOLO</code> 모델은, 해당 이미지 안에 존재하는 조명의 온오프 상태, 종류, 신뢰도(confidence) 그리고 바운딩 박스(2차원 박스의 대각선 두 점의 좌표)를 반환합니다. 매프레임마다 바운딩 박스 좌표를 <a href="https://developer.apple.com/documentation/arkit/arframe/2875718-hittest" target="_blank" rel="external nofollow noopener noreferrer">hitTest</a> 메소드에 입력하여 조명의 3차원 좌표를 계산하고, 조명의 상태에 따라 경우 해당 좌표에 가상 조명을 추가하거나 삭제합니다.</p>
+<p>모바일에 탑재한 <code>YOLO</code> 딥러닝 모델을 이용하기 때문에 네트워크 통신이 필요하지 않으며, 실시간으로 조명의 상태 및 좌표를 인식할 수 있다는 장점을 가지고 있습니다. 하지만 학습된 조명만 인식이 가능하다는 단점을 가지고 있습니다.<br><br></p>
+<hr>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>현실 조명에 대한 정보가 가상 오브젝트에 반영되었으므로, 아래 영상과 같이 오브젝트의 그림자가 조명과의 상대적 위치에 따라 현실감 있게 랜더링 되는 것을 보실 수 있습니다.<br><br></p>
+<div class="nero-grid">
+  <div><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="그림자가 조명을 중심으로 랜더링 됩니다.">
+<source src="/post/too-real/06.shadow_rendering_and_object_interaction.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">그림자가 조명을 중심으로 랜더링 됩니다.</span>
+</div>
+  </div>
+</div>
+
+<p>그 뿐만 아니라 카메라를 통해 들어오는 밝기(lm)과 색 온도(Kelvin)를 매프레임마다 가상 조명에 실시간으로 반영해주고 있기 때문에 가상 오브젝트가 주변과 유사한 텍스쳐로 표현되어 더욱 현실감을 높여줍니다.<br><br></p>
+<div class="figure center" style><a class="fancybox" href="https://user-images.githubusercontent.com/26322627/70371587-496cd480-1918-11ea-839e-93f5f3402969.png" target="_blank" rel="external nofollow noopener noreferrer" title="에디슨 전구의 따뜻한 색 온도가 반영되어 오브젝트를 더욱 현실감 있게 표현해줍니다.<br>- 왼쪽 : 조명인식 전(前) / 오른쪽 : 조명인식 후(後)" data-caption="에디슨 전구의 따뜻한 색 온도가 반영되어 오브젝트를 더욱 현실감 있게 표현해줍니다.<br>- 왼쪽 : 조명인식 전(前) / 오른쪽 : 조명인식 후(後)" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="https://user-images.githubusercontent.com/26322627/70371587-496cd480-1918-11ea-839e-93f5f3402969.png" style="width:500px;" alt="에디슨 전구의 따뜻한 색 온도가 반영되어 오브젝트를 더욱 현실감 있게 표현해줍니다.<br>- 왼쪽 : 조명인식 전(前) / 오른쪽 : 조명인식 후(後)"></a><span class="caption">에디슨 전구의 따뜻한 색 온도가 반영되어 오브젝트를 더욱 현실감 있게 표현해줍니다.<br>- 왼쪽 : 조명인식 전(前) / 오른쪽 : 조명인식 후(後)</span></div>
+
+<p>현실 조명의 위치와 밝기 그리고 색 온도 정보를 그대로 가상 조명으로 재현하여 <u>더욱 현실감 있는 AR 어플리케이션 구현</u>이라는 목표를 달성할 수 있었습니다. 🎉</p>
+<p>이상으로 전체적인 프로젝트에 대한 소개를 마치고 다음 2부에서는 iOS AR 어플리케이션 개발 방법에 대해 공유하겠습니다.</p>
+<blockquote>
+<p>✔︎ 1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기<br><a href="/post/too-real-02/">2부. ARKit을 이용하여 iOS AR앱 만들기</a><br><a href="/post/too-real-03/">3부. Custom YOLO v3 모델 만들기</a><br><a href="/post/too-real-04/">4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기</a></p>
+</blockquote>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">TAGGED IN</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/tags/Too-Real/" rel="tag">Too Real</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/devblog-classifier/" data-tooltip="딥러닝으로 문서 분류기 만들기" aria-label="PREVIOUS: 딥러닝으로 문서 분류기 만들기">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/too-real-02/" data-tooltip="2부. ARKit을 이용하여 iOS AR앱 만들기" aria-label="NEXT: 2부. ARKit을 이용하여 iOS AR앱 만들기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/too-real-01/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/too-real-01/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/devblog-classifier/" data-tooltip="딥러닝으로 문서 분류기 만들기" aria-label="PREVIOUS: 딥러닝으로 문서 분류기 만들기">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/too-real-02/" data-tooltip="2부. ARKit을 이용하여 iOS AR앱 만들기" aria-label="NEXT: 2부. ARKit을 이용하여 iOS AR앱 만들기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/too-real-01/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/too-real-01/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/too-real-01/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/too-real-01/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-fydcx2lyr7ndxsamrdsov38ymqbr3zoihxcwqjt19ahs2hw2vsroxvj0pqei.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

@@ -1,0 +1,667 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>1부. Trouble Painter - 드로잉 마피아 게임 - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/post/trouble-painter-01/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"“Trouble Painter - 드로잉 마피아 게임” 서비스를 소개합니다.👉 English Version\n\n\n✔︎ 1부. Trouble Painter 드로잉 마피아 게임2부. Flutter로 실시간 드로잉 게임 만들기\n\n\n\n입장시 랜덤으로 색상이 부여됩니다.\n  귀여운 햄스터가 나타났다면당신은 악동미술가!\n  악동 미술가 화면\n  가장 많은 표를 받은 플레이어가 악동 미술가로 지목됩니다.\n\n5. 키워드 추측투표에서 악동 미술가를 찾았다면 키워드 추측하는 시간이 진행됩니다. 악동 미술가가 입력하는 키워드를 착한 미술가들이 실시간으로 볼 수 있어요.\n\n  착한 미술가들은 실시간으로 악동 미술가가 입력하는 키워드를 볼 수 있어요\n\n\n같은 팀 한 명 없이 홀로 싸우는 악동 미술가를 위해 Gemini API를 이용하여 AI 힌트 기능을 구현해 두었어요. 플레이어들이 그린 그림을 Gemini가 보고 악동 미술가에게 힌트를 주는 기능이랍니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n키워드 도시를 재미나게 표현하는 Gemini\n\n\n\n영상속 그림을 보고 키워드 도시를 Gemini는 이렇게 표현했어요.수많은 사람들이 각자의 꿈을 안고 살아가는 곳이에요. 높은 건물들은 마치 사람들의 꿈을 담은 탑 같기도 하죠. 때로는 시끄럽고 복잡하지만, 그 안에서 또 다른 세상을 만날 수 있는 곳이랍니다. 어떤곳일까요?\n\n6. 게임 결과각 역할의 승리 조건은 다음과 같으며, 게임 종료 후 15초 뒤에 대기방으로 이동됩니다.\n착한 미술가 승리\n\n투표로 악동 미술가를 찾았고, 키워드도 들키지 않은 경우\n\n악동 미술가 승리\n\n정체를 들키지 않은 경우\n정체를 들켰지만, 키워드를 맞춘 경우\n\n\n\n\n  키워드를 맞춘 악동 미술가의 승리\n  YAPP 24TH DEMO DAY 대상 ✌️\n\n\n✔︎ 1부. Trouble Painter 드로잉 마피아 게임2부. Flutter로 실시간 드로잉 게임 만들기\n\n\n이번 프로젝트는 오픈 소스로 진행하였으며 아래 Github 링크에서 확인하실 수 있습니다.👉 Flutter : 링크👉 Backend : 링크\n\n\n\n다음 글에선 Trouble Painter 개발기를 공유하도록 하겠습니다 :)\n","dateCreated":"2024-09-23T16:53:36+09:00","dateModified":"2025-12-03T23:01:31+09:00","datePublished":"2024-09-23T16:53:36+09:00","description":"“Trouble Painter - 드로잉 마피아 게임” 서비스를 소개합니다.👉 English Version","headline":"1부. Trouble Painter - 드로잉 마피아 게임","image":["https://github.com/user-attachments/assets/19991269-da07-405a-922c-5ba5a8d0baa7"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/trouble-painter-01/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/trouble-painter-01/","keywords":"Project, Trouble Painter","thumbnailUrl":"https://github.com/user-attachments/assets/19991269-da07-405a-922c-5ba5a8d0baa7"}</script>
+    <meta name="description" content="“Trouble Painter - 드로잉 마피아 게임” 서비스를 소개합니다.👉 English Version">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="1부. Trouble Painter - 드로잉 마피아 게임">
+<meta property="og:url" content="https://blog.devstory.co.kr/post/trouble-painter-01/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="“Trouble Painter - 드로잉 마피아 게임” 서비스를 소개합니다.👉 English Version">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://github.com/user-attachments/assets/19991269-da07-405a-922c-5ba5a8d0baa7">
+<meta property="article:published_time" content="2024-09-23T07:53:36.000Z">
+<meta property="article:modified_time" content="2025-12-03T14:01:31.655Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Project">
+<meta property="article:tag" content="Trouble Painter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/user-attachments/assets/19991269-da07-405a-922c-5ba5a8d0baa7">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-q2rdk1cybwoxo4yajy2m45gicrehcvcblucs91up9vjbijk9mupjrtjv7x57.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
+        
+        
+            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about" aria-label="저자에 대해 더 알아보기">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/" title="홈">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">홈</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="태그">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">깃허브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">프로젝트</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">강의</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            1부. Trouble Painter - 드로잉 마피아 게임
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-09-23T16:53:36+09:00">
+	
+		    2024/09/23
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>목차
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#서비스-소개"><span class="nero-toc-text">서비스 소개</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#1-게임-생성-및-초대"><span class="nero-toc-text">1. 게임 생성 및 초대</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#2-역할-선정"><span class="nero-toc-text">2. 역할 선정</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#3-키워드-그리기"><span class="nero-toc-text">3. 키워드 그리기</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#4-악동-미술가-투표"><span class="nero-toc-text">4. 악동 미술가 투표</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#5-키워드-추측"><span class="nero-toc-text">5. 키워드 추측</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#6-게임-결과"><span class="nero-toc-text">6. 게임 결과</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#플레이-영상"><span class="nero-toc-text">플레이 영상</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마무리"><span class="nero-toc-text">마무리</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>“Trouble Painter - 드로잉 마피아 게임” 서비스를 소개합니다.<br><a href="/en/post/trouble-painter-01/">👉 English Version</a><br><a id="more"></a></p>
+<hr>
+<blockquote>
+<p>✔︎ 1부. Trouble Painter 드로잉 마피아 게임<br><a href="/post/trouble-painter-02/">2부. Flutter로 실시간 드로잉 게임 만들기</a></p>
+</blockquote>
+<br>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/ko1-min.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/ko1-min.png" alt></a></div>
+
+<h1 id="서비스-소개"><a href="#서비스-소개" class="headerlink" title="서비스 소개"></a>서비스 소개</h1><blockquote><p><strong>Trouble Painter</strong>는 착한 미술가들 사이에 숨어있는 <strong>악동 미술가</strong>를 찾아내는 <strong>드로잉 마피아 게임</strong>입니다.</p>
+<!-- 👉 Android & iOS : <a href="https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install" target="_blank" rel="noopener">다운로드 링크</a> --></blockquote>
+<br>
+
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/ko2-min.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/ko2-min.png" alt></a></div>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/ko3-min.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/ko3-min.png" alt></a></div>
+
+<h2 id="1-게임-생성-및-초대"><a href="#1-게임-생성-및-초대" class="headerlink" title="1. 게임 생성 및 초대"></a>1. 게임 생성 및 초대</h2><p>친구들과 플레이를 하고 싶다면, 방을 생성한 뒤 <code>초대하기</code> 버튼을 눌러주세요.<br>생성된 <strong>QR 코드</strong>를 보여주거나 <strong>참여코드를 공유</strong>하여 친구들을 초대할 수 있어요. 최소 3명 이상의 유저가 모여야 플레이가 가능하며 최대 10명까지 함께 플레이할 수 있습니다 :)</p>
+<br>
+<div class="nero-grid">
+  <div><div class="figure center" style><a class="fancybox" href="/post/trouble-painter/waiting1.png" title="입장시 랜덤으로 색상이 부여됩니다." data-caption="입장시 랜덤으로 색상이 부여됩니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/waiting1.png" alt="입장시 랜덤으로 색상이 부여됩니다."></a><span class="caption">입장시 랜덤으로 색상이 부여됩니다.</span></div></div>
+  <div><div class="figure center" style><a class="fancybox" href="/post/trouble-painter/waiting2.png" title="QR 코드 또는 참여코드를 공유해 주세요." data-caption="QR 코드 또는 참여코드를 공유해 주세요." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/waiting2.png" alt="QR 코드 또는 참여코드를 공유해 주세요."></a><span class="caption">QR 코드 또는 참여코드를 공유해 주세요.</span></div></div>
+</div>
+
+<p>친구가 만든 방에 손쉽게 참가할 수 있도록 총 3가지 방법을 준비했어요.</p>
+<ul>
+<li><strong>QR 코드를 통한 게임 입장</strong> : <code>참여코드로 입장하기</code> → <code>QR 코드 스캔하기</code></li>
+<li><strong>URL Scheme을 통한 입장</strong> : 친구가 공유해준 초대 링크 클릭</li>
+<li><strong>초대 코드를 직접 입력하여 입장</strong> : <code>참여코드로 입장하기</code> → <code>참여코드 입력하기</code></li>
+</ul>
+<br>
+<div class="nero-grid">
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="QR 코드 스캔하여 입장하기">
+<source src="/post/trouble-painter/qr-scan.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">QR 코드 스캔하여 입장하기</span>
+</div></div>
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="URL Scheme으로 입장하기">
+<source src="/post/trouble-painter/url-scheme.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">URL Scheme으로 입장하기</span>
+</div></div>
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="초대코드 직접 입력하여 입장하기">
+<source src="/post/trouble-painter/direct-input.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">초대코드 직접 입력하여 입장하기</span>
+</div></div>
+</div>
+
+<h2 id="2-역할-선정"><a href="#2-역할-선정" class="headerlink" title="2. 역할 선정"></a>2. 역할 선정</h2><p>게임이 시작되면 무작위로 <span style="color:#FF774C"><strong>악동 미술가</strong></span> 한 명이 선정되며, 나머지 플레이어들은 모두 <span style="color:#05BC94"><strong>착한 미술가</strong></span> 역할을 수행하시면 됩니다.</p>
+<p><span style="color:#FF774C"><strong>악동 미술가</strong></span></p>
+<ul>
+<li>그림으로 그림 <strong>키워드</strong>를 모른체로 시작합니다.</li>
+<li>착한 미술가들에게 정체를 들키면 안됩니다.</li>
+<li>정체를 들키더라도 그림 <strong>키워드</strong>를 맞추면 승리할 수 있어요.</li>
+</ul>
+<p><span style="color:#05BC94"><strong>착한 미술가</strong></span></p>
+<ul>
+<li>그림으로 그릴 <strong>키워드</strong>를 알고 있습니다.</li>
+<li>악동 미술가에게 키워드를 들키면 안 돼요.</li>
+<li>누가 <strong>키워드</strong>를 모르는 악동 미술가인지 그림을 보고 찾으세요.</li>
+</ul>
+<div class="nero-grid">
+  <div><div class="figure center" style><a class="fancybox" href="/post/trouble-painter/ready-mafia.png" title="귀여운 햄스터가 나타났다면<br>당신은 악동미술가!" data-caption="귀여운 햄스터가 나타났다면<br>당신은 악동미술가!" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/ready-mafia.png" alt="귀여운 햄스터가 나타났다면<br>당신은 악동미술가!"></a><span class="caption">귀여운 햄스터가 나타났다면<br>당신은 악동미술가!</span></div></div>
+  <div><div class="figure center" style><a class="fancybox" href="/post/trouble-painter/ready-citizen.png" title="푸근한 곰이 나타났다면<br>당신은 착한미술가!" data-caption="푸근한 곰이 나타났다면<br>당신은 착한미술가!" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/ready-citizen.png" alt="푸근한 곰이 나타났다면<br>당신은 착한미술가!"></a><span class="caption">푸근한 곰이 나타났다면<br>당신은 착한미술가!</span></div></div>
+</div>
+
+<h2 id="3-키워드-그리기"><a href="#3-키워드-그리기" class="headerlink" title="3. 키워드 그리기"></a>3. 키워드 그리기</h2><p>게임은 한 턴씩 돌아가면서 그림을 그리며 총 2라운드로 진행됩니다. 내 차례가 되면 배경 색상이 변경되며 <strong>한 턴에 오직 한 획</strong>만 그릴 수 있기 때문에 <code>한 획만 그릴 수 있어요</code>라는 드로잉 애니메이션이 가이드로 나타납니다.</p>
+<p>처음엔 <strong>한 획</strong>이라는 조건이 답답하게 느껴지실 순 있지만, 친구들과 몇 판 플레이를 해보시면 오히려 <strong>적게</strong> 그리고 <strong>추상적으로</strong> 그릴수록 게임이 재미있어진다는 것을 경험을 하실 수 있습니다 😋</p>
+<div class="nero-grid">
+  <div><div class="figure center" style><a class="fancybox" href="/post/trouble-painter/drawing-mafia.png" title="악동 미술가 화면" data-caption="악동 미술가 화면" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/drawing-mafia.png" alt="악동 미술가 화면"></a><span class="caption">악동 미술가 화면</span></div></div>
+  <div><div class="figure center" style><a class="fancybox" href="/post/trouble-painter/drawing-citizen.png" title="착한 미술가 화면" data-caption="착한 미술가 화면" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/drawing-citizen.png" alt="착한 미술가 화면"></a><span class="caption">착한 미술가 화면</span></div></div>
+</div>
+
+<p>그림은 방 입장 시 랜덤으로 선택된 색상으로 한 획을 그릴 수 있습니다. <strong>한 턴에 15초</strong> 동안 진행되며, 그림을 수정하고 싶은 경우 우측 하단에 <code>삭제</code> 버튼을 누르시면 됩니다. <code>턴 넘기기</code> 버튼도 함께 활용하시면 더 스피드한 게임을 즐길 수 있습니다.</p>
+<p>또한 내 차례가 아닌 경우에도 다른 유저와 소통할 수 있도록 <strong>여섯 가지 리액션</strong>이 구현되어 있어서 게임을 더욱 풍성하게 즐길 수 있습니다. 🙌</p>
+<br>
+<div class="nero-grid">
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="드로잉 영상">
+<source src="/post/trouble-painter/drawing.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">드로잉 영상</span>
+</div></div>
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="리액션 영상">
+<source src="/post/trouble-painter/reaction.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">리액션 영상</span>
+</div></div>
+</div>
+
+<h2 id="4-악동-미술가-투표"><a href="#4-악동-미술가-투표" class="headerlink" title="4. 악동 미술가 투표"></a>4. 악동 미술가 투표</h2><p><span style="color:#FF774C"><strong>악동 미술가</strong></span>를 실시간 투표로 찾는 시간입니다. 프로필의 배경 색상과 드로잉 선 색상이 동일하니 키워드를 모르고 그린 것 같은 플레이어에게 투표해 주세요! 🗳️</p>
+<div class="figure center" style><a class="fancybox" href="/post/trouble-painter/vote.png" title="가장 많은 표를 받은 플레이어가 <span style=color:#FF774C>악동 미술가</span>로 지목됩니다." data-caption="가장 많은 표를 받은 플레이어가 <span style=color:#FF774C>악동 미술가</span>로 지목됩니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/vote.png" style="width:auto;height:auto;max-width:250px;" alt="가장 많은 표를 받은 플레이어가 <span style=color:#FF774C>악동 미술가</span>로 지목됩니다."></a><span class="caption">가장 많은 표를 받은 플레이어가 <span style="color:#FF774C">악동 미술가</span>로 지목됩니다.</span></div>
+
+<h2 id="5-키워드-추측"><a href="#5-키워드-추측" class="headerlink" title="5. 키워드 추측"></a>5. 키워드 추측</h2><p>투표에서 <span style="color:#FF774C"><strong>악동 미술가</strong></span>를 찾았다면 키워드 추측하는 시간이 진행됩니다. <span style="color:#FF774C"><strong>악동 미술가</strong></span>가 입력하는 키워드를 <span style="color:#05BC94"><strong>착한 미술가</strong></span>들이 실시간으로 볼 수 있어요.</p>
+<div class="nero-grid">
+  <div><div class="figure center" style><a class="fancybox" href="/post/trouble-painter/guess-mafia.png" title="악동 미술가 키워드 입력 화면" data-caption="악동 미술가 키워드 입력 화면" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/guess-mafia.png" alt="악동 미술가 키워드 입력 화면"></a><span class="caption">악동 미술가 키워드 입력 화면</span></div></div>
+  <div><div class="figure center" style><a class="fancybox" href="/post/trouble-painter/guess-citizen.png" title="착한 미술가들은 실시간으로 악동 미술가가 입력하는 키워드를 볼 수 있어요" data-caption="착한 미술가들은 실시간으로 악동 미술가가 입력하는 키워드를 볼 수 있어요" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/guess-citizen.png" alt="착한 미술가들은 실시간으로 악동 미술가가 입력하는 키워드를 볼 수 있어요"></a><span class="caption">착한 미술가들은 실시간으로 악동 미술가가 입력하는 키워드를 볼 수 있어요</span></div></div>
+</div>
+
+<p>같은 팀 한 명 없이 홀로 싸우는 <span style="color:#FF774C"><strong>악동 미술가</strong></span>를 위해 Gemini API를 이용하여 <code>AI 힌트</code> 기능을 구현해 두었어요. 플레이어들이 그린 그림을 Gemini가 보고 <span style="color:#FF774C"><strong>악동 미술가</strong></span>에게 힌트를 주는 기능이랍니다.<br><br></p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="키워드 <b>도시</b>를 재미나게 표현하는 Gemini">
+<source src="/post/trouble-painter/gemini.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">키워드 <b>도시</b>를 재미나게 표현하는 Gemini</span>
+</div>
+
+<blockquote>
+<p><strong>영상속 그림을 보고 키워드 도시를 Gemini는 이렇게 표현했어요.</strong><br>수많은 사람들이 각자의 꿈을 안고 살아가는 곳이에요. 높은 건물들은 마치 사람들의 꿈을 담은 탑 같기도 하죠. 때로는 시끄럽고 복잡하지만, 그 안에서 또 다른 세상을 만날 수 있는 곳이랍니다. 어떤곳일까요?</p>
+</blockquote>
+<h2 id="6-게임-결과"><a href="#6-게임-결과" class="headerlink" title="6. 게임 결과"></a>6. 게임 결과</h2><p>각 역할의 승리 조건은 다음과 같으며, 게임 종료 후 15초 뒤에 대기방으로 이동됩니다.</p>
+<p><strong><span style="color:#05BC94">착한 미술가</span> 승리</strong></p>
+<ul>
+<li>투표로 <span style="color:#FF774C">악동 미술가</span>를 찾았고, 키워드도 들키지 않은 경우</li>
+</ul>
+<p><strong><span style="color:#FF774C">악동 미술가</span> 승리</strong></p>
+<ul>
+<li>정체를 들키지 않은 경우</li>
+<li>정체를 들켰지만, <strong>키워드</strong>를 맞춘 경우</li>
+</ul>
+<br>
+
+<div class="nero-grid">
+  <div><div class="figure " style><a class="fancybox" href="/post/trouble-painter/result-citizen.png" title="착한 미술가의 승리" data-caption="착한 미술가의 승리" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/result-citizen.png" alt="착한 미술가의 승리"></a><span class="caption">착한 미술가의 승리</span></div></div>
+  <div><div class="figure " style><a class="fancybox" href="/post/trouble-painter/result-mafia1.png" title="키워드를 맞춘 악동 미술가의 승리" data-caption="키워드를 맞춘 악동 미술가의 승리" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/result-mafia1.png" alt="키워드를 맞춘 악동 미술가의 승리"></a><span class="caption">키워드를 맞춘 악동 미술가의 승리</span></div></div>
+  <div><div class="figure " style><a class="fancybox" href="/post/trouble-painter/result-mafia2.png" title="정체를 들키지 않은 악동 미술가의 승리" data-caption="정체를 들키지 않은 악동 미술가의 승리" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/result-mafia2.png" alt="정체를 들키지 않은 악동 미술가의 승리"></a><span class="caption">정체를 들키지 않은 악동 미술가의 승리</span></div></div>
+</div>
+
+
+<h1 id="플레이-영상"><a href="#플레이-영상" class="headerlink" title="플레이 영상"></a>플레이 영상</h1><iframe width="100%" height="500" src="https://www.youtube.com/embed/2iwoWCBdHfc?cc_load_policy=1&mute=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>이번 프로젝트는 <a href="https://www.yapp.co.kr/" target="_blank" rel="external nofollow noopener noreferrer">YAPP</a> 24기에서 모인 7명의 팀원들과 함께 만든 프로젝트입니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/winner.png" title="YAPP 24TH DEMO DAY 대상 ✌️" data-caption="YAPP 24TH DEMO DAY 대상 ✌️" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/winner.png" alt="YAPP 24TH DEMO DAY 대상 ✌️"></a><span class="caption">YAPP 24TH DEMO DAY 대상 ✌️</span></div>
+
+<blockquote>
+<p>✔︎ 1부. Trouble Painter 드로잉 마피아 게임<br><a href="/post/trouble-painter-02/">2부. Flutter로 실시간 드로잉 게임 만들기</a></p>
+</blockquote>
+<blockquote>
+<p>이번 프로젝트는 오픈 소스로 진행하였으며 아래 Github 링크에서 확인하실 수 있습니다.<br>👉 Flutter : <a href="https://github.com/trouble-painter/app" target="_blank" rel="external nofollow noopener noreferrer">링크</a><br>👉 Backend : <a href="https://github.com/YAPP-Github/24th-App-Team-2-BE" target="_blank" rel="external nofollow noopener noreferrer">링크</a></p>
+</blockquote>
+<!-- > Trouble Painter를 플레이해 보고 싶으신 분은 아래 링크에서 다운받아 주세요 🫶
+👉 Android & iOS : <a href="https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install" target="_blank" rel="noopener">다운로드 링크</a> -->
+
+<p>다음 글에선 Trouble Painter 개발기를 공유하도록 하겠습니다 :)</p>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">태그</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/tags/Project/" rel="tag">Project</a> <a class="tag tag--primary tag--small t-link" href="/tags/Trouble-Painter/" rel="tag">Trouble Painter</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/worcation-yeongwol/" data-tooltip="영월 워케이션 후기" aria-label="이전: 영월 워케이션 후기">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/trouble-painter-02/" data-tooltip="2부. Flutter로 실시간 드로잉 게임 만들기" aria-label="다음: 2부. Flutter로 실시간 드로잉 게임 만들기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/trouble-painter-01/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/trouble-painter-01/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/worcation-yeongwol/" data-tooltip="영월 워케이션 후기" aria-label="이전: 영월 워케이션 후기">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/trouble-painter-02/" data-tooltip="2부. Flutter로 실시간 드로잉 게임 만들기" aria-label="다음: 2부. Flutter로 실시간 드로잉 게임 만들기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/trouble-painter-01/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/trouble-painter-01/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/trouble-painter-01/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/trouble-painter-01/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-fydcx2lyr7ndxsamrdsov38ymqbr3zoihxcwqjt19ahs2hw2vsroxvj0pqei.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

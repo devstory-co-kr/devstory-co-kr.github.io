@@ -1,0 +1,828 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>2부. Flutter로 실시간 드로잉 게임 만들기 - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/post/trouble-painter-02/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Trouble Painter 개발 과정을 공유합니다.👉 English Version\n\n\n1부. Trouble Painter 드로잉 마피아 게임✔︎ 2부. Flutter로 실시간 드로잉 게임 만들기\n\n\nTrouble Painter는 착한 미술가들 사이에 숨어있는 악동 미술가를 찾아내는 드로잉 마피아 게임입니다.👉 Android & iOS : 다운로드 링크 -->\n\nTeam XorkerTeam Xorker는 YAPP 24기에서 모인 PM 1명, 디자이너 2명, 개발자 4명(Flutter 2 / Spring 2)으로 총 7인으로 구성된 팀입니다.\n반대로 늦었다고 생각하지 않으면 늦지 않은 겁니다!출처 - MBC Entertainment\n\n이후 1주일 기한을 잡고 다시 새로운 아이디어를 나누고 논의하였습니다.🐶 반려동물 기반 소개팅 앱 : 초창기 유저 모으는 문제 &amp; 소개팅이라는 도메인에 대한 공감 부족으로 기각!📝 AI 반려동물 일기 서비스 : 반려동물을 키우는 팀원이 한 명뿐인데, 그 팀원도 안 쓸 것 같다하여 기각!🧩 보드 게임을 모바일화 : 게임에 대한 기획 부재 &amp; 그래픽 위주의 작업에 대한 부담으로 기각!\n1주일 단위로 진행된 스프린트 누적 흐름 다이어그램\n\n2주 단위로 3L(Liked, Learned, Lacked) 방식의 회고를 진행하였는데, 글을 작성하는 시점에서 되돌아 보면 회고 덕분에 팀 내 소통도 개선되었고 아이디어도 바꿀 수 있었던 것 같습니다. 👍👍\n일정 관리\n오늘 또 일을 미루고 말았다 - 나카지마 사토시“마감을 잘 지키려면 라스트 스퍼트를 버리고 스타트 대시를 하라”\n\n초기에는 YAPP 24기 기간 내에 유저를 받을 계획으로 데모데이 5주 전 스토어 배포를 목표로 일정을 계획하였습니다. 중간에 5주가 지난 시점에서 아이디어가 변경되는 이슈가 있었지만, 스타트 대시를 위해 무리한 일정임을 알고도 기존 계획을 그대로 진행하였습니다.\nFlutter 작업을 기준으로 아이디어를 변경한 시점 부터 스토어 배포까지 실제 진행된 일정은 다음과 같습니다.\n\n\n\n일정\nFlutter 작업\n\n\n\n6월 4주차\n아이디어 변경\n\n\n6월 5주차\nFirebase 기반 유저 테스트용 MVP 개발\n\n\n7월 1주차\n아키텍처 설계 &amp; 스토어 배포 자동화 구축\n\n\n7월 2주차\n디자인 시스템 구축\n\n\n7월 3주차\n비즈니스 로직 구현\n\n\n7월 4주차\n디자인 반영\n\n\n8월 1주차\n웹소켓 설계\n\n\n8월 2주차\n서버 연동\n\n\n8월 3주차\nQA &amp; 스토어 배포\n\n\n기존 계획보다 2주 늦어졌지만 웹소켓 기반의 실시간 게임을 단 7주 만에 만들어 스토어 배포까지 진행할 수 있었습니다.\n유저 테스트아이디어가 변경된 시점으로부터 1주일 뒤에 동아리에서 진행하는 유저 테스트(User Test)가 예정되어 있었습니다. 그래서 Cloud Firestore의 실시간 통신 기능을 이용하여 1주일 동안 유저 테스트용 MVP 앱 서비스를 만들었습니다.\n초반에 Firebase App Distribution과 Fastlane으로 내부 테스트 환경을 구축해 두었기 때문에 MVP 앱을 팀 내 배포하여 유저 테스트를 무사히 진행할 수 있었습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\nFlutter & Firebase 조합으로 1주일 만에 만든 MVP\n\n\n이번 유저 테스트를 통해서 배운점은 다음과 같습니다.\n\n일반 앱의 UI는 유저들이 이미 학습되어 있어 익숙지만, 게임 UI는 익숙하지 않고 학습이 필요하다.\n일반 앱은 화면 전환을 유저가 직접 제어할 수 있지만, 화면이 자동 전환되며 시간 제한까지 있는 게임은 무엇을 보고 어떤 액션을 취해야하는지 더욱 직관적이게 설계해야 한다.\n대부분의 유저는 튜토리얼을 읽지 않으며, 읽어도 게임 룰을 쉽게 이해하지 못한다.\n\n\n디자인디자인 팀은 파이널 디자인이 나오기까지 페이지 6개를 가득 채울 정도로 열정이 불타오르는 팀입니다 🔥\n농담이 아니라 정말 안열려요\n\n\nUI &amp; UX유저 테스트때 배운 내용들을 반영하여 대기화면의 BGM과 플레이 화면의 BGM을 다르게 재생하여 보다 게임 시작 분위기를 환기하였습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n(BGM) 대기화면 BGM과 게임 중 BGM을 다르게 주었어요.\n\n\n초기 게임 준비 페이지에서 카테고리, 역할과 그리고 순서까지 한 화면에서 너무 많은 정보를 보여주어 전달이 잘 안되었는데, 역할과 카테고리만 보여주도록 변경하였고, 캐릭터를 넣어 역할을 보다 직관적이게 인식하도록 개선하였습니다.\n왼쪽 악동 미술가, 오른쪽 착한 미술가\n\n또한 영화 라따뚜이를 오마주하여 착한 미술가의 모자 속에 악동 미술가가 숨어서 정체를 감추고 그림을 그리는 컨셉을 UI에 녹였습니다.\n디자인 시스템\n\n\n백엔드백엔드 서버는 현재 라즈베리파이에서 운영되고 있습니다. 언젠간 동접자가 많아져 라즈베리파이가 불타고 클라우드로 이전하는 날이오면 좋겠습니다. 🔥\nBackend Architecture\n\n모니터링Prometheus, Grafana, Sentry를 이용하여 로그 및 실시간 서버 상태를 모니터링 하고 있습니다.\nFlutter 기술 스택\n\n\n\n\nFirebase\n\n\n\n\nAnalytics\n앱 사용 및 사용자 참여에 대한 통계 수집\n\n\nApp Distribution\nAndroid &amp; iOS 팀 내 배포\n\n\nCloud Firestore\n유저 테스트용 MVP 버전 서버 역할\n\n\nCrashlytics\n앱 충돌 추적 및 에러 로깅\n\n\nRemote Config\n강제 업데이트 &amp; 공지사항 등의 원격 설정\n\n\nGemini의 경우, 플레이어들이 그린 그림 기반으로 악동 미술가에게 힌트를 제공하는 기능을 구현하기 위해 사용하였으며, 적용 결과물은 이전 글을 참고해 주세요. 덕분에 Gemini API 대회에 출품할 수 있었는데, 서비스를 응원해 주시고 싶다면 링크에서 투표 부탁드립니다 🫶\nFlavor &amp; Envflutter_flavorizr 패키지를 이용하여 개발 환경(DEV)과 배포 환경(PROD)을 나누어 운영하였으며, Firebase의 경우 한 프로젝트에서 Remote Config 환경 분리가 불가능하므로 프로젝트를 두 개로 분리하여 진행했습니다.\nArchitecture & Structure\n\n팀에서 Flutter 파트는 완성된 디자인과 백엔드 기능을 조합하는 역할을 맡습니다. 즉, 디자인과 백엔드 작업에 의존성이 있어 혼자 열심히 달릴 수 없는 포지션입니다.\n안그래도 중간에 아이디어를 변경하면서 시간이 부족했기에, 의존성 문제로 작업을 못하는 상황이 오더라도 어떻게든 할 수 있는 일을 진행하여 여유 시간을 확보할 필요가 있었습니다.\nRober C.Martin의 Clean Architecture에는 다음과 같은 내용이 나옵니다.\n\nClean Architecture - Robert C.Martin“아키텍트는 정책을 핵심적인 요소로 식별하고 세부사항을 정책과 무관하게 만들어 세부사항의 결정을 미루거나 연기하도록 한다.”\n\n이 내용을 조금 다르게 바라보면 “세부사항이 결정되지 않아도 시스템의 핵심적인 요소를 만들 수 있다.”로 이해할 수 있으며 이번 프로젝트에선 개발 단계에서 부터 아키텍처의 의존성 제어 이점을 활용해 초반에는 Wireframe을 기반으로 앱의 기능을 구현하였고, 디자인이 나온 뒤에는 UI 테스트 모드용 ViewModel을 전달하여 원하는 게임 화면을 볼 수 있는 환경을 구성한 뒤 수월하게 작업을 진행하였습니다.\n\nModel to Entity\n\n이와 같이 서버 의존성을 데이터 레이어에 격리하였기에, 향후 서버를 새롭게 만들어도 기존 도메인 레이어의 로직들은 그대로 재활용 할 수 있습니다.\nRiverpodRiverpod을 상태 관리, MVVM 그리고 의존성 주입 용도로 사용하였는데, Code Generator를 사용하지 않고 직접 변형하여 사용했습니다.\nPresentation 레이어에선 BaseView와 BaseViewModel을 만들어 내부적으로 Provider를 생성하고, Generic 타입을 자동으로 추론하도록 구현하여 상용구 코드를 많이 줄일 수 있었습니다.\n123456789101112131415161718/// 전역 변수를 만들 필요가 없습니다./// 프로바이더 타입을 명시할 필요가 없습니다.class TestPageModel extends BaseViewModel&lt;int&gt; &#123;  TestPageModel(super.buildState);&#125;class TextPage extends StatelessWidget &#123;  const TextPage(&#123;super.key&#125;);  @override  Widget build(BuildContext context) &#123;    return BaseView(      viewModel: TestPageModel.new,      state: (ref, prevState) =&gt; 0,      builder: (ref, viewModel, state) =&gt; const Scaffold(),    );  &#125;&#125;\n\nDomain &amp; Data 레이어에선 주로 의존성 주입(Dependency Injection) 도구로 활용하였는데, Provider를 전역 변수에 할당하지 않고 클래스 내부에 static으로 캡슐화하여, 전역 변수를 줄이고 사용 편의성을 높혔습니다.\n1234567891011class TodosNotifier extends Notifier&lt;List&lt;Todo&gt;&gt; &#123;  /// ref.read(TodosNotifier.$) 형태로 접근  static final $ = NotifierProvider&lt;TodosNotifier, List&lt;Todo&gt;&gt;(() &#123;    return TodosNotifier();  &#125;);  @override  List&lt;Todo&gt; build() &#123;    return [];  &#125;&#125;\n\n디자인 커뮤니케이션Trouble Painter는 최소 3인 이상이 모여야 게임을 실행할 수 있고, 역할에 따라 볼 수 있는 화면이 다릅니다. 따라서 디자이너 분들이 언제든지 원하는 화면을 보고 피드백을 주실 수 있도록 UI 테스트 모드를 만들어 제공하였습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\nUI 테스트 모드 영상\n\n\n또한 모바일 앱 서비스는 웹과 다르게 컴포넌트의 크기를 확인하기가 쉽지 않기 때문에, 앱의 개발자 메뉴에 컴포넌트 페이지를 만들어 컴포넌트의 크기나 애니메이션 동작을 볼 수 있도록 제공하였습니다.\n\n\nHTTP 기반의 API는 Swagger로 문서화를 할 수 있었지만, 웹소켓은 요청과 응답이 1대1이 아니므로 요청과 응답을 별도로 구분하여 Notion에 정리하여 커뮤니케이션하였습니다.\n","dateCreated":"2024-09-13T07:27:02+09:00","dateModified":"2025-12-03T23:01:28+09:00","datePublished":"2024-09-13T07:27:02+09:00","description":"Trouble Painter 개발 과정을 공유합니다.👉 English Version","headline":"2부. Flutter로 실시간 드로잉 게임 만들기","image":["https://github.com/user-attachments/assets/9f4ffefc-316c-4d0f-8381-824640485eb5"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/trouble-painter-02/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/trouble-painter-02/","keywords":"Project, Trouble Painter","thumbnailUrl":"https://github.com/user-attachments/assets/9f4ffefc-316c-4d0f-8381-824640485eb5"}</script>
+    <meta name="description" content="Trouble Painter 개발 과정을 공유합니다.👉 English Version">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="2부. Flutter로 실시간 드로잉 게임 만들기">
+<meta property="og:url" content="https://blog.devstory.co.kr/post/trouble-painter-02/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="Trouble Painter 개발 과정을 공유합니다.👉 English Version">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://github.com/user-attachments/assets/9f4ffefc-316c-4d0f-8381-824640485eb5">
+<meta property="article:published_time" content="2024-09-12T22:27:02.000Z">
+<meta property="article:modified_time" content="2025-12-03T14:01:28.456Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Project">
+<meta property="article:tag" content="Trouble Painter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/user-attachments/assets/9f4ffefc-316c-4d0f-8381-824640485eb5">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-q2rdk1cybwoxo4yajy2m45gicrehcvcblucs91up9vjbijk9mupjrtjv7x57.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
+        
+        
+            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about" aria-label="저자에 대해 더 알아보기">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/" title="홈">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">홈</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="태그">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">깃허브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">프로젝트</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">강의</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            2부. Flutter로 실시간 드로잉 게임 만들기
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-09-13T07:27:02+09:00">
+	
+		    2024/09/13
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>목차
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Team-Xorker"><span class="nero-toc-text">Team Xorker</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#아이디어-선정"><span class="nero-toc-text">아이디어 선정</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#프로젝트-관리"><span class="nero-toc-text">프로젝트 관리</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#일정-관리"><span class="nero-toc-text">일정 관리</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#유저-테스트"><span class="nero-toc-text">유저 테스트</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#디자인"><span class="nero-toc-text">디자인</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#UI-amp-UX"><span class="nero-toc-text">UI &amp; UX</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#캐릭터"><span class="nero-toc-text">캐릭터</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#디자인-시스템"><span class="nero-toc-text">디자인 시스템</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#백엔드"><span class="nero-toc-text">백엔드</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#아키텍처"><span class="nero-toc-text">아키텍처</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#모니터링"><span class="nero-toc-text">모니터링</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Flutter"><span class="nero-toc-text">Flutter</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Flavor-amp-Env"><span class="nero-toc-text">Flavor &amp; Env</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#아키텍처-1"><span class="nero-toc-text">아키텍처</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Riverpod"><span class="nero-toc-text">Riverpod</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#디자인-커뮤니케이션"><span class="nero-toc-text">디자인 커뮤니케이션</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#웹소켓-설계"><span class="nero-toc-text">웹소켓 설계</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#애니메이션-컨트롤"><span class="nero-toc-text">애니메이션 컨트롤</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#성능-최적화"><span class="nero-toc-text">성능 최적화</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#플레이-영상"><span class="nero-toc-text">플레이 영상</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마무리"><span class="nero-toc-text">마무리</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>Trouble Painter 개발 과정을 공유합니다.<br><a href="/en/post/trouble-painter-02/">👉 English Version</a><br><a id="more"></a></p>
+<hr>
+<blockquote>
+<p><a href="/post/trouble-painter-01/">1부. Trouble Painter 드로잉 마피아 게임</a><br>✔︎ 2부. Flutter로 실시간 드로잉 게임 만들기</p>
+</blockquote>
+<br>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/ko1-min.png" title="<b>Trouble Painter</b>는 착한 미술가들 사이에 숨어있는 <b>악동 미술가</b>를 찾아내는 <b>드로잉 마피아 게임</b>입니다." data-caption="<b>Trouble Painter</b>는 착한 미술가들 사이에 숨어있는 <b>악동 미술가</b>를 찾아내는 <b>드로잉 마피아 게임</b>입니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/ko1-min.png" alt="<b>Trouble Painter</b>는 착한 미술가들 사이에 숨어있는 <b>악동 미술가</b>를 찾아내는 <b>드로잉 마피아 게임</b>입니다."></a><span class="caption"><b>Trouble Painter</b>는 착한 미술가들 사이에 숨어있는 <b>악동 미술가</b>를 찾아내는 <b>드로잉 마피아 게임</b>입니다.</span></div>
+<!-- <div class="figure " style=""><a class="fancybox" href="/post/trouble-painter/ko1-min.png" title="<b>Trouble Painter</b>는 착한 미술가들 사이에 숨어있는 <b>악동 미술가</b>를 찾아내는 <b>드로잉 마피아 게임</b>입니다.<br>👉 Android & iOS : <a href=https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install>다운로드 링크</a>" data-caption="<b>Trouble Painter</b>는 착한 미술가들 사이에 숨어있는 <b>악동 미술가</b>를 찾아내는 <b>드로잉 마피아 게임</b>입니다.<br>👉 Android & iOS : <a href=https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install>다운로드 링크</a>" data-fancybox="default style="visible: hidden;"><img class="fig-img" src="/post/trouble-painter/ko1-min.png" alt="<b>Trouble Painter</b>는 착한 미술가들 사이에 숨어있는 <b>악동 미술가</b>를 찾아내는 <b>드로잉 마피아 게임</b>입니다.<br>👉 Android & iOS : <a href=https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install>다운로드 링크</a>"></a><span class="caption"><b>Trouble Painter</b>는 착한 미술가들 사이에 숨어있는 <b>악동 미술가</b>를 찾아내는 <b>드로잉 마피아 게임</b>입니다.<br>👉 Android & iOS : <a href=https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install>다운로드 링크</a></span></div> -->
+
+<h1 id="Team-Xorker"><a href="#Team-Xorker" class="headerlink" title="Team Xorker"></a>Team Xorker</h1><p>Team Xorker는 YAPP 24기에서 모인 PM 1명, 디자이너 2명, 개발자 4명(Flutter 2 / Spring 2)으로 총 7인으로 구성된 팀입니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/trouble-painter/yapp.png" title="야뿌(YAPP 캐릭터)도 Xorker 디자이너님이 만드셨답니다!<br>출처 - YAPP" data-caption="야뿌(YAPP 캐릭터)도 Xorker 디자이너님이 만드셨답니다!<br>출처 - YAPP" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/yapp.png" alt="야뿌(YAPP 캐릭터)도 Xorker 디자이너님이 만드셨답니다!<br>출처 - YAPP"></a><span class="caption">야뿌(YAPP 캐릭터)도 Xorker 디자이너님이 만드셨답니다!<br>출처 - YAPP</span></div>
+
+<h2 id="아이디어-선정"><a href="#아이디어-선정" class="headerlink" title="아이디어 선정"></a>아이디어 선정</h2><p>처음에는 <strong>동료들의 피드백을 받아 자기 성장 및 PR로 사용할 수 있는 서비스</strong>를 아이디어로 선정하여 진행하였습니다. 하지만 시간이 지나도 <span style="color:#FF774C"><strong>“사람들이 진솔한 피드백을 남길 수 있을까?”</strong></span>라는 문제를 해결하지 못했고, 팀빌딩 이후 4주만에 아이디어를 변경하기로 결정하였습니다. 🥹</p>
+<div class="figure center" style><a class="fancybox" href="/post/trouble-painter/late.png" title="반대로 늦었다고 생각하지 않으면 늦지 않은 겁니다!<br>출처 - MBC Entertainment" data-caption="반대로 늦었다고 생각하지 않으면 늦지 않은 겁니다!<br>출처 - MBC Entertainment" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/late.png" style="width:100%;height:auto;max-width:450px;" alt="반대로 늦었다고 생각하지 않으면 늦지 않은 겁니다!<br>출처 - MBC Entertainment"></a><span class="caption">반대로 늦었다고 생각하지 않으면 늦지 않은 겁니다!<br>출처 - MBC Entertainment</span></div>
+
+<p>이후 1주일 기한을 잡고 다시 새로운 아이디어를 나누고 논의하였습니다.<br>🐶 반려동물 기반 소개팅 앱 : <span style="color:#FF774C">초창기 유저 모으는 문제 &amp; 소개팅이라는 도메인에 대한 공감 부족</span>으로 기각!<br>📝 AI 반려동물 일기 서비스 : <span style="color:#FF774C">반려동물을 키우는 팀원이 한 명뿐인데, 그 팀원도 안 쓸 것 같다</span>하여 기각!<br>🧩 보드 게임을 모바일화 : <span style="color:#FF774C">게임에 대한 기획 부재 &amp; 그래픽 위주의 작업에 대한 부담</span>으로 기각!</p>
+<div class="figure center" style><a class="fancybox" href="/post/trouble-painter/ideation.png" title="<a href=/post/prography-8th/>지난번</a>과 동일하게 아이디어 선정 과정이 가장 힘든 것 같아요 😵‍💫" data-caption="<a href=/post/prography-8th/>지난번</a>과 동일하게 아이디어 선정 과정이 가장 힘든 것 같아요 😵‍💫" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/ideation.png" style="width:100%;height:auto;" alt="<a href=/post/prography-8th/>지난번</a>과 동일하게 아이디어 선정 과정이 가장 힘든 것 같아요 😵‍💫"></a><span class="caption"><a href="/post/prography-8th/">지난번</a>과 동일하게 아이디어 선정 과정이 가장 힘든 것 같아요 😵‍💫</span></div>
+
+<p>서로 다른 기준으로 아이템을 기각하는 과정이 반복되었기에, 모두가 공감하는 목표를 논의하여 <strong>디프만과 연합으로 진행하는 데모데이에서 가장 많은 관심을 받을 수 있는 아이템</strong>이라는 정성적인 기준을 정하였습니다.</p>
+<p>해당 기준으로 아이템을 논의하던 중 <span style="color:#05BC94"><strong>실시간으로 그림을 그려 마피아를 찾는 게임</strong></span> 아이디어가 나왔는데, Figma에서 모의로 플레이해 보니 재미도 있고, 기획상 그래픽 작업도 많지 않아 보였습니다. 결정적으로 해당 아이템을 잘 구현하면 데모데이에서 가장 많은 관심을 받을 수 있을 것 같아 <a href="https://trouble-painter.notion.site/Trouble-Painter-5a48ae706ad046f7a0f4fc01ce385475?pvs=4" target="_blank" rel="external nofollow noopener noreferrer"><span style="color:#FF774C"><strong>Trouble Painter</strong></span></a>가 탄생하게 되었습니다 🎉</p>
+<p>디프만 동아리와 연합으로 진행하는 데모데이는 상대 동아리 부스를 돌아다니며 가장 마음에드는 팀에 모의 머니를 투자하는 방식으로 진행되었는데, 결과적으로 <strong>Trouble Painter가 가장 많은 모의 투자금을 유치하면서 가장 많은 관심 받기라는 목표를 달성할 수 있었습니다. ✌️</strong></p>
+<h2 id="프로젝트-관리"><a href="#프로젝트-관리" class="headerlink" title="프로젝트 관리"></a>프로젝트 관리</h2><p>프로젝트 관리 도구로 Jira를 사용하였고, <strong>1주 단위로 스프린트</strong>를 진행하였습니다. 초반에는 모든 팀이 동일한 기능 단위로 스프린트를 진행했는데, <strong>Flutter는 디자인과 백엔드 팀의 작업에 의존성이 있어 한 주 뒤로 미루어 스프린트를 진행</strong>하였습니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/trouble-painter/sprint.png" title="1주일 단위로 진행된 스프린트 누적 흐름 다이어그램" data-caption="1주일 단위로 진행된 스프린트 누적 흐름 다이어그램" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/sprint.png" alt="1주일 단위로 진행된 스프린트 누적 흐름 다이어그램"></a><span class="caption">1주일 단위로 진행된 스프린트 누적 흐름 다이어그램</span></div>
+
+<p><strong>2주 단위로 3L(Liked, Learned, Lacked) 방식의 회고</strong>를 진행하였는데, 글을 작성하는 시점에서 되돌아 보면 회고 덕분에 팀 내 소통도 개선되었고 아이디어도 바꿀 수 있었던 것 같습니다. 👍👍</p>
+<h2 id="일정-관리"><a href="#일정-관리" class="headerlink" title="일정 관리"></a>일정 관리</h2><blockquote>
+<p><strong>오늘 또 일을 미루고 말았다 - 나카지마 사토시</strong><br>“마감을 잘 지키려면 라스트 스퍼트를 버리고 스타트 대시를 하라”</p>
+</blockquote>
+<p>초기에는 YAPP 24기 기간 내에 유저를 받을 계획으로 데모데이 5주 전 스토어 배포를 목표로 일정을 계획하였습니다. 중간에 5주가 지난 시점에서 아이디어가 변경되는 이슈가 있었지만, <strong>스타트 대시를 위해 무리한 일정임을 알고도 기존 계획을 그대로 진행</strong>하였습니다.</p>
+<p>Flutter 작업을 기준으로 아이디어를 변경한 시점 부터 스토어 배포까지 실제 진행된 일정은 다음과 같습니다.<br><br></p>
+<table>
+<thead>
+<tr>
+<th align="left">일정</th>
+<th align="left">Flutter 작업</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">6월 4주차</td>
+<td align="left">아이디어 변경</td>
+</tr>
+<tr>
+<td align="left">6월 5주차</td>
+<td align="left">Firebase 기반 유저 테스트용 MVP 개발</td>
+</tr>
+<tr>
+<td align="left">7월 1주차</td>
+<td align="left">아키텍처 설계 &amp; 스토어 배포 자동화 구축</td>
+</tr>
+<tr>
+<td align="left">7월 2주차</td>
+<td align="left">디자인 시스템 구축</td>
+</tr>
+<tr>
+<td align="left">7월 3주차</td>
+<td align="left">비즈니스 로직 구현</td>
+</tr>
+<tr>
+<td align="left">7월 4주차</td>
+<td align="left">디자인 반영</td>
+</tr>
+<tr>
+<td align="left">8월 1주차</td>
+<td align="left">웹소켓 설계</td>
+</tr>
+<tr>
+<td align="left">8월 2주차</td>
+<td align="left">서버 연동</td>
+</tr>
+<tr>
+<td align="left">8월 3주차</td>
+<td align="left">QA &amp; 스토어 배포</td>
+</tr>
+</tbody></table>
+<p>기존 계획보다 2주 늦어졌지만 웹소켓 기반의 실시간 게임을 단 7주 만에 만들어 스토어 배포까지 진행할 수 있었습니다.</p>
+<h2 id="유저-테스트"><a href="#유저-테스트" class="headerlink" title="유저 테스트"></a>유저 테스트</h2><p>아이디어가 변경된 시점으로부터 1주일 뒤에 동아리에서 진행하는 유저 테스트(User Test)가 예정되어 있었습니다. 그래서 <strong>Cloud Firestore의 실시간 통신 기능을 이용하여 1주일 동안 유저 테스트용 MVP 앱 서비스를 만들었습니다.</strong></p>
+<p><strong>초반에 Firebase App Distribution과 Fastlane으로 내부 테스트 환경을 구축</strong>해 두었기 때문에 MVP 앱을 팀 내 배포하여 유저 테스트를 무사히 진행할 수 있었습니다.<br><br></p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Flutter & Firebase 조합으로 1주일 만에 만든 MVP">
+<source src="/post/trouble-painter/ut-mvp-min.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Flutter & Firebase 조합으로 1주일 만에 만든 MVP</span>
+</div>
+
+<p>이번 유저 테스트를 통해서 배운점은 다음과 같습니다.</p>
+<ul>
+<li>일반 앱의 UI는 유저들이 이미 학습되어 있어 익숙지만, <strong>게임 UI는 익숙하지 않고 학습이 필요하다.</strong></li>
+<li>일반 앱은 화면 전환을 유저가 직접 제어할 수 있지만, 화면이 자동 전환되며 시간 제한까지 있는 <strong>게임은 무엇을 보고 어떤 액션을 취해야하는지 더욱 직관적이게 설계해야 한다.</strong></li>
+<li>대부분의 유저는 튜토리얼을 읽지 않으며, 읽어도 <strong>게임 룰을 쉽게 이해하지 못한다.</strong></li>
+</ul>
+<!-- Design -->
+<h1 id="디자인"><a href="#디자인" class="headerlink" title="디자인"></a>디자인</h1><p>디자인 팀은 파이널 디자인이 나오기까지 페이지 6개를 가득 채울 정도로 열정이 불타오르는 팀입니다 🔥</p>
+<div class="figure center" style><a class="fancybox" href="/post/trouble-painter/design-figma.png" title="디자이너님.. Figma가 안열려요.. 이제 그만..!" data-caption="디자이너님.. Figma가 안열려요.. 이제 그만..!" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/design-figma.png" alt="디자이너님.. Figma가 안열려요.. 이제 그만..!"></a><span class="caption">디자이너님.. Figma가 안열려요.. 이제 그만..!</span></div>
+<div class="figure center" style><a class="fancybox" href="/post/trouble-painter/design-loading.png" title="농담이 아니라 정말 안열려요" data-caption="농담이 아니라 정말 안열려요" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/design-loading.png" alt="농담이 아니라 정말 안열려요"></a><span class="caption">농담이 아니라 정말 안열려요</span></div>
+
+
+<h2 id="UI-amp-UX"><a href="#UI-amp-UX" class="headerlink" title="UI &amp; UX"></a>UI &amp; UX</h2><p>유저 테스트때 배운 내용들을 반영하여 <strong>대기화면의 BGM과 플레이 화면의 BGM을 다르게 재생하여</strong> 보다 게임 시작 분위기를 환기하였습니다.</p>
+<div class="figure " style>
+<video class="fig-video" controls alt="(BGM) 대기화면 BGM과 게임 중 BGM을 다르게 주었어요.">
+<source src="/post/trouble-painter/bgm.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">(BGM) 대기화면 BGM과 게임 중 BGM을 다르게 주었어요.</span>
+</div>
+
+<p>초기 게임 준비 페이지에서 카테고리, 역할과 그리고 순서까지 한 화면에서 너무 많은 정보를 보여주어 전달이 잘 안되었는데, <strong>역할과 카테고리만 보여주도록 변경하였고, 캐릭터를 넣어 역할을 보다 직관적이게 인식하도록 개선</strong>하였습니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/trouble-painter/ut-role-improvement.png" title="(왼쪽) 유저 테스트용 초기 화면<br>(오른쪽) 개선된 화면" data-caption="(왼쪽) 유저 테스트용 초기 화면<br>(오른쪽) 개선된 화면" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/ut-role-improvement.png" style="width:100%;height:auto;max-width:500px;" alt="(왼쪽) 유저 테스트용 초기 화면<br>(오른쪽) 개선된 화면"></a><span class="caption">(왼쪽) 유저 테스트용 초기 화면<br>(오른쪽) 개선된 화면</span></div>
+
+<p>자신의 순서는 드로잉 화면 라운드 애니메이션과 함께 보여주었고, 막상 자기 턴이 되었어도 인지하지 못하는 문제는 <strong>본인 차례에 백그라운드 색상을 바꾸고 한 획 가이드 애니메이션도 재생하여 개선</strong>하였습니다. 이로써 <strong>한 턴에 한 획만 그리는 게임 룰도 게임 중간에 학습하도록 유도</strong>할 수 있었습니다.<br><br></p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="내 차례에 한 획만 그릴 수 있음을 알려줍니다.">
+<source src="/post/trouble-painter/stroke-guide.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">내 차례에 한 획만 그릴 수 있음을 알려줍니다.</span>
+</div>
+
+
+
+<h2 id="캐릭터"><a href="#캐릭터" class="headerlink" title="캐릭터"></a>캐릭터</h2><p>마피아 게임의 마피아와 시민의 역할을 <strong>Trouble Painter</strong>에선 <span style="color:#FF774C"><strong>악동 미술가</strong></span>와 <span style="color:#05BC94"><strong>착한 미술가</strong></span>로 표현하였으며, 두 캐릭터의 덩치와 성격 차이가 보이도록 햄스터와 곰을 선택하여 디자인하였습니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/trouble-painter/characters.png" title="왼쪽 악동 미술가, 오른쪽 착한 미술가" data-caption="왼쪽 악동 미술가, 오른쪽 착한 미술가" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/characters.png" style="width:100%;height:auto;max-width:400px;" alt="왼쪽 악동 미술가, 오른쪽 착한 미술가"></a><span class="caption">왼쪽 악동 미술가, 오른쪽 착한 미술가</span></div>
+
+<p>또한 영화 라따뚜이를 오마주하여 <span style="color:#05BC94"><strong>착한 미술가</strong></span>의 모자 속에 <span style="color:#FF774C"><strong>악동 미술가</strong></span>가 숨어서 정체를 감추고 그림을 그리는 컨셉을 UI에 녹였습니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/trouble-painter/answer.png" title="착한 미술가 머리 위에서 정답을 맞추는 악동 미술가" data-caption="착한 미술가 머리 위에서 정답을 맞추는 악동 미술가" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/answer.png" style="width:100%;height:auto;max-width:400px;" alt="착한 미술가 머리 위에서 정답을 맞추는 악동 미술가"></a><span class="caption">착한 미술가 머리 위에서 정답을 맞추는 악동 미술가</span></div>
+
+<h2 id="디자인-시스템"><a href="#디자인-시스템" class="headerlink" title="디자인 시스템"></a>디자인 시스템</h2><p>작업 효율은 높히고 커뮤니케이션 비용을 낮추기 위해 <strong>디자인 시스템을 구축</strong>하였으며, 게임 컨셉상 라이트 테마가 어울리지 않아 다크 테마만 지원하였습니다.<br><br></p>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/design-system.png" title="디자인 시스템" data-caption="디자인 시스템" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/design-system.png" alt="디자인 시스템"></a><span class="caption">디자인 시스템</span></div>
+
+<!-- Backend -->
+<h1 id="백엔드"><a href="#백엔드" class="headerlink" title="백엔드"></a>백엔드</h1><p>백엔드 서버는 현재 라즈베리파이에서 운영되고 있습니다. 언젠간 동접자가 많아져 라즈베리파이가 불타고 클라우드로 이전하는 날이오면 좋겠습니다. 🔥</p>
+<div class="figure center" style><a class="fancybox" href="/post/trouble-painter/raspberrypi.png" title="라즈베리파이에서 운영하고 있어서 비용이 안나가요 🥧" data-caption="라즈베리파이에서 운영하고 있어서 비용이 안나가요 🥧" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/raspberrypi.png" style="width:100%;height:auto;max-width:500px;" alt="라즈베리파이에서 운영하고 있어서 비용이 안나가요 🥧"></a><span class="caption">라즈베리파이에서 운영하고 있어서 비용이 안나가요 🥧</span></div>
+
+<h2 id="아키텍처"><a href="#아키텍처" class="headerlink" title="아키텍처"></a>아키텍처</h2><p>백엔드는 Kotlin &amp; Spring Boot 기반으로 구현되어 있으며 상세 기술 스택과 아키텍처는 다음과 같습니다.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Category</th>
+<th align="left">Stack</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">IDE</td>
+<td align="left">IntelliJ</td>
+</tr>
+<tr>
+<td align="left">Language</td>
+<td align="left">Kotlin</td>
+</tr>
+<tr>
+<td align="left">Framework</td>
+<td align="left">Spring Boot 3.2.5, Gradle</td>
+</tr>
+<tr>
+<td align="left">Authentication</td>
+<td align="left">Spring Security, JSON Web Tokens, Opaque Token</td>
+</tr>
+<tr>
+<td align="left">ORM</td>
+<td align="left">Spring Data JPA</td>
+</tr>
+<tr>
+<td align="left">Database</td>
+<td align="left">MySQL</td>
+</tr>
+<tr>
+<td align="left">External</td>
+<td align="left">Nginx, Docker, Redis, Kubernetes, ELK</td>
+</tr>
+<tr>
+<td align="left">CI/CD</td>
+<td align="left">ArgoCD, Github Actions</td>
+</tr>
+<tr>
+<td align="left">API Docs</td>
+<td align="left">Notion, Swagger</td>
+</tr>
+</tbody></table>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/backend-stack.png" title="Backend Architecture" data-caption="Backend Architecture" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/backend-stack.png" alt="Backend Architecture"></a><span class="caption">Backend Architecture</span></div>
+
+<h2 id="모니터링"><a href="#모니터링" class="headerlink" title="모니터링"></a>모니터링</h2><p>Prometheus, Grafana, Sentry를 이용하여 로그 및 실시간 서버 상태를 모니터링 하고 있습니다.<br><br></p>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/grafana.png" title="실시간으로 플레이 중인 방 개수와 연결된 소켓 개수를 모니터링 할 수 있습니다." data-caption="실시간으로 플레이 중인 방 개수와 연결된 소켓 개수를 모니터링 할 수 있습니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/grafana.png" alt="실시간으로 플레이 중인 방 개수와 연결된 소켓 개수를 모니터링 할 수 있습니다."></a><span class="caption">실시간으로 플레이 중인 방 개수와 연결된 소켓 개수를 모니터링 할 수 있습니다.</span></div>
+
+<!-- Flutter -->
+<h1 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h1><p><strong>Trouble Painter</strong>는 <a href="https://flutter.dev/" target="_blank" rel="external nofollow noopener noreferrer">Flutter</a>로 만들었으며 다음과 같은 기술 스택을 사용하고 있습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/flutter-stack.png" title="Flutter 기술 스택" data-caption="Flutter 기술 스택" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/flutter-stack.png" alt="Flutter 기술 스택"></a><span class="caption">Flutter 기술 스택</span></div>
+
+<table>
+<thead>
+<tr>
+<th align="left">Firebase</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Analytics</strong></td>
+<td align="left">앱 사용 및 사용자 참여에 대한 통계 수집</td>
+</tr>
+<tr>
+<td align="left"><strong>App Distribution</strong></td>
+<td align="left">Android &amp; iOS 팀 내 배포</td>
+</tr>
+<tr>
+<td align="left"><strong>Cloud Firestore</strong></td>
+<td align="left">유저 테스트용 MVP 버전 서버 역할</td>
+</tr>
+<tr>
+<td align="left"><strong>Crashlytics</strong></td>
+<td align="left">앱 충돌 추적 및 에러 로깅</td>
+</tr>
+<tr>
+<td align="left"><strong>Remote Config</strong></td>
+<td align="left">강제 업데이트 &amp; 공지사항 등의 원격 설정</td>
+</tr>
+</tbody></table>
+<p><strong>Gemini</strong>의 경우, <strong>플레이어들이 그린 그림 기반으로 악동 미술가에게 힌트를 제공하는 기능</strong>을 구현하기 위해 사용하였으며, 적용 결과물은 <a href="/post/trouble-painter-01/#5-키워드-추측">이전 글</a>을 참고해 주세요. 덕분에 Gemini API 대회에 출품할 수 있었는데, 서비스를 응원해 주시고 싶다면 <a href="https://ai.google.dev/competition/projects/trouble-painter-drawing-mafia-game" target="_blank" rel="external nofollow noopener noreferrer">링크</a>에서 투표 부탁드립니다 🫶</p>
+<h2 id="Flavor-amp-Env"><a href="#Flavor-amp-Env" class="headerlink" title="Flavor &amp; Env"></a>Flavor &amp; Env</h2><p><a href="https://pub.dev/packages/flutter_flavorizr" target="_blank" rel="external nofollow noopener noreferrer">flutter_flavorizr</a> 패키지를 이용하여 <strong>개발 환경(DEV)</strong>과 <strong>배포 환경(PROD)</strong>을 나누어 운영하였으며, Firebase의 경우 한 프로젝트에서 <strong>Remote Config</strong> 환경 분리가 불가능하므로 프로젝트를 두 개로 분리하여 진행했습니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/trouble-painter/flavor.png" title="각 환경별 앱이 설치된 모습" data-caption="각 환경별 앱이 설치된 모습" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/flavor.png" style="width:100%;height:auto;max-width:400px;" alt="각 환경별 앱이 설치된 모습"></a><span class="caption">각 환경별 앱이 설치된 모습</span></div>
+
+<p>또한 환경에 따라 다르게 적용되어야 하는 파일들은 별도로 분리하여 관리하였습니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.env</span><br><span class="line">├─ dev</span><br><span class="line">│  ├─ .env</span><br><span class="line">│  ├─ firebase_options.dart</span><br><span class="line">│  ├─ google-services.json</span><br><span class="line">│  └─ GoogleService-Info.plist</span><br><span class="line">├─ prod</span><br><span class="line">│  ├─ .env</span><br><span class="line">│  ├─ firebase_options.dart</span><br><span class="line">│  ├─ google-services.json</span><br><span class="line">│  └─ GoogleService-Info.plist</span><br><span class="line">└─ flavorizr.yaml</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="아키텍처-1"><a href="#아키텍처-1" class="headerlink" title="아키텍처"></a>아키텍처</h2><p>이번 프로젝트는 Riverpod 기반의 <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel" target="_blank" rel="external nofollow noopener noreferrer">MVVM</a>과 <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="external nofollow noopener noreferrer">Clean Architecture</a>를 사용한 형태로 설계하였으며, 폴더 구조는 <a href="https://codewithandrea.com/articles/flutter-project-structure" target="_blank" rel="external nofollow noopener noreferrer">Feature First</a> 구조에서 <code>Presentation</code> 폴더를 <code>app</code> 폴더로 분리하여 구현하였습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/architecture.png" title="Architecture & Structure" data-caption="Architecture & Structure" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/architecture.png" alt="Architecture & Structure"></a><span class="caption">Architecture & Structure</span></div>
+
+<p>팀에서 Flutter 파트는 완성된 디자인과 백엔드 기능을 조합하는 역할을 맡습니다. 즉, <strong>디자인과 백엔드 작업에 의존성이 있어 혼자 열심히 달릴 수 없는 포지션</strong>입니다.</p>
+<p>안그래도 중간에 아이디어를 변경하면서 시간이 부족했기에, 의존성 문제로 작업을 못하는 상황이 오더라도 어떻게든 할 수 있는 일을 진행하여 여유 시간을 확보할 필요가 있었습니다.</p>
+<p>Rober C.Martin의 Clean Architecture에는 다음과 같은 내용이 나옵니다.</p>
+<blockquote>
+<p><strong>Clean Architecture - Robert C.Martin</strong><br>“아키텍트는 정책을 핵심적인 요소로 식별하고 세부사항을 정책과 무관하게 만들어 세부사항의 결정을 미루거나 연기하도록 한다.”</p>
+</blockquote>
+<p>이 내용을 조금 다르게 바라보면 <strong>“세부사항이 결정되지 않아도 시스템의 핵심적인 요소를 만들 수 있다.”</strong>로 이해할 수 있으며 이번 프로젝트에선 개발 단계에서 부터 아키텍처의 의존성 제어 이점을 활용해 <strong>초반에는 Wireframe을 기반으로 앱의 기능을 구현하였고</strong>, 디자인이 나온 뒤에는 <strong>UI 테스트 모드용 ViewModel을 전달하여 원하는 게임 화면을 볼 수 있는 환경을 구성한 뒤 수월하게 작업을 진행</strong>하였습니다.</p>
+<br>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/ui-test-mode.png" title="MVVM 아키텍처로 구현되어 있기에, 앱의 동작을 손쉽게 바꿀 수 있습니다." data-caption="MVVM 아키텍처로 구현되어 있기에, 앱의 동작을 손쉽게 바꿀 수 있습니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/ui-test-mode.png" alt="MVVM 아키텍처로 구현되어 있기에, 앱의 동작을 손쉽게 바꿀 수 있습니다."></a><span class="caption">MVVM 아키텍처로 구현되어 있기에, 앱의 동작을 손쉽게 바꿀 수 있습니다.</span></div>
+
+<p><strong>백엔드 연동 코드는 Data 레이어에 격리하였고, 상호작용하는데 필요한 데이터는 Model 클래스로 구현한 뒤, 상위 레이어로 전달시 Entity 클래스로 변환하여 기존 로직을 그대로 사용할 수 있었습니다.</strong></p>
+<br>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/model-to-entity.png" title="Model to Entity" data-caption="Model to Entity" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/model-to-entity.png" alt="Model to Entity"></a><span class="caption">Model to Entity</span></div>
+
+<p>이와 같이 서버 의존성을 데이터 레이어에 격리하였기에, <strong>향후 서버를 새롭게 만들어도 기존 도메인 레이어의 로직들은 그대로 재활용 할 수 있습니다.</strong></p>
+<h2 id="Riverpod"><a href="#Riverpod" class="headerlink" title="Riverpod"></a>Riverpod</h2><p><a href="https://riverpod.dev/" target="_blank" rel="external nofollow noopener noreferrer">Riverpod</a>을 <strong>상태 관리</strong>, <strong>MVVM</strong> 그리고 <strong>의존성 주입</strong> 용도로 사용하였는데, Code Generator를 사용하지 않고 직접 변형하여 사용했습니다.</p>
+<p><strong>Presentation 레이어</strong>에선 <code>BaseView</code>와 <code>BaseViewModel</code>을 만들어 내부적으로 Provider를 생성하고, Generic 타입을 자동으로 추론하도록 구현하여 상용구 코드를 많이 줄일 수 있었습니다.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// <span class="markdown">전역 변수를 만들 필요가 없습니다.</span></span></span><br><span class="line"><span class="comment">/// <span class="markdown">프로바이더 타입을 명시할 필요가 없습니다.</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestPageModel</span> <span class="keyword">extends</span> <span class="title">BaseViewModel</span>&lt;<span class="title">int</span>&gt; </span>&#123;</span><br><span class="line">  TestPageModel(<span class="keyword">super</span>.buildState);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TextPage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> TextPage(&#123;<span class="keyword">super</span>.key&#125;);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> BaseView(</span><br><span class="line">      viewModel: TestPageModel.<span class="keyword">new</span>,</span><br><span class="line">      state: (ref, prevState) =&gt; <span class="number">0</span>,</span><br><span class="line">      builder: (ref, viewModel, state) =&gt; <span class="keyword">const</span> Scaffold(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Domain &amp; Data 레이어</strong>에선 주로 <strong>의존성 주입(Dependency Injection)</strong> 도구로 활용하였는데, Provider를 전역 변수에 할당하지 않고 <strong>클래스 내부에 <code>static</code>으로 캡슐화하여, 전역 변수를 줄이고 사용 편의성</strong>을 높혔습니다.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodosNotifier</span> <span class="keyword">extends</span> <span class="title">Notifier</span>&lt;<span class="title">List</span>&lt;<span class="title">Todo</span>&gt;&gt; </span>&#123;</span><br><span class="line">  <span class="comment">/// <span class="markdown">ref.read(TodosNotifier.$) 형태로 접근</span></span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> $ = NotifierProvider&lt;TodosNotifier, <span class="built_in">List</span>&lt;Todo&gt;&gt;(() &#123;</span><br><span class="line">    <span class="keyword">return</span> TodosNotifier();</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">List</span>&lt;Todo&gt; build() &#123;</span><br><span class="line">    <span class="keyword">return</span> [];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="디자인-커뮤니케이션"><a href="#디자인-커뮤니케이션" class="headerlink" title="디자인 커뮤니케이션"></a>디자인 커뮤니케이션</h2><p><strong>Trouble Painter</strong>는 최소 3인 이상이 모여야 게임을 실행할 수 있고, 역할에 따라 볼 수 있는 화면이 다릅니다. 따라서 디자이너 분들이 언제든지 원하는 화면을 보고 피드백을 주실 수 있도록 <strong>UI 테스트 모드</strong>를 만들어 제공하였습니다.<br><br></p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="UI 테스트 모드 영상">
+<source src="/post/trouble-painter/ui-test-mode.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">UI 테스트 모드 영상</span>
+</div>
+
+<p>또한 모바일 앱 서비스는 웹과 다르게 컴포넌트의 크기를 확인하기가 쉽지 않기 때문에, 앱의 <strong>개발자 메뉴</strong>에 <strong>컴포넌트 페이지를 만들어 컴포넌트의 크기나 애니메이션 동작을 볼 수 있도록 제공</strong>하였습니다.<br><br></p>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/component-preview.png" title="컴포넌트 미리보기" data-caption="컴포넌트 미리보기" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/component-preview.png" alt="컴포넌트 미리보기"></a><span class="caption">컴포넌트 미리보기</span></div>
+
+<h2 id="웹소켓-설계"><a href="#웹소켓-설계" class="headerlink" title="웹소켓 설계"></a>웹소켓 설계</h2><p>실시간 통신은 <strong>웹소켓 기반으로 별도 프로토콜을 만들어 구현</strong>하였으며, HTTP 기반 API 보다 설계시 <strong>백엔드 팀과 긴밀한 커뮤니케이션이 필요</strong>했습니다.</p>
+<p>구현하면서 배운 <strong>웹소켓과 HTTP 기반 API와 차이점</strong>은 다음과 같습니다.</p>
+<ol>
+<li><strong>상태가 존재하므로 도중에 재접속시 동기화 과정이 필요</strong></li>
+<li><strong>라우팅이 서버측 브로드캐스트에 의존하므로 화면 추가시 서버측과 논의가 필요</strong></li>
+<li><strong>요청과 응답이 1대1이 아니라 문서화 방식이 다름</strong></li>
+</ol>
+<p><strong>네트워크가 불안정한 모바일에서 실시간으로 진행되는 게임이므로 재접속 기능은 반드시 구현해야하는 필수 기능</strong>이었으며, <strong>재접속하는 시점의 서버측 상태 스냅샷을 전달받아 클라이언트에서 싱크를 맞춘 뒤 개별 브로드캐스트를 수신하는 방식으로 구현</strong>하였습니다.</p>
+<p>원활한 커뮤니케이션을 위해 <strong>각 화면에서 필요한 상태와 라우팅 화면 전환 시점등을 Figma로 정리</strong>하여 소통하였습니다.<br><br></p>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/socket.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/socket.png" alt></a></div>
+
+<p>HTTP 기반의 API는 Swagger로 문서화를 할 수 있었지만, 웹소켓은 요청과 응답이 1대1이 아니므로 요청과 응답을 별도로 구분하여 Notion에 정리하여 커뮤니케이션하였습니다.<br><br></p>
+<div class="figure " style><a class="fancybox" href="/post/trouble-painter/websocket-doc.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/trouble-painter/websocket-doc.png" alt></a></div>
+
+<h2 id="애니메이션-컨트롤"><a href="#애니메이션-컨트롤" class="headerlink" title="애니메이션 컨트롤"></a>애니메이션 컨트롤</h2><p><strong>게임 시작시 자신의 차례와 라운드를 알려주는 다이얼로그 애니메이션을 구현</strong>해야 했습니다. 애니메이션 스팩은 <a href="https://cloud.protopie.io/p/bb0ed2d8c6e84199d010881a/r/80f483af" target="_blank" rel="external nofollow noopener noreferrer">Protopie</a>로 전달 받았으며, 정리하면 다음과 같습니다.</p>
+<ol>
+<li><strong>다이얼로그 Fade In</strong></li>
+<li><strong>3초 카운트 다운</strong></li>
+<li><strong>카운터 Fade Out</strong></li>
+<li><strong>라운드 Translate</strong></li>
+<li><strong>다이얼로그 Fade Out</strong></li>
+</ol>
+<br>
+
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Overlay로 구현한 라운드 애니메이션">
+<source src="/post/trouble-painter/round-anim.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Overlay로 구현한 라운드 애니메이션</span>
+</div>
+
+<p><strong>문제는 애니메이션이 어느 정도 재생된 시점에서 유저가 난입하는 경우, 다른 유저와 동일한 시점부터 애니메이션이 실행되어 함께 종료되어야 합니다.</strong> 그렇지 않은 경우, 드로잉 타이머가 줄어드는데 팝업이 화면을 가려서 그림을 그릴 수 없는 불상사가 발생하게 됩니다.</p>
+<p>이 문제를 해결하기 위해 <strong>각각의 애니메이션들을 하나의 <code>AnimationController</code>로 제어할 수 있도록 구현한 뒤, 난입 시점에 맞추어 서버측 애니메이션 진행 사항을 계산하여 실행하도록 구현</strong>하였습니다. 자세한 방법은 <a href="https://docs.flutter.dev/ui/animations/staggered-animations" target="_blank" rel="external nofollow noopener noreferrer">공식문서</a>와 <a href="https://github.com/trouble-painter/app/blob/main/lib/app/pages/game/drawing/round/game_drawing_round.dart" target="_blank" rel="external nofollow noopener noreferrer">코드</a>를 참고해 주세요.</p>
+<h2 id="성능-최적화"><a href="#성능-최적화" class="headerlink" title="성능 최적화"></a>성능 최적화</h2><p>드로잉 화면에선 특정 유저가 그리는 그림이 실시간으로 모든 플레이어들에게 브로드캐스트됩니다. 이 과정에서 <strong>유저들이 그린 그림이 많아지는 경우 점점 더 많은 드로잉 데이터를 실시간으로 브로드캐스트해야 하므로 성능 문제가 우려되어 다음과 세 가지 방법을 도입하여 최적화를 진행했습니다.</strong></p>
+<ol>
+<li><strong>현재 턴의 드로잉 데이터만 실시간 브로드캐스트하고, 턴이 끝날 때 이전 턴 드로잉 데이터와 합치도록 구현</strong></li>
+<li><strong>스로틀링(Throttle)을 구현하여 드로잉 데이터 및 브로드캐스트 빈도 줄이기</strong></li>
+<li><strong><a href="https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm" target="_blank" rel="external nofollow noopener noreferrer">Ramer–Douglas–Peucker 알고리즘</a>을 적용하여 더 적은 점의 개수를 가진 선으로 최적화</strong></li>
+</ol>
+<p>스로틀링과 Ramer-Douglas-Peucker 알고리즘의 epsilon factor는 Remote Config에서 컨트롤할 수 있도록 구현하였습니다.</p>
+<h1 id="플레이-영상"><a href="#플레이-영상" class="headerlink" title="플레이 영상"></a>플레이 영상</h1><iframe width="100%" height="500" src="https://www.youtube.com/embed/2iwoWCBdHfc?cc_load_policy=1&mute=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>이번 프로젝트에선 언젠간 시도해 보고 싶었던 <strong>게임 만들기</strong>와 <strong>드로잉 기능 활용하기</strong>를 이번 프로젝트에서 모두 경험해 볼 수 있었고, 또한 <strong>아키텍처에 대한 실증적 경험</strong>도 할 수 있어서 즐거웠습니다. <strong>웹소켓은 쉽지 않았지만 더 다양하게 활용해 보고 싶은 호기심을 자극하는 매력적인 기술</strong>인 것 같습니다.</p>
+<p>좋은 팀원들과 YAPP 24기를 잘 마무리할 수 있어서 좋았고, 다음번엔 더 재미있는 프로젝트로 찾아뵙겠습니다 :)</p>
+<blockquote>
+<p><a href="/post/trouble-painter-01/">1부. Trouble Painter 드로잉 마피아 게임</a><br>✔︎ 2부. Flutter로 실시간 드로잉 게임 만들기</p>
+</blockquote>
+<blockquote>
+<p>이번 프로젝트는 오픈 소스로 진행하였으며 아래 Github 링크에서 확인하실 수 있습니다.<br>👉 Flutter : <a href="https://github.com/trouble-painter/app" target="_blank" rel="external nofollow noopener noreferrer">링크</a><br>👉 Backend : <a href="https://github.com/YAPP-Github/24th-App-Team-2-BE" target="_blank" rel="external nofollow noopener noreferrer">링크</a></p>
+</blockquote>
+<!-- > Trouble Painter를 플레이해 보고 싶으신 분은 아래 링크에서 다운받아 주세요 🫶
+👉 Android & iOS : <a href="https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install" target="_blank" rel="noopener">다운로드 링크</a> -->
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">태그</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/tags/Project/" rel="tag">Project</a> <a class="tag tag--primary tag--small t-link" href="/tags/Trouble-Painter/" rel="tag">Trouble Painter</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/trouble-painter-01/" data-tooltip="1부. Trouble Painter - 드로잉 마피아 게임" aria-label="이전: 1부. Trouble Painter - 드로잉 마피아 게임">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/worcation-sokcho/" data-tooltip="속초 워케이션 후기" aria-label="다음: 속초 워케이션 후기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/trouble-painter-02/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/trouble-painter-02/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/trouble-painter-01/" data-tooltip="1부. Trouble Painter - 드로잉 마피아 게임" aria-label="이전: 1부. Trouble Painter - 드로잉 마피아 게임">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/worcation-sokcho/" data-tooltip="속초 워케이션 후기" aria-label="다음: 속초 워케이션 후기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/trouble-painter-02/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/trouble-painter-02/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/trouble-painter-02/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/trouble-painter-02/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-fydcx2lyr7ndxsamrdsov38ymqbr3zoihxcwqjt19ahs2hw2vsroxvj0pqei.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

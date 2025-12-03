@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>오늘 하루를 그려줘 - AI 그림 일기 - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/post/draw-my-today/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.👉 English Version\n\n오늘 하루를 그려줘 - AI 그림 일기일상을 예술적으로 기록하는 AI 기반 감정 일기 앱👉 Android : 링크👉 iOS : 링크\n\n\n오늘 하루를 그려줘 - AI 그림 일기는 Prography 8기에서 만난 5명의 팀원들과 6개월간 개발하였으며, 사용자가 입력한 감정과 이야기를 토대로 AI가 개성 넘치는 그림 일기를 생성해주는 서비스입니다.\nSNS에서 자주 보이는 날이 오기를.. 🙏\n\n기술 스택Application Architecture\n\n상태 관리는 Cubit을 활용하였으며, 이미지의 평균 색상을 추출하여 배경으로 사용하는 등의 연산이 많이 필요한 작업들은 Repository에 Cache Layer를 추가하여 소중한 휴대폰의 배터리를 아끼도록 구현하였습니다.\nBackend Architecture\n\n또한 코드 리뷰와 테스트 코드로 코드 품질도 관리하고 있으며, 전체 코드는 오픈 소스로 운영되고 있기에 링크에서 진행사항을 확인할 수 있습니다.\n프롬프트 엔지니어링은 생각보다 매웠다\n\n\n생성형 AI는 한 번 이상한 응답을 하면 서비스에 주는 타격이 크기 때문에, 프롬프트 엔지니어링의 많은 시간과 노력이 AI를 통제하는데 들어갑니다.\n\n초기에 이용하던 DALLE는 Negative Prompt를 지원하지 않기 때문에 Stable Diffusion이나 Karlo를 알아보게 되었고, 현재는 일정 사용량 무료로 쓸 수 있으며 Negative Prompt 및 매개 변수 튜닝까지 가능한 Karlo로 서비스하고 있습니다. 참고로 Karlo의 Prompt Engineering은 karlo.ai 사이트에서 손쉽게 테스트할 수 있습니다.\n향후에는 다양한 화풍과 등장 인물을 커스텀 할 수 있도록 구현할 예정이며, Karlo에선 NSFW(Not Safe For Work, 폭력적이거나 선정적임) 지표를 정량적으로 반환해 주는데 통제 변수 뿐만 아니라 목표 변수까지 정량적 지표로 수집할 수 있는 시스템을 구축하면 더욱 양질의 이미지를 생성할 수 있는 프롬프트 엔지니어링을 데이터 기반으로 관리할 수 있을거라 생각됩니다.\n\n2024년 9월 30일부로 Karlo API 제공이 종료되어 지금은 Stable Diffusion으로 서비스하고 있습니다.\n\nDemo\n\n\nYour browser doesn't support HTML5 Video :/\n시연 영상\n\n\n마무리이번 프로젝트에서 프롬프트 엔지니어링에서 우열곡절이 많았지만 붓 터치감이 느껴지는 화풍으로 이미지를 일관성 있게 생성하는데 성공할 수 있었습니다.\n","dateCreated":"2023-11-20T14:23:18+09:00","dateModified":"2025-04-30T19:54:58+09:00","datePublished":"2023-11-20T14:23:18+09:00","description":"“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.👉 English Version","headline":"오늘 하루를 그려줘 - AI 그림 일기","image":["logo.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/draw-my-today/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/draw-my-today/","keywords":"Project, 오늘 하루를 그려줘 - AI 그림 일기","thumbnailUrl":"logo.png"}</script>
+    <meta name="description" content="“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.👉 English Version">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="오늘 하루를 그려줘 - AI 그림 일기">
+<meta property="og:url" content="https://blog.devstory.co.kr/post/draw-my-today/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.👉 English Version">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://blog.devstory.co.kr/post/draw-my-today/logo.png">
+<meta property="article:published_time" content="2023-11-20T05:23:18.000Z">
+<meta property="article:modified_time" content="2025-04-30T10:54:58.091Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Project">
+<meta property="article:tag" content="오늘 하루를 그려줘 - AI 그림 일기">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.devstory.co.kr/post/draw-my-today/logo.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-q2rdk1cybwoxo4yajy2m45gicrehcvcblucs91up9vjbijk9mupjrtjv7x57.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
+        
+        
+            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about" aria-label="저자에 대해 더 알아보기">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/" title="홈">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">홈</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="태그">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">깃허브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">프로젝트</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">강의</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            오늘 하루를 그려줘 - AI 그림 일기
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2023-11-20T14:23:18+09:00">
+	
+		    2023/11/20
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>목차
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#오늘-하루를-그려줘-AI-그림-일기"><span class="nero-toc-text">오늘 하루를 그려줘 - AI 그림 일기</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#기술-스택"><span class="nero-toc-text">기술 스택</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Flutter"><span class="nero-toc-text">Flutter</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Backend"><span class="nero-toc-text">Backend</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Prompt-Engineering"><span class="nero-toc-text">Prompt Engineering</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Demo"><span class="nero-toc-text">Demo</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마무리"><span class="nero-toc-text">마무리</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.<br><a href="/en/post/draw-my-today/">👉 English Version</a><br><a id="more"></a></p>
+<hr>
+<h1 id="오늘-하루를-그려줘-AI-그림-일기"><a href="#오늘-하루를-그려줘-AI-그림-일기" class="headerlink" title="오늘 하루를 그려줘 - AI 그림 일기"></a>오늘 하루를 그려줘 - AI 그림 일기</h1><blockquote><p>일상을 예술적으로 기록하는 AI 기반 감정 일기 앱<br>👉 Android : <a href="https://bit.ly/49yvaGy" target="_blank" rel="external nofollow noopener noreferrer">링크</a><br>👉 iOS : <a href="https://apple.co/44RXYH0" target="_blank" rel="external nofollow noopener noreferrer">링크</a></p>
+</blockquote>
+
+<p><strong>오늘 하루를 그려줘 - AI 그림 일기</strong>는 Prography 8기에서 만난 5명의 팀원들과 6개월간 개발하였으며, 사용자가 입력한 <strong>감정과 이야기를 토대로 AI가 개성 넘치는 그림 일기를 생성</strong>해주는 서비스입니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/draw-my-today/service-flow.png" title="원 페이지 원 테스크 형태로 부담 없이 사용할 수 있도록 설계하였습니다." data-caption="원 페이지 원 테스크 형태로 부담 없이 사용할 수 있도록 설계하였습니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/draw-my-today/service-flow.png" alt="원 페이지 원 테스크 형태로 부담 없이 사용할 수 있도록 설계하였습니다."></a><span class="caption">원 페이지 원 테스크 형태로 부담 없이 사용할 수 있도록 설계하였습니다.</span></div>
+
+<p>매일의 감정과 경험이 색감과 이미지로 표현되며 이를 매력적인 <strong>무드 트래커</strong>로도 활용할 수 있습니다. 사용자는 이미지를 원하는 대로 재생성할 수 있으며, 마음에 드는 이미지를 SNS에 게시하여 공유할 수 있습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/draw-my-today/emotion-share.png" title="SNS에서 자주 보이는 날이 오기를.. 🙏" data-caption="SNS에서 자주 보이는 날이 오기를.. 🙏" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/draw-my-today/emotion-share.png" alt="SNS에서 자주 보이는 날이 오기를.. 🙏"></a><span class="caption">SNS에서 자주 보이는 날이 오기를.. 🙏</span></div>
+
+<h1 id="기술-스택"><a href="#기술-스택" class="headerlink" title="기술 스택"></a>기술 스택</h1><div class="figure " style><a class="fancybox" href="/post/draw-my-today/stack.png" title="Frontend & Backend & AI 기술 스택" data-caption="Frontend & Backend & AI 기술 스택" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/draw-my-today/stack.png" alt="Frontend & Backend & AI 기술 스택"></a><span class="caption">Frontend & Backend & AI 기술 스택</span></div>
+
+<h1 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h1><p>백엔드 파트에선 Apple과 Google 소셜 로그인을 먼저 구축하고 있었기에 백엔드 API가 나오기 전까진 Firebase 기반으로 <strong>프롬프트 엔지니어링</strong>을 진행하였습니다. 향후 Firebase에서 백엔드 API로 Data Access 로직을 손쉽게 교체할 수 있도록 <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="external nofollow noopener noreferrer">Clean Architecture</a>를 도입하여 구조를 설계하였습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/draw-my-today/app-architecture.png" title="Application Architecture" data-caption="Application Architecture" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/draw-my-today/app-architecture.png" alt="Application Architecture"></a><span class="caption">Application Architecture</span></div>
+
+<p>상태 관리는 <strong>Cubit</strong>을 활용하였으며, 이미지의 평균 색상을 추출하여 배경으로 사용하는 등의 연산이 많이 필요한 작업들은 Repository에 Cache Layer를 추가하여 소중한 휴대폰의 배터리를 아끼도록 구현하였습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/draw-my-today/diaries.png" title="이미지로 부터 추출한 색상을 배경으로 사용하여 몰입감을 높였습니다." data-caption="이미지로 부터 추출한 색상을 배경으로 사용하여 몰입감을 높였습니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/draw-my-today/diaries.png" alt="이미지로 부터 추출한 색상을 배경으로 사용하여 몰입감을 높였습니다."></a><span class="caption">이미지로 부터 추출한 색상을 배경으로 사용하여 몰입감을 높였습니다.</span></div>
+
+<p>또한 애니메이션과 UX 개선 작업을 통해 서비스의 완성도를 높일 수 있었습니다.<br><br></p>
+<div class="nero-grid">
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="온보딩">
+<source src="/post/draw-my-today/onboarding.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">온보딩</span>
+</div></div>
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="일기 생성">
+<source src="/post/draw-my-today/diary-creating.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">일기 생성</span>
+</div></div>
+  <div><div class="figure " style>
+<video class="fig-video" muted controls alt="일기 상세">
+<source src="/post/draw-my-today/diary-detail.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">일기 상세</span>
+</div></div>
+</div>
+
+<p><strong>온보딩 화면</strong>은 총 세 페이지로 이루어져 있으며 <code>PageView</code>를 이용하여 각 페이지의 <code>Opacity</code>를 조절하였고, 모든 항목들은 화면에 나타날 때 <code>Transition</code>과 <code>Opacity</code>를 순차적으로 적용하여 붓으로 터치하듯 부드럽게 나타나도록 구현하였습니다.</p>
+<p><strong>일기 생성</strong> 화면에선 이미지를 생성하는데 6~8초 가량 시간이 소요되므로 유저가 중간이 이탈하지 않도록 Lottie 애니메이션과 사용자 입력값에 기반한 문구로 로딩 화면을 구현하였습니다.</p>
+<p><strong>일기 상세</strong> 화면에 처음 진입하는 경우 이미지 평가 바텀시트가 나타나는데, 크기가 작은 디바이스에서 이미지가 바텀 시트에 가려지지 않도록 컨텐츠를 스크롤하였습니다. 또한 좌우로 스와이프하여 다른 날짜의 일기로 손쉽게 이동할 수 있도록 구현하였는데, 월 단위로 일기 목록 API가 <code>pagination</code> 처리 되어 있기 때문에 스와이프시 이전 또는 다음 달 일기를 불러올 수 있도록 동적으로 <code>PageView</code>를 생성하도록 구현해 주었습니다.</p>
+<h1 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h1><p>백엔드 팀은 서비스 보안을 고려하여 모든 일기를 <a href="https://ko.wikipedia.org/wiki/%EA%B3%A0%EA%B8%89_%EC%95%94%ED%98%B8%ED%99%94_%ED%91%9C%EC%A4%80" target="_blank" rel="external nofollow noopener noreferrer">AES</a>로 암호화하여 저장하고 있으며, 모든 이미지들을 제한된 시간에만 접근할 수 있도록 Presigned URL 형태로 제공하고 있습니다. 그리고 안정적인 서비스를 위해 Grafana 기반 모니터링 시스템을 구축하였습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/draw-my-today/backend-architecture.png" title="Backend Architecture" data-caption="Backend Architecture" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/draw-my-today/backend-architecture.png" alt="Backend Architecture"></a><span class="caption">Backend Architecture</span></div>
+
+<p>또한 코드 리뷰와 테스트 코드로 코드 품질도 관리하고 있으며, 전체 코드는 오픈 소스로 운영되고 있기에 <a href="https://github.com/tipi-tapi/ai-paint-today-BE" target="_blank" rel="external nofollow noopener noreferrer">링크</a>에서 진행사항을 확인할 수 있습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/draw-my-today/backend-review.png" title="국밥 같이 든든한 백엔드팀 💪" data-caption="국밥 같이 든든한 백엔드팀 💪" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/draw-my-today/backend-review.png" alt="국밥 같이 든든한 백엔드팀 💪"></a><span class="caption">국밥 같이 든든한 백엔드팀 💪</span></div>
+
+<h1 id="Prompt-Engineering"><a href="#Prompt-Engineering" class="headerlink" title="Prompt Engineering"></a>Prompt Engineering</h1><blockquote>
+<p>프롬프트를 개선하려면, <strong>달성하고자 하는 명확한 목표를 정해야 합니다.</strong> 명확한 목표가 없다면 개선이 되고 있는지 아닌지 분별할 수가 없습니다.</p>
+</blockquote>
+<p>이번 프로젝트에선 <strong>유저가 선택한 감정이 느껴지는 이미지를 만드는 것을 1차 목표</strong>로 선정하였습니다. <a href="https://labs.openai.com/" target="_blank" rel="external nofollow noopener noreferrer">DALLE 웹사이트</a>에서 원하는 결과를 얻을 수 있는 프롬프트를 찾았지만, DALLE API에선 하위 모델을 API로 제공하는지 동일한 프롬프트를 사용해도 동일한 결과가 나오지 않았습니다. 😇<br>그래서 앱 상에 프롬프트를 테스트할 수 있는 환경을 구축하였고, 이를 통해 API 모델에서 잘 작동하는 프롬프트를 찾을 수 있었습니다.</p>
+<p>이후 <strong>일기 내용까지 맥락으로 그림에 반영하는 것을 2차 목표</strong>로 삼았는데, 자연어에 해당하는 일기는 기존의 프로그래밍 방식으로 처리하기에는 예외가 너무나 많았습니다. 그래서 <a href="https://chat.openai.com/" target="_blank" rel="external nofollow noopener noreferrer">ChatGPT</a>를 도입하여 일기를 프롬프트로 변환하도록 튜닝하였고 이를 통해 2차 목표까지 달성할 수 있습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/draw-my-today/prompt-engineering.png" title="프롬프트 엔지니어링은 생각보다 매웠다" data-caption="프롬프트 엔지니어링은 생각보다 매웠다" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/draw-my-today/prompt-engineering.png" alt="프롬프트 엔지니어링은 생각보다 매웠다"></a><span class="caption">프롬프트 엔지니어링은 생각보다 매웠다</span></div>
+
+<blockquote>
+<p>생성형 AI는 한 번 이상한 응답을 하면 서비스에 주는 타격이 크기 때문에, <strong>프롬프트 엔지니어링의 많은 시간과 노력이 AI를 통제</strong>하는데 들어갑니다.</p>
+</blockquote>
+<p>초기에 이용하던 <strong>DALLE</strong>는 <code>Negative Prompt</code>를 지원하지 않기 때문에 <strong>Stable Diffusion</strong>이나 <strong>Karlo</strong>를 알아보게 되었고, 현재는 일정 사용량 무료로 쓸 수 있으며 <code>Negative Prompt</code> 및 매개 변수 튜닝까지 가능한 <a href="https://developers.kakao.com/product/karlo" target="_blank" rel="external nofollow noopener noreferrer">Karlo</a>로 서비스하고 있습니다. 참고로 Karlo의 Prompt Engineering은 <a href="https://karlo.ai/" target="_blank" rel="external nofollow noopener noreferrer">karlo.ai</a> 사이트에서 손쉽게 테스트할 수 있습니다.</p>
+<p>향후에는 다양한 화풍과 등장 인물을 커스텀 할 수 있도록 구현할 예정이며, Karlo에선 <strong>NSFW(Not Safe For Work, 폭력적이거나 선정적임)</strong> 지표를 정량적으로 반환해 주는데 통제 변수 뿐만 아니라 목표 변수까지 정량적 지표로 수집할 수 있는 시스템을 구축하면 더욱 양질의 이미지를 생성할 수 있는 프롬프트 엔지니어링을 데이터 기반으로 관리할 수 있을거라 생각됩니다.</p>
+<blockquote>
+<p>2024년 9월 30일부로 Karlo API 제공이 종료되어 지금은 Stable Diffusion으로 서비스하고 있습니다.</p>
+</blockquote>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="시연 영상">
+<source src="/post/draw-my-today/demo.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">시연 영상</span>
+</div>
+
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>이번 프로젝트에서 프롬프트 엔지니어링에서 우열곡절이 많았지만 붓 터치감이 느껴지는 화풍으로 이미지를 일관성 있게 생성하는데 성공할 수 있었습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/draw-my-today/ai-generated-images.png" title="AI가 생성한 마음이 편안해 지는 이미지들" data-caption="AI가 생성한 마음이 편안해 지는 이미지들" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/draw-my-today/ai-generated-images.png" alt="AI가 생성한 마음이 편안해 지는 이미지들"></a><span class="caption">AI가 생성한 마음이 편안해 지는 이미지들</span></div>
+
+<p>Prography 8기로 팀원들을 만났지만 <strong>오늘 하루를 그려줘 - AI 그림일기</strong> 서비스는 계속 서비스할 예정입니다.</p>
+<blockquote><p>앱 내에 이스터에그로 게임을 숨겨뒀는데, 찾으신 분은 댓글로 알려주세요 🥚<br>👉 Android : <a href="https://play.google.com/store/apps/details?id=kr.co.devstory.draw_my_today" target="_blank" rel="external nofollow noopener noreferrer">다운로드 링크</a><br>👉 iOS : <a href="https://apple.co/44RXYH0" target="_blank" rel="external nofollow noopener noreferrer">다운로드 링크</a><br>👉 Presentation <a href="https://www.figma.com/proto/X2lFbqqjnQrMltfks85V64/%EC%98%A4%EB%8A%98-%ED%95%98%EB%A3%A8%EB%A5%BC-%EA%B7%B8%EB%A0%A4%EC%A4%98?type=design&node-id=2554-10767&t=LVZuWzd2RHHy1hY4-0&scaling=contain&page-id=2554%3A9766&starting-point-node-id=2554%3A10767&show-proto-sidebar=1" target="_blank" rel="external nofollow noopener noreferrer">링크</a></p>
+</blockquote>
+
+<blockquote><p>Backend<br>👉 Github : <a href="https://github.com/tipi-tapi/ai-paint-today-BE" target="_blank" rel="external nofollow noopener noreferrer">링크</a></p>
+</blockquote>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">태그</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/tags/Project/" rel="tag">Project</a> <a class="tag tag--primary tag--small t-link" href="/tags/%EC%98%A4%EB%8A%98-%ED%95%98%EB%A3%A8%EB%A5%BC-%EA%B7%B8%EB%A0%A4%EC%A4%98-AI-%EA%B7%B8%EB%A6%BC-%EC%9D%BC%EA%B8%B0/" rel="tag">오늘 하루를 그려줘 - AI 그림 일기</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/flutter-i18n-02/" data-tooltip="2부. Flutter 다국어 지원 - 도구 만들기" aria-label="이전: 2부. Flutter 다국어 지원 - 도구 만들기">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/prography-8th/" data-tooltip="Prography 8기 후기" aria-label="다음: Prography 8기 후기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/draw-my-today/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/draw-my-today/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/flutter-i18n-02/" data-tooltip="2부. Flutter 다국어 지원 - 도구 만들기" aria-label="이전: 2부. Flutter 다국어 지원 - 도구 만들기">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/prography-8th/" data-tooltip="Prography 8기 후기" aria-label="다음: Prography 8기 후기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/draw-my-today/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/draw-my-today/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/draw-my-today/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/draw-my-today/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-fydcx2lyr7ndxsamrdsov38ymqbr3zoihxcwqjt19ahs2hw2vsroxvj0pqei.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

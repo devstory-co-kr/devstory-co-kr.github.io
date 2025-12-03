@@ -1,0 +1,803 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>Part 2. Flutter Multilingual Support - Tool Making - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/en/post/flutter-i18n-02/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,Deep Learning,Mobile,Android,iOS,cat,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/en/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"I have created tools that can efficiently complete Flutter multilingual support.👉 한국어 버전\n\nPart 1. Flutter Multilingual Support - Ready✔︎ Part 2. Flutter Multilingual Support - Tool Making\n\n\nThe following tools were created to solve the problems encountered when supporting multilingual languages introduced in Part 1.\n\nText Balancer : Balanced text wrapping Flutter Package.\n\n  \n\n\n  \n\n\nFlutter Translator : Flutter multi-language support VSCode Extension.\n\n  \n\n\n  \n\n\nFigma Translator : Create and translate store templates Figma Plugin.\n\n  \n\n\n  \n\n\n\n\n\nText Balancer\nText Balancer is a Flutter package that automatically supports balanced line breaks.\n\n줄 바꿈 알고리즘은 링크를 참고하였습니다.\n\nIt supports variable width fonts, allows you to specify the number of lines you want, and is implemented to Word Break based on words.\n\nFlutter Translator\nFlutter Translator is a VSCode extension with the ability to translate and inspect ARB, Metadata, Changelog, and Xcode Strings files on Flutter projects.\n\n\n\nWith the Figma Translator Plugin, you can quickly create screenshots for your store in multiple languages.\nCreate Store TemplatesYou can create store templates for your desired platform by running the Create Templates command. You can specify the desired device, language, and template scale, and since the UI varies greatly depending on the text direction of the language, I have implemented creation of templates for each text direction.\n\n\n\nYour browser doesn't support HTML5 Video :/\nCreate templates for Android LTR languages(79)\n\n\nTemplates are created in the form of instances corresponding to the number of components and selected languages, so when you put a design into a component, it is reflected in the instances for each language.\n\n\n\nYour browser doesn't support HTML5 Video :/\nI like Figma 👍\n\n\n\nThe generated frame name is created as a path for each platform used when distributing Fastlane.\n123456789Android&#x2F;ko-KR&#x2F;images&#x2F;featureGraphicAndroid&#x2F;ko-KR&#x2F;images&#x2F;phoneScreenshots&#x2F;01_ko-KRAndroid&#x2F;ko-KR&#x2F;images&#x2F;sevenInchScreenshots&#x2F;01_ko-KRAndroid&#x2F;ko-KR&#x2F;images&#x2F;tenInchScreenshots&#x2F;01_ko-KRiOS&#x2F;ko&#x2F;01_APP_IPHONE_55_01iOS&#x2F;ko&#x2F;01_APP_IPHONE_65_01iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_129_01iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_3GEN_129_01\nAfter extracting the entire screenshot, you can easily add it to your Flutter project using the rsync command.\n\nAndroid : rsync -a &lt;PATH&gt;/Android/ ./android/fastlane/metadata/android/\niOS : rsync -a &lt;PATH&gt;/iOS/ ./ios/fastlane/screenshots/\n\n\n\n\nTranslate TemplatesIf you select a frame and run the Translate command, translation will be performed in the language specified in the frame name. Items that require translation exclusion can be managed by adding them to the Exclude Keywords setting, and once translated content is cached locally.\n\n\n\nYour browser doesn't support HTML5 Video :/\nTranslate to 79 languages ​​with one click 👍\n\n\nEven if a single text uses multiple text styles, it will be translated while maintaining the existing styles.\n\n\n\nYour browser doesn't support HTML5 Video :/\nA feature that was more difficult to implement than expected..🫠\n\n\nIf the text becomes long during translation, there may be issues with line breaks or deviating from the layout. Using the Auto Size option, you can reduce the font size while maintaining the number of lines. However, it will work only if the text constraints are set to Auto Height.\n\n\n\nYour browser doesn't support HTML5 Video :/\nBehavior may vary depending on layout constraints.\n\n\nFinishIt was difficult to meet various problems while supporting the Flutter app in multiple languages, but I was able to experience the VSCode extension and Figma Plugin development that I wanted to make for a long time, so I was able to proceed with it happily.\nAll of the tools are open source, so ask for your interest and use. 😁\n\nText Balancer : Balanced text wrapping Flutter Package.\n\n  \n\n\n  \n\n\nFlutter Translator : Flutter multi-language support VSCode Extension.\n\n  \n\n\n  \n\n\nFigma Translator : Create and translate store templates Figma Plugin.\n\n  \n\n\n  \n\n\n\n\n\n","dateCreated":"2024-04-29T16:37:00+09:00","dateModified":"2025-04-30T19:54:57+09:00","datePublished":"2024-04-29T16:37:00+09:00","description":"I have created tools that can efficiently complete Flutter multilingual support.👉 한국어 버전","headline":"Part 2. Flutter Multilingual Support - Tool Making","image":["https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/flutter-i18n-02/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/flutter-i18n-02/","keywords":"Flutter, I18n","thumbnailUrl":"https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default"}</script>
+    <meta name="description" content="I have created tools that can efficiently complete Flutter multilingual support.👉 한국어 버전">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Part 2. Flutter Multilingual Support - Tool Making">
+<meta property="og:url" content="https://blog.devstory.co.kr/en/post/flutter-i18n-02/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="I have created tools that can efficiently complete Flutter multilingual support.👉 한국어 버전">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default">
+<meta property="article:published_time" content="2024-04-29T07:37:00.000Z">
+<meta property="article:modified_time" content="2025-04-30T10:54:57.832Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Flutter">
+<meta property="article:tag" content="I18n">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://devstory.gallerycdn.vsassets.io/extensions/devstory/flutter-translator/2.4.8/1714230511632/Microsoft.VisualStudio.Services.Icons.Default">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/en/assets/css/style-q2rdk1cybwoxo4yajy2m45gicrehcvcblucs91up9vjbijk9mupjrtjv7x57.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/en/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /en/#about">
+        
+        
+            <img class="header-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/en/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/" title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Projects</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Lecture</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Part 2. Flutter Multilingual Support - Tool Making
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-04-29T16:37:00+09:00">
+	
+		    Apr 29, 2024
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/en/categories/Flutter/">Flutter</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>Table of Contents
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Text-Balancer"><span class="nero-toc-text">Text Balancer</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Flutter-Translator"><span class="nero-toc-text">Flutter Translator</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARB-Translation"><span class="nero-toc-text">ARB Translation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARB-Translation-Exclusion"><span class="nero-toc-text">ARB Translation Exclusion</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARB-Update-amp-Delete"><span class="nero-toc-text">ARB Update &amp; Delete</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#ARB-Translation-Check"><span class="nero-toc-text">ARB Translation Check</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Xcode-Strings-Translation"><span class="nero-toc-text">Xcode Strings Translation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Metadata-creation"><span class="nero-toc-text">Metadata creation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Metadata-Translation"><span class="nero-toc-text">Metadata Translation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Metadata-Check"><span class="nero-toc-text">Metadata Check</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Changelog-Translation"><span class="nero-toc-text">Changelog Translation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Changelog-Translation-1"><span class="nero-toc-text">Changelog Translation</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Figma-Translator"><span class="nero-toc-text">Figma Translator</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Create-Store-Templates"><span class="nero-toc-text">Create Store Templates</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Translate-Templates"><span class="nero-toc-text">Translate Templates</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Finish"><span class="nero-toc-text">Finish</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>I have created tools that can efficiently complete Flutter multilingual support.<br><a href="/post/flutter-i18n-02/">👉 한국어 버전</a><br><a id="more"></a></p>
+<blockquote>
+<p><a href="/en/post/flutter-i18n-01/">Part 1. Flutter Multilingual Support - Ready</a><br>✔︎ Part 2. Flutter Multilingual Support - Tool Making</p>
+</blockquote>
+<hr>
+<div class="alert info"><p>The following tools were created to solve the problems encountered when supporting multilingual languages introduced in <a href="/en/post/flutter-i18n-01/">Part 1</a>.</p>
+<ul>
+<li><strong>Text Balancer</strong> : Balanced text wrapping Flutter Package.<div class="nero-badge">
+<a href="https://github.com/devstory-co-kr/text-balancer" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github">
+</a>
+<a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/Flutter-Package-02569B?logo=flutter&logoColor=fff&style=flat&labelColor=02569B">
+</a>
+</div></li>
+<li><strong>Flutter Translator</strong> : Flutter multi-language support VSCode Extension.<div class="nero-badge">
+<a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github">
+</a>
+<a href="https://marketplace.visualstudio.com/items?itemName=DevStory.flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visualstudiocode&logoColor=fff&style=flat&labelColor=007ACC">
+</a>
+</div></li>
+<li><strong>Figma Translator</strong> : Create and translate store templates Figma Plugin.<div class="nero-badge">
+<a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github">
+</a>
+<a href="https://www.figma.com/community/plugin/1318492589926015701" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/Figma-Plugin-F24E1E?logo=figma&logoColor=fff&style=flat&labelColor=F24E1E">
+</a>
+</div></li>
+</ul>
+</div>
+
+<h1 id="Text-Balancer"><a href="#Text-Balancer" class="headerlink" title="Text Balancer"></a>Text Balancer</h1><blockquote>
+<p><a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">Text Balancer</a> is a Flutter package that automatically supports balanced line breaks.<br><a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Flutter-Package-02569B?logo=flutter&logoColor=fff&style=flat&labelColor=02569B" alt="flutter"></a></p>
+</blockquote>
+<div class="figure center" style><a class="fancybox" href="/en/post/flutter-i18n/text-balancer.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/flutter-i18n/text-balancer.png" alt></a></div>
+
+<p>The Text Balancer package eliminates the need to use the line break symbol, so you can <strong>solve the text line break problem</strong>.</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/flutter-i18n/text-balancer.gif" title="줄 바꿈 알고리즘은 <a href=https://xxyxyz.org/line-breaking#:~:text=j%0A%20%20%20%20return%20lines-,Dynamic%20programming,-The%20deficiency%20of>링크</a>를 참고하였습니다." data-caption="줄 바꿈 알고리즘은 <a href=https://xxyxyz.org/line-breaking#:~:text=j%0A%20%20%20%20return%20lines-,Dynamic%20programming,-The%20deficiency%20of>링크</a>를 참고하였습니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/flutter-i18n/text-balancer.gif" alt="줄 바꿈 알고리즘은 <a href=https://xxyxyz.org/line-breaking#:~:text=j%0A%20%20%20%20return%20lines-,Dynamic%20programming,-The%20deficiency%20of>링크</a>를 참고하였습니다."></a><span class="caption">줄 바꿈 알고리즘은 <a href="https://xxyxyz.org/line-breaking#:~:text=j%0A%20%20%20%20return%20lines-,Dynamic%20programming,-The%20deficiency%20of" rel="external nofollow noopener noreferrer" target="_blank">링크</a>를 참고하였습니다.</span></div>
+
+<p>It <strong>supports variable width fonts</strong>, allows you to <strong>specify the number of lines</strong> you want, and is implemented to <strong>Word Break based on words</strong>.</p>
+<hr>
+<h1 id="Flutter-Translator"><a href="#Flutter-Translator" class="headerlink" title="Flutter Translator"></a>Flutter Translator</h1><blockquote>
+<p><a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">Flutter Translator</a> is a VSCode extension with the ability to translate and inspect ARB, Metadata, Changelog, and Xcode Strings files on Flutter projects.<br><a href="https://marketplace.visualstudio.com/items?itemName=DevStory.flutter-translator" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visualstudiocode&logoColor=fff&style=flat&labelColor=007ACC" alt="VSCode Badge"></a></p>
+</blockquote>
+<div class="figure center" style><a class="fancybox" href="/en/post/flutter-i18n/flutter-translator.png" title="There is no Android Studio Plugin yet..😅" data-caption="There is no Android Studio Plugin yet..😅" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/flutter-i18n/flutter-translator.png" alt="There is no Android Studio Plugin yet..😅"></a><span class="caption">There is no Android Studio Plugin yet..😅</span></div>
+
+<p>The Flutter Translator extension makes <strong>it easy to support multiple languages ​​while maintaining developer productivity</strong>.</p>
+<h2 id="ARB-Translation"><a href="#ARB-Translation" class="headerlink" title="ARB Translation"></a>ARB Translation</h2><p>You can translate the source ARB file into another language by running the <code>ARB - Translate</code> command.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="ARB translation has become easier.">
+<source src="/en/post/flutter-i18n/flutter-translator-arb-translate.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">ARB translation has become easier.</span>
+</div>
+
+<p>Because it is implemented in batches, <strong>translation can continue even if it is interrupted</strong>.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Translated a large amount of text into Korean and Japanese.">
+<source src="/en/post/flutter-i18n/flutter-translator-bulk.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Translated a large amount of text into Korean and Japanese.</span>
+</div>
+
+<p><strong>Caching functionality</strong> is implemented to avoid re-invoking the same request.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Cache On/Off instructions are implemented.">
+<source src="/en/post/flutter-i18n/flutter-translator-cache.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Cache On/Off instructions are implemented.</span>
+</div>
+
+<p>Tracks changes to source ARB files so that <strong>only changed items are translated</strong>.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt>
+<source src="/en/post/flutter-i18n/flutter-translator-history.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+</div>
+
+<h2 id="ARB-Translation-Exclusion"><a href="#ARB-Translation-Exclusion" class="headerlink" title="ARB Translation Exclusion"></a>ARB Translation Exclusion</h2><p>Basically, parameter names enclosed in curly braces in the ARB file are implemented as translation exclusion. Otherwise, you can add exclusion text by executing the <code>Translation - Exclude</code> command.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="You can add any exclusion text you want, such as a company name or email address.">
+<source src="/en/post/flutter-i18n/flutter-translator-exclude.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">You can add any exclusion text you want, such as a company name or email address.</span>
+</div>
+
+
+<p>In the v3 version of Google Translate, you can handle translation exceptions by creating a <a href="https://cloud.google.com/translate/docs/advanced/glossary#stopwords" target="_blank" rel="external nofollow noopener noreferrer">stopwords</a>, but since the v2 translation API was used, items requiring translation exclusion were <strong>encoded</strong> as emoticons or pronouns, then translated and <strong>decoded</strong>.</p>
+<p>Since the text that survives encoding is different for each language, I translated it in several ways, then quantified the results and selected the translation with the highest score. (The number of parameters, number of parentheses, number of line breaks, and number of translation exclusion keywords were used to quantify the translation results.)</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Translation ends when a perfect score is obtained on the test items.">
+<source src="/en/post/flutter-i18n/flutter-translator-scoring.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Translation ends when a perfect score is obtained on the test items.</span>
+</div>
+
+<h2 id="ARB-Update-amp-Delete"><a href="#ARB-Update-amp-Delete" class="headerlink" title="ARB Update &amp; Delete"></a>ARB Update &amp; Delete</h2><p>You may want to change the key of the ARB file. You can easily change the keys using the <code>ARB - Change Keys</code> command. You can also delete unused keys using the <code>ARB - Delete Keys</code> command.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="You can work as if you only support one language.">
+<source src="/en/post/flutter-i18n/flutter-translator-arb-update-delete-key.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">You can work as if you only support one language.</span>
+</div>
+
+<h2 id="ARB-Translation-Check"><a href="#ARB-Translation-Check" class="headerlink" title="ARB Translation Check"></a>ARB Translation Check</h2><p>You can quickly check the following items using the <code>ARB - Check</code> command.</p>
+<ul>
+<li><strong>Whether the number of parentheses matches</strong></li>
+<li><strong>Whether the number of parameters matches</strong></li>
+<li><strong>Whether the number of line breaks matches</strong></li>
+<li><strong>Whether the parameter names matches</strong></li>
+<li><strong>Whether the untranslated item exists</strong></li>
+<li><strong>Whether the translation exclusion is applied</strong></li>
+<li><strong>Whether the HTML entities are decoded</strong> : <code>&amp;lt;</code> Likewise, it checks for the presence of undecoded <a href="https://www.w3.org/wiki/Common_HTML_entities_used_for_typography" target="_blank" rel="external nofollow noopener noreferrer">HTML entities</a>.</li>
+</ul>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Checking parameter names and translation exclusion keywords">
+<source src="/en/post/flutter-i18n/flutter-translator-arb-check.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Checking parameter names and translation exclusion keywords</span>
+</div>
+
+<p>When you select a detected item, the source ARB file is displayed on the left and the target ARB file is displayed on the right. Some problems can be solved by turning off the cache and retranslating, but in some cases, manual work is required, so I’ve implemented a feature that takes you to the Google Translate website.</p>
+<h2 id="Xcode-Strings-Translation"><a href="#Xcode-Strings-Translation" class="headerlink" title="Xcode Strings Translation"></a>Xcode Strings Translation</h2><p>Using the <code>Xcode Strings - Translate</code> command, you can translate the <code>InfoPlist.strings</code> file containing the iOS permission request text into your desired language.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Translating the InfoPlist.strings file">
+<source src="/en/post/flutter-i18n/flutter-translator-xcode-strings.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Translating the InfoPlist.strings file</span>
+</div>
+
+<h2 id="Metadata-creation"><a href="#Metadata-creation" class="headerlink" title="Metadata creation"></a>Metadata creation</h2><p>You can use the <code>Metadata - Create</code> command to create Metadata folders for languages ​​supported by each platform. <strong>LTR</strong> and <strong>RTL</strong> languages ​​are marked so you can easily select the language of the desired category.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Android & iOS LTR language metadata creation">
+<source src="/en/post/flutter-i18n/flutter-translator-metadata-create.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Android & iOS LTR language metadata creation</span>
+</div>
+
+<p>The created folder is in a format supported by fastlane’s <a href="https://docs.fastlane.tools/actions/upload_to_play_store/" target="_blank" rel="external nofollow noopener noreferrer">upload_to_play_store</a> and <a href="https://docs.fastlane.tools/actions/deliver/" target="_blank" rel="external nofollow noopener noreferrer">deliver</a> is created.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">├── android</span><br><span class="line">│    └── fastlane</span><br><span class="line">│        └── metadata</span><br><span class="line">│            └── android</span><br><span class="line">│                ├── en-US</span><br><span class="line">│                │   └── changelogs</span><br><span class="line">│                │       ├── full_description.txt</span><br><span class="line">│                │       ├── short_description.txt</span><br><span class="line">│                │       ├── title.txt</span><br><span class="line">│                │       └── video.txt</span><br><span class="line">│                └── ko-KR</span><br><span class="line">│                    └── ...</span><br><span class="line">└── ios</span><br><span class="line">    └── fastlane</span><br><span class="line">        └── metadata</span><br><span class="line">            ├── en-US</span><br><span class="line">            │   ├── description.txt</span><br><span class="line">            │   ├── keywords.txt</span><br><span class="line">            │   ├── marketing_url.txt</span><br><span class="line">            │   ├── name.txt</span><br><span class="line">            │   ├── privacy_url.txt</span><br><span class="line">            │   ├── subtitle.txt</span><br><span class="line">            │   └── support_url.txt</span><br><span class="line">            └── ko</span><br><span class="line">                └── ...</span><br></pre></td></tr></table></figure>
+
+<h2 id="Metadata-Translation"><a href="#Metadata-Translation" class="headerlink" title="Metadata Translation"></a>Metadata Translation</h2><p>You can translate metadata into another language by running the <code>Metadata - Translate</code> command.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt>
+<source src="/en/post/flutter-i18n/flutter-translator-metadata-translate.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+</div>
+
+<h2 id="Metadata-Check"><a href="#Metadata-Check" class="headerlink" title="Metadata Check"></a>Metadata Check</h2><p>You can check whether the maximum number of characters for each metadata is exceeded using the <code>Metadata - Check</code> command.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Play Store</th>
+<th>App Store</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Metadata</td>
+<td>title (30 letters)<br>short_description (80 letters)<br>full_description (4,000 letters)</td>
+<td>name (30 letters)<br>subtitle (30 letters)<br>keywords (100 letters)<br>description (4,000 letters)<br>promotional_text (170 letters)</td>
+</tr>
+</tbody></table>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Metadata character count check">
+<source src="/en/post/flutter-i18n/flutter-translator-metadata-check.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Metadata character count check</span>
+</div>
+
+<h2 id="Changelog-Translation"><a href="#Changelog-Translation" class="headerlink" title="Changelog Translation"></a>Changelog Translation</h2><p>When distributing your app, you can make changes to the Store in any supported language. For fastlane’s <a href="https://docs.fastlane.tools/actions/upload_to_play_store/" target="_blank" rel="external nofollow noopener noreferrer">upload_to_play_store</a> and <a href="https://docs.fastlane.tools/actions/deliver/" target="_blank" rel="external nofollow noopener noreferrer">deliver</a>, you can write a changelog in the following format.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">├── android</span><br><span class="line">│    └── fastlane</span><br><span class="line">│        └── metadata</span><br><span class="line">│            └── android</span><br><span class="line">│                ├── en-US</span><br><span class="line">│                │   └── changelogs</span><br><span class="line">│                │       ├── default.txt</span><br><span class="line">│                │       ├── 1.txt</span><br><span class="line">│                │       └── 2.txt</span><br><span class="line">│                └── ko-KR</span><br><span class="line">│                    └── changelogs</span><br><span class="line">│                        ├── default.txt</span><br><span class="line">│                        ├── 1.txt</span><br><span class="line">│                        └── 2.txt</span><br><span class="line">└── ios</span><br><span class="line">    └── fastlane</span><br><span class="line">        └── metadata</span><br><span class="line">            ├── en-US</span><br><span class="line">            │   └── release_notes.txt</span><br><span class="line">            └── ko</span><br><span class="line">                └── release_notes.txt</span><br></pre></td></tr></table></figure>
+<p>When you run the <code>Changelog - Create</code> command, Android creates a <code>&lt;buildNumber&gt;.txt</code> file with the build number specified in the <code>version</code> of the <code>pubspec.yaml</code> file, and iOS creates a <code>release_notes.txt</code> file.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Create changelog">
+<source src="/en/post/flutter-i18n/flutter-translator-changelog-create.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Create changelog</span>
+</div>
+
+<h2 id="Changelog-Translation-1"><a href="#Changelog-Translation-1" class="headerlink" title="Changelog Translation"></a>Changelog Translation</h2><p>You can translate the Changelog into another language by running the <code>Changelog - Translate</code> command.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Changelog translation and inspection">
+<source src="/en/post/flutter-i18n/flutter-translator-changelog-translate.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Changelog translation and inspection</span>
+</div>
+
+<h1 id="Figma-Translator"><a href="#Figma-Translator" class="headerlink" title="Figma Translator"></a>Figma Translator</h1><blockquote>
+<p><a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">Figma Translator</a> is a <strong>Figma Plugin that creates and translates store templates</strong>.<br><a href="https://www.figma.com/community/plugin/1318492589926015701" target="_blank" rel="external nofollow noopener noreferrer"><img src="https://img.shields.io/badge/Figma-Plugin-F24E1E?logo=figma&logoColor=fff&style=flat&labelColor=F24E1E" alt="Figma"></a></p>
+</blockquote>
+<div class="figure center" style><a class="fancybox" href="/en/post/flutter-i18n/figma-translator.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/flutter-i18n/figma-translator.png" alt></a></div>
+
+<p>With the Figma Translator Plugin, you can <strong>quickly create screenshots for your store in multiple languages</strong>.</p>
+<h2 id="Create-Store-Templates"><a href="#Create-Store-Templates" class="headerlink" title="Create Store Templates"></a>Create Store Templates</h2><p>You can <strong>create store templates for your desired platform</strong> by running the <code>Create Templates</code> command. <strong>You can specify the desired device, language, and template scale</strong>, and since the UI varies greatly depending on the text direction of the language, I have implemented <strong>creation of templates for each text direction</strong>.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Create templates for Android LTR languages(79)">
+<source src="/en/post/flutter-i18n/figma-translator-create-template.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Create templates for Android LTR languages(79)</span>
+</div>
+
+<p>Templates are created in the form of <a href="https://help.figma.com/hc/en-us/articles/360039150173-Create-and-insert-component-instances" target="_blank" rel="external nofollow noopener noreferrer">instances</a> corresponding to the number of <a href="https://help.figma.com/hc/en-us/articles/360038662654-Guide-to-components-in-Figma" target="_blank" rel="external nofollow noopener noreferrer">components</a> and selected languages, so when you put a design into a component, it is reflected in the instances for each language.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="I like Figma 👍">
+<source src="/en/post/flutter-i18n/figma-translator-template.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">I like Figma 👍</span>
+</div>
+
+
+<p>The generated frame name is created as a path for each platform used when distributing Fastlane.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Android&#x2F;ko-KR&#x2F;images&#x2F;featureGraphic</span><br><span class="line">Android&#x2F;ko-KR&#x2F;images&#x2F;phoneScreenshots&#x2F;01_ko-KR</span><br><span class="line">Android&#x2F;ko-KR&#x2F;images&#x2F;sevenInchScreenshots&#x2F;01_ko-KR</span><br><span class="line">Android&#x2F;ko-KR&#x2F;images&#x2F;tenInchScreenshots&#x2F;01_ko-KR</span><br><span class="line"></span><br><span class="line">iOS&#x2F;ko&#x2F;01_APP_IPHONE_55_01</span><br><span class="line">iOS&#x2F;ko&#x2F;01_APP_IPHONE_65_01</span><br><span class="line">iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_129_01</span><br><span class="line">iOS&#x2F;ko&#x2F;01_APP_IPAD_PRO_3GEN_129_01</span><br></pre></td></tr></table></figure>
+<div class="alert info"><p>After extracting the entire screenshot, you can easily add it to your Flutter project using the <a href="https://en.wikipedia.org/wiki/Rsync" target="_blank" rel="external nofollow noopener noreferrer">rsync</a> command.</p>
+<ul>
+<li>Android : <code>rsync -a &lt;PATH&gt;/Android/ ./android/fastlane/metadata/android/</code></li>
+<li>iOS : <code>rsync -a &lt;PATH&gt;/iOS/ ./ios/fastlane/screenshots/</code></li>
+</ul>
+</div>
+
+
+<h2 id="Translate-Templates"><a href="#Translate-Templates" class="headerlink" title="Translate Templates"></a>Translate Templates</h2><p>If you select a frame and run the <code>Translate</code> command, <strong>translation will be performed in the language specified in the frame name</strong>. Items that require translation exclusion can be managed by adding them to the <strong>Exclude Keywords</strong> setting, and once translated content is cached locally.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Translate to 79 languages ​​with one click 👍">
+<source src="/en/post/flutter-i18n/figma-translator-translate.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Translate to 79 languages ​​with one click 👍</span>
+</div>
+
+<p>Even if a single text uses multiple text styles, it will be translated while maintaining the existing styles.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="A feature that was more difficult to implement than expected..🫠">
+<source src="/en/post/flutter-i18n/figma-translator-style-segments.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">A feature that was more difficult to implement than expected..🫠</span>
+</div>
+
+<p>If the text becomes long during translation, there may be issues with line breaks or deviating from the layout. Using the <strong>Auto Size</strong> option, you can reduce the font size while maintaining the number of lines. However, it will work only if the text constraints are set to <code>Auto Height</code>.</p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Behavior may vary depending on layout constraints.">
+<source src="/en/post/flutter-i18n/figma-translator-auto-size.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Behavior may vary depending on layout constraints.</span>
+</div>
+
+<h1 id="Finish"><a href="#Finish" class="headerlink" title="Finish"></a>Finish</h1><p>It was difficult to meet various problems while supporting the Flutter app in multiple languages, but I was able to experience the <strong>VSCode extension</strong> and <strong>Figma Plugin development</strong> that I wanted to make for a long time, so I was able to proceed with it happily.</p>
+<div class="alert info"><p>All of the tools are open source, so ask for your interest and use. 😁</p>
+<ul>
+<li><strong>Text Balancer</strong> : Balanced text wrapping Flutter Package.<div class="nero-badge">
+<a href="https://github.com/devstory-co-kr/text-balancer" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github">
+</a>
+<a href="https://pub.dev/packages/text_balancer" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/Flutter-Package-02569B?logo=flutter&logoColor=fff&style=flat&labelColor=02569B">
+</a>
+</div></li>
+<li><strong>Flutter Translator</strong> : Flutter multi-language support VSCode Extension.<div class="nero-badge">
+<a href="https://github.com/devstory-co-kr/flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github">
+</a>
+<a href="https://marketplace.visualstudio.com/items?itemName=DevStory.flutter-translator" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/VSCode-Extension-007ACC?logo=visualstudiocode&logoColor=fff&style=flat&labelColor=007ACC">
+</a>
+</div></li>
+<li><strong>Figma Translator</strong> : Create and translate store templates Figma Plugin.<div class="nero-badge">
+<a href="https://github.com/devstory-co-kr/figma-translator" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-181717?logo=github">
+</a>
+<a href="https://www.figma.com/community/plugin/1318492589926015701" target="_blank" rel="external nofollow noopener noreferrer">
+  <img src="https://img.shields.io/badge/Figma-Plugin-F24E1E?logo=figma&logoColor=fff&style=flat&labelColor=F24E1E">
+</a>
+</div></li>
+</ul>
+</div>
+
+<div class="figure center" style><a class="fancybox" href="/en/post/flutter-i18n/multi-language.png" title="Added 72 languages for VoCat and 10 languages for Draw My Today 👍" data-caption="Added 72 languages for VoCat and 10 languages for Draw My Today 👍" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/flutter-i18n/multi-language.png" alt="Added 72 languages for VoCat and 10 languages for Draw My Today 👍"></a><span class="caption">Added 72 languages for VoCat and 10 languages for Draw My Today 👍</span></div>
+
+<p>If I get a chance in the future, I will try <strong>RTL</strong> language too :)</p>
+<blockquote>
+<p><a href="/en/post/flutter-i18n-01/">Part 1. Flutter Multilingual Support - Ready</a><br>✔︎ Part 2. Flutter Multilingual Support - Tool Making</p>
+</blockquote>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">TAGGED IN</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/en/tags/Flutter/" rel="tag">Flutter</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/I18n/" rel="tag">I18n</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/flutter-i18n-01/" data-tooltip="Part 1. Flutter Multilingual Support - Ready" aria-label="PREVIOUS: Part 1. Flutter Multilingual Support - Ready">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/draw-my-today/" data-tooltip="Draw My Today - AI Picture Diary" aria-label="NEXT: Draw My Today - AI Picture Diary">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/flutter-i18n-02/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/flutter-i18n-02/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/flutter-i18n-01/" data-tooltip="Part 1. Flutter Multilingual Support - Ready" aria-label="PREVIOUS: Part 1. Flutter Multilingual Support - Ready">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/draw-my-today/" data-tooltip="Draw My Today - AI Picture Diary" aria-label="NEXT: Draw My Today - AI Picture Diary">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/flutter-i18n-02/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/flutter-i18n-02/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/flutter-i18n-02/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/flutter-i18n-02/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/en/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/en/assets/js/script-fydcx2lyr7ndxsamrdsov38ymqbr3zoihxcwqjt19ahs2hw2vsroxvj0pqei.min.js"></script>
+
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+
+
+
+    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
+</html>

@@ -1,0 +1,824 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>1부. Flutter 다국어 지원 - 준비 - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/post/flutter-i18n-01/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Flutter 프로젝트에 72개 언어를 추가한 이야기를 공유합니다.👉 English Version\n\n✔︎ 1부. Flutter 다국어 지원 - 준비2부. Flutter 다국어 지원 - 도구 만들기\n\n\n필자는 Flutter를 이용하여 VoCat - 나만의 단어장 앱 서비스를 운영하고 있습니다. 한국어와 영어를 지원하고 있는데, 간혹 외국 유저들로부터 다른 언어를 지원해달라는 요청이 들어옵니다.\n이땐 3개월이나 걸릴 줄 몰랐지..🫠\n\n\n언어 선정먼저 지원할 언어 목록을 선정해 봅시다.\n\n\nTranslator번역기를 이용하면 적은 비용으로 많은 언어를 손쉽게 지원할 수 있으며, 이번 프로젝트에선 133개 언어를 지원하는 Google 번역 API를 사용하도록 하겠습니다.\n\n\n\n\nGoogle 번역\nDeepL\nPapago\n\n\n\n지원 언어\n133개\n34개\n16개\n\n\nText Direction\n언어는 읽는 방향에 따라 LTR과 RTL로 나눌 수 있습니다.\n\nLTR(Left To Right) : 한국어 같이 왼쪽에서 오른쪽으로 읽는 언어\nRTL(Right To Left) : 아랍어 같이 오른쪽에서 왼쪽으로 읽는 언어\n\n\nFlutter에선 Intl 패키지의 isRtlLanguage 메서드를 이용하면 특정 언어가 RTL인지 확인할 수 있으며, Google 번역에서 지원하는 언어 기준으로 RTL 언어는 10개(아랍어, 디베히어, 히브리어, 파슈토어, 페르시아어, 신디어, 우르두어, 위구르어, 이디시어, 소라니어) 입니다.\nLTR & RTL 인터페이스 - material.io\n\nMaterial &amp; Cupertino\nMaterial과 Cupertino 위젯에 내장된  텍스트들은 Flutter Localizations 패키지를 통해 현지화를 지원할 수 있습니다.\n\n보다 상세한 다국어 개발 환경 구축 방법은 Flutter 앱 개발 실전 강의를 참고해 주세요.\n\n\niOS 번역 준비String Catalog 방식\n공식 문서에 따르면 XCode 15부터 String Catalog 파일로 InfoPlist.strings 파일의 권한 메세지를 번역할 수 있습니다.\n\nXcode를 실행하고 Runner → Info → Localizations에서 언어를 추가한 뒤, Runner 폴더 밑에 String Catalog을 InfoPlist.xcstrings라는 이름으로 추가해 주세요.\n+ 버튼을 누르고 선택하시면 됩니다.\n\nInfoPlist.strings 파일을 열고 우측 Localization 섹션에서 번역을 지원할 언어를 선택해 주세요. 그러면 ios/Runner/언어.lproj 폴더 밑에 InfoPlist.strings 파일이 생성되며 해당 파일에 각 언어별 iOS 권한 요청 문구를 작성하시면 됩니다.\nfastlane auto screenshot - fastlane.\n\n기본 텍스트 줄 바꿈 - clagnut.com\n\n반면 균형 잡힌 텍스트 줄 바꿈은 보다 안정적이고 가독성도 높아지는 효과가 있기 때문에 의도적으로 특정 단어 뒤에 줄 바꿈 기호를 넣거나 특정 라인수를 유지하도록 디자인하는 경우가 있습니다.\n문제가 왜 이리 많냐고요? 저도 알고 싶지 않았어요..🫠\n\n마무리Flutter 다국어 지원에 필요한 언어를 선정하고, 기본적인 개발 준비를 완료하였습니다. 다음 2부에선 번역시 만나는 문제들을 해결하기 위해 제작한 도구들을 소개하겠습니다 :)\n\n✔︎ 1부. Flutter 다국어 지원 - 준비2부. Flutter 다국어 지원 - 도구 만들기\n\n","dateCreated":"2024-04-29T16:38:00+09:00","dateModified":"2025-04-30T19:54:58+09:00","datePublished":"2024-04-29T16:38:00+09:00","description":"Flutter 프로젝트에 72개 언어를 추가한 이야기를 공유합니다.👉 English Version","headline":"1부. Flutter 다국어 지원 - 준비","image":["https://i.ibb.co/0XtMyFz/flutter-i18n-thumb.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/flutter-i18n-01/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/flutter-i18n-01/","keywords":"Flutter, I18n","thumbnailUrl":"https://i.ibb.co/0XtMyFz/flutter-i18n-thumb.png"}</script>
+    <meta name="description" content="Flutter 프로젝트에 72개 언어를 추가한 이야기를 공유합니다.👉 English Version">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="1부. Flutter 다국어 지원 - 준비">
+<meta property="og:url" content="https://blog.devstory.co.kr/post/flutter-i18n-01/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="Flutter 프로젝트에 72개 언어를 추가한 이야기를 공유합니다.👉 English Version">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://i.ibb.co/0XtMyFz/flutter-i18n-thumb.png">
+<meta property="article:published_time" content="2024-04-29T07:38:00.000Z">
+<meta property="article:modified_time" content="2025-04-30T10:54:58.091Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Flutter">
+<meta property="article:tag" content="I18n">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.ibb.co/0XtMyFz/flutter-i18n-thumb.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-q2rdk1cybwoxo4yajy2m45gicrehcvcblucs91up9vjbijk9mupjrtjv7x57.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
+        
+        
+            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about" aria-label="저자에 대해 더 알아보기">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/" title="홈">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">홈</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="태그">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">깃허브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">프로젝트</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">강의</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            1부. Flutter 다국어 지원 - 준비
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-04-29T16:38:00+09:00">
+	
+		    2024/04/29
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Flutter/">Flutter</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>목차
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#언어-선정"><span class="nero-toc-text">언어 선정</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Translator"><span class="nero-toc-text">Translator</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Text-Direction"><span class="nero-toc-text">Text Direction</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Material-amp-Cupertino"><span class="nero-toc-text">Material &amp; Cupertino</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Package"><span class="nero-toc-text">Package</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#최종-선정-언어"><span class="nero-toc-text">최종 선정 언어</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#번역-준비"><span class="nero-toc-text">번역 준비</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Flutter-번역-준비"><span class="nero-toc-text">Flutter 번역 준비</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#iOS-번역-준비"><span class="nero-toc-text">iOS 번역 준비</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-3"><a class="nero-toc-link" href="#String-Catalog-방식"><span class="nero-toc-text">String Catalog 방식</span></a></li><li class="nero-toc-item nero-toc-level-3"><a class="nero-toc-link" href="#Strings-File-방식"><span class="nero-toc-text">Strings File 방식</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Store-번역-준비"><span class="nero-toc-text">Store 번역 준비</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#번역-시-만나는-문제"><span class="nero-toc-text">번역 시 만나는 문제</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#스크린샷-캡처"><span class="nero-toc-text">스크린샷 캡처</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#텍스트-줄-바꿈"><span class="nero-toc-text">텍스트 줄 바꿈</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#번역-예외"><span class="nero-toc-text">번역 예외</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#번역-검사"><span class="nero-toc-text">번역 검사</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#생산성-저하"><span class="nero-toc-text">생산성 저하</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마무리"><span class="nero-toc-text">마무리</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>Flutter 프로젝트에 72개 언어를 추가한 이야기를 공유합니다.<br><a href="/en/post/flutter-i18n-01/">👉 English Version</a><br><a id="more"></a></p>
+<blockquote>
+<p>✔︎ 1부. Flutter 다국어 지원 - 준비<br><a href="/post/flutter-i18n-02/">2부. Flutter 다국어 지원 - 도구 만들기</a></p>
+</blockquote>
+<hr>
+<p>필자는 Flutter를 이용하여 <a href="https://vocat.devstory.co.kr/ko" target="_blank" rel="external nofollow noopener noreferrer">VoCat - 나만의 단어장</a> 앱 서비스를 운영하고 있습니다. 한국어와 영어를 지원하고 있는데, 간혹 외국 유저들로부터 다른 언어를 지원해달라는 요청이 들어옵니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/flutter-i18n/review.png" title="별이 5개 ☺️" data-caption="별이 5개 ☺️" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/review.png" alt="별이 5개 ☺️"></a><span class="caption">별이 5개 ☺️</span></div>
+
+<p>때마침 사이드 프로젝트로 만든 <a href="post/draw-my-today/">오늘 하루를 그려줘 - AI 그림 일기</a> 팀에서도 더 많은 언어를 지원하자는 이야기가 나와 다국어 지원을 시작하게 되었습니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/humor/stay.gif" title="이땐 3개월이나 걸릴 줄 몰랐지..🫠" data-caption="이땐 3개월이나 걸릴 줄 몰랐지..🫠" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/humor/stay.gif" alt="이땐 3개월이나 걸릴 줄 몰랐지..🫠"></a><span class="caption">이땐 3개월이나 걸릴 줄 몰랐지..🫠</span></div>
+
+<hr>
+<h1 id="언어-선정"><a href="#언어-선정" class="headerlink" title="언어 선정"></a>언어 선정</h1><div class="alert info"><p>먼저 지원할 언어 목록을 선정해 봅시다.</p>
+</div>
+
+<h2 id="Translator"><a href="#Translator" class="headerlink" title="Translator"></a>Translator</h2><p>번역기를 이용하면 적은 비용으로 많은 언어를 손쉽게 지원할 수 있으며, 이번 프로젝트에선 <a href="https://cloud.google.com/translate/docs/languages?hl=ko" target="_blank" rel="external nofollow noopener noreferrer">133개 언어</a>를 지원하는 Google 번역 API를 사용하도록 하겠습니다.</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"><a href="https://cloud.google.com/translate" target="_blank" rel="external nofollow noopener noreferrer">Google 번역</a></th>
+<th align="center"><a href="https://www.deepl.com/ko/pro-api" target="_blank" rel="external nofollow noopener noreferrer">DeepL</a></th>
+<th align="center"><a href="https://www.ncloud.com/product/aiService/papagoTranslation" target="_blank" rel="external nofollow noopener noreferrer">Papago</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">지원 언어</td>
+<td align="center">133개</td>
+<td align="center">34개</td>
+<td align="center">16개</td>
+</tr>
+</tbody></table>
+<h2 id="Text-Direction"><a href="#Text-Direction" class="headerlink" title="Text Direction"></a>Text Direction</h2><blockquote>
+<p>언어는 읽는 방향에 따라 <strong>LTR</strong>과 <strong>RTL</strong>로 나눌 수 있습니다.</p>
+<ul>
+<li><strong>LTR(Left To Right)</strong> : <code>한국어</code> 같이 왼쪽에서 오른쪽으로 읽는 언어</li>
+<li><strong>RTL(Right To Left)</strong> : <code>아랍어</code> 같이 오른쪽에서 왼쪽으로 읽는 언어</li>
+</ul>
+</blockquote>
+<p>Flutter에선 Intl 패키지의 <a href="https://api.flutter.dev/flutter/intl/Bidi/isRtlLanguage.html" target="_blank" rel="external nofollow noopener noreferrer">isRtlLanguage</a> 메서드를 이용하면 특정 언어가 <strong>RTL</strong>인지 확인할 수 있으며, Google 번역에서 지원하는 언어 기준으로 <strong>RTL</strong> 언어는 10개(아랍어, 디베히어, 히브리어, 파슈토어, 페르시아어, 신디어, 우르두어, 위구르어, 이디시어, 소라니어) 입니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/isRtlLanguage.png" title="<b>RTL</b> 언어인 <b>Kurdish(Sonari)</b> 언어는 잘못된 값이 반환되는 것 같아 <a href=https://github.com/dart-lang/i18n/issues/827>제보</a>해 두었습니다." data-caption="<b>RTL</b> 언어인 <b>Kurdish(Sonari)</b> 언어는 잘못된 값이 반환되는 것 같아 <a href=https://github.com/dart-lang/i18n/issues/827>제보</a>해 두었습니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/isRtlLanguage.png" alt="<b>RTL</b> 언어인 <b>Kurdish(Sonari)</b> 언어는 잘못된 값이 반환되는 것 같아 <a href=https://github.com/dart-lang/i18n/issues/827>제보</a>해 두었습니다."></a><span class="caption"><b>RTL</b> 언어인 <b>Kurdish(Sonari)</b> 언어는 잘못된 값이 반환되는 것 같아 <a href="https://github.com/dart-lang/i18n/issues/827" rel="external nofollow noopener noreferrer" target="_blank">제보</a>해 두었습니다.</span></div>
+
+<p><strong>RTL</strong> 언어를 지원하고 싶은 경우, 단순히 텍스트 방향만 바꾸면 되는 게 아니라 전반적인 UI 자체를 좌우 반전 시켜야 합니다. <strong>RTL</strong> 언어 <a href="https://api.flutter.dev/flutter/dart-ui/Locale-class.html" target="_blank" rel="external nofollow noopener noreferrer">Locale</a>을 <code>MaterialApp</code>에 전달하면 자동으로 좌우가 반전되지만, 아이콘의 방향을 수정하고 <strong>LTR</strong> 기준으로 설계된 제약 조건들을 모두 고치는 등 많은 노력이 필요합니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/bidirectionality.png" title="<b>LTR</b> & <b>RTL</b> 인터페이스 - <a href=https://m2.material.io/design/usability/bidirectionality.html#mirroring-layout>material.io</a>" data-caption="<b>LTR</b> & <b>RTL</b> 인터페이스 - <a href=https://m2.material.io/design/usability/bidirectionality.html#mirroring-layout>material.io</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/bidirectionality.png" alt="<b>LTR</b> & <b>RTL</b> 인터페이스 - <a href=https://m2.material.io/design/usability/bidirectionality.html#mirroring-layout>material.io</a>"></a><span class="caption"><b>LTR</b> & <b>RTL</b> 인터페이스 - <a href="https://m2.material.io/design/usability/bidirectionality.html#mirroring-layout" rel="external nofollow noopener noreferrer" target="_blank">material.io</a></span></div>
+
+<h2 id="Material-amp-Cupertino"><a href="#Material-amp-Cupertino" class="headerlink" title="Material &amp; Cupertino"></a>Material &amp; Cupertino</h2><blockquote>
+<p><code>Material</code>과 <code>Cupertino</code> 위젯에 내장된  텍스트들은 <a href="https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html" target="_blank" rel="external nofollow noopener noreferrer">Flutter Localizations</a> 패키지를 통해 현지화를 지원할 수 있습니다.</p>
+</blockquote>
+<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/m3-date-picker.png" title="Material3 DatePicker에 내장된 텍스트<br><a href=https://m2.material.io/design/usability/bidirectionality.html#mirroring-layout>material.io</a>" data-caption="Material3 DatePicker에 내장된 텍스트<br><a href=https://m2.material.io/design/usability/bidirectionality.html#mirroring-layout>material.io</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/m3-date-picker.png" style="width:300px;" alt="Material3 DatePicker에 내장된 텍스트<br><a href=https://m2.material.io/design/usability/bidirectionality.html#mirroring-layout>material.io</a>"></a><span class="caption">Material3 DatePicker에 내장된 텍스트<br><a href="https://m2.material.io/design/usability/bidirectionality.html#mirroring-layout" rel="external nofollow noopener noreferrer" target="_blank">material.io</a></span></div>
+
+
+<p><a href="https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html" target="_blank" rel="external nofollow noopener noreferrer">Flutter Localizations</a>은 Material <a href="https://api.flutter.dev/flutter/flutter_localizations/kMaterialSupportedLanguages.html" target="_blank" rel="external nofollow noopener noreferrer">79개</a>, Cupertino <a href="https://api.flutter.dev/flutter/flutter_localizations/kCupertinoSupportedLanguages.html" target="_blank" rel="external nofollow noopener noreferrer">78개</a> 언어를 지원하며, 프로젝트에서 내장 테마 위젯을 사용하고 있다면 지원 언어 선정시 고려할 필요가 있습니다.</p>
+<p>만약 패키지에서 지원하지 않는 언어를 추가하고 싶은 경우, <a href="https://api.flutter.dev/flutter/material/MaterialLocalizations-class.html" target="_blank" rel="external nofollow noopener noreferrer">MaterialLocalizations</a>과 <a href="https://api.flutter.dev/flutter/cupertino/CupertinoLocalizations-class.html" target="_blank" rel="external nofollow noopener noreferrer">CupertinoLocalizations</a> 클래스를 상속받아 구현한 뒤 <code>MaterialApp</code>에 <code>localizationsDelegates</code> 속성으로 전달하시면 됩니다.</p>
+<h2 id="Package"><a href="#Package" class="headerlink" title="Package"></a>Package</h2><blockquote>
+<p><strong>다국어 지원 패키지</strong> 또는 <strong>텍스트가 내장된 패키지</strong>를 사용하는 경우 다국어 지원시 검토가 필요합니다.</p>
+</blockquote>
+<p>이번 프로젝트에선 날짜 및 복수형 등 현지화 작업을 도와주는 <a href="https://pub.dev/packages/intl" target="_blank" rel="external nofollow noopener noreferrer">Intl 패키지</a>를 사용하고 있습니다. Intl 패키지는 <a href="https://pub.dev/documentation/intl/latest/number_symbol_data/numberFormatSymbols.html" target="_blank" rel="external nofollow noopener noreferrer">119개 언어</a>를 지원하며, 미지원 언어를 추가하는 방법은 제공되지 않습니다.</p>
+<h2 id="최종-선정-언어"><a href="#최종-선정-언어" class="headerlink" title="최종 선정 언어"></a>최종 선정 언어</h2><p>위 고려 사항들을 정리하면 다음과 같습니다.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Google 번역</th>
+<th align="center">LTR &amp; RTL</th>
+<th align="center">Material &amp; Cupertino</th>
+<th align="center">Package</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">133</td>
+<td align="center">LTR(123)<br>RTL(10)</td>
+<td align="center">Material(79)<br>Cupertino(78)</td>
+<td align="center">Intl(119)</td>
+</tr>
+</tbody></table>
+<p>최소한의 노력으로 최대한 많은 언어를 지원하기 위해, <strong>RTL</strong> 언어를 배제하고 각 지원 언어의 교집합을 구하여 다음 <strong>72개 언어를 선정</strong>하였습니다.</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">갈리시아어</td>
+<td align="center">구자라트어</td>
+<td align="center">그리스어</td>
+<td align="center">네덜란드어</td>
+</tr>
+<tr>
+<td align="center">네팔어</td>
+<td align="center">노르웨이어</td>
+<td align="center">덴마크어</td>
+<td align="center">독일어</td>
+</tr>
+<tr>
+<td align="center">라오어</td>
+<td align="center">라트비아어</td>
+<td align="center">러시아어</td>
+<td align="center">루마니아어</td>
+</tr>
+<tr>
+<td align="center">리투아니아어</td>
+<td align="center">마라티어</td>
+<td align="center">마케도니아어</td>
+<td align="center">말라얄람어</td>
+</tr>
+<tr>
+<td align="center">말레이어</td>
+<td align="center">몽골어</td>
+<td align="center">미얀마어</td>
+<td align="center">바스크어</td>
+</tr>
+<tr>
+<td align="center">베트남어</td>
+<td align="center">벨라루스어</td>
+<td align="center">벵골어</td>
+<td align="center">보스니아어</td>
+</tr>
+<tr>
+<td align="center">불가리아어</td>
+<td align="center">세르비아어</td>
+<td align="center">스리랑카어</td>
+<td align="center">스와힐리어</td>
+</tr>
+<tr>
+<td align="center">스웨덴어</td>
+<td align="center">스페인어</td>
+<td align="center">슬로바키아어</td>
+<td align="center">슬로베니아어</td>
+</tr>
+<tr>
+<td align="center">아르메니아어</td>
+<td align="center">아삼어</td>
+<td align="center">아이슬란드어</td>
+<td align="center">아제르바이잔어</td>
+</tr>
+<tr>
+<td align="center">아프리칸스어</td>
+<td align="center">알바니아어</td>
+<td align="center">암하라어</td>
+<td align="center">에스토니아어</td>
+</tr>
+<tr>
+<td align="center">영어</td>
+<td align="center">오리야어</td>
+<td align="center">우즈베크</td>
+<td align="center">우크라이나어</td>
+</tr>
+<tr>
+<td align="center">웨일즈어</td>
+<td align="center">이탈리아어</td>
+<td align="center">인도네시아어</td>
+<td align="center">일본어</td>
+</tr>
+<tr>
+<td align="center">조지아어</td>
+<td align="center">줄루어</td>
+<td align="center">중국어(간체)</td>
+<td align="center">중국어(번체)</td>
+</tr>
+<tr>
+<td align="center">체코어</td>
+<td align="center">카자흐어</td>
+<td align="center">카탈루냐어</td>
+<td align="center">칸나다어</td>
+</tr>
+<tr>
+<td align="center">크로아티아어</td>
+<td align="center">크메르어</td>
+<td align="center">키르기스어</td>
+<td align="center">타갈로그어</td>
+</tr>
+<tr>
+<td align="center">타밀어</td>
+<td align="center">태국어</td>
+<td align="center">텔루구어</td>
+<td align="center">튀르키예어</td>
+</tr>
+<tr>
+<td align="center">펀자브어</td>
+<td align="center">포르투갈어</td>
+<td align="center">폴란드어</td>
+<td align="center">프랑스어</td>
+</tr>
+<tr>
+<td align="center">핀란드어</td>
+<td align="center">한국어</td>
+<td align="center">헝가리어</td>
+<td align="center">힌디어</td>
+</tr>
+</tbody></table>
+<p>72개 언어를 선정하였으니 본격적으로 다국어를 지원해 봅시다.</p>
+<hr>
+<h1 id="번역-준비"><a href="#번역-준비" class="headerlink" title="번역 준비"></a>번역 준비</h1><div class="alert info"><p>Flutter 앱 서비스 기준으로 번역이 필요한 범위는 다음과 같습니다.</p>
+<ol>
+<li>앱 내 번역<ul>
+<li>Flutter 텍스트</li>
+<li>iOS 권한 텍스트</li>
+</ul>
+</li>
+<li>Play Store &amp; App Store 번역<ul>
+<li>Metadata</li>
+<li>Changelog</li>
+<li>Screenshot</li>
+</ul>
+</li>
+</ol>
+<p>번역 작업을 진행하기에 앞서 다국어 개발 환경부터 설정해 봅시다.</p>
+</div>
+
+
+<h2 id="Flutter-번역-준비"><a href="#Flutter-번역-준비" class="headerlink" title="Flutter 번역 준비"></a>Flutter 번역 준비</h2><blockquote>
+<p><strong>Flutter 텍스트</strong>는 <a href="https://docs.flutter.dev/ui/accessibility-and-internationalization/internationalization" target="_blank" rel="external nofollow noopener noreferrer">Flutter 공식 문서</a>를 참고하거나 <strong>Flutter Intl 확장 프로그램</strong>(<a href="https://marketplace.visualstudio.com/items?itemName=localizely.flutter-intl" target="_blank" rel="external nofollow noopener noreferrer">VSCode</a> / <a href="https://plugins.jetbrains.com/plugin/13666-flutter-intl" target="_blank" rel="external nofollow noopener noreferrer">Android Studio</a>)을 사용하여 다국어 개발 환경을 구축할 수 있습니다.</p>
+</blockquote>
+<p>Flutter 다국어 개발 환경을 구축하면 완료하면 각 언어별 텍스트를 <a href="https://github.com/google/app-resource-bundle/wiki/ApplicationResourceBundleSpecification" target="_blank" rel="external nofollow noopener noreferrer">ARB(Application Resource Bundle)</a> 파일 형태 관리하게 됩니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/flutter-i18n/arb.png" title="보다 상세한 다국어 개발 환경 구축 방법은 <a href=https://inf.run/HFSvE>Flutter 앱 개발 실전 강의</a>를 참고해 주세요." data-caption="보다 상세한 다국어 개발 환경 구축 방법은 <a href=https://inf.run/HFSvE>Flutter 앱 개발 실전 강의</a>를 참고해 주세요." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/arb.png" alt="보다 상세한 다국어 개발 환경 구축 방법은 <a href=https://inf.run/HFSvE>Flutter 앱 개발 실전 강의</a>를 참고해 주세요."></a><span class="caption">보다 상세한 다국어 개발 환경 구축 방법은 <a href="https://inf.run/HFSvE" rel="external nofollow noopener noreferrer" target="_blank">Flutter 앱 개발 실전 강의</a>를 참고해 주세요.</span></div>
+
+
+<h2 id="iOS-번역-준비"><a href="#iOS-번역-준비" class="headerlink" title="iOS 번역 준비"></a>iOS 번역 준비</h2><h3 id="String-Catalog-방식"><a href="#String-Catalog-방식" class="headerlink" title="String Catalog 방식"></a>String Catalog 방식</h3><blockquote>
+<p><a href="https://developer.apple.com/documentation/xcode/localization" target="_blank" rel="external nofollow noopener noreferrer">공식 문서</a>에 따르면 XCode 15부터 <code>String Catalog</code> 파일로 <code>InfoPlist.strings</code> 파일의 권한 메세지를 번역할 수 있습니다.</p>
+</blockquote>
+<p>Xcode를 실행하고 <code>Runner</code> → <code>Info</code> → <code>Localizations</code>에서 언어를 추가한 뒤, <code>Runner</code> 폴더 밑에 <code>String Catalog</code>을 <code>InfoPlist.xcstrings</code>라는 이름으로 추가해 주세요.</p>
+<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/xcstrings.png" title="InfoPlist의 key를 입력하고 각 언어로 번역하면 됩니다." data-caption="InfoPlist의 key를 입력하고 각 언어로 번역하면 됩니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/xcstrings.png" alt="InfoPlist의 key를 입력하고 각 언어로 번역하면 됩니다."></a><span class="caption">InfoPlist의 key를 입력하고 각 언어로 번역하면 됩니다.</span></div>
+
+<h3 id="Strings-File-방식"><a href="#Strings-File-방식" class="headerlink" title="Strings File 방식"></a>Strings File 방식</h3><blockquote>
+<p>XCode 15 이전 버전에선 다음 방법으로 권한 메세지를 번역할 수 있었습니다.</p>
+</blockquote>
+<p>Xcode를 실행하고 <code>Runner</code> → <code>Info</code> → <code>Localizations</code>에서 언어를 추가한 뒤, <code>Runner</code> 폴더 밑에 <code>Strings File</code>을 <code>InfoPlist.strings</code>라는 이름으로 추가해 주세요.</p>
+<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/xcode-localization.png" title="+ 버튼을 누르고 선택하시면 됩니다." data-caption="+ 버튼을 누르고 선택하시면 됩니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/xcode-localization.png" alt="+ 버튼을 누르고 선택하시면 됩니다."></a><span class="caption">+ 버튼을 누르고 선택하시면 됩니다.</span></div>
+
+<p><code>InfoPlist.strings</code> 파일을 열고 우측 <code>Localization</code> 섹션에서 번역을 지원할 언어를 선택해 주세요. 그러면 <code>ios/Runner/언어.lproj</code> 폴더 밑에 <code>InfoPlist.strings</code> 파일이 생성되며 해당 파일에 각 언어별 iOS 권한 요청 문구를 작성하시면 됩니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/ios-create-strings-file4.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/ios-create-strings-file4.png" alt></a></div>
+
+<h2 id="Store-번역-준비"><a href="#Store-번역-준비" class="headerlink" title="Store 번역 준비"></a>Store 번역 준비</h2><p><strong>Play Store</strong>와 <strong>App Store</strong>에서 번역이 필요한 항목은 다음과 같습니다. (Tablet과 iPad 스크린샷은 미지원시 생략할 수 있습니다.)</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Play Store</th>
+<th>App Store</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>지원 언어</td>
+<td><a href="https://support.google.com/googleplay/android-developer/answer/9844778?visit_id=638424490119108924-4187109290&rd=1#zippy=%2Cview-list-of-available-languages%2C%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%96%B8%EC%96%B4-%EB%AA%A9%EB%A1%9D-%EB%B3%B4%EA%B8%B0" target="_blank" rel="external nofollow noopener noreferrer">87개</a></td>
+<td><a href="https://docs.fastlane.tools/actions/deliver/#:~:text=Available%20language%20codes" target="_blank" rel="external nofollow noopener noreferrer">39개</a></td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>title<br>short_description<br>full_description</td>
+<td>name<br>subtitle<br>keywords<br>description<br>promotional_text</td>
+</tr>
+<tr>
+<td>Changelogs</td>
+<td>build_version.txt</td>
+<td>release_notes.txt</td>
+</tr>
+<tr>
+<td>Screenshots</td>
+<td>Grapic (1024x500)<br>Mobile (1242x2208)<br>Tablet 7-inch (2048x2732)<br>Tablet 10-inch (2048x2732)</td>
+<td>iPhone 5.5 (1242x2208)<br>iPhone 6.5 (1284x2778)<br>iPad 12.9 2Gen (2048x2732)<br>iPad 12.9 3Gen (2048x2732)</td>
+</tr>
+</tbody></table>
+<p>이번 프로젝트에선 <strong>Play Store</strong>는 Google 번역에서 지원하지 않는 <code>로만시어(Romansh)</code>와 RTL 언어 8개를 제외한 <strong>79개 언어</strong>를, <strong>App Store</strong>는 RTL 언어 2개를 제외한 <strong>37개 언어</strong>를 지원하였습니다.</p>
+<p>또한 스토어 등록 정보를 손쉽게 업로드할 수 있도록 <a href="https://fastlane.tools/" target="_blank" rel="external nofollow noopener noreferrer">Fastlane</a>의 <a href="https://docs.fastlane.tools/actions/upload_to_play_store/" target="_blank" rel="external nofollow noopener noreferrer">upload_to_play_store</a>와 <a href="https://docs.fastlane.tools/actions/upload_to_app_store/" target="_blank" rel="external nofollow noopener noreferrer">upload_to_app_store</a> 명령어를 이용한 배포 자동화 환경을 구축하였습니다.</p>
+<hr>
+<h1 id="번역-시-만나는-문제"><a href="#번역-시-만나는-문제" class="headerlink" title="번역 시 만나는 문제"></a>번역 시 만나는 문제</h1><div class="alert info"><p>번역 작업을 진행하다 보면 많은 문제들을 만나게 됩니다.</p>
+</div>
+
+<h2 id="스크린샷-캡처"><a href="#스크린샷-캡처" class="headerlink" title="스크린샷 캡처"></a>스크린샷 캡처</h2><p>VoCat 서비스는 기기당 8장의 이미지를 사용중이며 테블릿을 지원하기 때문에 총 3,080장(Play Store 1,896 + App Store 1,184)의 이미지가 필요합니다.</p>
+<p><a href="https://docs.fastlane.tools/getting-started/ios/screenshots/#capture-screenshots-automatically" target="_blank" rel="external nofollow noopener noreferrer">fastlane</a>에는 자동으로 시뮬레이터에서 스크린샷을 촬영하는 기능과 캡처한 스크린샷을 디바이스 프레임에 넣고 텍스트를 넣는 <a href="https://docs.fastlane.tools/actions/frameit/#titles-and-background-optional" target="_blank" rel="external nofollow noopener noreferrer">frameit</a>이라는 기능이 있습니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/fastlane-screenshot.gif" title="fastlane auto screenshot - <a href=https://docs.fastlane.tools/getting-started/ios/screenshots/#capture-screenshots-automatically>fastlane</a>" data-caption="fastlane auto screenshot - <a href=https://docs.fastlane.tools/getting-started/ios/screenshots/#capture-screenshots-automatically>fastlane</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/fastlane-screenshot.gif" alt="fastlane auto screenshot - <a href=https://docs.fastlane.tools/getting-started/ios/screenshots/#capture-screenshots-automatically>fastlane</a>"></a><span class="caption">fastlane auto screenshot - <a href="https://docs.fastlane.tools/getting-started/ios/screenshots/#capture-screenshots-automatically" rel="external nofollow noopener noreferrer" target="_blank">fastlane</a></span></div>.
+
+<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/fastlane-device-frame.png" title="fastlane device frame - <a href=https://docs.fastlane.tools/getting-started/ios/screenshots/#capture-screenshots-automatically>fastlane</a>" data-caption="fastlane device frame - <a href=https://docs.fastlane.tools/getting-started/ios/screenshots/#capture-screenshots-automatically>fastlane</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/fastlane-device-frame.png" alt="fastlane device frame - <a href=https://docs.fastlane.tools/getting-started/ios/screenshots/#capture-screenshots-automatically>fastlane</a>"></a><span class="caption">fastlane device frame - <a href="https://docs.fastlane.tools/getting-started/ios/screenshots/#capture-screenshots-automatically" rel="external nofollow noopener noreferrer" target="_blank">fastlane</a></span></div>
+
+<p>하지만 위 방법은 이미지 1장을 촬영하는데 3초 걸린다고 가정했을 때 스크린샷 촬영에만 2시간 30분이 소요되며, 앱에 존재하지 않는 화면은 생성할 수 없는 문제가 있습니다.</p>
+<h2 id="텍스트-줄-바꿈"><a href="#텍스트-줄-바꿈" class="headerlink" title="텍스트 줄 바꿈"></a>텍스트 줄 바꿈</h2><p>기본적인 텍스트는 한 줄이 가득 차면 줄 바꿈하는 방식으로 이루어 집니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/non-balanced-text.png" title="기본 텍스트 줄 바꿈 - <a href=https://clagnut.com/blog/2424>clagnut.com</a>" data-caption="기본 텍스트 줄 바꿈 - <a href=https://clagnut.com/blog/2424>clagnut.com</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/non-balanced-text.png" alt="기본 텍스트 줄 바꿈 - <a href=https://clagnut.com/blog/2424>clagnut.com</a>"></a><span class="caption">기본 텍스트 줄 바꿈 - <a href="https://clagnut.com/blog/2424" rel="external nofollow noopener noreferrer" target="_blank">clagnut.com</a></span></div>
+
+<p>반면 <strong>균형 잡힌 텍스트 줄 바꿈</strong>은 보다 <strong>안정적</strong>이고 <strong>가독성</strong>도 높아지는 효과가 있기 때문에 의도적으로 특정 단어 뒤에 줄 바꿈 기호를 넣거나 특정 라인수를 유지하도록 디자인하는 경우가 있습니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/flutter-i18n/balanced-text.png" title="균형 잡힌 텍스트 줄 바꿈 - <a href=https://clagnut.com/blog/2424>clagnut.com</a>" data-caption="균형 잡힌 텍스트 줄 바꿈 - <a href=https://clagnut.com/blog/2424>clagnut.com</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/flutter-i18n/balanced-text.png" alt="균형 잡힌 텍스트 줄 바꿈 - <a href=https://clagnut.com/blog/2424>clagnut.com</a>"></a><span class="caption">균형 잡힌 텍스트 줄 바꿈 - <a href="https://clagnut.com/blog/2424" rel="external nofollow noopener noreferrer" target="_blank">clagnut.com</a></span></div>
+
+<p>문제는 번역시 텍스트의 길이가 달라지므로, 줄 바꿈 기호(<code>\n</code>)의 위치가 올바르지 않게 됩니다.</p>
+<h2 id="번역-예외"><a href="#번역-예외" class="headerlink" title="번역 예외"></a>번역 예외</h2><p>ARB 파일은 중괄호를 이용하여 <code>{이름}</code> 형태로 매개변수를 전달받아 보여주는 기능이 있습니다. 중괄호 안쪽 <strong>매개변수의 이름</strong>은 72개 언어에서 모두 동일해야 정상적으로 작동하는데, 번역시 매개변수 이름까지 번역되는 문제가 있습니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;corpusAdded&quot;: &quot;&#123;word&#125; 단어 추가 완료!&quot;,</span><br><span class="line">&quot;vocatFileImport&quot;: &quot;VOCAT 파일 불러오기&quot;,</span><br></pre></td></tr></table></figure>
+<p><strong>매개변수 이름</strong> 외에도 <strong>서비스 명칭</strong>이나 <strong>이메일 주소</strong> 등 <strong>번역 예외</strong> 처리가 필요한 항목들이 있습니다.</p>
+<h2 id="번역-검사"><a href="#번역-검사" class="headerlink" title="번역 검사"></a>번역 검사</h2><p>번역 품질 외에도 <strong>검사가 필요한 항목</strong>들이 있습니다.</p>
+<ul>
+<li><strong>매개변수 명칭</strong> : ARB 파일에서 매개변수 명칭이 동일한지 여부</li>
+<li><strong>매개변수 개수</strong> : ARB 파일에서 매개변수 개수가 동일한지 여부</li>
+<li><strong>번역 예외</strong> : 번역 예외가 올바르게 되었는지 여부</li>
+<li><strong>괄호 개수</strong> : 괄호 개수가 동일한지 여부</li>
+<li><strong>Metadata 길이</strong> : 스토어 메타데이터 최대 글자 수</li>
+<li><strong>Changelogs 길이</strong> : 버전 별 변경사항 최대 글자 수</li>
+</ul>
+<p>매개변수 명칭 또는 개수가 동일하지 않은 경우 컴파일시 문제가 발생하고, Metadata나 Changlog에서 최대 글자 수를 넘긴 경우 스토어 제출이 불가능하므로 반드시 검사가 필요합니다.</p>
+<h2 id="생산성-저하"><a href="#생산성-저하" class="headerlink" title="생산성 저하"></a>생산성 저하</h2><p>VoCat 앱 내 1,200개의 문구가 있는데 72개 언어를 지원하면 86,400 문장이 됩니다. 이 많은 문장을 직접 검사하려면 너무 많은 시간이 필요하며 또한 문구 추가, 수정 및 삭제 작업은 항상 72번 반복 진행해야 하므로 <strong>생산성이 급격히 하락</strong>하게 됩니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/humor/tyson.jpg" title="문제가 왜 이리 많냐고요? 저도 알고 싶지 않았어요..🫠" data-caption="문제가 왜 이리 많냐고요? 저도 알고 싶지 않았어요..🫠" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/humor/tyson.jpg" alt="문제가 왜 이리 많냐고요? 저도 알고 싶지 않았어요..🫠"></a><span class="caption">문제가 왜 이리 많냐고요? 저도 알고 싶지 않았어요..🫠</span></div>
+
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>Flutter 다국어 지원에 필요한 언어를 선정하고, 기본적인 개발 준비를 완료하였습니다. 다음 <a href="/post/flutter-i18n-02/">2부</a>에선 <strong>번역시 만나는 문제들을 해결하기 위해 제작한 도구들을 소개하겠습니다</strong> :)</p>
+<blockquote>
+<p>✔︎ 1부. Flutter 다국어 지원 - 준비<br><a href="/post/flutter-i18n-02/">2부. Flutter 다국어 지원 - 도구 만들기</a></p>
+</blockquote>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">태그</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/tags/Flutter/" rel="tag">Flutter</a> <a class="tag tag--primary tag--small t-link" href="/tags/I18n/" rel="tag">I18n</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/worcation-sokcho/" data-tooltip="속초 워케이션 후기" aria-label="이전: 속초 워케이션 후기">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/flutter-i18n-02/" data-tooltip="2부. Flutter 다국어 지원 - 도구 만들기" aria-label="다음: 2부. Flutter 다국어 지원 - 도구 만들기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/flutter-i18n-01/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/flutter-i18n-01/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/worcation-sokcho/" data-tooltip="속초 워케이션 후기" aria-label="이전: 속초 워케이션 후기">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/flutter-i18n-02/" data-tooltip="2부. Flutter 다국어 지원 - 도구 만들기" aria-label="다음: 2부. Flutter 다국어 지원 - 도구 만들기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/flutter-i18n-01/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/flutter-i18n-01/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/flutter-i18n-01/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/flutter-i18n-01/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-fydcx2lyr7ndxsamrdsov38ymqbr3zoihxcwqjt19ahs2hw2vsroxvj0pqei.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

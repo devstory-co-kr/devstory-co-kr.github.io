@@ -1,0 +1,818 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>Part 2. Create a real-time drawing game with Flutter - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/en/post/trouble-painter-02/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,Deep Learning,Mobile,Android,iOS,cat,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/en/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Sharing my Trouble Painter making log.👉 한국어 버전\n\n\nPart 1. Trouble Painter - Drawing Mafia Game✔︎ Part 2. Create a real-time drawing game with Flutter\n\n\nTrouble Painter is a drawing mafia game where you find trouble painter hiding among good painters.👉 Android & iOS : download link -->\n\nTeam XorkerTeam Xorker is a team of 7 people, including 1 PM, 2 designers, and 4 developers (Flutter 2 / Spring 2) who gathered from the 24th YAPP IT club.\nI think the idea selection process is the hardest 😵‍💫\n\nSince the process of rejecting items with different criteria was repeated, we discussed the goal that everyone agreed on and set a qualitative standard of the item that will receive the most attention at the demo day.\nWhile discussing the item with that standard, the idea of ​​a game where you draw pictures in real time to find the mafia came up. When we played it as a mockup in Figma, it was fun and didn’t seem like much graphic work was required in the plan. Decisively, if the item is well implemented, it seems that it will receive the most attention at the demo day, so Trouble Painter was born 🎉\nDemo Day was conducted in a way that other IT clubs invested mock money in the teams they liked the most, and as a result Trouble Painter was able to achieve the goal of attracting the most mock investment money and getting the most attention. ✌️\nProject ManagementWe used Jira as a project management tool and conducted sprints in one-week units. In the beginning, all teams conducted sprints in the same functional units, but Flutter was dependent on the work of the design and backend teams, so the Flutter team pushed back their sprint by a week.\nDesigner.. Figma won't open.. Stop it now..!\n(Left) Initial screen for user testing(Right) Improved screen\n\nYour turn was shown with a drawing screen round animation, and the problem of not recognizing it even when it was your turn was improved by changing the background color and playing a single-stroke guide animation. This allowed us to learn the game rule of drawing only one stroke per turn in the middle of the game.\n\n\n\nYour browser doesn't support HTML5 Video :/\nInforms the user that they can only draw one stroke during their turn.\n\n\nCharactersThe roles of the mafia and the citizens in the mafia game are expressed as the Trouble Painter and the Good Painter, and the hamster and bear were chosen to design the two characters to show the difference in size and personality.\nA trouble painter who answers the questions above a good painter's head\n\nDesign SystemIn order to increase work efficiency and lower communication costs, we built a design system, and since the light theme does not fit the game concept, we only support the dark theme.\nIt doesn't cost anything because it's running on a Raspberry Pi 🥧\n\nArchitectureThe backend is implemented based on Kotlin &amp; Spring Boot, and the detailed technology stack and architecture are as follows.\n\n\n\nCategory\nStack\n\n\n\nIDE\nIntelliJ\n\n\nLanguage\nKotlin\n\n\nFramework\nSpring Boot 3.2.5, Gradle\n\n\nAuthentication\nSpring Security, JSON Web Tokens, Opaque Token\n\n\nORM\nSpring Data JPA\n\n\nDatabase\nMySQL\n\n\nExternal\nNginx, Docker, Redis, Kubernetes, ELK\n\n\nCI/CD\nArgoCD, Github Actions\n\n\nAPI Docs\nNotion, Swagger\n\n\nYou can monitor the number of rooms playing in real time and the number of connected sockets.\n\n\n\n\nFlutterTrouble Painter is built with Flutter and uses the following technology stack.\nApps installed for each environment\n\nIn addition, files that need to be applied differently depending on the environment are managed separately.\n123456789101112.env├─ dev│  ├─ .env│  ├─ firebase_options.dart│  ├─ google-services.json│  └─ GoogleService-Info.plist├─ prod│  ├─ .env│  ├─ firebase_options.dart│  ├─ google-services.json│  └─ GoogleService-Info.plist└─ flavorizr.yaml\n\nArchitectureThis project was designed using Clean Architecture and MVVM based on Riverpod, and the folder structure was implemented by separating the Presentation folder into the app folder in the Feature First structure.\nSince it is implemented with MVVM architecture, we can easily change the app's behavior.\n\nBackend linkage code was isolated to the Data layer, and the data required for interaction was implemented as a Model class, and then converted to an Entity class when passed to the upper layer, so we could continue to use the existing logic in the domain layer.\n\nComponent Preview\n\nWebSocket DesignReal-time communication was implemented by creating a separate protocol based on WebSocket, and close communication with the backend team was required during the design process compared to HTTP-based APIs.\nThe differences between WebSocket and HTTP-based APIs that we learned during implementation are as follows. 1. Since the state exists, a synchronization process is required when reconnecting in the middle2. Since routing depends on server-side broadcast, discussion with the server side is required when adding a screen3. Requests and responses are not 1:1, so the documentation method is different\nSince this is a game that is played in real time on a mobile device with an unstable network, the reconnection function was a necessary function that had to be implemented, and it was implemented by receiving a snapshot of the server-side state at the time of reconnection, synchronizing it on the client, and then receiving individual broadcasts.\nFor smooth communication, the necessary state for each screen and the timing of the routing screen transition were organized in Figma and communicated.\n\nAnimation ControlI had to implement a dialogue animation that tells you your turn and what round it is at the start of the game. The animation specs were provided by Protopie, and are summarized as follows.\n\nDialog Fade In\n3 second countdown\nCounter Fade Out\nRound Translate\nDialog Fade Out\n\n\n\n\n\n\nYour browser doesn't support HTML5 Video :/\nRound animation implemented with Overlay\n\n\nThe problem is that when a user interrupts after a certain point in the animation, the animation should start from the same point as other users and end together. Otherwise, the drawing timer will decrease, but the pop-up will cover the screen, causing an unfortunate situation where you can’t draw.\nTo solve this problem, we implemented a way to control each animation with a single AnimationController, and then calculated and executed the server-side animation progress based on the interruption point. For detailed instructions, please refer to the official documentation and code.\nPerformance OptimizationOn the drawing screen, a specific user’s drawing is broadcasted to all players in real time. In this process, as the number of drawings by users increases, more and more drawing data must be broadcasted in real time, so performance issues were a concern, so the following three methods were introduced for optimization.\n\nImplement real-time broadcasting of only the drawing data of the current turn, and merging it with the drawing data of the previous turn at the end of the turn\nImplement throttling to reduce the frequency of drawing data and broadcasting\nApply the Ramer–Douglas–Peucker algorithm to optimize for lines with fewer points\n\nThrottle and the epsilon factor of the Ramer-Douglas-Peucker algorithm were implemented so that they can be controlled in Remote Config.\nPlay video\n\n\nFinalIn this project, I was able to experience game making and drawing feature utilization that I had always wanted to try, and I also had practical experience with architecture, so it was fun. WebSocket was not easy, but it seems to be an attractive technology that stimulates curiosity to use it in more diverse ways.\nI will come back next time with a more fun project :)\n\nPart 1. Trouble Painter - Drawing Mafia Game✔︎ Part 2. Create a real-time drawing game with Flutter\n\n\nThis project was open sourced and can be found at the Github link below.👉 Flutter : Link👉 Backend : Link\n\n\n","dateCreated":"2024-09-13T07:27:02+09:00","dateModified":"2025-12-03T23:01:25+09:00","datePublished":"2024-09-13T07:27:02+09:00","description":"Sharing my Trouble Painter making log.👉 한국어 버전","headline":"Part 2. Create a real-time drawing game with Flutter","image":["https://github.com/user-attachments/assets/9f4ffefc-316c-4d0f-8381-824640485eb5"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/trouble-painter-02/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/trouble-painter-02/","keywords":"Project, Trouble Painter","thumbnailUrl":"https://github.com/user-attachments/assets/9f4ffefc-316c-4d0f-8381-824640485eb5"}</script>
+    <meta name="description" content="Sharing my Trouble Painter making log.👉 한국어 버전">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Part 2. Create a real-time drawing game with Flutter">
+<meta property="og:url" content="https://blog.devstory.co.kr/en/post/trouble-painter-02/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="Sharing my Trouble Painter making log.👉 한국어 버전">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://github.com/user-attachments/assets/9f4ffefc-316c-4d0f-8381-824640485eb5">
+<meta property="article:published_time" content="2024-09-12T22:27:02.000Z">
+<meta property="article:modified_time" content="2025-12-03T14:01:25.664Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Project">
+<meta property="article:tag" content="Trouble Painter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/user-attachments/assets/9f4ffefc-316c-4d0f-8381-824640485eb5">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/en/assets/css/style-q2rdk1cybwoxo4yajy2m45gicrehcvcblucs91up9vjbijk9mupjrtjv7x57.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/en/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /en/#about">
+        
+        
+            <img class="header-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/en/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/" title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Projects</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Lecture</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Part 2. Create a real-time drawing game with Flutter
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-09-13T07:27:02+09:00">
+	
+		    Sep 13, 2024
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/en/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>Table of Contents
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Team-Xorker"><span class="nero-toc-text">Team Xorker</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Ideation"><span class="nero-toc-text">Ideation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Project-Management"><span class="nero-toc-text">Project Management</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Schedule-Management"><span class="nero-toc-text">Schedule Management</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#User-Test"><span class="nero-toc-text">User Test</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Design"><span class="nero-toc-text">Design</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#UI-amp-UX"><span class="nero-toc-text">UI &amp; UX</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Characters"><span class="nero-toc-text">Characters</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Design-System"><span class="nero-toc-text">Design System</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Backend"><span class="nero-toc-text">Backend</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Architecture"><span class="nero-toc-text">Architecture</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Monitoring"><span class="nero-toc-text">Monitoring</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Flutter"><span class="nero-toc-text">Flutter</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Flavor-amp-Env"><span class="nero-toc-text">Flavor &amp; Env</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Architecture-1"><span class="nero-toc-text">Architecture</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Riverpod"><span class="nero-toc-text">Riverpod</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Design-Communication"><span class="nero-toc-text">Design Communication</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#WebSocket-Design"><span class="nero-toc-text">WebSocket Design</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Animation-Control"><span class="nero-toc-text">Animation Control</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Performance-Optimization"><span class="nero-toc-text">Performance Optimization</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Play-video"><span class="nero-toc-text">Play video</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Final"><span class="nero-toc-text">Final</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>Sharing my Trouble Painter making log.<br><a href="/post/trouble-painter-02/">👉 한국어 버전</a><br><a id="more"></a></p>
+<hr>
+<blockquote>
+<p><a href="/en/post/trouble-painter-01/">Part 1. Trouble Painter - Drawing Mafia Game</a><br>✔︎ Part 2. Create a real-time drawing game with Flutter</p>
+</blockquote>
+<br>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/en1-min.png" title="<b>Trouble Painter</b> is a <b>drawing mafia game</b> where you find <b>trouble painter</b> hiding among good painters." data-caption="<b>Trouble Painter</b> is a <b>drawing mafia game</b> where you find <b>trouble painter</b> hiding among good painters." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/en1-min.png" alt="<b>Trouble Painter</b> is a <b>drawing mafia game</b> where you find <b>trouble painter</b> hiding among good painters."></a><span class="caption"><b>Trouble Painter</b> is a <b>drawing mafia game</b> where you find <b>trouble painter</b> hiding among good painters.</span></div>
+<!-- <div class="figure " style=""><a class="fancybox" href="/en/post/trouble-painter/en1-min.png" title="<b>Trouble Painter</b> is a <b>drawing mafia game</b> where you find <b>trouble painter</b> hiding among good painters.<br>👉 Android & iOS : <a href=https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install>download link</a>" data-caption="<b>Trouble Painter</b> is a <b>drawing mafia game</b> where you find <b>trouble painter</b> hiding among good painters.<br>👉 Android & iOS : <a href=https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install>download link</a>" data-fancybox="default style="visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/en1-min.png" alt="<b>Trouble Painter</b> is a <b>drawing mafia game</b> where you find <b>trouble painter</b> hiding among good painters.<br>👉 Android & iOS : <a href=https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install>download link</a>"></a><span class="caption"><b>Trouble Painter</b> is a <b>drawing mafia game</b> where you find <b>trouble painter</b> hiding among good painters.<br>👉 Android & iOS : <a href=https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install>download link</a></span></div> -->
+
+<h1 id="Team-Xorker"><a href="#Team-Xorker" class="headerlink" title="Team Xorker"></a>Team Xorker</h1><p>Team Xorker is a team of 7 people, including 1 PM, 2 designers, and 4 developers (Flutter 2 / Spring 2) who gathered from the 24th YAPP IT club.</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/yapp.png" title="YAPPO(YAPP Mascot) was created by designer Xorker!<br>Source - YAPP" data-caption="YAPPO(YAPP Mascot) was created by designer Xorker!<br>Source - YAPP" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/yapp.png" alt="YAPPO(YAPP Mascot) was created by designer Xorker!<br>Source - YAPP"></a><span class="caption">YAPPO(YAPP Mascot) was created by designer Xorker!<br>Source - YAPP</span></div>
+
+
+
+<h2 id="Ideation"><a href="#Ideation" class="headerlink" title="Ideation"></a>Ideation</h2><p>At first, we chose the idea of ​​<strong>a service that can be used for self-growth and PR by receiving feedback from colleagues</strong> and proceeded with it. However, as time passed, we were unable to solve the problem of <span style="color:#FF774C"><strong>“Will people be able to leave honest feedback?”</strong></span>, and decided to change the idea after 4 weeks of team building. 🥹</p>
+<p>After that, we set a deadline of one week and discussed new ideas again.<br>🐶 Pet-based dating app: Rejected due to <span style="color:#FF774C">problems gathering initial users &amp; lack of empathy for the dating domain</span>!</p>
+<p>📝 AI pet diary service: Rejected due to <span style="color:#FF774C">there is only one team member who raises a pet, and it seems that even that team member would not use it</span>!</p>
+<p>🧩 Board game mobileization: Rejected due to <span style="color:#FF774C">lack of planning for the game &amp; burden of graphic-focused work</span>!</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/ideation.png" title="I think the idea selection process is the hardest 😵‍💫" data-caption="I think the idea selection process is the hardest 😵‍💫" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/ideation.png" style="width:100%;height:auto;" alt="I think the idea selection process is the hardest 😵‍💫"></a><span class="caption">I think the idea selection process is the hardest 😵‍💫</span></div>
+
+<p>Since the process of rejecting items with different criteria was repeated, we discussed the goal that everyone agreed on and set a qualitative standard of <strong>the item that will receive the most attention at the demo day</strong>.</p>
+<p>While discussing the item with that standard, the idea of ​​<span style="color:#05BC94"><strong>a game where you draw pictures in real time to find the mafia</strong></span> came up. When we played it as a mockup in Figma, it was fun and didn’t seem like much graphic work was required in the plan. Decisively, if the item is well implemented, it seems that it will receive the most attention at the demo day, so <a href="https://trouble-painter.notion.site/Trouble-Painter-5a48ae706ad046f7a0f4fc01ce385475?pvs=4" target="_blank" rel="external nofollow noopener noreferrer"><span style="color:#FF774C"><strong>Trouble Painter</strong></span></a> was born 🎉</p>
+<p>Demo Day was conducted in a way that other IT clubs invested mock money in the teams they liked the most, and as a result <strong>Trouble Painter was able to achieve the goal of attracting the most mock investment money and getting the most attention. ✌️</strong></p>
+<h2 id="Project-Management"><a href="#Project-Management" class="headerlink" title="Project Management"></a>Project Management</h2><p>We used Jira as a project management tool and <strong>conducted sprints in one-week units</strong>. In the beginning, all teams conducted sprints in the same functional units, but <strong>Flutter was dependent on the work of the design and backend teams, so the Flutter team pushed back their sprint by a week</strong>.</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/sprint.png" title="Sprint cumulative flow diagram for one week" data-caption="Sprint cumulative flow diagram for one week" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/sprint.png" alt="Sprint cumulative flow diagram for one week"></a><span class="caption">Sprint cumulative flow diagram for one week</span></div>
+
+<p><strong>We conducted a 3L (Liked, Learned, Lacked) retrospective in two-week units</strong>, and looking back at the time of writing, I think the retrospectives improved communication within the team and helped us change ideas. 👍👍</p>
+<h2 id="Schedule-Management"><a href="#Schedule-Management" class="headerlink" title="Schedule Management"></a>Schedule Management</h2><p>We planned the schedule with the goal of store distribution 5 weeks before Demo Day. There was an issue where the idea changed in the middle, but we <strong>continued with the original plan even though we knew it was an unreasonable schedule for the start dash</strong>.</p>
+<p>The actual schedule from the time we changed the idea to store distribution based on Flutter work is as follows.<br><br></p>
+<table>
+<thead>
+<tr>
+<th align="left">Schedule</th>
+<th align="left">Flutter work</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">week 4 of June</td>
+<td align="left">Idea change</td>
+</tr>
+<tr>
+<td align="left">week 5 of June</td>
+<td align="left">Developing MVP for user testing based on Firebase</td>
+</tr>
+<tr>
+<td align="left">week 1 of July</td>
+<td align="left">Architecture design &amp; building store distribution automation</td>
+</tr>
+<tr>
+<td align="left">week 2 of July</td>
+<td align="left">Building a design system</td>
+</tr>
+<tr>
+<td align="left">week 3 of July</td>
+<td align="left">Implementing business logic</td>
+</tr>
+<tr>
+<td align="left">Week 4 of July</td>
+<td align="left">Design Reflection</td>
+</tr>
+<tr>
+<td align="left">Week 1 of August</td>
+<td align="left">WebSocket Design</td>
+</tr>
+<tr>
+<td align="left">Week 2 of August</td>
+<td align="left">Server Integration</td>
+</tr>
+<tr>
+<td align="left">Week 3 of August</td>
+<td align="left">QA &amp; Store Distribution</td>
+</tr>
+</tbody></table>
+<p>Although it was two weeks later than originally planned, we were able to create a websocket-based real-time game and distribute it to the store in just 7 weeks.</p>
+<h2 id="User-Test"><a href="#User-Test" class="headerlink" title="User Test"></a>User Test</h2><p>A user test was scheduled for a week after the idea was changed. <strong>So I created an MVP app service for user testing for a week using the real-time communication function of Cloud Firestore.</strong></p>
+<p><strong>Since I had set up an internal test environment with Firebase App Distribution and Fastlane</strong> in the beginning, I was able to distribute the MVP app to the team and conduct user testing without any problems.<br><br></p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="MVP created in one week with Flutter & Firebase">
+<source src="/en/post/trouble-painter/ut-mvp-min.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">MVP created in one week with Flutter & Firebase</span>
+</div>
+
+<p>Here are the things we learned from this user test</p>
+<ul>
+<li>The UI of general apps is familiar to users because they have already learned it, but <strong>game UI is unfamiliar and requires learning.</strong></li>
+<li><strong>Games that automatically transition screens and have time limits must be designed to be more intuitive in terms of what to see and what actions to take.</strong></li>
+<li>Most users do not read tutorials, and even if they do, <strong>they do not easily understand the game rules.</strong></li>
+</ul>
+<!-- Design -->
+<h1 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h1><p>The design team is a passionate team that fills 6 pages until the final design comes out 🔥</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/design-figma.png" title="Designer.. Figma won't open.. Stop it now..!" data-caption="Designer.. Figma won't open.. Stop it now..!" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/design-figma.png" alt="Designer.. Figma won't open.. Stop it now..!"></a><span class="caption">Designer.. Figma won't open.. Stop it now..!</span></div>
+<div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/design-loading.png" title="I'm not joking, it really won't open" data-caption="I'm not joking, it really won't open" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/design-loading.png" alt="I'm not joking, it really won't open"></a><span class="caption">I'm not joking, it really won't open</span></div>
+
+<h2 id="UI-amp-UX"><a href="#UI-amp-UX" class="headerlink" title="UI &amp; UX"></a>UI &amp; UX</h2><p>Reflecting what we learned during the user test, we <strong>played the BGM of the waiting screen and the BGM of the play screen differently</strong> to create a more exciting atmosphere at the start of the game.</p>
+<div class="figure " style>
+<video class="fig-video" controls alt="(BGM) We gave the BGM of the waiting screen and the BGM during the game different.">
+<source src="/en/post/trouble-painter/bgm.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">(BGM) We gave the BGM of the waiting screen and the BGM during the game different.</span>
+</div>
+
+<p>In the initial game preparation page, too much information was shown on one screen, including categories, roles, and orders, which did not convey the information well, so we <strong>changed it to show only roles and categories, and added characters to make the roles more intuitively recognizable</strong>.</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/ut-role-improvement.png" title="(Left) Initial screen for user testing<br>(Right) Improved screen" data-caption="(Left) Initial screen for user testing<br>(Right) Improved screen" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/ut-role-improvement.png" style="width:100%;height:auto;max-width:500px;" alt="(Left) Initial screen for user testing<br>(Right) Improved screen"></a><span class="caption">(Left) Initial screen for user testing<br>(Right) Improved screen</span></div>
+
+<p>Your turn was shown with a drawing screen round animation, and the problem of not recognizing it even when it was your turn was <strong>improved by changing the background color and playing a single-stroke guide animation</strong>. This allowed us to <strong>learn the game rule of drawing only one stroke per turn in the middle of the game</strong>.<br><br></p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Informs the user that they can only draw one stroke during their turn.">
+<source src="/en/post/trouble-painter/stroke-guide.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Informs the user that they can only draw one stroke during their turn.</span>
+</div>
+
+<h2 id="Characters"><a href="#Characters" class="headerlink" title="Characters"></a>Characters</h2><p>The roles of the mafia and the citizens in the mafia game are expressed as the <span style="color:#FF774C"><strong>Trouble Painter</strong></span> and the <span style="color:#05BC94"><strong>Good Painter</strong></span>, and the hamster and bear were chosen to design the two characters to show the difference in size and personality.</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/characters.png" title="(left) Trouble Painter, (right) Good Painter" data-caption="(left) Trouble Painter, (right) Good Painter" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/characters.png" style="width:100%;height:auto;max-width:400px;" alt="(left) Trouble Painter, (right) Good Painter"></a><span class="caption">(left) Trouble Painter, (right) Good Painter</span></div>
+
+<p>Also, in homage to the movie Ratatouille, the concept of the <span style="color:#FF774C"><strong>Trouble Painter</strong></span> hiding inside the hat of the <span style="color:#05BC94"><strong>Good Painter</strong></span> and drawing pictures while hiding his identity was incorporated into the UI.</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/answer.png" title="A trouble painter who answers the questions above a good painter's head" data-caption="A trouble painter who answers the questions above a good painter's head" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/answer.png" style="width:100%;height:auto;max-width:400px;" alt="A trouble painter who answers the questions above a good painter's head"></a><span class="caption">A trouble painter who answers the questions above a good painter's head</span></div>
+
+<h2 id="Design-System"><a href="#Design-System" class="headerlink" title="Design System"></a>Design System</h2><p>In order to increase work efficiency and lower communication costs, we <strong>built a design system</strong>, and since the light theme does not fit the game concept, we only support the dark theme.<br><br></p>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/design-system.png" title="Design System" data-caption="Design System" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/design-system.png" alt="Design System"></a><span class="caption">Design System</span></div>
+
+<!-- Backend -->
+<h1 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h1><p>The backend server is currently running on a Raspberry Pi. I hope that one day, when there are many concurrent users, the Raspberry Pi will burn out and be moved to the cloud. 🔥</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/raspberrypi.png" title="It doesn't cost anything because it's running on a Raspberry Pi 🥧" data-caption="It doesn't cost anything because it's running on a Raspberry Pi 🥧" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/raspberrypi.png" style="width:100%;height:auto;max-width:500px;" alt="It doesn't cost anything because it's running on a Raspberry Pi 🥧"></a><span class="caption">It doesn't cost anything because it's running on a Raspberry Pi 🥧</span></div>
+
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>The backend is implemented based on Kotlin &amp; Spring Boot, and the detailed technology stack and architecture are as follows.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Category</th>
+<th align="left">Stack</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">IDE</td>
+<td align="left">IntelliJ</td>
+</tr>
+<tr>
+<td align="left">Language</td>
+<td align="left">Kotlin</td>
+</tr>
+<tr>
+<td align="left">Framework</td>
+<td align="left">Spring Boot 3.2.5, Gradle</td>
+</tr>
+<tr>
+<td align="left">Authentication</td>
+<td align="left">Spring Security, JSON Web Tokens, Opaque Token</td>
+</tr>
+<tr>
+<td align="left">ORM</td>
+<td align="left">Spring Data JPA</td>
+</tr>
+<tr>
+<td align="left">Database</td>
+<td align="left">MySQL</td>
+</tr>
+<tr>
+<td align="left">External</td>
+<td align="left">Nginx, Docker, Redis, Kubernetes, ELK</td>
+</tr>
+<tr>
+<td align="left">CI/CD</td>
+<td align="left">ArgoCD, Github Actions</td>
+</tr>
+<tr>
+<td align="left">API Docs</td>
+<td align="left">Notion, Swagger</td>
+</tr>
+</tbody></table>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/backend-stack.png" title="Backend Architecture" data-caption="Backend Architecture" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/backend-stack.png" alt="Backend Architecture"></a><span class="caption">Backend Architecture</span></div>
+
+<h2 id="Monitoring"><a href="#Monitoring" class="headerlink" title="Monitoring"></a>Monitoring</h2><p>We are monitoring logs and real-time server status using Prometheus, Grafana, and Sentry.<br><br></p>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/grafana.png" title="You can monitor the number of rooms playing in real time and the number of connected sockets." data-caption="You can monitor the number of rooms playing in real time and the number of connected sockets." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/grafana.png" alt="You can monitor the number of rooms playing in real time and the number of connected sockets."></a><span class="caption">You can monitor the number of rooms playing in real time and the number of connected sockets.</span></div>
+
+
+
+<!-- Flutter -->
+<h1 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h1><p><strong>Trouble Painter</strong> is built with <a href="https://flutter.dev/" target="_blank" rel="external nofollow noopener noreferrer">Flutter</a> and uses the following technology stack.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/flutter-stack.png" title="Flutter Technology Stack" data-caption="Flutter Technology Stack" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/flutter-stack.png" alt="Flutter Technology Stack"></a><span class="caption">Flutter Technology Stack</span></div>
+
+<table>
+<thead>
+<tr>
+<th align="left">Firebase</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Analytics</strong></td>
+<td align="left">Collecting metrics about app usage and user engagement</td>
+</tr>
+<tr>
+<td align="left"><strong>App Distribution</strong></td>
+<td align="left">Distributing within Android &amp; iOS teams</td>
+</tr>
+<tr>
+<td align="left"><strong>Cloud Firestore</strong></td>
+<td align="left">MVP version server role for user testing</td>
+</tr>
+<tr>
+<td align="left"><strong>Crashlytics</strong></td>
+<td align="left">Tracking app crashes and logging errors</td>
+</tr>
+<tr>
+<td align="left"><strong>Remote Config</strong></td>
+<td align="left">Remotely configuring things like forced updates &amp; announcements</td>
+</tr>
+</tbody></table>
+<p><strong>Gemini</strong> was used to implement a <strong>function that provides hints to the trouble painter based on the drawings made by players</strong>. For the application results, please refer to the <a href="/en/post/trouble-painter-01/#5-keyword-guessing">previous post</a>. Thanks to this, We were able to enter the Gemini API contest. If you would like to support the service, please vote at the <a href="https://ai.google.dev/competition/projects/trouble-painter-drawing-mafia-game" target="_blank" rel="external nofollow noopener noreferrer">link</a> 🫶</p>
+<h2 id="Flavor-amp-Env"><a href="#Flavor-amp-Env" class="headerlink" title="Flavor &amp; Env"></a>Flavor &amp; Env</h2><p>We used the <a href="https://pub.dev/packages/flutter_flavorizr" target="_blank" rel="external nofollow noopener noreferrer">flutter_flavorizr</a> package to operate the <strong>development environment (DEV)</strong> and the <strong>deployment environment (PROD)</strong> separately. In the case of Firebase, since it is impossible to separate the <strong>Remote Config</strong> environment in one project, I separated the project into two and proceeded.</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/trouble-painter/flavor.png" title="Apps installed for each environment" data-caption="Apps installed for each environment" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/flavor.png" style="width:100%;height:auto;max-width:400px;" alt="Apps installed for each environment"></a><span class="caption">Apps installed for each environment</span></div>
+
+<p>In addition, files that need to be applied differently depending on the environment are managed separately.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.env</span><br><span class="line">├─ dev</span><br><span class="line">│  ├─ .env</span><br><span class="line">│  ├─ firebase_options.dart</span><br><span class="line">│  ├─ google-services.json</span><br><span class="line">│  └─ GoogleService-Info.plist</span><br><span class="line">├─ prod</span><br><span class="line">│  ├─ .env</span><br><span class="line">│  ├─ firebase_options.dart</span><br><span class="line">│  ├─ google-services.json</span><br><span class="line">│  └─ GoogleService-Info.plist</span><br><span class="line">└─ flavorizr.yaml</span><br></pre></td></tr></table></figure>
+
+<h2 id="Architecture-1"><a href="#Architecture-1" class="headerlink" title="Architecture"></a>Architecture</h2><p>This project was designed using <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="external nofollow noopener noreferrer">Clean Architecture</a> and <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel" target="_blank" rel="external nofollow noopener noreferrer">MVVM</a> based on Riverpod, and the folder structure was implemented by separating the <code>Presentation</code> folder into the <code>app</code> folder in the <a href="https://codewithandrea.com/articles/flutter-project-structure" target="_blank" rel="external nofollow noopener noreferrer">Feature First</a> structure.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/architecture.png" title="Architecture & Structure" data-caption="Architecture & Structure" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/architecture.png" alt="Architecture & Structure"></a><span class="caption">Architecture & Structure</span></div>
+
+<p>The Flutter part in the team is responsible for combining the completed design and backend functions. In other words, it is a <strong>position that cannot run hard alone because it depends on the design and backend work</strong>.</p>
+<p>Because the idea changed midway and there was not enough time, the Flutter team needed to secure some spare time by doing what they could even if they were unable to work due to dependency issues.</p>
+<p>In Robert C. Martin’s Clean Architecture, it says the following:</p>
+<blockquote>
+<p><strong>Clean Architecture - Robert C. Martin</strong><br>“Architects identify policies as core elements and make details independent of policies, so that decisions on details can be postponed or deferred.”</p>
+</blockquote>
+<p>If we look at this a little differently, we can understand it as <strong>“You can create the core elements of the system even if the details are not decided.”</strong> and in this project, we took advantage of the dependency control of the architecture from the development stage and <strong>implemented the app’s functions based on the Wireframe in the beginning</strong>, and after the design came out <strong>by passing the ViewModel for UI test mode, we configured an environment where we can view the desired game screen and then proceeded with the work easily</strong>.</p>
+<br>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/ui-test-mode.png" title="Since it is implemented with MVVM architecture, we can easily change the app's behavior." data-caption="Since it is implemented with MVVM architecture, we can easily change the app's behavior." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/ui-test-mode.png" alt="Since it is implemented with MVVM architecture, we can easily change the app's behavior."></a><span class="caption">Since it is implemented with MVVM architecture, we can easily change the app's behavior.</span></div>
+
+<p><strong>Backend linkage code was isolated to the Data layer, and the data required for interaction was implemented as a Model class, and then converted to an Entity class when passed to the upper layer, so we could continue to use the existing logic in the domain layer.</strong></p>
+<br>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/model-to-entity.png" title="Model to Entity" data-caption="Model to Entity" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/model-to-entity.png" alt="Model to Entity"></a><span class="caption">Model to Entity</span></div>
+
+<p>Since the server dependency was isolated to the Data layer in this way, <strong>even if a new server is created in the future, the logic of the existing domain layer can be reused as is.</strong></p>
+<h2 id="Riverpod"><a href="#Riverpod" class="headerlink" title="Riverpod"></a>Riverpod</h2><p><a href="https://riverpod.dev/" target="_blank" rel="external nofollow noopener noreferrer">Riverpod</a> was used for <strong>state management</strong>, <strong>MVVM</strong>, and <strong>dependency injection</strong>, and was modified directly without using the Code Generator.</p>
+<p>In the <strong>Presentation layer</strong>, <code>BaseView</code> and <code>BaseViewModel</code> were created, internally generating a Provider, and implementing automatic inference of the Generic type, which greatly reduced the boilerplate code.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// <span class="markdown">No need to create a global variable.</span></span></span><br><span class="line"><span class="comment">/// <span class="markdown">No need to specify the provider type.</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestPageModel</span> <span class="keyword">extends</span> <span class="title">BaseViewModel</span>&lt;<span class="title">int</span>&gt; </span>&#123;</span><br><span class="line">  TestPageModel(<span class="keyword">super</span>.buildState);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TextPage</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> TextPage(&#123;<span class="keyword">super</span>.key&#125;);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> BaseView(</span><br><span class="line">      viewModel: TestPageModel.<span class="keyword">new</span>,</span><br><span class="line">      state: (ref, prevState) =&gt; <span class="number">0</span>,</span><br><span class="line">      builder: (ref, viewModel, state) =&gt; <span class="keyword">const</span> Scaffold(),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>In the <strong>Domain &amp; Data layer</strong>, it was mainly used as a <strong>Dependency Injection</strong> tool. Instead of assigning the Provider to a global variable, it was <strong>encapsulated as a <code>static</code> inside the class, thereby reducing global variables and increasing usability</strong>.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodosNotifier</span> <span class="keyword">extends</span> <span class="title">Notifier</span>&lt;<span class="title">List</span>&lt;<span class="title">Todo</span>&gt;&gt; </span>&#123;</span><br><span class="line">  <span class="comment">/// <span class="markdown">Access in the form of ref.read(TodosNotifier.$)</span></span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> $ = NotifierProvider&lt;TodosNotifier, <span class="built_in">List</span>&lt;Todo&gt;&gt;(() &#123;</span><br><span class="line">    <span class="keyword">return</span> TodosNotifier();</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="built_in">List</span>&lt;Todo&gt; build() &#123;</span><br><span class="line">    <span class="keyword">return</span> [];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Design-Communication"><a href="#Design-Communication" class="headerlink" title="Design Communication"></a>Design Communication</h2><p><strong>Trouble Painter</strong> requires at least 3 people to run the game, and the screens that can be viewed vary depending on the role. Therefore, we created and provided <strong>UI Test Mode</strong> so that designers can view the screens they want and give feedback at any time.<br><br></p>
+<div class="figure " style>
+<video class="fig-video" muted controls alt="UI Test Mode Video">
+<source src="/en/post/trouble-painter/ui-test-mode.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">UI Test Mode Video</span>
+</div>
+
+<p>In addition, unlike the web, it is not easy to check the size of components in mobile app services, so we created a <strong>component page</strong> in the <strong>developer menu</strong> of the app to <strong>provide</strong> a way to view the size of components and animation movements.<br><br></p>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/component-preview.png" title="Component Preview" data-caption="Component Preview" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/component-preview.png" alt="Component Preview"></a><span class="caption">Component Preview</span></div>
+
+<h2 id="WebSocket-Design"><a href="#WebSocket-Design" class="headerlink" title="WebSocket Design"></a>WebSocket Design</h2><p>Real-time communication was <strong>implemented by creating a separate protocol based on WebSocket</strong>, and <strong>close communication with the backend team was required</strong> during the design process compared to HTTP-based APIs.</p>
+<p>The <strong>differences between WebSocket and HTTP-based APIs</strong> that we learned during implementation are as follows. 1. <strong>Since the state exists, a synchronization process is required when reconnecting in the middle</strong><br>2. <strong>Since routing depends on server-side broadcast, discussion with the server side is required when adding a screen</strong><br>3. <strong>Requests and responses are not 1:1, so the documentation method is different</strong></p>
+<p><strong>Since this is a game that is played in real time on a mobile device with an unstable network, the reconnection function was a necessary function that had to be implemented</strong>, and it was implemented by <strong>receiving a snapshot of the server-side state at the time of reconnection, synchronizing it on the client, and then receiving individual broadcasts</strong>.</p>
+<p>For smooth communication, <strong>the necessary state for each screen and the timing of the routing screen transition were organized in Figma</strong> and communicated.<br><br></p>
+<div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/socket.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/socket.png" alt></a></div>
+
+<p>HTTP-based APIs could be documented with Swagger, but since WebSockets do not have 1:1 requests and responses, requests and responses were organized separately in Notion and communicated. <br> <div class="figure " style><a class="fancybox" href="/en/post/trouble-painter/websocket-doc.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/trouble-painter/websocket-doc.png" alt></a></div></p>
+<h2 id="Animation-Control"><a href="#Animation-Control" class="headerlink" title="Animation Control"></a>Animation Control</h2><p><strong>I had to implement a dialogue animation that tells you your turn and what round it is at the start of the game</strong>. The animation specs were provided by <a href="https://cloud.protopie.io/p/bb0ed2d8c6e84199d010881a/r/80f483af" target="_blank" rel="external nofollow noopener noreferrer">Protopie</a>, and are summarized as follows.</p>
+<ol>
+<li><strong>Dialog Fade In</strong></li>
+<li><strong>3 second countdown</strong></li>
+<li><strong>Counter Fade Out</strong></li>
+<li><strong>Round Translate</strong></li>
+<li><strong>Dialog Fade Out</strong></li>
+</ol>
+<br>
+
+<div class="figure " style>
+<video class="fig-video" muted controls alt="Round animation implemented with Overlay">
+<source src="/en/post/trouble-painter/round-anim.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Round animation implemented with Overlay</span>
+</div>
+
+<p><strong>The problem is that when a user interrupts after a certain point in the animation, the animation should start from the same point as other users and end together.</strong> Otherwise, the drawing timer will decrease, but the pop-up will cover the screen, causing an unfortunate situation where you can’t draw.</p>
+<p>To solve this problem, <strong>we implemented a way to control each animation with a single <code>AnimationController</code>, and then calculated and executed the server-side animation progress based on the interruption point.</strong> For detailed instructions, please refer to the <a href="https://docs.flutter.dev/ui/animations/staggered-animations" target="_blank" rel="external nofollow noopener noreferrer">official documentation</a> and <a href="https://github.com/trouble-painter/app/blob/main/lib/app/pages/game/drawing/round/game_drawing_round.dart" target="_blank" rel="external nofollow noopener noreferrer">code</a>.</p>
+<h2 id="Performance-Optimization"><a href="#Performance-Optimization" class="headerlink" title="Performance Optimization"></a>Performance Optimization</h2><p>On the drawing screen, a specific user’s drawing is broadcasted to all players in real time. In this process, <strong>as the number of drawings by users increases, more and more drawing data must be broadcasted in real time, so performance issues were a concern, so the following three methods were introduced for optimization.</strong></p>
+<ol>
+<li><strong>Implement real-time broadcasting of only the drawing data of the current turn, and merging it with the drawing data of the previous turn at the end of the turn</strong></li>
+<li><strong>Implement throttling to reduce the frequency of drawing data and broadcasting</strong></li>
+<li><strong>Apply the <a href="https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm" target="_blank" rel="external nofollow noopener noreferrer">Ramer–Douglas–Peucker algorithm</a> to optimize for lines with fewer points</strong></li>
+</ol>
+<p>Throttle and the epsilon factor of the Ramer-Douglas-Peucker algorithm were implemented so that they can be controlled in Remote Config.</p>
+<h1 id="Play-video"><a href="#Play-video" class="headerlink" title="Play video"></a>Play video</h1><iframe width="100%" height="500" src="https://www.youtube.com/embed/u1H3SAcCDmo?cc_load_policy=1&mute=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+<h1 id="Final"><a href="#Final" class="headerlink" title="Final"></a>Final</h1><p>In this project, I was able to experience <strong>game making</strong> and <strong>drawing feature utilization</strong> that I had always wanted to try, and I also had <strong>practical experience with architecture</strong>, so it was fun. <strong>WebSocket was not easy, but it seems to be an attractive technology that stimulates curiosity to use it in more diverse ways</strong>.</p>
+<p>I will come back next time with a more fun project :)</p>
+<blockquote>
+<p><a href="/en/post/trouble-painter-01/">Part 1. Trouble Painter - Drawing Mafia Game</a><br>✔︎ Part 2. Create a real-time drawing game with Flutter</p>
+</blockquote>
+<blockquote>
+<p>This project was open sourced and can be found at the Github link below.<br>👉 Flutter : <a href="https://github.com/trouble-painter/app" target="_blank" rel="external nofollow noopener noreferrer">Link</a><br>👉 Backend : <a href="https://github.com/YAPP-Github/24th-App-Team-2-BE" target="_blank" rel="external nofollow noopener noreferrer">Link</a></p>
+</blockquote>
+<!-- > If you want to play Trouble Painter, please download it from the link below 🫶
+👉 Android & iOS : <a href="https://trouble-painter.devstory.co.kr/install.html?utm_source=blog_devstory&utm_medium=social&utm_campaign=install" target="_blank" rel="noopener">Download Link</a> -->
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">TAGGED IN</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/en/tags/Project/" rel="tag">Project</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/Trouble-Painter/" rel="tag">Trouble Painter</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/trouble-painter-01/" data-tooltip="Part 1. Trouble Painter - Drawing Mafia Game" aria-label="PREVIOUS: Part 1. Trouble Painter - Drawing Mafia Game">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/worcation-sokcho/" data-tooltip="속초 워케이션 후기" aria-label="NEXT: 속초 워케이션 후기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/trouble-painter-02/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/trouble-painter-02/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/trouble-painter-01/" data-tooltip="Part 1. Trouble Painter - Drawing Mafia Game" aria-label="PREVIOUS: Part 1. Trouble Painter - Drawing Mafia Game">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/worcation-sokcho/" data-tooltip="속초 워케이션 후기" aria-label="NEXT: 속초 워케이션 후기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/trouble-painter-02/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/trouble-painter-02/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/trouble-painter-02/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/trouble-painter-02/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/en/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/en/assets/js/script-fydcx2lyr7ndxsamrdsov38ymqbr3zoihxcwqjt19ahs2hw2vsroxvj0pqei.min.js"></script>
+
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+
+
+
+    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
+</html>

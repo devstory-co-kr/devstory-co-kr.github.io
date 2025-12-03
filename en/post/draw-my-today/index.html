@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>Draw My Today - AI Picture Diary - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/en/post/draw-my-today/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,Deep Learning,Mobile,Android,iOS,cat,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/en/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"We share the story of developing the “Draw My Today - AI Picture Diary” service.👉 한국어 버전\n\nDraw My Today - AI Picture DiaryAI-based emotional diary app that artistically records daily life👉 Android : Link👉 iOS: Link\n\n\nDraw My Today - AI Picture Diary is a service that was developed over 6 months by a team of 5 members. It creates a unique picture diary using artificial intelligence (AI), which is based on the emotions and stories entered by the user.\nMay the day come when our service can be seen on social media platforms... 🙏\n\nTechnology StackApplication Architecture\n\nState management is handled using Cubit, and operations involving tasks such as extracting the average color of an image for use as a background are implemented with a Cache Layer in the Repository. This implementation aims to conserve the phone’s battery by optimizing resource-intensive operations.\nBackend Architecture\n\nCode quality is maintained through code reviews and the inclusion of test codes. The entire codebase is operated as open source, allowing progress tracking through the provided  link.\nPromptEngineering\nTo enhance prompts, clear goals must be defined. Without clear goals, it is challenging to discern whether improvements are being made or not.\n\nFor this project, the primary goal is to create images that evoke the emotions selected by the user. While searching for prompts on the DALL·E website, it was found that the results obtained from the DALL·E API did not consistently match those achieved with the same prompts, making it necessary to create a testing environment within the app. This allowed the identification of prompts that worked well with the API model.\nSubsequently, the secondary goal is to incorporate the context of the diary content into the images. However, processing natural language diaries using conventional programming methods posed numerous challenges due to a multitude of exceptions. To address this, ChatGPT was introduced to tune the diaries into prompts, successfully achieving the second goal.\nAI-generated soothing images\n\nDraw My Today - AI Picture Diary service will continue to be offered as long as.\nWe’ve hidden a game as an Easter egg within the app. if you find it, please let us know in the comments! 🥚👉 Android : Download Link👉 iOS : Download Link👉 Presentation : Link.👉 Backend Github : Link\n","dateCreated":"2023-11-20T14:23:18+09:00","dateModified":"2025-04-30T19:54:57+09:00","datePublished":"2023-11-20T14:23:18+09:00","description":"We share the story of developing the “Draw My Today - AI Picture Diary” service.👉 한국어 버전","headline":"Draw My Today - AI Picture Diary","image":["logo.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/draw-my-today/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/draw-my-today/","keywords":"Project, Draw My Today - AI Picture Diary","thumbnailUrl":"logo.png"}</script>
+    <meta name="description" content="We share the story of developing the “Draw My Today - AI Picture Diary” service.👉 한국어 버전">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Draw My Today - AI Picture Diary">
+<meta property="og:url" content="https://blog.devstory.co.kr/en/post/draw-my-today/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="We share the story of developing the “Draw My Today - AI Picture Diary” service.👉 한국어 버전">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://blog.devstory.co.kr/en/post/draw-my-today/logo.png">
+<meta property="article:published_time" content="2023-11-20T05:23:18.000Z">
+<meta property="article:modified_time" content="2025-04-30T10:54:57.832Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Project">
+<meta property="article:tag" content="Draw My Today - AI Picture Diary">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.devstory.co.kr/en/post/draw-my-today/logo.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/en/assets/css/style-q2rdk1cybwoxo4yajy2m45gicrehcvcblucs91up9vjbijk9mupjrtjv7x57.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/en/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /en/#about">
+        
+        
+            <img class="header-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/en/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/" title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Projects</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Lecture</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Draw My Today - AI Picture Diary
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2023-11-20T14:23:18+09:00">
+	
+		    Nov 20, 2023
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/en/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>Table of Contents
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Draw-My-Today-AI-Picture-Diary"><span class="nero-toc-text">Draw My Today - AI Picture Diary</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Technology-Stack"><span class="nero-toc-text">Technology Stack</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Flutter"><span class="nero-toc-text">Flutter</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Backend"><span class="nero-toc-text">Backend</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#PromptEngineering"><span class="nero-toc-text">PromptEngineering</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Demo"><span class="nero-toc-text">Demo</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Finish"><span class="nero-toc-text">Finish</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>We share the story of developing the “Draw My Today - AI Picture Diary” service.<br><a href="/post/draw-my-today/">👉 한국어 버전</a><br><a id="more"></a></p>
+<hr>
+<h1 id="Draw-My-Today-AI-Picture-Diary"><a href="#Draw-My-Today-AI-Picture-Diary" class="headerlink" title="Draw My Today - AI Picture Diary"></a>Draw My Today - AI Picture Diary</h1><blockquote><p>AI-based emotional diary app that artistically records daily life<br>👉 Android : <a href="https://bit.ly/49yvaGy" target="_blank" rel="external nofollow noopener noreferrer">Link</a><br>👉 iOS: <a href="https://apple.co/44RXYH0" target="_blank" rel="external nofollow noopener noreferrer">Link</a></p>
+</blockquote>
+
+<p><strong>Draw My Today - AI Picture Diary</strong> is a service that was developed over 6 months by a team of 5 members. It creates a unique picture diary using artificial intelligence (AI), which is based on the emotions and stories entered by the user.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/draw-my-today/service-flow.png" title="The design is crafted for easy utilization in a one-page, one-task format, ensuring user-friendly access." data-caption="The design is crafted for easy utilization in a one-page, one-task format, ensuring user-friendly access." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/draw-my-today/service-flow.png" alt="The design is crafted for easy utilization in a one-page, one-task format, ensuring user-friendly access."></a><span class="caption">The design is crafted for easy utilization in a one-page, one-task format, ensuring user-friendly access.</span></div>
+
+<p>Everyday emotions and experiences are expressed in colors and images, which can also be used as an attractive <strong>mood tracker</strong>. Users can recreate images as they wish and share images they like by posting them on social media.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/draw-my-today/emotion-share.png" title="May the day come when our service can be seen on social media platforms... 🙏" data-caption="May the day come when our service can be seen on social media platforms... 🙏" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/draw-my-today/emotion-share.png" alt="May the day come when our service can be seen on social media platforms... 🙏"></a><span class="caption">May the day come when our service can be seen on social media platforms... 🙏</span></div>
+
+<h1 id="Technology-Stack"><a href="#Technology-Stack" class="headerlink" title="Technology Stack"></a>Technology Stack</h1><div class="figure " style><a class="fancybox" href="/en/post/draw-my-today/stack.png" title="Frontend & Backend & AI technology stack" data-caption="Frontend & Backend & AI technology stack" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/draw-my-today/stack.png" alt="Frontend & Backend & AI technology stack"></a><span class="caption">Frontend & Backend & AI technology stack</span></div>
+
+<h1 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h1><p>The backend team prioritized the implementation of Apple and Google social logins. Consequently, the Flutter team conducted prompt engineering based on Firebase until the backend API became available. To facilitate the seamless replacement of Data Access logic with the backend API from Firebase in the future, the Flutter team introduced <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="external nofollow noopener noreferrer">Clean Architecture</a> to design the structure.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/draw-my-today/app-architecture.png" title="Application Architecture" data-caption="Application Architecture" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/draw-my-today/app-architecture.png" alt="Application Architecture"></a><span class="caption">Application Architecture</span></div>
+
+<p>State management is handled using <strong>Cubit</strong>, and operations involving tasks such as extracting the average color of an image for use as a background are implemented with a Cache Layer in the Repository. This implementation aims to conserve the phone’s battery by optimizing resource-intensive operations.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/draw-my-today/diaries.png" title="Colors extracted from the image were used as the background to increase immersion." data-caption="Colors extracted from the image were used as the background to increase immersion." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/draw-my-today/diaries.png" alt="Colors extracted from the image were used as the background to increase immersion."></a><span class="caption">Colors extracted from the image were used as the background to increase immersion.</span></div>
+
+<p>Additionally, we were able to improve the completeness of the service through animation and UX improvements.<br><br></p>
+<div class="nero-grid">
+   <div><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Onboarding">
+<source src="/en/post/draw-my-today/onboarding.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Onboarding</span>
+</div></div>
+   <div><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Creating diary">
+<source src="/en/post/draw-my-today/diary-creating.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Creating diary</span>
+</div></div>
+   <div><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Diary Detail">
+<source src="/en/post/draw-my-today/diary-detail.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Diary Detail</span>
+</div></div>
+</div>
+
+<p>The <strong>onboarding screen</strong> consists of three pages, utilizing <code>PageView</code> to control the <code>Opacity</code> of each page. All elements smoothly appear as if touched by a brush, employing sequential application of <code>Transition</code> and <code>Opacity</code> upon their appearance.</p>
+<p>In the <strong>diary creation</strong> screen, where image generation takes approximately 6-8 seconds, a loading screen is implemented using Lottie animations and a message based on user input to prevent user disengagement during the process.</p>
+<p>Upon initial entry to the <strong>diary detail</strong> screen, an image rating bottom sheet appears. To ensure visibility on smaller devices, content is scrolled to prevent the image from being obscured by the bottom sheet. Additionally, swiping left or right allows easy navigation to diaries of different dates. Dynamic creation of a <code>PageView</code> enables the loading of previous or next month’s diaries during swiping, taking advantage of the paginated handling of the diary list API on a monthly basis.</p>
+<h1 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h1><p>The backend team prioritizes service security by encrypting all diaries using <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank" rel="external nofollow noopener noreferrer">AES</a> before storage. Additionally, to control access to images strictly within a limited timeframe, Presigned URLs are utilized. For ensuring a stable service, a monitoring system based on Grafana has been established.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/draw-my-today/backend-architecture.png" title="Backend Architecture" data-caption="Backend Architecture" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/draw-my-today/backend-architecture.png" alt="Backend Architecture"></a><span class="caption">Backend Architecture</span></div>
+
+<p>Code quality is maintained through code reviews and the inclusion of test codes. The entire codebase is operated as open source, allowing progress tracking through the provided  <a href="https://github.com/tipi-tapi/ai-paint-today-BE" target="_blank" rel="external nofollow noopener noreferrer">link</a>.</p>
+<h1 id="PromptEngineering"><a href="#PromptEngineering" class="headerlink" title="PromptEngineering"></a>PromptEngineering</h1><blockquote>
+<p>To enhance prompts, <strong>clear goals must be defined.</strong> Without clear goals, it is challenging to discern whether improvements are being made or not.</p>
+</blockquote>
+<p>For this project, <strong>the primary goal is to create images that evoke the emotions selected by the user.</strong> While searching for prompts on the <a href="https://labs.openai.com/" target="_blank" rel="external nofollow noopener noreferrer">DALL·E website</a>, it was found that the results obtained from the DALL·E API did not consistently match those achieved with the same prompts, making it necessary to create a testing environment within the app. This allowed the identification of prompts that worked well with the API model.</p>
+<p>Subsequently, <strong>the secondary goal is to incorporate the context of the diary content into the images.</strong> However, processing natural language diaries using conventional programming methods posed numerous challenges due to a multitude of exceptions. To address this, <a href="https://chat.openai.com/" target="_blank" rel="external nofollow noopener noreferrer">ChatGPT</a> was introduced to tune the diaries into prompts, successfully achieving the second goal.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/draw-my-today/prompt-engineering.png" title="Prompt engineering was not easy to achieve the desired results compared to effort." data-caption="Prompt engineering was not easy to achieve the desired results compared to effort." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/draw-my-today/prompt-engineering.png" alt="Prompt engineering was not easy to achieve the desired results compared to effort."></a><span class="caption">Prompt engineering was not easy to achieve the desired results compared to effort.</span></div>
+
+<blockquote>
+<p>Since generative AI can significantly impact the service with just one strange response, <strong>a substantial amount of time and effort in prompt engineering is invested in controlling AI.</strong></p>
+</blockquote>
+<p>The initial <strong>DALL·E</strong> lacked support for <code>Negative Prompt</code>, leading to exploration of alternatives such as <strong>Stable Diffusion</strong> and <strong>Karlo</strong>. Currently, the service utilizes <a href="https://developers.kakao.com/product/karlo" target="_blank" rel="external nofollow noopener noreferrer">Karlo</a>, which offers free usage up to a certain limit, supporting both <code>Negative Prompt</code> and parameter tuning. Prompt engineering with Karlo can be easily tested on the <a href="https://karlo.ai/" target="_blank" rel="external nofollow noopener noreferrer">karlo.ai</a> website.</p>
+<p>Future plans involve implementing the ability to customize various artistic styles and characters. Karlo provides a quantitative metric for <strong>NSFW (Not Safe For Work)</strong> content, and building a system to collect both control and target variables quantitatively will further enhance prompt engineering based on data.</p>
+<blockquote>
+<p>As of September 30, 2024, the provision of Karlo API will end and it is now serviced as Stable Diffusion.</p>
+</blockquote>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Demo video">
+<source src="/en/post/draw-my-today/demo.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Demo video</span>
+</div>
+
+<h1 id="Finish"><a href="#Finish" class="headerlink" title="Finish"></a>Finish</h1><p>In this project, while there were many challenges in prompt engineering, we successfully achieved a consistent generation of images with a brush-like touch, capturing a sense of artistic coherence.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/draw-my-today/ai-generated-images.png" title="AI-generated soothing images" data-caption="AI-generated soothing images" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/draw-my-today/ai-generated-images.png" alt="AI-generated soothing images"></a><span class="caption">AI-generated soothing images</span></div>
+
+<p><strong>Draw My Today - AI Picture Diary</strong> service will continue to be offered as long as.</p>
+<blockquote><p>We’ve hidden a game as an Easter egg within the app. if you find it, please let us know in the comments! 🥚<br>👉 Android : <a href="https://play.google.com/store/apps/details?id=kr.co.devstory.draw_my_today" target="_blank" rel="external nofollow noopener noreferrer">Download Link</a><br>👉 iOS : <a href="https://apple.co/44RXYH0" target="_blank" rel="external nofollow noopener noreferrer">Download Link</a><br>👉 Presentation : <a href="https://www.figma.com/proto/X2lFbqqjnQrMltfks85V64/%EC%98%A4%EB%8A%98-%ED%95%98%EB%A3%A8%EB%A5%BC-%EA%B7%B8%EB%A0%A4%EC%A4%98?type=design&node-id=2481-18466&t=qzljdXNAaUBvb7Po-0&scaling=contain&page-id=2481%3A17465&starting-point-node-id=2481%3A18466&show-proto-sidebar=1" target="_blank" rel="external nofollow noopener noreferrer">Link</a>.<br>👉 Backend Github : <a href="https://github.com/tipi-tapi/ai-paint-today-BE" target="_blank" rel="external nofollow noopener noreferrer">Link</a></p>
+</blockquote>
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">TAGGED IN</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/en/tags/Draw-My-Today-AI-Picture-Diary/" rel="tag">Draw My Today - AI Picture Diary</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/Project/" rel="tag">Project</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/flutter-i18n-02/" data-tooltip="Part 2. Flutter Multilingual Support - Tool Making" aria-label="PREVIOUS: Part 2. Flutter Multilingual Support - Tool Making">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/prography-8th/" data-tooltip="Prography 8기 후기" aria-label="NEXT: Prography 8기 후기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/draw-my-today/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/draw-my-today/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2025 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/flutter-i18n-02/" data-tooltip="Part 2. Flutter Multilingual Support - Tool Making" aria-label="PREVIOUS: Part 2. Flutter Multilingual Support - Tool Making">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/prography-8th/" data-tooltip="Prography 8기 후기" aria-label="NEXT: Prography 8기 후기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/draw-my-today/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/draw-my-today/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/draw-my-today/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/draw-my-today/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/en/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/en/assets/js/script-fydcx2lyr7ndxsamrdsov38ymqbr3zoihxcwqjt19ahs2hw2vsroxvj0pqei.min.js"></script>
+
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+
+
+
+    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
+</html>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>DevStory</title>
+    <link>https://blog.devstory.co.kr/en/</link>
+    
+    <atom:link href="/en/rss.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>DevStory Blog</description>
+    <pubDate>Wed, 30 Apr 2025 10:54:58 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>영월 워케이션 후기</title>
+      <link>https://blog.devstory.co.kr/en/post/worcation-yeongwol/</link>
+      <guid>https://blog.devstory.co.kr/en/post/worcation-yeongwol/</guid>
+      <pubDate>Sat, 11 Jan 2025 06:15:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;영월 2박 3일 워케이션 후기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/worcation-yeongwol/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Part 1. Trouble Painter - Drawing Mafia Game</title>
+      <link>https://blog.devstory.co.kr/en/post/trouble-painter-01/</link>
+      <guid>https://blog.devstory.co.kr/en/post/trouble-painter-01/</guid>
+      <pubDate>Mon, 23 Sep 2024 07:53:36 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Introducing the service “Trouble Painter - Drawing Mafia Game”.&lt;br&gt;&lt;a href=&quot;/post/trouble-painter-01/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/trouble-painter-01/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Part 2. Create a real-time drawing game with Flutter</title>
+      <link>https://blog.devstory.co.kr/en/post/trouble-painter-02/</link>
+      <guid>https://blog.devstory.co.kr/en/post/trouble-painter-02/</guid>
+      <pubDate>Thu, 12 Sep 2024 22:27:02 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Sharing my Trouble Painter making log.&lt;br&gt;&lt;a href=&quot;/post/trouble-painter-02/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/trouble-painter-02/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>속초 워케이션 후기</title>
+      <link>https://blog.devstory.co.kr/en/post/worcation-sokcho/</link>
+      <guid>https://blog.devstory.co.kr/en/post/worcation-sokcho/</guid>
+      <pubDate>Tue, 03 Sep 2024 05:23:18 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;속초 3박 4일 워케이션 후기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/worcation-sokcho/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Part 1. Flutter Multilingual Support - Ready</title>
+      <link>https://blog.devstory.co.kr/en/post/flutter-i18n-01/</link>
+      <guid>https://blog.devstory.co.kr/en/post/flutter-i18n-01/</guid>
+      <pubDate>Mon, 29 Apr 2024 07:38:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Share the story of adding 72 languages to a Flutter project.&lt;br&gt;&lt;a href=&quot;/post/flutter-i18n-01/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/flutter-i18n-01/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Part 2. Flutter Multilingual Support - Tool Making</title>
+      <link>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</link>
+      <guid>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</guid>
+      <pubDate>Mon, 29 Apr 2024 07:37:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;I have created tools that can efficiently complete Flutter multilingual support.&lt;br&gt;&lt;a href=&quot;/post/flutter-i18n-02/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/flutter-i18n-02/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Draw My Today - AI Picture Diary</title>
+      <link>https://blog.devstory.co.kr/en/post/draw-my-today/</link>
+      <guid>https://blog.devstory.co.kr/en/post/draw-my-today/</guid>
+      <pubDate>Mon, 20 Nov 2023 05:23:18 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;We share the story of developing the “Draw My Today - AI Picture Diary” service.&lt;br&gt;&lt;a href=&quot;/post/draw-my-today/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/draw-my-today/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>Prography 8기 후기</title>
+      <link>https://blog.devstory.co.kr/en/post/prography-8th/</link>
+      <guid>https://blog.devstory.co.kr/en/post/prography-8th/</guid>
+      <pubDate>Sun, 19 Nov 2023 05:23:18 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;6개월간 Prography 8기 Flutter 파트로 활동 후기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/prography-8th/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>오픈소스 컨트리뷰톤 후기 (Flutter Contribution)</title>
+      <link>https://blog.devstory.co.kr/en/post/open-source-contributhon/</link>
+      <guid>https://blog.devstory.co.kr/en/post/open-source-contributhon/</guid>
+      <pubDate>Sun, 13 Sep 2020 12:43:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;6주간 오픈소스 컨트리뷰톤에 참여하여 Flutter 프로젝트에 기여한 경험을 공유합니다. 🏃‍♂️🏃‍♀️&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/open-source-contributhon/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>지도 제작 웹사이트 GentleMap</title>
+      <link>https://blog.devstory.co.kr/en/post/gentle-map/</link>
+      <guid>https://blog.devstory.co.kr/en/post/gentle-map/</guid>
+      <pubDate>Thu, 30 Apr 2020 06:02:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Vue.js &amp;amp; Firebase 기반으로 주소가 담긴 Excel 파일을 파싱하여 지도를 만들어주는 반응형 웹 어플리케이션 &lt;a href=&quot;https://gentle-map.devstory.co.kr/&quot; target=&quot;_blank&quot; rel=&quot;external nofollow noopener noreferrer&quot;&gt;GentleMap&lt;/a&gt;을 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/gentle-map/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>딥러닝으로 문장의 끝점 검출기 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/endpoint-detector/</link>
+      <guid>https://blog.devstory.co.kr/en/post/endpoint-detector/</guid>
+      <pubDate>Sat, 25 Apr 2020 12:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;문장의 끝점(마침표, 물음표)을 검출하는 딥러닝 모델을 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/endpoint-detector/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>딥러닝으로 문서 분류기 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/devblog-classifier/</link>
+      <guid>https://blog.devstory.co.kr/en/post/devblog-classifier/</guid>
+      <pubDate>Tue, 18 Feb 2020 12:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Daily Devblog 서비스를 위한 개발 문서 분류기를 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/devblog-classifier/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/too-real-01/</link>
+      <guid>https://blog.devstory.co.kr/en/post/too-real-01/</guid>
+      <pubDate>Wed, 25 Dec 2019 07:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/too-real-01/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>2부. ARKit을 이용하여 iOS AR앱 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/too-real-02/</link>
+      <guid>https://blog.devstory.co.kr/en/post/too-real-02/</guid>
+      <pubDate>Tue, 24 Dec 2019 07:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;ARKit을 이용하여 현실감 있는 iOS AR 어플리케이션 개발 내용을 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/too-real-02/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>3부. Custom YOLO v3 모델 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/too-real-03/</link>
+      <guid>https://blog.devstory.co.kr/en/post/too-real-03/</guid>
+      <pubDate>Mon, 23 Dec 2019 07:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;실시간 객체 탐지 모델인 YOLO 모델을 학습하는 방법에 대해 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/too-real-03/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기</title>
+      <link>https://blog.devstory.co.kr/en/post/too-real-04/</link>
+      <guid>https://blog.devstory.co.kr/en/post/too-real-04/</guid>
+      <pubDate>Sun, 22 Dec 2019 07:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;CoreML을 이용하여 iOS 어플리케이션에 YOLO v3 모델을 탑재하는 방법에 대해 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/too-real-04/#disqus_thread</comments>
+    </item>
+    
+  </channel>
+</rss>
