@@ -8,13 +8,6 @@
     </url>
     
     <url>
-        <loc>https://blog.devstory.co.kr/all-archives/</loc>
-        <lastmod>2025-04-30T10:54:58.092Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
         <loc>https://blog.devstory.co.kr/all-categories/</loc>
         <lastmod>2025-04-30T10:54:58.092Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -23,6 +16,13 @@
     
     <url>
         <loc>https://blog.devstory.co.kr/all-tags/</loc>
+        <lastmod>2025-04-30T10:54:58.092Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://blog.devstory.co.kr/all-archives/</loc>
         <lastmod>2025-04-30T10:54:58.092Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
