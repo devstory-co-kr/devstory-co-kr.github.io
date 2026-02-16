@@ -20,7 +20,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.👉 English Version\n\n오늘 하루를 그려줘 - AI 그림 일기일상을 예술적으로 기록하는 AI 기반 감정 일기 앱👉 Android : 링크👉 iOS : 링크\n\n\n오늘 하루를 그려줘 - AI 그림 일기는 Prography 8기에서 만난 5명의 팀원들과 6개월간 개발하였으며, 사용자가 입력한 감정과 이야기를 토대로 AI가 개성 넘치는 그림 일기를 생성해주는 서비스입니다.\nSNS에서 자주 보이는 날이 오기를.. 🙏\n\n기술 스택Application Architecture\n\n상태 관리는 Cubit을 활용하였으며, 이미지의 평균 색상을 추출하여 배경으로 사용하는 등의 연산이 많이 필요한 작업들은 Repository에 Cache Layer를 추가하여 소중한 휴대폰의 배터리를 아끼도록 구현하였습니다.\nBackend Architecture\n\n또한 코드 리뷰와 테스트 코드로 코드 품질도 관리하고 있으며, 전체 코드는 오픈 소스로 운영되고 있기에 링크에서 진행사항을 확인할 수 있습니다.\n프롬프트 엔지니어링은 생각보다 매웠다\n\n\n생성형 AI는 한 번 이상한 응답을 하면 서비스에 주는 타격이 크기 때문에, 프롬프트 엔지니어링의 많은 시간과 노력이 AI를 통제하는데 들어갑니다.\n\n초기에 이용하던 DALLE는 Negative Prompt를 지원하지 않기 때문에 Stable Diffusion이나 Karlo를 알아보게 되었고, 현재는 일정 사용량 무료로 쓸 수 있으며 Negative Prompt 및 매개 변수 튜닝까지 가능한 Karlo로 서비스하고 있습니다. 참고로 Karlo의 Prompt Engineering은 karlo.ai 사이트에서 손쉽게 테스트할 수 있습니다.\n향후에는 다양한 화풍과 등장 인물을 커스텀 할 수 있도록 구현할 예정이며, Karlo에선 NSFW(Not Safe For Work, 폭력적이거나 선정적임) 지표를 정량적으로 반환해 주는데 통제 변수 뿐만 아니라 목표 변수까지 정량적 지표로 수집할 수 있는 시스템을 구축하면 더욱 양질의 이미지를 생성할 수 있는 프롬프트 엔지니어링을 데이터 기반으로 관리할 수 있을거라 생각됩니다.\n\n2024년 9월 30일부로 Karlo API 제공이 종료되어 지금은 Stable Diffusion으로 서비스하고 있습니다.\n\nDemo\n\n\nYour browser doesn't support HTML5 Video :/\n시연 영상\n\n\n마무리이번 프로젝트에서 프롬프트 엔지니어링에서 우열곡절이 많았지만 붓 터치감이 느껴지는 화풍으로 이미지를 일관성 있게 생성하는데 성공할 수 있었습니다.\n","dateCreated":"2023-11-20T14:23:18+09:00","dateModified":"2025-04-30T19:54:58+09:00","datePublished":"2023-11-20T14:23:18+09:00","description":"“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.👉 English Version","headline":"오늘 하루를 그려줘 - AI 그림 일기","image":["logo.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/draw-my-today/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/draw-my-today/","keywords":"Project, 오늘 하루를 그려줘 - AI 그림 일기","thumbnailUrl":"logo.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.👉 English Version\n\n오늘 하루를 그려줘 - AI 그림 일기일상을 예술적으로 기록하는 AI 기반 감정 일기 앱👉 Play Store : 링크👉 App Store : 링크\n\n\n오늘 하루를 그려줘 - AI 그림 일기는 Prography 8기에서 만난 5명의 팀원들과 6개월간 개발하였으며, 사용자가 입력한 감정과 이야기를 토대로 AI가 개성 넘치는 그림 일기를 생성해주는 서비스입니다.\nSNS에서 자주 보이는 날이 오기를.. 🙏\n\n기술 스택Application Architecture\n\n상태 관리는 Cubit을 활용하였으며, 이미지의 평균 색상을 추출하여 배경으로 사용하는 등의 연산이 많이 필요한 작업들은 Repository에 Cache Layer를 추가하여 소중한 휴대폰의 배터리를 아끼도록 구현하였습니다.\nBackend Architecture\n\n또한 코드 리뷰와 테스트 코드로 코드 품질도 관리하고 있으며, 전체 코드는 오픈 소스로 운영되고 있기에 링크에서 진행사항을 확인할 수 있습니다.\n프롬프트 엔지니어링은 생각보다 매웠다\n\n\n생성형 AI는 한 번 이상한 응답을 하면 서비스에 주는 타격이 크기 때문에, 프롬프트 엔지니어링의 많은 시간과 노력이 AI를 통제하는데 들어갑니다.\n\n초기에 이용하던 DALLE는 Negative Prompt를 지원하지 않기 때문에 Stable Diffusion이나 Karlo를 알아보게 되었고, 현재는 일정 사용량 무료로 쓸 수 있으며 Negative Prompt 및 매개 변수 튜닝까지 가능한 Karlo로 서비스하고 있습니다. 참고로 Karlo의 Prompt Engineering은 karlo.ai 사이트에서 손쉽게 테스트할 수 있습니다.\n향후에는 다양한 화풍과 등장 인물을 커스텀 할 수 있도록 구현할 예정이며, Karlo에선 NSFW(Not Safe For Work, 폭력적이거나 선정적임) 지표를 정량적으로 반환해 주는데 통제 변수 뿐만 아니라 목표 변수까지 정량적 지표로 수집할 수 있는 시스템을 구축하면 더욱 양질의 이미지를 생성할 수 있는 프롬프트 엔지니어링을 데이터 기반으로 관리할 수 있을거라 생각됩니다.\n\n2024년 9월 30일부로 Karlo API 제공이 종료되어 지금은 Stable Diffusion으로 서비스하고 있습니다.\n\n시연 영상\n\n\nYour browser doesn't support HTML5 Video :/\n시연 영상\n\n\n마무리이번 프로젝트에서 프롬프트 엔지니어링에서 우열곡절이 많았지만 붓 터치감이 느껴지는 화풍으로 이미지를 일관성 있게 생성하는데 성공할 수 있었습니다.\n","dateCreated":"2023-11-20T14:23:18+09:00","dateModified":"2026-02-05T21:53:20+09:00","datePublished":"2023-11-20T14:23:18+09:00","description":"“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.👉 English Version","headline":"오늘 하루를 그려줘 - AI 그림 일기","image":["logo.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/draw-my-today/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/draw-my-today/","keywords":"Project, 오늘 하루를 그려줘 - AI 그림 일기","thumbnailUrl":"logo.png"}</script>
     <meta name="description" content="“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.👉 English Version">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="오늘 하루를 그려줘 - AI 그림 일기">
@@ -30,7 +30,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://blog.devstory.co.kr/post/draw-my-today/logo.png">
 <meta property="article:published_time" content="2023-11-20T05:23:18.000Z">
-<meta property="article:modified_time" content="2025-04-30T10:54:58.091Z">
+<meta property="article:modified_time" content="2026-02-05T12:53:20.851Z">
 <meta property="article:author" content="DevStory">
 <meta property="article:tag" content="Project">
 <meta property="article:tag" content="오늘 하루를 그려줘 - AI 그림 일기">
@@ -42,7 +42,7 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-q2rdk1cybwoxo4yajy2m45gicrehcvcblucs91up9vjbijk9mupjrtjv7x57.min.css">
+<link rel="stylesheet" href="/assets/css/style-dsgsehk9qmoqne3foxsdnfqz5re6dlkttjzxd9lnmigqf0mp7vzqwywnfezv.min.css">
 
     <!--STYLES END-->
 
@@ -255,7 +255,7 @@
                 <strong>목차
                 </strong>
             </blockquote>
-            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#오늘-하루를-그려줘-AI-그림-일기"><span class="nero-toc-text">오늘 하루를 그려줘 - AI 그림 일기</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#기술-스택"><span class="nero-toc-text">기술 스택</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Flutter"><span class="nero-toc-text">Flutter</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Backend"><span class="nero-toc-text">Backend</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Prompt-Engineering"><span class="nero-toc-text">Prompt Engineering</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Demo"><span class="nero-toc-text">Demo</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마무리"><span class="nero-toc-text">마무리</span></a></li></ol>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#오늘-하루를-그려줘-AI-그림-일기"><span class="nero-toc-text">오늘 하루를 그려줘 - AI 그림 일기</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#기술-스택"><span class="nero-toc-text">기술 스택</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Flutter"><span class="nero-toc-text">Flutter</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Backend"><span class="nero-toc-text">Backend</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Prompt-Engineering"><span class="nero-toc-text">Prompt Engineering</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#시연-영상"><span class="nero-toc-text">시연 영상</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마무리"><span class="nero-toc-text">마무리</span></a></li></ol>
             <hr class="nero-toc-line">
             <style>
                 .nero-toc-line {
@@ -276,7 +276,7 @@
 
             <p>“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.<br><a href="/en/post/draw-my-today/">👉 English Version</a><br><a id="more"></a></p>
 <hr>
-<h1 id="오늘-하루를-그려줘-AI-그림-일기"><a href="#오늘-하루를-그려줘-AI-그림-일기" class="headerlink" title="오늘 하루를 그려줘 - AI 그림 일기"></a>오늘 하루를 그려줘 - AI 그림 일기</h1><blockquote><p>일상을 예술적으로 기록하는 AI 기반 감정 일기 앱<br>👉 Android : <a href="https://bit.ly/49yvaGy" target="_blank" rel="external nofollow noopener noreferrer">링크</a><br>👉 iOS : <a href="https://apple.co/44RXYH0" target="_blank" rel="external nofollow noopener noreferrer">링크</a></p>
+<h1 id="오늘-하루를-그려줘-AI-그림-일기"><a href="#오늘-하루를-그려줘-AI-그림-일기" class="headerlink" title="오늘 하루를 그려줘 - AI 그림 일기"></a>오늘 하루를 그려줘 - AI 그림 일기</h1><blockquote><p>일상을 예술적으로 기록하는 AI 기반 감정 일기 앱<br>👉 Play Store : <a href="https://play.google.com/store/apps/details?id=kr.co.devstory.draw_my_today" target="_blank" rel="external nofollow noopener noreferrer">링크</a><br>👉 App Store : <a href="https://apple.co/44RXYH0" target="_blank" rel="external nofollow noopener noreferrer">링크</a></p>
 </blockquote>
 
 <p><strong>오늘 하루를 그려줘 - AI 그림 일기</strong>는 Prography 8기에서 만난 5명의 팀원들과 6개월간 개발하였으며, 사용자가 입력한 <strong>감정과 이야기를 토대로 AI가 개성 넘치는 그림 일기를 생성</strong>해주는 서비스입니다.</p>
@@ -339,7 +339,7 @@
 <blockquote>
 <p>2024년 9월 30일부로 Karlo API 제공이 종료되어 지금은 Stable Diffusion으로 서비스하고 있습니다.</p>
 </blockquote>
-<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><div class="figure " style>
+<h1 id="시연-영상"><a href="#시연-영상" class="headerlink" title="시연 영상"></a>시연 영상</h1><div class="figure " style>
 <video class="fig-video" autoplay playsinline loop muted controls alt="시연 영상">
 <source src="/post/draw-my-today/demo.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
@@ -350,7 +350,7 @@
 <div class="figure " style><a class="fancybox" href="/post/draw-my-today/ai-generated-images.png" title="AI가 생성한 마음이 편안해 지는 이미지들" data-caption="AI가 생성한 마음이 편안해 지는 이미지들" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/draw-my-today/ai-generated-images.png" alt="AI가 생성한 마음이 편안해 지는 이미지들"></a><span class="caption">AI가 생성한 마음이 편안해 지는 이미지들</span></div>
 
 <p>Prography 8기로 팀원들을 만났지만 <strong>오늘 하루를 그려줘 - AI 그림일기</strong> 서비스는 계속 서비스할 예정입니다.</p>
-<blockquote><p>앱 내에 이스터에그로 게임을 숨겨뒀는데, 찾으신 분은 댓글로 알려주세요 🥚<br>👉 Android : <a href="https://play.google.com/store/apps/details?id=kr.co.devstory.draw_my_today" target="_blank" rel="external nofollow noopener noreferrer">다운로드 링크</a><br>👉 iOS : <a href="https://apple.co/44RXYH0" target="_blank" rel="external nofollow noopener noreferrer">다운로드 링크</a><br>👉 Presentation <a href="https://www.figma.com/proto/X2lFbqqjnQrMltfks85V64/%EC%98%A4%EB%8A%98-%ED%95%98%EB%A3%A8%EB%A5%BC-%EA%B7%B8%EB%A0%A4%EC%A4%98?type=design&node-id=2554-10767&t=LVZuWzd2RHHy1hY4-0&scaling=contain&page-id=2554%3A9766&starting-point-node-id=2554%3A10767&show-proto-sidebar=1" target="_blank" rel="external nofollow noopener noreferrer">링크</a></p>
+<blockquote><p>앱 내에 이스터에그로 게임을 숨겨뒀는데, 찾으신 분은 댓글로 알려주세요 🥚<br>👉 Play Store : <a href="https://play.google.com/store/apps/details?id=kr.co.devstory.draw_my_today" target="_blank" rel="external nofollow noopener noreferrer">링크</a><br>👉 App Store : <a href="https://apple.co/44RXYH0" target="_blank" rel="external nofollow noopener noreferrer">링크</a><br>👉 Presentation <a href="https://www.figma.com/proto/X2lFbqqjnQrMltfks85V64/%EC%98%A4%EB%8A%98-%ED%95%98%EB%A3%A8%EB%A5%BC-%EA%B7%B8%EB%A0%A4%EC%A4%98?type=design&node-id=2554-10767&t=LVZuWzd2RHHy1hY4-0&scaling=contain&page-id=2554%3A9766&starting-point-node-id=2554%3A10767&show-proto-sidebar=1" target="_blank" rel="external nofollow noopener noreferrer">링크</a></p>
 </blockquote>
 
 <blockquote><p>Backend<br>👉 Github : <a href="https://github.com/tipi-tapi/ai-paint-today-BE" target="_blank" rel="external nofollow noopener noreferrer">링크</a></p>
@@ -586,7 +586,7 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-fydcx2lyr7ndxsamrdsov38ymqbr3zoihxcwqjt19ahs2hw2vsroxvj0pqei.min.js"></script>
+<script src="/assets/js/script-yvaktdiyqwbquxs5kxacqxooqexa4rx7n8hr4vx6iuktrjms3nhmpwv4l6pk.min.js"></script>
 
 <!--SCRIPTS END-->
 
