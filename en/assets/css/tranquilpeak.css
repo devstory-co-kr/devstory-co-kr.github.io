@@ -3343,10 +3343,16 @@ details {
 summary {
   cursor: pointer;
   font-weight: bold;
-  outline: none; }
+  outline: none;
+  color: #349ef3; }
+  summary:hover {
+    text-decoration: underline; }
 
 summary::-webkit-details-marker {
-  color: #5d686f; }
+  color: #349ef3; }
+
+summary::marker {
+  color: #349ef3; }
 
 summary:focus {
   outline-style: none; }

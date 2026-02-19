@@ -6,7 +6,7 @@
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="DevStory">
-    <title>2부. 귀타 - 시각 장애인을 위한 기타 튜너 - DevStory</title>
+    <title>Part 2. Guita - Guitar Tuner for the Visually Impaired - DevStory</title>
     <meta name="author" content="DevStory">
     <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
     <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
@@ -20,30 +20,30 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"시각 장애인을 위한 기타 튜너 앱을 소개합니다.\n\n1부. 귀타 - 시각 장애인을 위한 기타 학습 앱✔︎ 2부. 귀타 - 시각 장애인을 위한 기타 튜너\n\n귀타 - 귀로 듣는 기타 튜너시각 장애인을 위한 기타 튜너 앱👉 Play Store👉 App Store\n\n\n\n이번 프로젝트는 1부에서 전맹 시각장애를 가진 하권사님 댁을 마지막으로 방문했을 때, 기타가 전혀 튜닝되어 있지 않은 상태인 것을 발견한 데서 시작되었습니다. 시중의 기타 튜너 앱들은 대부분 시각적인 피드백에 의존하고 있어, 시각장애인이 사용하기에는 어려움이 있었습니다.\n이러한 문제를 해결하고자 시각장애인을 위한 기타 튜너 앱 개발을 시작했으며, Flutter를 사용해 한 달 동안 1인 개발로 프로젝트를 진행했습니다.\n시연앱은 기타 튜닝과 코드 운지법 학습 기능을 제공하며, Android와 iOS를 모두 지원합니다. 다음 영상은 iOS Voice Over를 이용한 앱 시연 영상입니다.\n\n\n디자인이전 프로젝트에서는 전맹 유저만 대상으로 하였기에 시각적인 요소를 고려하지 않았는데, 이번엔 더 많은 유저가 사용할 수 있도록 전맹 시각 장애인과 저시력자 모두를 유저로 고려하였습니다.\n스크린 리더기 친화적 디자인\n스크린 리더기는 Android에서는 TalkBack, iOS에서는 VoiceOver라고 불립니다.\n\n\n스크린 리더기는 화면의 상태를 포커스가 이동된 순서와 음성 설명을 기반으로 파악하므로, 전체 화면의 상태를 파악하는데 많은 시간이 소요됩니다.\n\n스크린 리더기 사용자의 인지 부담을 최소화하고 예측 가능하며 일관된 탐색 경험을 제공하기 위해 다음과 같은 규칙을 기반으로 UI를 구현하였습니다.\n간결한 스크린 리더기 안내 제공\n\n스크린 리더기 설명은 핵심 정보만 간결하게 전달\n설명이 길어질 경우 사용자가 피로감을 느끼고 전체 사용성이 저하될 수 있음\n\n포커스 위치 임의 변경 금지\n\n임의로 포커스를 이동시키지 않음\n예기치 않은 포커스 변화는 사용자의 탐색 흐름을 방해하므로, 일관된 규칙에 따라 자연스럽게 이동하도록 설계\n\n동적 UI 변화 최소화\n\n화면 일부 요소가 동적으로 변경되는 구조 지양\n스크린 리더기 사용 시 맥락 혼란을 유발할 수 있는 위젯 사용 최소화e.g. BottomNavigationBar, ExpansionTile\n\n네비게이션 요소 위치 통일\n\nWCAG(Web Content Accessibility Guideline) – Consistent Navigation 권장 사항 준수\n네비게이션 요소를 항상 동일한 위치와 순서로 배치하여 예측 가능성 확보e.g. 뒤로가기 버튼은 좌측 상단에, 가이드 버튼은 우측 상단에 배치\n\nTTS(Text To Speech) 대신 스크린 리더기 사용\n\n여러 음성이 동시에 재생될 경우 사용자가 정보를 명확히 인지하기 어려움\n모든 음성 가이드는 TTS 대신 스크린 리더기를 통해 일관되게 제공\n\n튜너 디자인전맹 시각 장애인은 기타 튜닝 상태를 스크린 리더기의 안내 음성과, 지속적으로 재생되는 비프음 두 가지 청각적 피드백으로 파악할 수 있습니다.\n    \n\n\nYour browser doesn't support HTML5 Video :/\n튜닝 시연 영상\n\n\n  스크린 리더기를 이용한 음성 피드백은 일정 간격으로 현재 튜닝 상태를 알려줍니다. 예를 들어 줄이 풀려있다면 “6번줄 20hz 낮습니다”라고 음성으로 알려주어 유저가 줄을 감아야 하는지 풀어야 하는지 판단할 수 있게 합니다.\n지속적으로 재생되는 비프음은 미세 튜닝을 도와줍니다. 차량의 후방 감지 센서처럼 현재 현의 주파수가 정답 주파수에 가까워지면 비프음의 간격이 줄어들도록 설계되어 있습니다. 유저는 비프음 간격이 줄어드는 방향으로 튜닝을 진행하면 됩니다.\n또한 정답 주파수보다 낮을 때와 높을 때의 음높이를 다르게 주어 유저가 정답 주파수의 경계를 파악할 수 있도록 설계하였습니다.\n\n\n코드 학습 디자인    \n\n\nYour browser doesn't support HTML5 Video :/\n코드 운지법 시연 영상\n\n\n  기타 코드는 각 12개의 음계(C, C#, D, …, B)에 대해서 50가지 조성(Major, Minor, …, add9 등)으로 구성하여 총 600개의 코드 운지법을 배울 수 있도록 준비했습니다. 또한 하나의 코드에서도 다양한 운지법을 볼 수 있는데, PageView를 스크린 리더기로 조작할 수 있도록 구현하였습니다.\n저시력자 유저를 위해 기타 운지 다이어그램을 캔버스로 구현하였고, 전맹 유저를 위해 낮은 프렛 낮은 줄 번호부터 오름차순으로 운지법을 설명하도록 구현하였습니다.\n최대한 간결하게 핵심만 전달하도록 정보를 압축하였고, 기타 소리는 Sound Fonts로 구현하여 직접 소리를 재생하였습니다.\n\n\n\nFlutter이번 프로젝트는 Android와 iOS를 모두 지원하기 위해 Flutter로 개발하였습니다.\n접근성 구현Flutter 접근성 공식 문서에서 접근성 관련된 내용을 확인할 수 있습니다. 자주 사용하는 접근성 관련된 위젯은 다음과 같습니다.\n\n\n\n위젯\n설명\n\n\n\nSemantics\n커스텀 위젯에 접근성 정보(label, hint, value 등)를 추가\n\n\nMergeSemantics\n여러 시각적 요소를 하나의 접근성 노드로 병합\n\n\nExcludeSemantics\n장식용 요소를 접근성 트리에서 제외\n\n\nSemantics 위젯을 추가하지 않아도 기본적인 텍스트를 스크린 리더기가 읽어주지만, 해당 위젯을 이용하면 추가적인 정보를 제공할 수 있습니다.  스크린 리더기는 Label → Hint → Child Semantics(존재시) → Value 순서로 속성을 읽어줍니다. 또한 OrdinalSortKey를 이용하여 포커싱 순서를 변경할 수 있습니다.\n1234567891011121314Semantics(  label: '버튼 설명',                  // 스크린 리더가 읽을 텍스트  hint: '추가 도움말',                 // 선택적 힌트  button: true,                     // 버튼 역할 명시  enabled: true,                    // 활성화 상태  onTap: () &#123;&#125;,                     // 스크린 리더기로 더블 탭하면 실행  checked: false,                   // 체크박스 상태  selected: false,                  // 선택 상태  header: true,                     // 제목 표시  liveRegion: true,                 // child 위젯이 변경되었을 때 다시 읽기  sortKey: const OrdinalSortKey(1), // 포커싱 순서 지정  excludeSemantics: false,          // 접근성 비활성화(접근성 트리에서 제외)  child: MyWidget())\n\nPageView의 경우 페이지가 넘어갔을 때 변경된 요소를 스크린 리더가 다시 읽어주길 원한다면 다음과 같이 구현한 뒤, 각 페이지의 liveRegion 속성을 true로 설정하시면 됩니다. onIncrease와 onDecrease는 PageView의 페이지 이동을 스크린 리더기로 구현하는 함수입니다. 포커싱한 뒤 위아래로 스와이프하여 페이지를 이동할 수 있습니다.\n1234567891011Semantics(  container: true,  onIncrease: () =&gt; _handleSemanticSwipe(1),  onDecrease: () =&gt; _handleSemanticSwipe(-1),  child: PageView(    itemBuilder: (context, index) =&gt; Semantics(      liveRegion: true,      child: ...    );  ),),\n\n스크린 리더기 활성 여부도 다음과 같이 확인하여 분기처리 할 수 있습니다.\n12345extension SemanticsExtension on BuildContext &#123;  bool isScreenReaderActive() &#123;    return MediaQuery.of(this).accessibilityFeatures.reduceMotion;  &#125;&#125;\n\nMaterialApp에 showSemanticsDebugger 속성을 true로 설정하면 접근성 정보를 보여주는 오버레이를 볼 수 있습니다. 해당 기능을 이용하면 스크린 리더기가 읽어주는 Label, Hint, Value 등을 볼 수 있어 디버깅시 유용합니다.\n1234MaterialApp(  showSemanticsDebugger: true,  ...);\n\n홈 화면 (Debugger On)\n\n튜너 구현소리로 튜닝 상태를 알려주는 튜너를 만들려면 기타 소리만 인식하고, 비프음이나 스크린 리더의 음성은 인식하지 않도록 구현해야 했습니다. iOS는 Audio Session 설정을 통해서 디바이스에서 발생하는 소리를 OS 레벨에서 캔슬링해주어 손쉽게 구현할 수 있었습니다.\nAndroid는 여러 문제가 연쇄적으로 발생해 구현이 쉽지 않았습니다. 녹음기의 Audio Source를 VOICE_COMMUNICATION으로 설정하면 기기에서 발생하는 소리는 효과적으로 캔슬링되었지만, 기타 1·2번 줄에 해당하는 주파수 대역이 제대로 인식되지 않는 문제가 있었습니다.\n이를 해결하기 위해 Audio Source를 MIC로 변경하고, 비프음을 더 높은 주파수 대역으로 이동시킨 뒤 FFT 처리 단계에서 직접 필터링하도록 구현했습니다. 이 방식에서도 톡백 음성이 마이크 입력으로 유입되는 문제는 남아 있었으나, 알림 주기를 늘리는 방식으로 완화했습니다.\n추가로, Audio Source를 MIC로 설정하면 Android에서 liveRegion 기능이 정상적으로 동작하지 않는 문제가 발생했습니다. 관련 내용을 Flutter Issue로 제보했으며, Android 기기에서는 liveRegion 대신 sendAnnouncement를 사용하도록 분기 처리하여 해결했습니다. 다만, sendAnnouncement API는 Android API level 36에서 폐지 예정이므로, 향후 Android 업데이트에 대응한 대체 구현이 필요할 것으로 보입니다.\n마무리평소 시각 인터페이스에 최적화된 앱을 설계했는데, 이번 프로젝트를 통해 음성 인터페이스 중심의 앱을 만들어 보면서 두 방식의 차이가 생각보다 크다는 것을 알게 되었습니다. 또한 스크린 리더를 사용하는 사용자에게 튜너를 어떤 인터페이스로 제공해야할지 고민했던 경험들이 의미있고 재미있었습니다.\n귀타 - 시각 장애인을 위한 기타 튜너 앱👉 Play Store👉 App Store\n\n\n귀타가 시각장애인 분들께 조금이나마 도움이 되는 도구가 되기를 바랍니다. 🎸\n","dateCreated":"2026-02-15T11:55:00+09:00","dateModified":"2026-02-16T16:32:05+09:00","datePublished":"2026-02-15T11:55:00+09:00","description":"시각 장애인을 위한 기타 튜너 앱을 소개합니다.","headline":"2부. 귀타 - 시각 장애인을 위한 기타 튜너","image":["/post/ada-4th-guita/guita-flutter.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/ada-4th-guita-02/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/ada-4th-guita-02/","keywords":"Apple Developer Acedemy 4th, Guita, Accessibility","thumbnailUrl":"/post/ada-4th-guita/guita-flutter.png"}</script>
-    <meta name="description" content="시각 장애인을 위한 기타 튜너 앱을 소개합니다.">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Introducing the guitar tuner app for the visually impaired.👉 한국어 버전\n\nPart 1. Guita - Guitar Learning App for the Visually Impaired✔︎ Part 2. Guita - Guitar Tuner for the Visually Impaired\n\nGuita - Guitar Tuner by EarGuitar tuner app for the visually impaired👉 Play Store👉 App Store\n\n\n\nThis project began when I visited Mr. Ha (who has total blindness) at his home for the last time during Part 1 and discovered that his guitar was completely out of tune. Most guitar tuner apps on the market rely heavily on visual feedback, making them difficult for visually impaired users to use.\nTo solve this problem, I started developing a guitar tuner app for the visually impaired, and completed the project as a solo developer using Flutter over the course of one month.\nDemonstrationThe app provides guitar tuning and chord fingering learning features, supporting both Android and iOS. The following video is an app demonstration using iOS VoiceOver.\n\n\nDesignWhile the previous project targeted only totally blind users and did not prioritize visual elements, this time I considered both totally blind and low-vision users to make the app accessible to more people.\nScreen Reader Friendly Design\nScreen readers are called TalkBack on Android and VoiceOver on iOS.\n\n\nSince screen readers understand the screen’s state based on the order of focus and voice descriptions, it takes a long time to grasp the overall status of the screen.\n\nTo minimize cognitive load and provide a predictable and consistent navigation experience for screen reader users, I implemented the UI based on the following rules:\nProvide Concise Screen Reader Guidance\n\nScreen reader descriptions should convey only the core information concisely.\nLong descriptions can cause user fatigue and degrade overall usability.\n\nNo Arbitrary Focus Changes\n\nAvoid moving the focus arbitrarily.\nUnexpected focus changes disrupt the user’s navigation flow, so the UI is designed to move naturally according to consistent rules.\n\nMinimize Dynamic UI Changes\n\nAvoid structures where screen elements change dynamically.\nMinimize the use of widgets that can cause contextual confusion for screen reader users.e.g. BottomNavigationBar, ExpansionTile\n\nConsistent Navigation Element Placement\n\nAdhere to WCAG (Web Content Accessibility Guideline) – Consistent Navigation recommendations.\nEnsure navigation elements are always placed in the same position and order for predictability.e.g. Back button on the top left, Guide button on the top right.\n\nUse Screen Reader Instead of Custom TTS (Text To Speech)\n\nPlaying multiple voices simultaneously makes it hard for users to perceive information clearly.\nAll voice guidance is consistently provided through the screen reader instead of a separate TTS.\n\nTuner DesignTotally blind users can perceive the guitar’s tuning status through two types of auditory feedback: screen reader voice guidance and continuously playing beeps.\n    \n\n\nYour browser doesn't support HTML5 Video :/\nTuning Demonstration\n\n\n  Voice feedback via screen reader informs the current tuning status at regular intervals. For example, if a string is loose, it says “String 6 is 20Hz low,” allowing the user to decide whether to tighten or loosen the string.\nThe continuous beep assists with fine-tuning. Much like a car’s reverse parking sensor, the interval between beeps shortens as the string’s frequency approaches the target frequency. Users simply need to tune in the direction where the beep interval decreases.\nAdditionally, I designed the pitch of the beep to differ when the frequency is lower vs. higher than the target, helping users identify where the target frequency boundary lies.\n\n\nChord Learning Design    \n\n\nYour browser doesn't support HTML5 Video :/\nChord Fingering Demonstration\n\n\n  We prepared 600 chord fingerings, consisting of 50 tonalities (Major, Minor, …, add9, etc.) for each of the 12 musical scales (C, C#, D, …, B). Users can also see various fingerings for a single chord, and I implemented the PageView to be controllable via screen readers.\nFor low-vision users, guitar fingering diagrams were implemented using Canvas. For totally blind users, the app is designed to explain fingerings in ascending order, starting from the lowest fret and lowest string number.\nInformation was compressed to deliver only the essentials as concisely as possible, and guitar sounds were directly played using Sound Fonts.\n\n\n\nFlutterThis project was developed with Flutter to support both Android and iOS.\nAccessibility ImplementationYou can find accessibility-related content in the Flutter Accessibility Official Documentation. Some of the frequently used accessibility widgets are:\n\n\n\nWidget\nDescription\n\n\n\nSemantics\nAdds accessibility information (label, hint, value, etc.) to custom widgets.\n\n\nMergeSemantics\nMerges multiple visual elements into a single accessibility node.\n\n\nExcludeSemantics\nExcludes decorative elements from the accessibility tree.\n\n\nWhile screen readers will read basic text even without a Semantics widget, using it allows you to provide additional information. Screen readers read attributes in the order of Label → Hint → Child Semantics (if present) → Value. You can also use OrdinalSortKey to change the focus order.\n1234567891011121314Semantics(  label: 'Button description',        // Text to be read by the screen reader  hint: 'Additional help',            // Optional hint  button: true,                       // Specify the button role  enabled: true,                      // Active status  onTap: () &#123;&#125;,                       // Executes on a double tap with the screen reader  checked: false,                     // Checkbox state  selected: false,                    // Selection state  header: true,                       // Mark as a header  liveRegion: true,                   // Re-read when child widget changes  sortKey: const OrdinalSortKey(1),   // Specify focus order  excludeSemantics: false,            // Disable accessibility (exclude from the tree)  child: MyWidget())\n\nFor a PageView, if you want the screen reader to re-read changed elements when the page turns, you can implement it as follows and set the liveRegion property of each page to true. onIncrease and onDecrease are functions that implement PageView navigation via the screen reader. Users can swipe up or down after focusing to change pages.\n1234567891011Semantics(  container: true,  onIncrease: () =&gt; _handleSemanticSwipe(1),  onDecrease: () =&gt; _handleSemanticSwipe(-1),  child: PageView(    itemBuilder: (context, index) =&gt; Semantics(      liveRegion: true,      child: ...    );  ),),\n\nYou can also check if a screen reader is active to perform conditional logic:\n12345extension SemanticsExtension on BuildContext &#123;  bool isScreenReaderActive() &#123;    return MediaQuery.of(this).accessibilityFeatures.reduceMotion;  &#125;&#125;\n\nSetting the showSemanticsDebugger property to true in MaterialApp displays an overlay with accessibility information. This is useful for debugging as it shows the Label, Hint, Value, etc., that the screen reader will read.\n1234MaterialApp(  showSemanticsDebugger: true,  ...);\n\nHome Screen (Debugger On)\n\nTuner ImplementationTo build a tuner that informs the tuning status via sound, I had to ensure it recognized only the guitar sound, while ignoring the beeps or the screen reader’s voice. On iOS, this was easily achieved at the OS level by configuring the Audio Session to cancel device-generated sounds.\nAndroid was more challenging due to a chain of issues. Setting the recorder’s Audio Source to VOICE_COMMUNICATION effectively cancelled device sounds, but it caused issues recognizing the frequency bands of the 1st and 2nd guitar strings.\nTo resolve this, I changed the Audio Source to MIC and moved the beeps to a higher frequency band, then implemented direct filtering during the FFT processing stage. While the issue of TalkBack audio bleeding into the microphone remained with this method, I mitigated it by increasing the notification interval.\nAdditionally, setting the Audio Source to MIC caused the liveRegion feature to malfunction on Android. I reported this to the Flutter Issue tracker and implemented a workaround using sendAnnouncement instead of liveRegion for Android devices. However, since the sendAnnouncement API is scheduled for deprecation in Android API level 36, a replacement implementation will be needed for future Android updates.\nFinishingI usually design apps optimized for visual interfaces, but through this project, I realized that the difference between the two approaches is greater than expected. The experience of contemplating what kind of interface to provide for a tuner to screen reader users was both meaningful and fun.\nGuita - Guitar Tuner for the Visually Impaired👉 Play Store👉 App Store\n\n\nI hope Guita becomes a helpful tool for the visually impaired. 🎸\n","dateCreated":"2026-02-15T11:55:00+09:00","dateModified":"2026-02-19T19:01:52+09:00","datePublished":"2026-02-15T11:55:00+09:00","description":"Introducing the guitar tuner app for the visually impaired.👉 한국어 버전","headline":"Part 2. Guita - Guitar Tuner for the Visually Impaired","image":["/en/post/ada-4th-guita/guita-flutter.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/ada-4th-guita-02/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/ada-4th-guita-02/","keywords":"Guita, Accessibility, Apple Developer Academy 4th","thumbnailUrl":"/en/post/ada-4th-guita/guita-flutter.png"}</script>
+    <meta name="description" content="Introducing the guitar tuner app for the visually impaired.👉 한국어 버전">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="2부. 귀타 - 시각 장애인을 위한 기타 튜너">
+<meta property="og:title" content="Part 2. Guita - Guitar Tuner for the Visually Impaired">
 <meta property="og:url" content="https://blog.devstory.co.kr/en/post/ada-4th-guita-02/index.html">
 <meta property="og:site_name" content="DevStory">
-<meta property="og:description" content="시각 장애인을 위한 기타 튜너 앱을 소개합니다.">
+<meta property="og:description" content="Introducing the guitar tuner app for the visually impaired.👉 한국어 버전">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="https://blog.devstory.co.kr/post/ada-4th-guita/guita-flutter.png">
+<meta property="og:image" content="https://blog.devstory.co.kr/en/post/ada-4th-guita/guita-flutter.png">
 <meta property="article:published_time" content="2026-02-15T02:55:00.000Z">
-<meta property="article:modified_time" content="2026-02-16T07:32:05.624Z">
+<meta property="article:modified_time" content="2026-02-19T10:01:52.023Z">
 <meta property="article:author" content="DevStory">
-<meta property="article:tag" content="Apple Developer Acedemy 4th">
 <meta property="article:tag" content="Guita">
 <meta property="article:tag" content="Accessibility">
+<meta property="article:tag" content="Apple Developer Academy 4th">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.devstory.co.kr/post/ada-4th-guita/guita-flutter.png">
+<meta name="twitter:image" content="https://blog.devstory.co.kr/en/post/ada-4th-guita/guita-flutter.png">
     
     
         
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/en/assets/css/style-dsgsehk9qmoqne3foxsdnfqz5re6dlkttjzxd9lnmigqf0mp7vzqwywnfezv.min.css">
+<link rel="stylesheet" href="/en/assets/css/style-v1dnzlduvszmxntmoqccaeayotrnhiyywvpmeqh4sej3sf53tvste0ibp6ys.min.css">
 
     <!--STYLES END-->
 
@@ -95,10 +95,10 @@
     </div>
     
         
-            <a class="header-right-picture " href="#about" aria-label="링크 열기: /en/#about">
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /en/#about">
         
         
-            <img class="header-picture" src="/en/assets/images/devstory.png" alt="저자 이미지">
+            <img class="header-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
         
         </a>
     
@@ -115,8 +115,8 @@
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
-                <a href="/en/#about" aria-label="저자에 대해 더 알아보기">
-                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="저자 이미지">
+                <a href="/en/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
                 </a>
                 <h4 class="sidebar-profile-name">DevStory</h4>
                 
@@ -129,37 +129,37 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/en/" title="홈">
+                        <a class="sidebar-button-link " href="/en/" title="Home">
                     
                         <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">홈</span>
+                        <span class="sidebar-button-desc">Home</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/en/all-categories" title="카테고리">
+                        <a class="sidebar-button-link " href="/en/all-categories" title="Categories">
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">카테고리</span>
+                        <span class="sidebar-button-desc">Categories</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/en/all-tags" title="태그">
+                        <a class="sidebar-button-link " href="/en/all-tags" title="Tags">
                     
                         <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">태그</span>
+                        <span class="sidebar-button-desc">Tags</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/en/all-archives" title="아카이브">
+                        <a class="sidebar-button-link " href="/en/all-archives" title="Archives">
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">아카이브</span>
+                        <span class="sidebar-button-desc">Archives</span>
                     </a>
             </li>
             
@@ -169,28 +169,28 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">깃허브</span>
+                        <span class="sidebar-button-desc">GitHub</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
                     
                         <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">프로젝트</span>
+                        <span class="sidebar-button-desc">Projects</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
                     
                         <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">강의</span>
+                        <span class="sidebar-button-desc">Lecture</span>
                     </a>
             </li>
             
@@ -223,18 +223,18 @@
     <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            2부. 귀타 - 시각 장애인을 위한 기타 튜너
+            Part 2. Guita - Guitar Tuner for the Visually Impaired
         </h1>
     
     
         <div class="post-meta">
     <time datetime="2026-02-15T11:55:00+09:00">
 	
-		    2026/02/15
+		    Feb 15, 2026
     	
     </time>
     
-        <span>카테고리 </span>
+        <span>in </span>
         
     <a class="category-link" href="/en/categories/Project/">Project</a>
 
@@ -253,10 +253,10 @@
             <!-- NERO :: Add TOC -->
             <hr class="nero-toc-line">
             <blockquote>
-                <strong>목차
+                <strong>Table of Contents
                 </strong>
             </blockquote>
-            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#귀타-귀로-듣는-기타-튜너"><span class="nero-toc-text">귀타 - 귀로 듣는 기타 튜너</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#시연"><span class="nero-toc-text">시연</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#디자인"><span class="nero-toc-text">디자인</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#스크린-리더기-친화적-디자인"><span class="nero-toc-text">스크린 리더기 친화적 디자인</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#튜너-디자인"><span class="nero-toc-text">튜너 디자인</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#코드-학습-디자인"><span class="nero-toc-text">코드 학습 디자인</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Flutter"><span class="nero-toc-text">Flutter</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#접근성-구현"><span class="nero-toc-text">접근성 구현</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#튜너-구현"><span class="nero-toc-text">튜너 구현</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마무리"><span class="nero-toc-text">마무리</span></a></li></ol>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Guita-Guitar-Tuner-by-Ear"><span class="nero-toc-text">Guita - Guitar Tuner by Ear</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Demonstration"><span class="nero-toc-text">Demonstration</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Design"><span class="nero-toc-text">Design</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Screen-Reader-Friendly-Design"><span class="nero-toc-text">Screen Reader Friendly Design</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Tuner-Design"><span class="nero-toc-text">Tuner Design</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Chord-Learning-Design"><span class="nero-toc-text">Chord Learning Design</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Flutter"><span class="nero-toc-text">Flutter</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Accessibility-Implementation"><span class="nero-toc-text">Accessibility Implementation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Tuner-Implementation"><span class="nero-toc-text">Tuner Implementation</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Finishing"><span class="nero-toc-text">Finishing</span></a></li></ol>
             <hr class="nero-toc-line">
             <style>
                 .nero-toc-line {
@@ -275,124 +275,124 @@
             
 
 
-            <p>시각 장애인을 위한 기타 튜너 앱을 소개합니다.<br><a id="more"></a></p>
+            <p>Introducing the guitar tuner app for the visually impaired.<br><a href="/post/ada-4th-guita-02/">👉 한국어 버전</a><br><a id="more"></a></p>
 <blockquote>
-<p><a href="/post/ada-4th-guita-01/">1부. 귀타 - 시각 장애인을 위한 기타 학습 앱</a><br>✔︎ 2부. 귀타 - 시각 장애인을 위한 기타 튜너</p>
+<p><a href="/en/post/ada-4th-guita-01/">Part 1. Guita - Guitar Learning App for the Visually Impaired</a><br>✔︎ Part 2. Guita - Guitar Tuner for the Visually Impaired</p>
 </blockquote>
-<h1 id="귀타-귀로-듣는-기타-튜너"><a href="#귀타-귀로-듣는-기타-튜너" class="headerlink" title="귀타 - 귀로 듣는 기타 튜너"></a>귀타 - 귀로 듣는 기타 튜너</h1><blockquote><p>시각 장애인을 위한 기타 튜너 앱<br>👉 <a href="https://play.google.com/store/apps/details?id=kr.co.devstory.guita" target="_blank" rel="external nofollow noopener noreferrer">Play Store</a><br>👉 <a href="https://apps.apple.com/kr/app/id6758727544" target="_blank" rel="external nofollow noopener noreferrer">App Store</a></p>
+<h1 id="Guita-Guitar-Tuner-by-Ear"><a href="#Guita-Guitar-Tuner-by-Ear" class="headerlink" title="Guita - Guitar Tuner by Ear"></a>Guita - Guitar Tuner by Ear</h1><blockquote><p>Guitar tuner app for the visually impaired<br>👉 <a href="https://play.google.com/store/apps/details?id=kr.co.devstory.guita" target="_blank" rel="external nofollow noopener noreferrer">Play Store</a><br>👉 <a href="https://apps.apple.com/en/app/id6758727544" target="_blank" rel="external nofollow noopener noreferrer">App Store</a></p>
 </blockquote>
 
 
-<p>이번 프로젝트는 <a href="/post/ada-4th-guita-01/">1부</a>에서 전맹 시각장애를 가진 하권사님 댁을 마지막으로 방문했을 때, <strong>기타가 전혀 튜닝되어 있지 않은 상태</strong>인 것을 발견한 데서 시작되었습니다. 시중의 기타 튜너 앱들은 대부분 시각적인 피드백에 의존하고 있어, 시각장애인이 사용하기에는 어려움이 있었습니다.</p>
-<p>이러한 문제를 해결하고자 <strong>시각장애인을 위한 기타 튜너 앱</strong> 개발을 시작했으며, Flutter를 사용해 한 달 동안 1인 개발로 프로젝트를 진행했습니다.</p>
-<h2 id="시연"><a href="#시연" class="headerlink" title="시연"></a>시연</h2><p>앱은 <strong>기타 튜닝</strong>과 <strong>코드 운지법 학습</strong> 기능을 제공하며, Android와 iOS를 모두 지원합니다. 다음 영상은 iOS <strong>Voice Over를 이용한 앱 시연 영상</strong>입니다.</p>
-<iframe width="100%" height="422px" src="https://youtube.com/embed/6itFnBunW0o?si=EKHwK1dB0QD3wLkV" title="iOS Voice Over를 이용한 시연 영상" frameborder="0" allowfullscreen></iframe>
+<p>This project began when I visited Mr. Ha (who has total blindness) at his home for the last time during <a href="/en/post/ada-4th-guita-01/">Part 1</a> and discovered that <strong>his guitar was completely out of tune.</strong> Most guitar tuner apps on the market rely heavily on visual feedback, making them difficult for visually impaired users to use.</p>
+<p>To solve this problem, I started developing a <strong>guitar tuner app for the visually impaired</strong>, and completed the project as a solo developer using Flutter over the course of one month.</p>
+<h2 id="Demonstration"><a href="#Demonstration" class="headerlink" title="Demonstration"></a>Demonstration</h2><p>The app provides <strong>guitar tuning</strong> and <strong>chord fingering learning</strong> features, supporting both Android and iOS. The following video is an <strong>app demonstration using iOS VoiceOver</strong>.</p>
+<iframe width="100%" height="422px" src="https://youtube.com/embed/_00oqFi87Jo?si=Bb6HYSEIqsluBDY2" title="iOS VoiceOver Demonstration" frameborder="0" allowfullscreen></iframe>
 
-<h1 id="디자인"><a href="#디자인" class="headerlink" title="디자인"></a>디자인</h1><p><a href="/post/ada-4th-guita-01/">이전 프로젝트</a>에서는 전맹 유저만 대상으로 하였기에 시각적인 요소를 고려하지 않았는데, 이번엔 더 많은 유저가 사용할 수 있도록 <strong>전맹 시각 장애인과 저시력자 모두를 유저로 고려</strong>하였습니다.</p>
-<h2 id="스크린-리더기-친화적-디자인"><a href="#스크린-리더기-친화적-디자인" class="headerlink" title="스크린 리더기 친화적 디자인"></a>스크린 리더기 친화적 디자인</h2><blockquote>
-<p>스크린 리더기는 Android에서는 TalkBack, iOS에서는 VoiceOver라고 불립니다.</p>
+<h1 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h1><p>While the <a href="/post/ada-4th-guita-01/">previous project</a> targeted only totally blind users and did not prioritize visual elements, this time I <strong>considered both totally blind and low-vision users</strong> to make the app accessible to more people.</p>
+<h2 id="Screen-Reader-Friendly-Design"><a href="#Screen-Reader-Friendly-Design" class="headerlink" title="Screen Reader Friendly Design"></a>Screen Reader Friendly Design</h2><blockquote>
+<p>Screen readers are called TalkBack on Android and VoiceOver on iOS.</p>
 </blockquote>
 <blockquote>
-<p>스크린 리더기는 화면의 상태를 <strong>포커스가 이동된 순서와 음성 설명</strong>을 기반으로 파악하므로, <strong>전체 화면의 상태를 파악하는데 많은 시간이 소요</strong>됩니다.</p>
+<p>Since screen readers understand the screen’s state based on the <strong>order of focus and voice descriptions</strong>, it <strong>takes a long time to grasp the overall status of the screen.</strong></p>
 </blockquote>
-<p>스크린 리더기 사용자의 <strong>인지 부담을 최소화</strong>하고 <strong>예측 가능하며 일관된 탐색 경험</strong>을 제공하기 위해 다음과 같은 규칙을 기반으로 UI를 구현하였습니다.</p>
-<p><strong>간결한 스크린 리더기 안내 제공</strong></p>
+<p>To <strong>minimize cognitive load</strong> and provide a <strong>predictable and consistent navigation experience</strong> for screen reader users, I implemented the UI based on the following rules:</p>
+<p><strong>Provide Concise Screen Reader Guidance</strong></p>
 <ul>
-<li>스크린 리더기 설명은 <strong>핵심 정보만 간결하게 전달</strong></li>
-<li>설명이 길어질 경우 사용자가 피로감을 느끼고 전체 사용성이 저하될 수 있음</li>
+<li>Screen reader descriptions should <strong>convey only the core information concisely.</strong></li>
+<li>Long descriptions can cause user fatigue and degrade overall usability.</li>
 </ul>
-<p><strong>포커스 위치 임의 변경 금지</strong></p>
+<p><strong>No Arbitrary Focus Changes</strong></p>
 <ul>
-<li>임의로 포커스를 이동시키지 않음</li>
-<li>예기치 않은 포커스 변화는 사용자의 탐색 흐름을 방해하므로, <strong>일관된 규칙에 따라 자연스럽게 이동하도록 설계</strong></li>
+<li>Avoid moving the focus arbitrarily.</li>
+<li>Unexpected focus changes disrupt the user’s navigation flow, so the UI is <strong>designed to move naturally according to consistent rules.</strong></li>
 </ul>
-<p><strong>동적 UI 변화 최소화</strong></p>
+<p><strong>Minimize Dynamic UI Changes</strong></p>
 <ul>
-<li>화면 일부 요소가 동적으로 변경되는 구조 지양</li>
-<li>스크린 리더기 사용 시 맥락 혼란을 유발할 수 있는 위젯 사용 최소화<br>e.g. <a href="https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html" target="_blank" rel="external nofollow noopener noreferrer">BottomNavigationBar</a>, <a href="https://api.flutter.dev/flutter/material/ExpansionTile-class.html" target="_blank" rel="external nofollow noopener noreferrer">ExpansionTile</a></li>
+<li>Avoid structures where screen elements change dynamically.</li>
+<li>Minimize the use of widgets that can cause contextual confusion for screen reader users.<br>e.g. <a href="https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html" target="_blank" rel="external nofollow noopener noreferrer">BottomNavigationBar</a>, <a href="https://api.flutter.dev/flutter/material/ExpansionTile-class.html" target="_blank" rel="external nofollow noopener noreferrer">ExpansionTile</a></li>
 </ul>
-<p><strong>네비게이션 요소 위치 통일</strong></p>
+<p><strong>Consistent Navigation Element Placement</strong></p>
 <ul>
-<li><a href="https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html" target="_blank" rel="external nofollow noopener noreferrer">WCAG(Web Content Accessibility Guideline) – Consistent Navigation</a> 권장 사항 준수</li>
-<li>네비게이션 요소를 항상 <strong>동일한 위치와 순서로 배치</strong>하여 예측 가능성 확보<br>e.g. 뒤로가기 버튼은 좌측 상단에, 가이드 버튼은 우측 상단에 배치</li>
+<li>Adhere to <a href="https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html" target="_blank" rel="external nofollow noopener noreferrer">WCAG (Web Content Accessibility Guideline) – Consistent Navigation</a> recommendations.</li>
+<li>Ensure <strong>navigation elements are always placed in the same position and order</strong> for predictability.<br>e.g. Back button on the top left, Guide button on the top right.</li>
 </ul>
-<p><strong>TTS(Text To Speech) 대신 스크린 리더기 사용</strong></p>
+<p><strong>Use Screen Reader Instead of Custom TTS (Text To Speech)</strong></p>
 <ul>
-<li>여러 음성이 동시에 재생될 경우 사용자가 정보를 명확히 인지하기 어려움</li>
-<li>모든 음성 가이드는 <strong>TTS 대신 스크린 리더기를 통해 일관되게 제공</strong></li>
+<li>Playing multiple voices simultaneously makes it hard for users to perceive information clearly.</li>
+<li>All voice guidance is <strong>consistently provided through the screen reader instead of a separate TTS.</strong></li>
 </ul>
-<h2 id="튜너-디자인"><a href="#튜너-디자인" class="headerlink" title="튜너 디자인"></a>튜너 디자인</h2><p>전맹 시각 장애인은 기타 튜닝 상태를 <strong>스크린 리더기의 안내 음성</strong>과, <strong>지속적으로 재생되는 비프음</strong> 두 가지 청각적 피드백으로 파악할 수 있습니다.</p>
+<h2 id="Tuner-Design"><a href="#Tuner-Design" class="headerlink" title="Tuner Design"></a>Tuner Design</h2><p>Totally blind users can perceive the guitar’s tuning status through two types of auditory feedback: <strong>screen reader voice guidance</strong> and <strong>continuously playing beeps.</strong></p>
 <div class="nero-grid">  <div class="flex-2">  <div class="figure " style>
-<video class="fig-video" controls alt="튜닝 시연 영상">
-<source src="/post/ada-4th-guita/flutter-tuning.mp4" type="video/mp4">
+<video class="fig-video" controls alt="Tuning Demonstration">
+<source src="/en/post/ada-4th-guita/flutter-tuning.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">튜닝 시연 영상</span>
+<span class="caption">Tuning Demonstration</span>
 </div>
 </div>
-  <div class="flex-3"><p><strong>스크린 리더기를 이용한 음성 피드백은 일정 간격으로 현재 튜닝 상태를 알려줍니다.</strong> 예를 들어 줄이 풀려있다면 “6번줄 20hz 낮습니다”라고 음성으로 알려주어 유저가 줄을 감아야 하는지 풀어야 하는지 판단할 수 있게 합니다.</p>
-<p><strong>지속적으로 재생되는 비프음은 미세 튜닝을 도와줍니다.</strong> 차량의 후방 감지 센서처럼 현재 현의 주파수가 정답 주파수에 가까워지면 비프음의 간격이 줄어들도록 설계되어 있습니다. <strong>유저는 비프음 간격이 줄어드는 방향으로 튜닝을 진행하면 됩니다.</strong></p>
-<p>또한 <strong>정답 주파수보다 낮을 때와 높을 때의 음높이를 다르게 주어 유저가 정답 주파수의 경계를 파악할 수 있도록 설계</strong>하였습니다.</p>
+  <div class="flex-3"><p><strong>Voice feedback via screen reader informs the current tuning status at regular intervals.</strong> For example, if a string is loose, it says “String 6 is 20Hz low,” allowing the user to decide whether to tighten or loosen the string.</p>
+<p><strong>The continuous beep assists with fine-tuning.</strong> Much like a car’s reverse parking sensor, the interval between beeps shortens as the string’s frequency approaches the target frequency. <strong>Users simply need to tune in the direction where the beep interval decreases.</strong></p>
+<p>Additionally, I <strong>designed the pitch of the beep to differ when the frequency is lower vs. higher than the target</strong>, helping users identify where the target frequency boundary lies.</p>
 </div></div>
 
-<h2 id="코드-학습-디자인"><a href="#코드-학습-디자인" class="headerlink" title="코드 학습 디자인"></a>코드 학습 디자인</h2><div class="nero-grid">  <div class="flex-2">  <div class="figure " style>
-<video class="fig-video" controls alt="코드 운지법 시연 영상">
-<source src="/post/ada-4th-guita/flutter-fingering.mp4" type="video/mp4">
+<h2 id="Chord-Learning-Design"><a href="#Chord-Learning-Design" class="headerlink" title="Chord Learning Design"></a>Chord Learning Design</h2><div class="nero-grid">  <div class="flex-2">  <div class="figure " style>
+<video class="fig-video" controls alt="Chord Fingering Demonstration">
+<source src="/en/post/ada-4th-guita/flutter-fingering.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">코드 운지법 시연 영상</span>
+<span class="caption">Chord Fingering Demonstration</span>
 </div>
 </div>
-  <div class="flex-3"><p>기타 코드는 각 12개의 음계(C, C#, D, …, B)에 대해서 50가지 조성(Major, Minor, …, add9 등)으로 구성하여 총 <strong>600개의 코드 운지법을 배울 수 있도록 준비</strong>했습니다. 또한 하나의 코드에서도 다양한 운지법을 볼 수 있는데, PageView를 스크린 리더기로 조작할 수 있도록 구현하였습니다.</p>
-<p>저시력자 유저를 위해 기타 운지 다이어그램을 캔버스로 구현하였고, 전맹 유저를 위해 낮은 프렛 낮은 줄 번호부터 오름차순으로 운지법을 설명하도록 구현하였습니다.</p>
-<p><strong>최대한 간결하게 핵심만 전달하도록 정보를 압축</strong>하였고, 기타 소리는 <a href="https://www.google.com/search?q=sound+font&oq=sound+font&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRg7MgYIAhBFGDsyBggDEEUYOzIGCAQQRRg7MgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMjA5NWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8" target="_blank" rel="external nofollow noopener noreferrer">Sound Fonts</a>로 구현하여 직접 소리를 재생하였습니다.</p>
+  <div class="flex-3"><p>We prepared <strong>600 chord fingerings</strong>, consisting of 50 tonalities (Major, Minor, …, add9, etc.) for each of the 12 musical scales (C, C#, D, …, B). Users can also see various fingerings for a single chord, and I implemented the PageView to be controllable via screen readers.</p>
+<p>For low-vision users, guitar fingering diagrams were implemented using Canvas. For totally blind users, the app is designed to explain fingerings in ascending order, starting from the lowest fret and lowest string number.</p>
+<p><strong>Information was compressed to deliver only the essentials as concisely as possible</strong>, and guitar sounds were directly played using <a href="https://www.google.com/search?q=sound+font" target="_blank" rel="external nofollow noopener noreferrer">Sound Fonts</a>.</p>
 </div></div>
 
 
-<h1 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h1><p>이번 프로젝트는 Android와 iOS를 모두 지원하기 위해 Flutter로 개발하였습니다.</p>
-<h2 id="접근성-구현"><a href="#접근성-구현" class="headerlink" title="접근성 구현"></a>접근성 구현</h2><p><a href="https://docs.flutter.dev/ui/accessibility" target="_blank" rel="external nofollow noopener noreferrer">Flutter 접근성 공식 문서</a>에서 접근성 관련된 내용을 확인할 수 있습니다. 자주 사용하는 접근성 관련된 위젯은 다음과 같습니다.</p>
+<h1 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h1><p>This project was developed with Flutter to support both Android and iOS.</p>
+<h2 id="Accessibility-Implementation"><a href="#Accessibility-Implementation" class="headerlink" title="Accessibility Implementation"></a>Accessibility Implementation</h2><p>You can find accessibility-related content in the <a href="https://docs.flutter.dev/ui/accessibility" target="_blank" rel="external nofollow noopener noreferrer">Flutter Accessibility Official Documentation</a>. Some of the frequently used accessibility widgets are:</p>
 <table>
 <thead>
 <tr>
-<th>위젯</th>
-<th>설명</th>
+<th>Widget</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><a href="https://api.flutter.dev/flutter/widgets/Semantics-class.html" target="_blank" rel="external nofollow noopener noreferrer">Semantics</a></td>
-<td>커스텀 위젯에 접근성 정보(label, hint, value 등)를 추가</td>
+<td>Adds accessibility information (label, hint, value, etc.) to custom widgets.</td>
 </tr>
 <tr>
 <td><a href="https://api.flutter.dev/flutter/widgets/MergeSemantics-class.html" target="_blank" rel="external nofollow noopener noreferrer">MergeSemantics</a></td>
-<td>여러 시각적 요소를 하나의 접근성 노드로 병합</td>
+<td>Merges multiple visual elements into a single accessibility node.</td>
 </tr>
 <tr>
 <td><a href="https://api.flutter.dev/flutter/widgets/ExcludeSemantics-class.html" target="_blank" rel="external nofollow noopener noreferrer">ExcludeSemantics</a></td>
-<td>장식용 요소를 접근성 트리에서 제외</td>
+<td>Excludes decorative elements from the accessibility tree.</td>
 </tr>
 </tbody></table>
-<p><a href="https://api.flutter.dev/flutter/widgets/Semantics-class.html" target="_blank" rel="external nofollow noopener noreferrer">Semantics</a> 위젯을 추가하지 않아도 기본적인 텍스트를 스크린 리더기가 읽어주지만, 해당 위젯을 이용하면 추가적인 정보를 제공할 수 있습니다.  스크린 리더기는 <code>Label</code> → <code>Hint</code> → <code>Child Semantics(존재시)</code> → <code>Value</code> 순서로 속성을 읽어줍니다. 또한 <a href="https://api.flutter.dev/flutter/semantics/OrdinalSortKey-class.html" target="_blank" rel="external nofollow noopener noreferrer">OrdinalSortKey</a>를 이용하여 포커싱 순서를 변경할 수 있습니다.</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Semantics(</span><br><span class="line">  label: <span class="string">'버튼 설명'</span>,                  <span class="comment">// 스크린 리더가 읽을 텍스트</span></span><br><span class="line">  hint: <span class="string">'추가 도움말'</span>,                 <span class="comment">// 선택적 힌트</span></span><br><span class="line">  button: <span class="keyword">true</span>,                     <span class="comment">// 버튼 역할 명시</span></span><br><span class="line">  enabled: <span class="keyword">true</span>,                    <span class="comment">// 활성화 상태</span></span><br><span class="line">  onTap: () &#123;&#125;,                     <span class="comment">// 스크린 리더기로 더블 탭하면 실행</span></span><br><span class="line">  checked: <span class="keyword">false</span>,                   <span class="comment">// 체크박스 상태</span></span><br><span class="line">  selected: <span class="keyword">false</span>,                  <span class="comment">// 선택 상태</span></span><br><span class="line">  header: <span class="keyword">true</span>,                     <span class="comment">// 제목 표시</span></span><br><span class="line">  liveRegion: <span class="keyword">true</span>,                 <span class="comment">// child 위젯이 변경되었을 때 다시 읽기</span></span><br><span class="line">  sortKey: <span class="keyword">const</span> OrdinalSortKey(<span class="number">1</span>), <span class="comment">// 포커싱 순서 지정</span></span><br><span class="line">  excludeSemantics: <span class="keyword">false</span>,          <span class="comment">// 접근성 비활성화(접근성 트리에서 제외)</span></span><br><span class="line">  child: MyWidget()</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>While screen readers will read basic text even without a <a href="https://api.flutter.dev/flutter/widgets/Semantics-class.html" target="_blank" rel="external nofollow noopener noreferrer">Semantics</a> widget, using it allows you to provide additional information. Screen readers read attributes in the order of <code>Label</code> → <code>Hint</code> → <code>Child Semantics (if present)</code> → <code>Value</code>. You can also use <a href="https://api.flutter.dev/flutter/semantics/OrdinalSortKey-class.html" target="_blank" rel="external nofollow noopener noreferrer">OrdinalSortKey</a> to change the focus order.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Semantics(</span><br><span class="line">  label: <span class="string">'Button description'</span>,        <span class="comment">// Text to be read by the screen reader</span></span><br><span class="line">  hint: <span class="string">'Additional help'</span>,            <span class="comment">// Optional hint</span></span><br><span class="line">  button: <span class="keyword">true</span>,                       <span class="comment">// Specify the button role</span></span><br><span class="line">  enabled: <span class="keyword">true</span>,                      <span class="comment">// Active status</span></span><br><span class="line">  onTap: () &#123;&#125;,                       <span class="comment">// Executes on a double tap with the screen reader</span></span><br><span class="line">  checked: <span class="keyword">false</span>,                     <span class="comment">// Checkbox state</span></span><br><span class="line">  selected: <span class="keyword">false</span>,                    <span class="comment">// Selection state</span></span><br><span class="line">  header: <span class="keyword">true</span>,                       <span class="comment">// Mark as a header</span></span><br><span class="line">  liveRegion: <span class="keyword">true</span>,                   <span class="comment">// Re-read when child widget changes</span></span><br><span class="line">  sortKey: <span class="keyword">const</span> OrdinalSortKey(<span class="number">1</span>),   <span class="comment">// Specify focus order</span></span><br><span class="line">  excludeSemantics: <span class="keyword">false</span>,            <span class="comment">// Disable accessibility (exclude from the tree)</span></span><br><span class="line">  child: MyWidget()</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
-<p>PageView의 경우 페이지가 넘어갔을 때 변경된 요소를 스크린 리더가 다시 읽어주길 원한다면 다음과 같이 구현한 뒤, 각 페이지의 <a href="https://api.flutter.dev/flutter/semantics/SemanticsConfiguration/liveRegion.html" target="_blank" rel="external nofollow noopener noreferrer">liveRegion</a> 속성을 <code>true</code>로 설정하시면 됩니다. <code>onIncrease</code>와 <code>onDecrease</code>는 PageView의 페이지 이동을 스크린 리더기로 구현하는 함수입니다. 포커싱한 뒤 위아래로 스와이프하여 페이지를 이동할 수 있습니다.</p>
+<p>For a PageView, if you want the screen reader to re-read changed elements when the page turns, you can implement it as follows and set the <a href="https://api.flutter.dev/flutter/semantics/SemanticsConfiguration/liveRegion.html" target="_blank" rel="external nofollow noopener noreferrer">liveRegion</a> property of each page to <code>true</code>. <code>onIncrease</code> and <code>onDecrease</code> are functions that implement PageView navigation via the screen reader. Users can swipe up or down after focusing to change pages.</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Semantics(</span><br><span class="line">  container: <span class="keyword">true</span>,</span><br><span class="line">  onIncrease: () =&gt; _handleSemanticSwipe(<span class="number">1</span>),</span><br><span class="line">  onDecrease: () =&gt; _handleSemanticSwipe(<span class="number">-1</span>),</span><br><span class="line">  child: PageView(</span><br><span class="line">    itemBuilder: (context, index) =&gt; Semantics(</span><br><span class="line">      liveRegion: <span class="keyword">true</span>,</span><br><span class="line">      child: ...</span><br><span class="line">    );</span><br><span class="line">  ),</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
 
-<p>스크린 리더기 활성 여부도 다음과 같이 확인하여 분기처리 할 수 있습니다.</p>
+<p>You can also check if a screen reader is active to perform conditional logic:</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extension</span> SemanticsExtension <span class="keyword">on</span> BuildContext &#123;</span><br><span class="line">  <span class="built_in">bool</span> isScreenReaderActive() &#123;</span><br><span class="line">    <span class="keyword">return</span> MediaQuery.of(<span class="keyword">this</span>).accessibilityFeatures.reduceMotion;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>MaterialApp</code>에 <a href="https://api.flutter.dev/flutter/material/MaterialApp/showSemanticsDebugger.html" target="_blank" rel="external nofollow noopener noreferrer">showSemanticsDebugger</a> 속성을 <code>true</code>로 설정하면 접근성 정보를 보여주는 오버레이를 볼 수 있습니다. 해당 기능을 이용하면 스크린 리더기가 읽어주는 Label, Hint, Value 등을 볼 수 있어 디버깅시 유용합니다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MaterialApp(</span><br><span class="line">  showSemanticsDebugger: true,</span><br><span class="line">  ...</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>Setting the <a href="https://api.flutter.dev/flutter/material/MaterialApp/showSemanticsDebugger.html" target="_blank" rel="external nofollow noopener noreferrer">showSemanticsDebugger</a> property to <code>true</code> in <code>MaterialApp</code> displays an overlay with accessibility information. This is useful for debugging as it shows the Label, Hint, Value, etc., that the screen reader will read.</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MaterialApp(</span><br><span class="line">  showSemanticsDebugger: <span class="keyword">true</span>,</span><br><span class="line">  ...</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
-<div class="nero-grid"><div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/flutter-semantics-debugger-off.png" title="홈 화면 (Debugger Off)" data-caption="홈 화면 (Debugger Off)" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/flutter-semantics-debugger-off.png" alt="홈 화면 (Debugger Off)"></a><span class="caption">홈 화면 (Debugger Off)</span></div>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/flutter-semantics-debugger-on.png" title="홈 화면 (Debugger On)" data-caption="홈 화면 (Debugger On)" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/flutter-semantics-debugger-on.png" alt="홈 화면 (Debugger On)"></a><span class="caption">홈 화면 (Debugger On)</span></div></div>
+<div class="nero-grid"><div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/flutter-semantics-debugger-off.png" title="Home Screen (Debugger Off)" data-caption="Home Screen (Debugger Off)" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/flutter-semantics-debugger-off.png" alt="Home Screen (Debugger Off)"></a><span class="caption">Home Screen (Debugger Off)</span></div>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/flutter-semantics-debugger-on.png" title="Home Screen (Debugger On)" data-caption="Home Screen (Debugger On)" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/flutter-semantics-debugger-on.png" alt="Home Screen (Debugger On)"></a><span class="caption">Home Screen (Debugger On)</span></div></div>
 
-<h2 id="튜너-구현"><a href="#튜너-구현" class="headerlink" title="튜너 구현"></a>튜너 구현</h2><p>소리로 튜닝 상태를 알려주는 튜너를 만들려면 <strong>기타 소리만 인식하고, 비프음이나 스크린 리더의 음성은 인식하지 않도록 구현</strong>해야 했습니다. <strong>iOS</strong>는 Audio Session 설정을 통해서 디바이스에서 발생하는 소리를 OS 레벨에서 캔슬링해주어 손쉽게 구현할 수 있었습니다.</p>
-<p><strong>Android</strong>는 여러 문제가 연쇄적으로 발생해 구현이 쉽지 않았습니다. 녹음기의 <a href="https://developer.android.com/reference/android/media/MediaRecorder.AudioSource" target="_blank" rel="external nofollow noopener noreferrer">Audio Source</a>를 <code>VOICE_COMMUNICATION</code>으로 설정하면 기기에서 발생하는 소리는 효과적으로 캔슬링되었지만, 기타 1·2번 줄에 해당하는 주파수 대역이 제대로 인식되지 않는 문제가 있었습니다.</p>
-<p>이를 해결하기 위해 Audio Source를 <code>MIC</code>로 변경하고, <strong>비프음을 더 높은 주파수 대역으로 이동시킨 뒤 FFT 처리 단계에서 직접 필터링</strong>하도록 구현했습니다. 이 방식에서도 톡백 음성이 마이크 입력으로 유입되는 문제는 남아 있었으나, 알림 주기를 늘리는 방식으로 완화했습니다.</p>
-<p>추가로, Audio Source를 <code>MIC</code>로 설정하면 Android에서 <code>liveRegion</code> 기능이 정상적으로 동작하지 않는 문제가 발생했습니다. 관련 내용을 <a href="https://github.com/flutter/flutter/issues/181796" target="_blank" rel="external nofollow noopener noreferrer">Flutter Issue</a>로 제보했으며, Android 기기에서는 <code>liveRegion</code> 대신 <a href="https://api.flutter.dev/flutter/semantics/SemanticsService/sendAnnouncement.html" target="_blank" rel="external nofollow noopener noreferrer">sendAnnouncement</a>를 사용하도록 분기 처리하여 해결했습니다. 다만, <code>sendAnnouncement</code> API는 Android API level 36에서 <a href="https://developer.android.com/reference/android/view/View#announceForAccessibility(java.lang.CharSequence)" target="_blank" rel="external nofollow noopener noreferrer">폐지 예정</a>이므로, 향후 Android 업데이트에 대응한 대체 구현이 필요할 것으로 보입니다.</p>
-<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>평소 시각 인터페이스에 최적화된 앱을 설계했는데, 이번 프로젝트를 통해 음성 인터페이스 중심의 앱을 만들어 보면서 두 방식의 차이가 생각보다 크다는 것을 알게 되었습니다. 또한 스크린 리더를 사용하는 사용자에게 튜너를 어떤 인터페이스로 제공해야할지 고민했던 경험들이 의미있고 재미있었습니다.</p>
-<blockquote><p>귀타 - 시각 장애인을 위한 기타 튜너 앱<br>👉 <a href="https://play.google.com/store/apps/details?id=kr.co.devstory.guita" target="_blank" rel="external nofollow noopener noreferrer">Play Store</a><br>👉 <a href="https://apps.apple.com/kr/app/id6758727544" target="_blank" rel="external nofollow noopener noreferrer">App Store</a></p>
+<h2 id="Tuner-Implementation"><a href="#Tuner-Implementation" class="headerlink" title="Tuner Implementation"></a>Tuner Implementation</h2><p>To build a tuner that informs the tuning status via sound, I had to <strong>ensure it recognized only the guitar sound, while ignoring the beeps or the screen reader’s voice.</strong> On <strong>iOS</strong>, this was easily achieved at the OS level by configuring the Audio Session to cancel device-generated sounds.</p>
+<p><strong>Android</strong> was more challenging due to a chain of issues. Setting the recorder’s <a href="https://developer.android.com/reference/android/media/MediaRecorder.AudioSource" target="_blank" rel="external nofollow noopener noreferrer">Audio Source</a> to <code>VOICE_COMMUNICATION</code> effectively cancelled device sounds, but it caused issues recognizing the frequency bands of the 1st and 2nd guitar strings.</p>
+<p>To resolve this, I changed the Audio Source to <code>MIC</code> and <strong>moved the beeps to a higher frequency band, then implemented direct filtering during the FFT processing stage.</strong> While the issue of TalkBack audio bleeding into the microphone remained with this method, I mitigated it by increasing the notification interval.</p>
+<p>Additionally, setting the Audio Source to <code>MIC</code> caused the <code>liveRegion</code> feature to malfunction on Android. I reported this to the <a href="https://github.com/flutter/flutter/issues/181796" target="_blank" rel="external nofollow noopener noreferrer">Flutter Issue</a> tracker and implemented a workaround using <a href="https://api.flutter.dev/flutter/semantics/SemanticsService/sendAnnouncement.html" target="_blank" rel="external nofollow noopener noreferrer">sendAnnouncement</a> instead of <code>liveRegion</code> for Android devices. However, since the <code>sendAnnouncement</code> API is <a href="https://developer.android.com/reference/android/view/View#announceForAccessibility(java.lang.CharSequence)" target="_blank" rel="external nofollow noopener noreferrer">scheduled for deprecation</a> in Android API level 36, a replacement implementation will be needed for future Android updates.</p>
+<h1 id="Finishing"><a href="#Finishing" class="headerlink" title="Finishing"></a>Finishing</h1><p>I usually design apps optimized for visual interfaces, but through this project, I realized that the difference between the two approaches is greater than expected. The experience of contemplating what kind of interface to provide for a tuner to screen reader users was both meaningful and fun.</p>
+<blockquote><p>Guita - Guitar Tuner for the Visually Impaired<br>👉 <a href="https://play.google.com/store/apps/details?id=kr.co.devstory.guita" target="_blank" rel="external nofollow noopener noreferrer">Play Store</a><br>👉 <a href="https://apps.apple.com/en/app/id6758727544" target="_blank" rel="external nofollow noopener noreferrer">App Store</a></p>
 </blockquote>
 
-<p>귀타가 시각장애인 분들께 조금이나마 도움이 되는 도구가 되기를 바랍니다. 🎸</p>
+<p>I hope Guita becomes a helpful tool for the visually impaired. 🎸</p>
 
 
             <!-- NERO google adsense -->
@@ -401,9 +401,9 @@
     <div id="post-footer" class="post-footer main-content-wrap">
         
         <div class="post-footer-tags">
-            <span class="text-color-light text-small">태그</span><br>
+            <span class="text-color-light text-small">TAGGED IN</span><br>
             
-    <a class="tag tag--primary tag--small t-link" href="/en/tags/Accessibility/" rel="tag">Accessibility</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/Apple-Developer-Acedemy-4th/" rel="tag">Apple Developer Acedemy 4th</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/Guita/" rel="tag">Guita</a>
+    <a class="tag tag--primary tag--small t-link" href="/en/tags/Accessibility/" rel="tag">Accessibility</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/Apple-Developer-Academy-4th/" rel="tag">Apple Developer Academy 4th</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/Guita/" rel="tag">Guita</a>
 
         </div>
         
@@ -414,18 +414,18 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/ada-4th-guita-01/" data-tooltip="1부. 귀타 - 귀로 배우는 기타 학습" aria-label="이전: 1부. 귀타 - 귀로 배우는 기타 학습">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/ada-4th-guita-01/" data-tooltip="Part 1. Guita - Learning Guitar by Ear" aria-label="PREVIOUS: Part 1. Guita - Learning Guitar by Ear">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/worcation-yeongwol/" data-tooltip="영월 워케이션 후기" aria-label="다음: 영월 워케이션 후기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/worcation-yeongwol/" data-tooltip="영월 워케이션 후기" aria-label="NEXT: 영월 워케이션 후기">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -433,7 +433,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -441,7 +441,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-guita-02/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-guita-02/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -449,7 +449,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-guita-02/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-guita-02/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -459,7 +459,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -494,18 +494,18 @@
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/ada-4th-guita-01/" data-tooltip="1부. 귀타 - 귀로 배우는 기타 학습" aria-label="이전: 1부. 귀타 - 귀로 배우는 기타 학습">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/ada-4th-guita-01/" data-tooltip="Part 1. Guita - Learning Guitar by Ear" aria-label="PREVIOUS: Part 1. Guita - Learning Guitar by Ear">
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/worcation-yeongwol/" data-tooltip="영월 워케이션 후기" aria-label="다음: 영월 워케이션 후기">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/worcation-yeongwol/" data-tooltip="영월 워케이션 후기" aria-label="NEXT: 영월 워케이션 후기">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -513,7 +513,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -521,7 +521,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-guita-02/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-guita-02/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -529,7 +529,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-guita-02/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-guita-02/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -539,7 +539,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -557,16 +557,16 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-guita-02/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-guita-02/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-guita-02/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-guita-02/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
                     </a>
                 </li>
             
@@ -624,7 +624,7 @@
 <div id="cover" style="background-image:url('/en/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/en/assets/js/script-yvaktdiyqwbquxs5kxacqxooqexa4rx7n8hr4vx6iuktrjms3nhmpwv4l6pk.min.js"></script>
+<script src="/en/assets/js/script-e2lrnkvnuorebzlu29bvtuv47quxr9savllxj0m8trktmop2pdpowkhc7ttn.min.js"></script>
 
 <!--SCRIPTS END-->
 

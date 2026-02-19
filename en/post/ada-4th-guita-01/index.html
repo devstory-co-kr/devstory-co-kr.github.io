@@ -6,7 +6,7 @@
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="DevStory">
-    <title>1부. 귀타 - 귀로 배우는 기타 학습 - DevStory</title>
+    <title>Part 1. Guita - Learning Guitar by Ear - DevStory</title>
     <meta name="author" content="DevStory">
     <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
     <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
@@ -20,30 +20,30 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"시각 장애인을 위한 기타 학습 앱 ‘귀타’를 소개합니다.\n\n✔︎ 1부. 귀타 - 시각 장애인을 위한 기타 학습 앱2부. 귀타 - 시각 장애인을 위한 기타 튜너\n\n\n귀타 - 귀로 배우는 기타 학습\n보지 않고도 배울 수 있는 기타 학습 앱👉 App Store\n\n귀타는 Apple Developer Academy 4기 팀원들과 함께 5주간 진행한 iOS 프로젝트입니다. 시각 장애인의 학습 장벽을 허물기 위해 기획되었습니다.\n페르소나\n\n하권사님은 취미로 기타를 즐기십니다. 트로트 곡의 멜로디를 기타로 연주하실 정도의 실력을 갖추셨는데, 코드 연주는 하지 못하고 계신 것을 발견했습니다.\n기타 코드 연주 구성 요소\n\n간단한 코드 운지만 봐도 다음과 같은 난관들이 있습니다.\n\n디테일한 위치 정보: 단순히 ‘몇 번 줄’을 잡는 것을 넘어, 프렛 내부의 미세한 위치 차이가 음질을 결정합니다.\n간섭 문제: 한 줄을 잡은 손가락이 인접한 줄을 건드려 소리가 뮤트되는 현상을 스스로 인지하기 어렵습니다.\n사전 지식의 방대함: 코드 하나를 설명하기 위해 손가락 번호, 줄 번호, 프렛 위치 등 너무 많은 정보가 쏟아집니다.\n\n시각 장애인이 기타를 배우는데 겪는 어려움\n\n저희 팀은 위 문제들을 음성 가이드와 실시간 음 인식 기술을 이용하여 사용자 혼자서도 곡 하나를 완주할 수 있게 만드는 것을 최종 목표로 삼았습니다.\n\n기획 및 구현\n  여행을 떠나요 악보 일부\n\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n주법 학습\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n곡 구간 학습\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\n곡 전체 학습\n\n\n\n\n소리 인식 기능 구현사용자가 코드를 제대로 잡았는지 확인하기 위해 두 가지 기술을 적용했습니다.\nNote Classification개별 줄을 튕기는 소리를 확인하는 기능은 FFT(Fast Fourier Transform)를 이용하여 구현하였습니다. 다만, 저음역대에서 배음(Harmonics) 중첩으로 옥타브를 오인하는 문제가 발생했고, 이를 HPS(Harmonic Product Spectrum) 알고리즘으로 보정하여 정확도를 높였습니다.\n\n👉 Note Classification 소스 코드\n\nChord Classification기타 코드 분류기는 코사인 유사도 방식과 머신러닝 방식 두 가지로 구현하였습니다.\n\n👉 코사인 유사도 기반 코드 분류기 소스 코드👉 머신러닝 기반 코드 분류기 Github\n\n1) 코사인 유사도 코드 분류기\n\n마이크로 들어온 입력을 FFT 알고리즘으로 주파수 분석\nChroma Feature로 12음계 활성도 분석\n코사인 유사도(70%)와 유클리드 거리 기반 유사도(30%)를 가중합하여 코드 분류\n\n2) 머신러닝 코드 분류기\n\n데이터 수집: 각 코드를 50회씩 직접 녹음.\n라벨링: Audacity의 ‘사운드 레이블’ 기능을 활용해 자동 슬라이싱 및 라벨링 진행.Audacity 라벨링 작업 자세히 보기\n코드를 50번씩 1초 간격으로 연주한 하나의 녹음 파일을 만듭니다.\n\naudacity에 녹음한 파일을 불러온 뒤 트랙을 전체 선택(Ctrl + A 또는 Cmd + A)합니다.\n\n\n파일 → 내보내기를 선택하고, 내보내기 범위를 여러개의 파일로 선택합니다.\n\n\n\n\n전처리: FFT 결과를 12개의 반음 체계로 표현한 Chroma Feature로 변환.\n모델 학습: CNN 모델로 학습하여 h5 모델 생성\n모델 변환: Coremltools로 h5 모델을 mlpackage 모델로 변환\n앱 구현: Xcode에 추가한 뒤, Swift로 동일한 전처리 코드를 구현하여 모델 구동\n\n","dateCreated":"2026-02-16T11:55:00+09:00","dateModified":"2026-02-16T16:31:02+09:00","datePublished":"2026-02-16T11:55:00+09:00","description":"시각 장애인을 위한 기타 학습 앱 ‘귀타’를 소개합니다.","headline":"1부. 귀타 - 귀로 배우는 기타 학습","image":["/post/ada-4th-guita/guita-swift.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/ada-4th-guita-01/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/ada-4th-guita-01/","keywords":"Apple Developer Acedemy 4th, Guita, Accessibility","thumbnailUrl":"/post/ada-4th-guita/guita-swift.png"}</script>
-    <meta name="description" content="시각 장애인을 위한 기타 학습 앱 ‘귀타’를 소개합니다.">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Introducing ‘Guita’, a guitar learning app for the visually impaired.👉 한국어 버전\n\n✔︎ Part 1. Guita - Guitar Learning App for the Visually ImpairedPart 2. Guita - Guitar Tuner for the Visually Impaired\n\n\nGuita - Learning Guitar by Ear\nA guitar learning app that can be learned without sight👉 App Store\n\nGuita is an iOS project conducted for 5 weeks with the 4th Apple Developer Academy team members. It was planned to break down the learning barriers for the visually impaired.\nPersona\n\nMr. Ha enjoys playing the guitar as a hobby. He has the skill to play the melodies of trot songs on the guitar, but we found that he was unable to play chords.\n\n\nSelect Analyze → Label Sounds, adjust the threshold (dB) according to the recording environment, and apply.\n\n\nFiles cut by section are created with labels.\nChroma Feature analysis example\n\nAs a reference, to make a silence class, we also made audio files classified as Silence. When converting to Chroma spectrum, looking at the image, you have to add a noise gate so that nothing comes out in Silence mode as above to learn. The values extracted like this were trained with a CNN model to make a guitar chord classifier.\n\n\n\nYour browser doesn't support HTML5 Video :/\nCNN model demo video\n\n\n\nAccessibilityAccessibility was considered as top priority so that totally blind users can use the app without inconvenience.\nVoice OverUsers with visual impairment use digital devices using screen readers. It is called Voice Over on iOS and TalkBack on Android. Since this project was developed in iOS, we will only deal with Voice Over.\n1) How to run Voice OverIt can be found in Settings → Accessibility, and a basic Voice Over Tutorial is also provided.When you first turn on Voice Over, it is not easy to turn it off because the usage is unfamiliar. In that case, request Siri to “Turn off Voice Over”.\n2) Basic Voice Over usage\n\n\n\nFunction\nHow to operate\n\n\n\nScreen navigation\nShort swipe left/right or move while pressing the screen\n\n\nElement selection\nDouble tap\n\n\nScreen curtain\nTriple tap with three fingers\n\n\nMove to home screen\nSwipe up the bottom indicator until the sound is heard twice\n\n\nMove to app switcher\nSwipe up the bottom indicator until the sound is heard three times\n\n\nView control center\nSwipe down from the top until the sound is heard twice\n\n\nView notification center\nSwipe down from the top until the sound is heard three times\n\n\nExit current window\nSwipe two fingers in a Z shape\n\n\niOS has very well-implemented detailed accessibility functions that inform the state of the screen using sound.\n3) Accessibility APIVarious accessibility APIs are provided in Swift. Using these, you can specify the order in which Voice Over reads or the semantic unit of screen elements.\n\n\n\nProperty\nExplanation\nExample\n\n\n\naccessibilityLabel\nName of the element\n“Back”\n\n\naccessibilityTraits\nType of the element\nButton, Header, Link, etc.\n\n\naccessibilityValue\nCurrent state of fluctuating element\nSlider value, progress, etc.\n\n\naccessibilityHint\nHint about what happens when manipulated\n“Double tap to…”\n\n\n\nVoice Over reads in the order of Label → Traits → Value → Hint.\n\nSighted users basically recognize elements by grouping them through visual information such as blanks or borders, but for totally blind users who cannot use visual information, hide unnecessary elements so that Voice Over does not read them, and utilize the following accessibility APIs so that various texts in one button are read together as one element.\n\n\n\nName\nExplanation\n\n\n\n.accessibilityHidden(_:)\nHidden so as not to read\n\n\n.accessibilityElement(children: .ignore)\nCompletely ignore child elements and process only the container as an accessibility element\n\n\n.accessibilityElement(children: .combine)\nMerge child elements into one to make it read as one accessibility element\n\n\n.accessibilityElement(children: .contain)\nContainer that groups children so that each child can be navigated\n\n\n4) RotorThe Rotor is a function that changes the unit of the elements that Voice Over reads, and by using this, you can adjust the navigation options (character unit, word unit, line unit or header) and the speech rate without moving to settings.\n\nThe rotor can be used by placing the thumb and index finger on the screen and turning them clockwise or counter-clockwise to change the setting and swiping vertically.\n\nIf the rotor is set to a header, you can quickly navigate only the headers by scrolling vertically as in the video below. Header elements can be designated by setting the Traits to header.\n\n\n\nYour browser doesn't support HTML5 Video :/\nVoice Over Header Rotor Video\n\n\nVoice ControlOther than that, since the guitar is played with both hands in the app, it was implemented so that frequently used functions such as “Next”, “Stop”, and “Again” can be controlled by voice. The function was implemented utilizing SpeechRecognizer.\n\nDemonstration\n\n\nFinishingWe visited Mr. Ha again with the app developed with the team members for 5 weeks, and could see him learning chords and playing without the help of others. Although it was only implemented as a simple demo in iOS as part of the Apple Academy project, it was rewarding to see the app being used as planned.\n\nGuita - Learning Guitar by Ear👉 App Store👉 GitHub - iOS &amp; ML Repo\n\nNext, the story of the guitar tuner made with Flutter for all visually impaired people who learn the guitar continues in Part 2.\n👉 Go to see Part 2. Guita - Guitar Tuner for the Visually Impaired\n","dateCreated":"2026-02-16T11:55:00+09:00","dateModified":"2026-02-19T19:01:01+09:00","datePublished":"2026-02-16T11:55:00+09:00","description":"Introducing ‘Guita’, a guitar learning app for the visually impaired.👉 한국어 버전","headline":"Part 1. Guita - Learning Guitar by Ear","image":["/en/post/ada-4th-guita/guita-swift.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/ada-4th-guita-01/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/ada-4th-guita-01/","keywords":"Guita, Accessibility, Apple Developer Academy 4th","thumbnailUrl":"/en/post/ada-4th-guita/guita-swift.png"}</script>
+    <meta name="description" content="Introducing ‘Guita’, a guitar learning app for the visually impaired.👉 한국어 버전">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="1부. 귀타 - 귀로 배우는 기타 학습">
+<meta property="og:title" content="Part 1. Guita - Learning Guitar by Ear">
 <meta property="og:url" content="https://blog.devstory.co.kr/en/post/ada-4th-guita-01/index.html">
 <meta property="og:site_name" content="DevStory">
-<meta property="og:description" content="시각 장애인을 위한 기타 학습 앱 ‘귀타’를 소개합니다.">
+<meta property="og:description" content="Introducing ‘Guita’, a guitar learning app for the visually impaired.👉 한국어 버전">
 <meta property="og:locale" content="ko_KR">
-<meta property="og:image" content="https://blog.devstory.co.kr/post/ada-4th-guita/guita-swift.png">
+<meta property="og:image" content="https://blog.devstory.co.kr/en/post/ada-4th-guita/guita-swift.png">
 <meta property="article:published_time" content="2026-02-16T02:55:00.000Z">
-<meta property="article:modified_time" content="2026-02-16T07:31:02.941Z">
+<meta property="article:modified_time" content="2026-02-19T10:01:01.745Z">
 <meta property="article:author" content="DevStory">
-<meta property="article:tag" content="Apple Developer Acedemy 4th">
 <meta property="article:tag" content="Guita">
 <meta property="article:tag" content="Accessibility">
+<meta property="article:tag" content="Apple Developer Academy 4th">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.devstory.co.kr/post/ada-4th-guita/guita-swift.png">
+<meta name="twitter:image" content="https://blog.devstory.co.kr/en/post/ada-4th-guita/guita-swift.png">
     
     
         
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/en/assets/css/style-dsgsehk9qmoqne3foxsdnfqz5re6dlkttjzxd9lnmigqf0mp7vzqwywnfezv.min.css">
+<link rel="stylesheet" href="/en/assets/css/style-v1dnzlduvszmxntmoqccaeayotrnhiyywvpmeqh4sej3sf53tvste0ibp6ys.min.css">
 
     <!--STYLES END-->
 
@@ -95,10 +95,10 @@
     </div>
     
         
-            <a class="header-right-picture " href="#about" aria-label="링크 열기: /en/#about">
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /en/#about">
         
         
-            <img class="header-picture" src="/en/assets/images/devstory.png" alt="저자 이미지">
+            <img class="header-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
         
         </a>
     
@@ -115,8 +115,8 @@
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
-                <a href="/en/#about" aria-label="저자에 대해 더 알아보기">
-                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="저자 이미지">
+                <a href="/en/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
                 </a>
                 <h4 class="sidebar-profile-name">DevStory</h4>
                 
@@ -129,37 +129,37 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/en/" title="홈">
+                        <a class="sidebar-button-link " href="/en/" title="Home">
                     
                         <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">홈</span>
+                        <span class="sidebar-button-desc">Home</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/en/all-categories" title="카테고리">
+                        <a class="sidebar-button-link " href="/en/all-categories" title="Categories">
                     
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">카테고리</span>
+                        <span class="sidebar-button-desc">Categories</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/en/all-tags" title="태그">
+                        <a class="sidebar-button-link " href="/en/all-tags" title="Tags">
                     
                         <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">태그</span>
+                        <span class="sidebar-button-desc">Tags</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="/en/all-archives" title="아카이브">
+                        <a class="sidebar-button-link " href="/en/all-archives" title="Archives">
                     
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">아카이브</span>
+                        <span class="sidebar-button-desc">Archives</span>
                     </a>
             </li>
             
@@ -169,28 +169,28 @@
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
                     
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">깃허브</span>
+                        <span class="sidebar-button-desc">GitHub</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
                     
                         <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">프로젝트</span>
+                        <span class="sidebar-button-desc">Projects</span>
                     </a>
             </li>
             
                 <li class="sidebar-button">
                     
-                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
                     
                         <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">강의</span>
+                        <span class="sidebar-button-desc">Lecture</span>
                     </a>
             </li>
             
@@ -223,18 +223,18 @@
     <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title">
-            1부. 귀타 - 귀로 배우는 기타 학습
+            Part 1. Guita - Learning Guitar by Ear
         </h1>
     
     
         <div class="post-meta">
     <time datetime="2026-02-16T11:55:00+09:00">
 	
-		    2026/02/16
+		    Feb 16, 2026
     	
     </time>
     
-        <span>카테고리 </span>
+        <span>in </span>
         
     <a class="category-link" href="/en/categories/Project/">Project</a>
 
@@ -253,10 +253,10 @@
             <!-- NERO :: Add TOC -->
             <hr class="nero-toc-line">
             <blockquote>
-                <strong>목차
+                <strong>Table of Contents
                 </strong>
             </blockquote>
-            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#귀타-귀로-배우는-기타-학습"><span class="nero-toc-text">귀타 - 귀로 배우는 기타 학습</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#페르소나-설정"><span class="nero-toc-text">페르소나 설정</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#눈감고-기타-배우기"><span class="nero-toc-text">눈감고 기타 배우기</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#기획-및-구현"><span class="nero-toc-text">기획 및 구현</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#코드-학습"><span class="nero-toc-text">코드 학습</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#주법-및-곡-학습"><span class="nero-toc-text">주법 및 곡 학습</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#소리-인식-기능-구현"><span class="nero-toc-text">소리 인식 기능 구현</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Note-Classification"><span class="nero-toc-text">Note Classification</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Chord-Classification"><span class="nero-toc-text">Chord Classification</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#접근성"><span class="nero-toc-text">접근성</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Voice-Over"><span class="nero-toc-text">Voice Over</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#음성-제어"><span class="nero-toc-text">음성 제어</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#시연"><span class="nero-toc-text">시연</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마무리"><span class="nero-toc-text">마무리</span></a></li></ol>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Guita-Learning-Guitar-by-Ear"><span class="nero-toc-text">Guita - Learning Guitar by Ear</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Persona-Setting"><span class="nero-toc-text">Persona Setting</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Learning-Guitar-with-Eyes-Closed"><span class="nero-toc-text">Learning Guitar with Eyes Closed</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Planning-and-Implementation"><span class="nero-toc-text">Planning and Implementation</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Chord-Learning"><span class="nero-toc-text">Chord Learning</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Technique-and-Song-Learning"><span class="nero-toc-text">Technique and Song Learning</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Sound-recognition-function-implementation"><span class="nero-toc-text">Sound recognition function implementation</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Note-Classification"><span class="nero-toc-text">Note Classification</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Chord-Classification"><span class="nero-toc-text">Chord Classification</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Accessibility"><span class="nero-toc-text">Accessibility</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Voice-Over"><span class="nero-toc-text">Voice Over</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Voice-Control"><span class="nero-toc-text">Voice Control</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Demonstration"><span class="nero-toc-text">Demonstration</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Finishing"><span class="nero-toc-text">Finishing</span></a></li></ol>
             <hr class="nero-toc-line">
             <style>
                 .nero-toc-line {
@@ -275,292 +275,271 @@
             
 
 
-            <p>시각 장애인을 위한 기타 학습 앱 <strong>‘귀타’</strong>를 소개합니다.<br><a id="more"></a></p>
+            <p>Introducing <strong>‘Guita’</strong>, a guitar learning app for the visually impaired.<br><a href="/post/ada-4th-guita-01/">👉 한국어 버전</a><br><a id="more"></a></p>
 <blockquote>
-<p><strong>✔︎ 1부. 귀타 - 시각 장애인을 위한 기타 학습 앱</strong><br><a href="/post/ada-4th-guita-02/">2부. 귀타 - 시각 장애인을 위한 기타 튜너</a></p>
+<p><strong>✔︎ Part 1. Guita - Guitar Learning App for the Visually Impaired</strong><br><a href="/en/post/ada-4th-guita-02/">Part 2. Guita - Guitar Tuner for the Visually Impaired</a></p>
 </blockquote>
 <hr>
-<h1 id="귀타-귀로-배우는-기타-학습"><a href="#귀타-귀로-배우는-기타-학습" class="headerlink" title="귀타 - 귀로 배우는 기타 학습"></a>귀타 - 귀로 배우는 기타 학습</h1><blockquote>
-<p><strong>보지 않고도 배울 수 있는 기타 학습 앱</strong><br>👉 <a href="https://apps.apple.com/kr/app/id6746475325" target="_blank" rel="external nofollow noopener noreferrer">App Store</a></p>
+<h1 id="Guita-Learning-Guitar-by-Ear"><a href="#Guita-Learning-Guitar-by-Ear" class="headerlink" title="Guita - Learning Guitar by Ear"></a>Guita - Learning Guitar by Ear</h1><blockquote>
+<p><strong>A guitar learning app that can be learned without sight</strong><br>👉 <a href="https://apps.apple.com/en/app/id6746475325" target="_blank" rel="external nofollow noopener noreferrer">App Store</a></p>
 </blockquote>
-<p><strong>귀타</strong>는 Apple Developer Academy 4기 팀원들과 함께 5주간 진행한 iOS 프로젝트입니다. 시각 장애인의 학습 장벽을 허물기 위해 기획되었습니다.</p>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/banner.png" title="시각 장애인을 위한 기타 학습 앱 귀타" data-caption="시각 장애인을 위한 기타 학습 앱 귀타" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/banner.png" alt="시각 장애인을 위한 기타 학습 앱 귀타"></a><span class="caption">시각 장애인을 위한 기타 학습 앱 귀타</span></div>
+<p><strong>Guita</strong> is an iOS project conducted for 5 weeks with the 4th Apple Developer Academy team members. It was planned to break down the learning barriers for the visually impaired.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/banner.png" title="Guita, a guitar learning app for the visually impaired" data-caption="Guita, a guitar learning app for the visually impaired" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/banner.png" alt="Guita, a guitar learning app for the visually impaired"></a><span class="caption">Guita, a guitar learning app for the visually impaired</span></div>
 
 <hr>
-<h1 id="페르소나-설정"><a href="#페르소나-설정" class="headerlink" title="페르소나 설정"></a>페르소나 설정</h1><p>이번 프로젝트의 핵심은 <strong>‘단 한 명을 위한 앱’</strong>을 만드는 것이었습니다. 저희는 <strong>후천적으로 전맹이 되신 50대 하권사님을 위한 앱을 제작</strong>하기로 했습니다. 직접 찾아뵙고 오랜 시간 대화를 나누며, 하권사님의 일상과 필요를 하나씩 이해해 나가기 시작했습니다.</p>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/persona.png" title="페르소나" data-caption="페르소나" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/persona.png" alt="페르소나"></a><span class="caption">페르소나</span></div>
+<h1 id="Persona-Setting"><a href="#Persona-Setting" class="headerlink" title="Persona Setting"></a>Persona Setting</h1><p>The core of this project was to make an <strong>‘app for just one person.’</strong> We decided to <strong>produce an app for Mr. Ha in his 50s, who became totally blind later in life.</strong> We visited him in person, talked for a long time, and began to understand his daily life and needs one by one.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/persona.png" title="Persona" data-caption="Persona" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/persona.png" alt="Persona"></a><span class="caption">Persona</span></div>
 
-<p>하권사님은 취미로 기타를 즐기십니다. 트로트 곡의 멜로디를 기타로 연주하실 정도의 실력을 갖추셨는데, 코드 연주는 하지 못하고 계신 것을 발견했습니다.</p>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/journey.png" title="하권사님의 기타 학습 유저 저니" data-caption="하권사님의 기타 학습 유저 저니" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/journey.png" alt="하권사님의 기타 학습 유저 저니"></a><span class="caption">하권사님의 기타 학습 유저 저니</span></div>
+<p>Mr. Ha enjoys playing the guitar as a hobby. He has the skill to play the melodies of trot songs on the guitar, but we found that he was unable to play chords.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/journey.png" title="Mr. Ha's Guitar Learning User Journey" data-caption="Mr. Ha's Guitar Learning User Journey" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/journey.png" alt="Mr. Ha's Guitar Learning User Journey"></a><span class="caption">Mr. Ha's Guitar Learning User Journey</span></div>
 
-<p>인터뷰를 통해 하권사님의 기타 학습 저니를 분석한 결과 다음과 같은 문제를 발견하였습니다.</p>
+<p>As a result of analyzing Mr. Ha’s guitar learning journey through interviews, the following problems were found.</p>
 <ul>
-<li><strong>핵심 문제 상황:</strong> 코드 운지법을 매번 주변에 물어봐야 하는 미안함 때문에 학습을 중도 포기하게 됨</li>
-<li><strong>해결 포인트:</strong> 타인의 도움 없이 스스로 코드 운지법을 익히고 검증할 수 있는 수단을 제공하자</li>
+<li><strong>Core problem situation:</strong> Giving up learning midway due to the sorry feeling of having to ask people around him for chord fingerings every time</li>
+<li><strong>Solution point:</strong> Provide a means for him to master and verify chord fingerings on his own without the help of others</li>
 </ul>
 <hr>
-<h1 id="눈감고-기타-배우기"><a href="#눈감고-기타-배우기" class="headerlink" title="눈감고 기타 배우기"></a>눈감고 기타 배우기</h1><p>처음에는 시각에 의존하지 않고 기타 코드 연주를 배우는게 얼마나 어려운지 감이 오지 않았습니다. 하지만 <strong>직접 안대를 쓰고 학습해 본 결과, 이게 얼마나 쉽지 않은 일인지 팀원 모두가 체감</strong>할 수 있었습니다.</p>
-<p><strong>기타 코드를 연주한다</strong>는 것은 <strong>코드 운지법을 알고, 주법도 알며, 악보도 읽을 줄 안다</strong>는 의미입니다. 그리고 각각의 요소들을 세부적으로 분석해보면 굉장히 디테일한 정보들이 많습니다.</p>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/learn-guitar.png" title="기타 코드 연주 구성 요소" data-caption="기타 코드 연주 구성 요소" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/learn-guitar.png" alt="기타 코드 연주 구성 요소"></a><span class="caption">기타 코드 연주 구성 요소</span></div>
+<h1 id="Learning-Guitar-with-Eyes-Closed"><a href="#Learning-Guitar-with-Eyes-Closed" class="headerlink" title="Learning Guitar with Eyes Closed"></a>Learning Guitar with Eyes Closed</h1><p>At first, I didn’t realize how difficult it was to learn guitar chord performance without relying on sight. However, as a result of <strong>directly learning while wearing a blindfold, all team members were able to experience how difficult this was.</strong></p>
+<p><strong>Playing guitar chords</strong> means <strong>knowing the chord fingering, knowing the playing technique, and knowing how to read the score.</strong> And if you analyze each element in detail, there is a lot of very detailed information.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/learn-guitar.png" title="Guitar chord performance components" data-caption="Guitar chord performance components" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/learn-guitar.png" alt="Guitar chord performance components"></a><span class="caption">Guitar chord performance components</span></div>
 
-<p>간단한 코드 운지만 봐도 다음과 같은 난관들이 있습니다.</p>
+<p>Even looking at simple chord fingerings, there are the following difficulties.</p>
 <ol>
-<li><strong>디테일한 위치 정보:</strong> 단순히 ‘몇 번 줄’을 잡는 것을 넘어, 프렛 내부의 미세한 위치 차이가 음질을 결정합니다.</li>
-<li><strong>간섭 문제:</strong> 한 줄을 잡은 손가락이 인접한 줄을 건드려 소리가 뮤트되는 현상을 스스로 인지하기 어렵습니다.</li>
-<li><strong>사전 지식의 방대함:</strong> 코드 하나를 설명하기 위해 손가락 번호, 줄 번호, 프렛 위치 등 너무 많은 정보가 쏟아집니다.</li>
+<li><strong>Detailed positional information:</strong> Beyond simply catching ‘which string’, the minute positional difference within the fret determines the sound quality.</li>
+<li><strong>Interference problem:</strong> It is difficult to perceive on one’s own the phenomenon where the finger catching one string touches the adjacent string and the sound is muted.</li>
+<li><strong>Vastness of prior knowledge:</strong> Too much information such as finger number, string number, and fret position is poured out to explain a single chord.</li>
 </ol>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/a-chord.png" title="A 코드 하나를 설명하기 위해 필요한 방대한 정보량" data-caption="A 코드 하나를 설명하기 위해 필요한 방대한 정보량" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/a-chord.png" alt="A 코드 하나를 설명하기 위해 필요한 방대한 정보량"></a><span class="caption">A 코드 하나를 설명하기 위해 필요한 방대한 정보량</span></div>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/a-chord.png" title="The vast amount of information required to explain one A chord" data-caption="The vast amount of information required to explain one A chord" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/a-chord.png" alt="The vast amount of information required to explain one A chord"></a><span class="caption">The vast amount of information required to explain one A chord</span></div>
 
-<p>시각 장애인이 한 곡을 완주하기 위해서 넘어야 하는 난관들을 정리하면 다음과 같습니다.</p>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/guitar-learning-problem.png" title="시각 장애인이 기타를 배우는데 겪는 어려움" data-caption="시각 장애인이 기타를 배우는데 겪는 어려움" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/guitar-learning-problem.png" alt="시각 장애인이 기타를 배우는데 겪는 어려움"></a><span class="caption">시각 장애인이 기타를 배우는데 겪는 어려움</span></div>
+<p>The challenges that visually impaired people must overcome to complete one song are summarized as follows.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/guitar-learning-problem.png" title="Difficulties visually impaired people face in learning the guitar" data-caption="Difficulties visually impaired people face in learning the guitar" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/guitar-learning-problem.png" alt="Difficulties visually impaired people face in learning the guitar"></a><span class="caption">Difficulties visually impaired people face in learning the guitar</span></div>
 
-<p>저희 팀은 위 문제들을 <strong>음성 가이드와 실시간 음 인식 기술을 이용하여 사용자 혼자서도 곡 하나를 완주할 수 있게 만드는 것을 최종 목표</strong>로 삼았습니다.</p>
+<p>Our team set the final goal to <strong>enable the user to complete one song alone using voice guidance and real-time sound recognition technology.</strong></p>
 <hr>
-<h1 id="기획-및-구현"><a href="#기획-및-구현" class="headerlink" title="기획 및 구현"></a>기획 및 구현</h1><div class="nero-grid">
-  <div class="flex-1"><div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/home.png" title="학습 화면" data-caption="학습 화면" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/home.png" alt="학습 화면"></a><span class="caption">학습 화면</span></div></div>
+<h1 id="Planning-and-Implementation"><a href="#Planning-and-Implementation" class="headerlink" title="Planning and Implementation"></a>Planning and Implementation</h1><div class="nero-grid">
+  <div class="flex-1"><div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/home.png" title="Learning screen" data-caption="Learning screen" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/home.png" alt="Learning screen"></a><span class="caption">Learning screen</span></div></div>
   <div class="flex-2">
-  하권사님이 선호하시는 "여행을 떠나요"를 커리큘럼으로 구성했습니다.
+  We organized the curriculum with "Let's Go on a Trip," which Mr. Ha prefers.
   <ol>
-    <li><b>코드 학습</b>: A, E, B7 등 필수 코드 운지법 습득</li>
-    <li><b>주법 학습</b>: 스트로크 및 칼립소 리듬 익히기</li>
-    <li><b>구간 학습</b>: 4마디 단위 끊어 가기</li>
-    <li><b>전체 학습</b>: 속도 조절을 통한 완곡 연습</li>
+    <li><b>Chord Learning</b>: Acquisition of essential chord fingerings such as A, E, and B7</li>
+    <li><b>Technique Learning</b>: Mastering stroke and Calypso rhythm</li>
+    <li><b>Sectional Learning</b>: Breaking it down into 4-measure units</li>
+    <li><b>Full Learning</b>: Practicing the full song through speed adjustment</li>
   </ol>
   </div>
 </div>
 
-<h2 id="코드-학습"><a href="#코드-학습" class="headerlink" title="코드 학습"></a>코드 학습</h2><p>먼저 코드 운지법을 배워야 합니다. 하나의 코드를 운지하기 위해선 <strong>손가락, 프렛, 줄 번호</strong>를 알아야 하며, 이를 다음과 같은 흐름으로 설명하였습니다.</p>
+<h2 id="Chord-Learning"><a href="#Chord-Learning" class="headerlink" title="Chord Learning"></a>Chord Learning</h2><p>First, you need to learn chord fingerings. To finger a single chord, you must know the <strong>finger, fret, and string number</strong>, and we explained it in the following flow.</p>
 <ol>
-<li>손가락 번호, 프렛, 줄 번호 순으로 운지법을 설명합니다.</li>
-<li>제대로 운지했는지 한 줄씩 튕기며 소리를 확인합니다.</li>
-<li>1, 2번 과정을 모든 운지해야 하는 손가락에 대해서 반복 진행합니다.</li>
-<li>전체 코드를 잡고 스트로크 하여 소리를 확인합니다.</li>
+<li>Explain the fingering in the order of finger number, fret, and string number.</li>
+<li>Check the sound by plucking one string at a time to see if it’s fingered correctly.</li>
+<li>Repeat steps 1 and 2 for all fingers that need to be fingered.</li>
+<li>Check the sound by stroking the whole chord.</li>
 </ol>
 <div class="nero-grid">
   <div><div class="figure " style>
-<video class="fig-video" controls alt="1. 줄 별 운지법 설명">
-<source src="/post/ada-4th-guita/line-fingering.mp4" type="video/mp4">
+<video class="fig-video" controls alt="1. Fingering explanation by string">
+<source src="/en/post/ada-4th-guita/line-fingering.mov" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">1. 줄 별 운지법 설명</span>
+<span class="caption">1. Fingering explanation by string</span>
 </div></div>
   <div><div class="figure " style>
-<video class="fig-video" controls alt="2. 줄 별 소리 확인">
-<source src="/post/ada-4th-guita/line-sound.mp4" type="video/mp4">
+<video class="fig-video" controls alt="2. Sound check by string">
+<source src="/en/post/ada-4th-guita/line-sound.mov" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">2. 줄 별 소리 확인</span>
+<span class="caption">2. Sound check by string</span>
 </div></div>
   <div><div class="figure " style>
-<video class="fig-video" controls alt="3. 전체 코드 소리 확인">
-<source src="/post/ada-4th-guita/chord-sound.mp4" type="video/mp4">
+<video class="fig-video" controls alt="3. Full chord sound check">
+<source src="/en/post/ada-4th-guita/chord-sound.mov" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">3. 전체 코드 소리 확인</span>
+<span class="caption">3. Full chord sound check</span>
 </div></div>
 </div>
 
-<p>운지를 올바르게 했는지 확인하는 정음 확인 기능도 구현했는데, 자세한 방법은 <a href="#소리-인식-기능-구현">아래</a>에서 설명하도록 하겠습니다.</p>
+<p>We also implemented a correct sound verification function to check if the fingering was correct, and the detailed method will be explained in <a href="#sound-recognition-function-implementation">below</a>.</p>
 <hr>
-<h2 id="주법-및-곡-학습"><a href="#주법-및-곡-학습" class="headerlink" title="주법 및 곡 학습"></a>주법 및 곡 학습</h2><p>다음으로 <strong>오른손 스트로크 주법</strong> 설명과 <strong>곡 학습</strong> 기능을 구현하였습니다. 시각 장애인들을 위한 점자 악보도 존재하지만, 점자를 모르시는 분들도 많기에 <strong>한 마디 전에 코드를 읽어주도록 구현</strong>하였으며, 전체 곡 학습에선 재생 속도를 조절할 수 있는 기능을 구현하였습니다.</p>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/score.png" title="여행을 떠나요 악보 일부" data-caption="여행을 떠나요 악보 일부" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/score.png" alt="여행을 떠나요 악보 일부"></a><span class="caption">여행을 떠나요 악보 일부</span></div>
-
-<div class="nero-grid">
-  <div><div class="figure " style>
-<video class="fig-video" controls alt="주법 학습">
-<source src="/post/ada-4th-guita/stroke.mp4" type="video/mp4">
-<p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">주법 학습</span>
-</div></div>
-  <div><div class="figure " style>
-<video class="fig-video" controls alt="곡 구간 학습">
-<source src="/post/ada-4th-guita/section.mp4" type="video/mp4">
-<p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">곡 구간 학습</span>
-</div></div>
-  <div><div class="figure " style>
-<video class="fig-video" controls alt="곡 전체 학습">
-<source src="/post/ada-4th-guita/fullsong.mp4" type="video/mp4">
-<p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">곡 전체 학습</span>
-</div></div>
-</div>
+<h2 id="Technique-and-Song-Learning"><a href="#Technique-and-Song-Learning" class="headerlink" title="Technique and Song Learning"></a>Technique and Song Learning</h2><p>Next, we implemented the <strong>right-hand stroke technique</strong> explanation and <strong>song learning</strong> function. There are also braille scores for visually impaired people, but since there are many who do not know braille, we <strong>implemented it to read the chords one measure before</strong>, and implemented a function to adjust the playback speed in the full song learning.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/score.png" title="Part of the score for 'Let's Go on a Trip'" data-caption="Part of the score for 'Let's Go on a Trip'" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/score.png" alt="Part of the score for 'Let's Go on a Trip'"></a><span class="caption">Part of the score for 'Let's Go on a Trip'</span></div>
 
 <hr>
-<h1 id="소리-인식-기능-구현"><a href="#소리-인식-기능-구현" class="headerlink" title="소리 인식 기능 구현"></a>소리 인식 기능 구현</h1><p>사용자가 코드를 제대로 잡았는지 확인하기 위해 두 가지 기술을 적용했습니다.</p>
-<h2 id="Note-Classification"><a href="#Note-Classification" class="headerlink" title="Note Classification"></a>Note Classification</h2><p>개별 줄을 튕기는 소리를 확인하는 기능은 <strong>FFT(Fast Fourier Transform)</strong>를 이용하여 구현하였습니다. 다만, 저음역대에서 배음(Harmonics) 중첩으로 옥타브를 오인하는 문제가 발생했고, 이를 <strong>HPS(Harmonic Product Spectrum)</strong> 알고리즘으로 보정하여 정확도를 높였습니다.</p>
+<h1 id="Sound-recognition-function-implementation"><a href="#Sound-recognition-function-implementation" class="headerlink" title="Sound recognition function implementation"></a>Sound recognition function implementation</h1><p>Two technologies were applied to verify whether the user caught the chord correctly.</p>
+<h2 id="Note-Classification"><a href="#Note-Classification" class="headerlink" title="Note Classification"></a>Note Classification</h2><p>The function to check the sound of individual strings being plucked was implemented using <strong>FFT (Fast Fourier Transform)</strong>. However, a problem occurred in identifying the octave due to harmonics overlapping in the low-frequency range, and this was corrected with the <strong>HPS (Harmonic Product Spectrum)</strong> algorithm to increase accuracy.</p>
 <blockquote>
-<p>👉 <a href="https://github.com/ADA-4th-C3/guita/blob/f448d5d1834322e6a2c27e8c94b74ddbacc537c2/guita/features/classification/noteClassification/NoteClassification.swift" target="_blank" rel="external nofollow noopener noreferrer">Note Classification 소스 코드</a></p>
+<p>👉 <a href="https://github.com/ADA-4th-C3/guita/blob/f448d5d1834322e6a2c27e8c94b74ddbacc537c2/guita/features/classification/noteClassification/NoteClassification.swift" target="_blank" rel="external nofollow noopener noreferrer">Note Classification Source Code</a></p>
 </blockquote>
-<h2 id="Chord-Classification"><a href="#Chord-Classification" class="headerlink" title="Chord Classification"></a>Chord Classification</h2><p>기타 코드 분류기는 <strong>코사인 유사도 방식</strong>과 <strong>머신러닝 방식</strong> 두 가지로 구현하였습니다.</p>
+<h2 id="Chord-Classification"><a href="#Chord-Classification" class="headerlink" title="Chord Classification"></a>Chord Classification</h2><p>The guitar chord classifier was implemented in two ways: <strong>cosine similarity method</strong> and <strong>machine learning method</strong>.</p>
 <blockquote>
-<p>👉 <a href="https://github.com/ADA-4th-C3/guita/blob/dev/guita/features/classification/chordClassification/useCases/ChordClassificationWithSimilarity.swift" target="_blank" rel="external nofollow noopener noreferrer">코사인 유사도 기반 코드 분류기 소스 코드</a><br>👉 <a href="https://github.com/ADA-4th-C3/guitar-chord-classification" target="_blank" rel="external nofollow noopener noreferrer">머신러닝 기반 코드 분류기 Github</a></p>
+<p>👉 <a href="https://github.com/ADA-4th-C3/guita/blob/dev/guita/features/classification/chordClassification/useCases/ChordClassificationWithSimilarity.swift" target="_blank" rel="external nofollow noopener noreferrer">Cosine similarity-based chord classifier source code</a><br>👉 <a href="https://github.com/ADA-4th-C3/guitar-chord-classification" target="_blank" rel="external nofollow noopener noreferrer">Machine learning-based chord classifier Github</a></p>
 </blockquote>
-<p><strong>1) 코사인 유사도 코드 분류기</strong></p>
+<p><strong>1) Cosine Similarity Chord Classifier</strong></p>
 <ol>
-<li>마이크로 들어온 입력을 FFT 알고리즘으로 주파수 분석</li>
-<li>Chroma Feature로 12음계 활성도 분석</li>
-<li>코사인 유사도(70%)와 유클리드 거리 기반 유사도(30%)를 가중합하여 코드 분류</li>
+<li>Frequency analysis of micro-input with FFT algorithm</li>
+<li>12-semitone activity analysis with Chroma Feature</li>
+<li>Chord classification by weighted sum of cosine similarity (70%) and Euclidean distance-based similarity (30%)</li>
 </ol>
-<p><strong>2) 머신러닝 코드 분류기</strong></p>
+<p><strong>2) Machine Learning Chord Classifier</strong></p>
 <ol>
-<li><strong>데이터 수집:</strong> 각 코드를 50회씩 직접 녹음.</li>
-<li><strong>라벨링:</strong> Audacity의 ‘사운드 레이블’ 기능을 활용해 자동 슬라이싱 및 라벨링 진행.<details><summary>Audacity 라벨링 작업 자세히 보기</summary><div class="details-content"><ol>
-<li><p>코드를 50번씩 1초 간격으로 연주한 하나의 녹음 파일을 만듭니다.</p>
+<li><strong>Data collection:</strong> Directly recorded each chord 50 times.</li>
+<li><strong>Labeling:</strong> Automatic slicing and labeling using Audacity’s ‘Sound Labels’ function.<details><summary>See Audacity labeling details</summary><div class="details-content"><ol>
+<li><p>Create one recording file where the chord is played 50 times at 1-second intervals.</p>
 </li>
-<li><p><a href="https://www.audacityteam.org/" target="_blank" rel="external nofollow noopener noreferrer"><strong>audacity</strong></a>에 녹음한 파일을 불러온 뒤 트랙을 전체 선택(<code>Ctrl + A</code> 또는 <code>Cmd + A</code>)합니다.</p>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/audacity-labeling1.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/audacity-labeling1.png" style="width:80%;" alt></a></div>
+<li><p>After importing the recorded file to <a href="https://www.audacityteam.org/" target="_blank" rel="external nofollow noopener noreferrer"><strong>audacity</strong></a>, select the whole track (<code>Ctrl + A</code> or <code>Cmd + A</code>).</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/audacity-labeling1.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/audacity-labeling1.png" style="width:80%;" alt></a></div>
 </li>
-<li><p><code>분석</code> → <code>사운드 레이블</code>을 선택하고, 녹음 환경에 맞춰서 임계값(dB)을 조정한 뒤 적용합니다.</p>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/audacity-labeling2.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/audacity-labeling2.png" style="width:80%;" alt></a></div>
+<li><p>Select <code>Analyze</code> → <code>Label Sounds</code>, adjust the threshold (dB) according to the recording environment, and apply.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/audacity-labeling2.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/audacity-labeling2.png" style="width:80%;" alt></a></div>
 </li>
-<li><p><code>파일</code> → <code>내보내기</code>를 선택하고, <code>내보내기 범위</code>를 <code>여러개의 파일</code>로 선택합니다.</p>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/audacity-labeling3.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/audacity-labeling3.png" style="width:80%;" alt></a></div>
+<li><p>Select <code>File</code> → <code>Export</code>, and select <code>Export Range</code> as <code>Export Multiple</code>.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/audacity-labeling3.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/audacity-labeling3.png" style="width:80%;" alt></a></div>
 </li>
-<li><p>구간별로 잘린 파일들이 라벨링되어 생성됩니다.</p>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/audacity-labeling4.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/audacity-labeling4.png" style="width:80%;" alt></a></div>
+<li><p>Files cut by section are created with labels.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/audacity-labeling4.png" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/audacity-labeling4.png" style="width:80%;" alt></a></div>
 </li>
 </ol>
 </div></details></li>
-<li><strong>전처리:</strong> FFT 결과를 12개의 반음 체계로 표현한 <strong>Chroma Feature</strong>로 변환.</li>
-<li><strong>모델 학습:</strong> CNN 모델로 학습하여 h5 모델 생성</li>
-<li><strong>모델 변환:</strong> Coremltools로 h5 모델을 mlpackage 모델로 변환</li>
-<li><strong>앱 구현:</strong> Xcode에 추가한 뒤, Swift로 동일한 전처리 코드를 구현하여 모델 구동</li>
+<li><strong>Preprocessing:</strong> Transformation into <strong>Chroma Feature</strong> which expresses the FFT result in a 12-semitone system.</li>
+<li><strong>Model training:</strong> Training with CNN model to create h5 model</li>
+<li><strong>Model conversion:</strong> Conversion of h5 model into mlpackage model with Coremltools</li>
+<li><strong>App implementation:</strong> Added to Xcode, then implementing the same preprocessing code in Swift to run the model</li>
 </ol>
-<div class="figure " style><a class="fancybox" href="/post/ada-4th-guita/chrome-features.png" title="Chroma Feature 분석 예시" data-caption="Chroma Feature 분석 예시" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-guita/chrome-features.png" alt="Chroma Feature 분석 예시"></a><span class="caption">Chroma Feature 분석 예시</span></div>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-guita/chrome-features.png" title="Chroma Feature analysis example" data-caption="Chroma Feature analysis example" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-guita/chrome-features.png" alt="Chroma Feature analysis example"></a><span class="caption">Chroma Feature analysis example</span></div>
 
-<p>참고로 무음 class를 만들기 위해 <strong>Silence</strong>로 분류된 음성 파일도 만들었는데, Chroma 스펙트럼으로 변환시 이미지를 보며 위와 같이 <strong>Silence 모드에선 아무것도 안나오도록 노이즈 게이트를 추가해야 학습이 됩니다.</strong> 이렇게 추출한 값을 CNN 모델로 학습하여 기타 코드 분류기를 만들었습니다.</p>
+<p>As a reference, to make a silence class, we also made audio files classified as <strong>Silence</strong>. When converting to Chroma spectrum, looking at the image, <strong>you have to add a noise gate so that nothing comes out in Silence mode as above to learn.</strong> The values extracted like this were trained with a CNN model to make a guitar chord classifier.</p>
 <div class="figure " style>
-<video class="fig-video" controls alt="CNN 모델 데모 영상">
-<source src="/post/ada-4th-guita/cnn-demo.mp4" type="video/mp4">
+<video class="fig-video" controls alt="CNN model demo video">
+<source src="/en/post/ada-4th-guita/cnn-demo.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">CNN 모델 데모 영상</span>
+<span class="caption">CNN model demo video</span>
 </div>
 
 <hr>
-<h1 id="접근성"><a href="#접근성" class="headerlink" title="접근성"></a>접근성</h1><p>전맹 사용자가 앱을 불편 없이 이용할 수 있도록 <strong>접근성을 최우선으로 고려</strong>했습니다.</p>
-<h2 id="Voice-Over"><a href="#Voice-Over" class="headerlink" title="Voice Over"></a>Voice Over</h2><p>시각 장애를 가진 유저들은 스크린 리더기를 이용하여 디지털 기기를 사용합니다. iOS에선 <strong>Voice Over</strong>, Android에선 <strong>TalkBack</strong> 이라는 이름으로 불립니다. 이번 프로젝트는 iOS에서 개발되었기 때문에 Voice Over에 대해서만 다루겠습니다.</p>
-<p><strong>1) Voice Over 실행 방법</strong><br><code>설정</code> → <code>손쉬운 사용</code>에서 찾을 수 있으며, 기본적인 <code>Voice Over 튜토리얼</code>도 제공됩니다.<br>처음 Voice Over를 켜면 사용 방법이 낯설어 끄는게 쉽지 않습니다. 그럴 땐 <strong>Siri에게 “Voice Over 꺼줘”라고 요청</strong>하시면 됩니다.</p>
-<p><strong>2) 기본적인 Voice Over 사용법</strong></p>
+<h1 id="Accessibility"><a href="#Accessibility" class="headerlink" title="Accessibility"></a>Accessibility</h1><p><strong>Accessibility was considered as top priority</strong> so that totally blind users can use the app without inconvenience.</p>
+<h2 id="Voice-Over"><a href="#Voice-Over" class="headerlink" title="Voice Over"></a>Voice Over</h2><p>Users with visual impairment use digital devices using screen readers. It is called <strong>Voice Over</strong> on iOS and <strong>TalkBack</strong> on Android. Since this project was developed in iOS, we will only deal with Voice Over.</p>
+<p><strong>1) How to run Voice Over</strong><br>It can be found in <code>Settings</code> → <code>Accessibility</code>, and a basic <code>Voice Over Tutorial</code> is also provided.<br>When you first turn on Voice Over, it is not easy to turn it off because the usage is unfamiliar. In that case, <strong>request Siri to “Turn off Voice Over”</strong>.</p>
+<p><strong>2) Basic Voice Over usage</strong></p>
 <table>
 <thead>
 <tr>
-<th>기능</th>
-<th>동작 방법</th>
+<th>Function</th>
+<th>How to operate</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>화면 탐색</td>
-<td>좌우로 짧게 스와이프 or 화면을 누른 상태로 이동</td>
+<td>Screen navigation</td>
+<td>Short swipe left/right or move while pressing the screen</td>
 </tr>
 <tr>
-<td>요소 선택</td>
-<td>두 번 탭</td>
+<td>Element selection</td>
+<td>Double tap</td>
 </tr>
 <tr>
-<td>화면 커튼</td>
-<td>세 손가락으로 세 번 탭</td>
+<td>Screen curtain</td>
+<td>Triple tap with three fingers</td>
 </tr>
 <tr>
-<td>홈 화면으로 이동</td>
-<td>하단 인디케이터를 두 번 소리가 날 때까지 위로 스와이프</td>
+<td>Move to home screen</td>
+<td>Swipe up the bottom indicator until the sound is heard twice</td>
 </tr>
 <tr>
-<td>앱 전환기 이동</td>
-<td>하단 인디케이터를 세 번 소리가 날 때까지 위로 스와이프</td>
+<td>Move to app switcher</td>
+<td>Swipe up the bottom indicator until the sound is heard three times</td>
 </tr>
 <tr>
-<td>제어센터 보기</td>
-<td>상단에서 두 번 소리가 날 때까지 아래로 스와이프</td>
+<td>View control center</td>
+<td>Swipe down from the top until the sound is heard twice</td>
 </tr>
 <tr>
-<td>알림센터 보기</td>
-<td>상단에서 세 번 소리가 날 때까지 아래로 스와이프</td>
+<td>View notification center</td>
+<td>Swipe down from the top until the sound is heard three times</td>
 </tr>
 <tr>
-<td>현재 창 나가기</td>
-<td>두 손가락을 Z 모양으로 스와이프</td>
+<td>Exit current window</td>
+<td>Swipe two fingers in a Z shape</td>
 </tr>
 </tbody></table>
-<p>iOS는 소리를 이용하여 화면의 상태를 알려주는 디테일한 접근성 기능들이 굉장히 잘 구현되어 있습니다.</p>
-<p><strong>3) 접근성 API</strong><br>Swift에는 다양한 접근성 API들이 제공됩니다. 이를 이용하면 Voice Over가 읽어주는 순서나 화면 요소의 의미 단위를 지정할 수 있습니다.</p>
+<p>iOS has very well-implemented detailed accessibility functions that inform the state of the screen using sound.</p>
+<p><strong>3) Accessibility API</strong><br>Various accessibility APIs are provided in Swift. Using these, you can specify the order in which Voice Over reads or the semantic unit of screen elements.</p>
 <table>
 <thead>
 <tr>
-<th>속성</th>
-<th>설명</th>
-<th>예시</th>
+<th>Property</th>
+<th>Explanation</th>
+<th>Example</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><a href="https://developer.apple.com/documentation/UIKit/UIAccessibilityElement/accessibilityLabel" target="_blank" rel="external nofollow noopener noreferrer">accesibilityLabel</a></td>
-<td>요소의 이름</td>
-<td>“뒤로 가기”</td>
+<td><a href="https://developer.apple.com/documentation/UIKit/UIAccessibilityElement/accessibilityLabel" target="_blank" rel="external nofollow noopener noreferrer">accessibilityLabel</a></td>
+<td>Name of the element</td>
+<td>“Back”</td>
 </tr>
 <tr>
-<td><a href="https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilitytraits" target="_blank" rel="external nofollow noopener noreferrer">accesibilityTraits</a></td>
-<td>요소의 유형</td>
-<td>버튼, 머릿말, 링크 등</td>
+<td><a href="https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilitytraits" target="_blank" rel="external nofollow noopener noreferrer">accessibilityTraits</a></td>
+<td>Type of the element</td>
+<td>Button, Header, Link, etc.</td>
 </tr>
 <tr>
-<td><a href="https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilitytraits" target="_blank" rel="external nofollow noopener noreferrer">accesibilityValue</a></td>
-<td>변동하는 요소의 현재 상태</td>
-<td>슬라이더 값, 진행률 등</td>
+<td><a href="https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilitytraits" target="_blank" rel="external nofollow noopener noreferrer">accessibilityValue</a></td>
+<td>Current state of fluctuating element</td>
+<td>Slider value, progress, etc.</td>
 </tr>
 <tr>
-<td><a href="https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilityhint" target="_blank" rel="external nofollow noopener noreferrer">accesibilityHint</a></td>
-<td>조작했을 때 일어나는 일에 대한 힌트</td>
-<td>“더블 탭하시면 …이 됩니다.”</td>
+<td><a href="https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilityhint" target="_blank" rel="external nofollow noopener noreferrer">accessibilityHint</a></td>
+<td>Hint about what happens when manipulated</td>
+<td>“Double tap to…”</td>
 </tr>
 </tbody></table>
 <blockquote>
-<p>Voice Over는 <strong><a href="https://developer.apple.com/documentation/UIKit/UIAccessibilityElement/accessibilityLabel" target="_blank" rel="external nofollow noopener noreferrer">Label</a> → <a href="https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilitytraits" target="_blank" rel="external nofollow noopener noreferrer">Traits</a> → <a href="https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilitytraits" target="_blank" rel="external nofollow noopener noreferrer">Value</a> → <a href="https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilityhint" target="_blank" rel="external nofollow noopener noreferrer">Hint</a></strong> 순서로 읽습니다.</p>
+<p>Voice Over reads in the order of <strong><a href="https://developer.apple.com/documentation/UIKit/UIAccessibilityElement/accessibilityLabel" target="_blank" rel="external nofollow noopener noreferrer">Label</a> → <a href="https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilitytraits" target="_blank" rel="external nofollow noopener noreferrer">Traits</a> → <a href="https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilitytraits" target="_blank" rel="external nofollow noopener noreferrer">Value</a> → <a href="https://developer.apple.com/documentation/uikit/uiaccessibilityelement/accessibilityhint" target="_blank" rel="external nofollow noopener noreferrer">Hint</a></strong>.</p>
 </blockquote>
-<p>정안 유저들은 기본적으로 공백이나 테두리 등의 시각 정보를 통하여 요소들을 그룹핑하여 인식하지만, 시각 정보를 이용할 수 없는 전맹 유저들에겐 불필요한 요소는 Voice Over가 읽지 않도록 숨기고, 하나의 버튼 안에 있는 다양한 텍스트들은 하나의 요소로 묶어서 읽어주도록 다음과 같은 접근성 API를 활용해 구현해 줍니다.</p>
+<p>Sighted users basically recognize elements by grouping them through visual information such as blanks or borders, but for totally blind users who cannot use visual information, hide unnecessary elements so that Voice Over does not read them, and utilize the following accessibility APIs so that various texts in one button are read together as one element.</p>
 <table>
 <thead>
 <tr>
-<th>이름</th>
-<th>설명</th>
+<th>Name</th>
+<th>Explanation</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><a href="https://developer.apple.com/documentation/swiftui/view/accessibilityhidden(_:)" target="_blank" rel="external nofollow noopener noreferrer">.accessibilityHidden(_:)</a></td>
-<td><strong>읽지 않도록 숨김</strong></td>
+<td><strong>Hidden so as not to read</strong></td>
 </tr>
 <tr>
 <td><a href="https://developer.apple.com/documentation/swiftui/view/accessibilityelement%28children%3A%29" target="_blank" rel="external nofollow noopener noreferrer">.accessibilityElement(children: .ignore)</a></td>
-<td><strong>자식 요소들을 완전히 무시</strong>하고 컨테이너만 접근성 요소로 처리</td>
+<td><strong>Completely ignore child elements</strong> and process only the container as an accessibility element</td>
 </tr>
 <tr>
 <td><a href="https://developer.apple.com/documentation/swiftui/accessibilitychildbehavior/combine" target="_blank" rel="external nofollow noopener noreferrer">.accessibilityElement(children: .combine)</a></td>
-<td><strong>자식 요소들을 하나로 병합</strong>하여 하나의 접근성 요소로 읽히게 함</td>
+<td><strong>Merge child elements into one</strong> to make it read as one accessibility element</td>
 </tr>
 <tr>
 <td><a href="https://developer.apple.com/documentation/swiftui/accessibilitychildbehavior/contain" target="_blank" rel="external nofollow noopener noreferrer">.accessibilityElement(children: .contain)</a></td>
-<td><strong>자식들을 그룹으로 묶은 컨테이너</strong>로 각 자식을 탐색 가능하게 함</td>
+<td><strong>Container that groups children</strong> so that each child can be navigated</td>
 </tr>
 </tbody></table>
-<p><strong>4) 로터(Rotor)</strong><br><strong><a href="https://support.apple.com/ko-kr/111796" target="_blank" rel="external nofollow noopener noreferrer">로터</a>는 Voice Over가 읽어주는 요소의 단위를 변경하는 기능</strong>으로, 이를 활용하면 설정으로 이동하지 않고도 탐색 옵션(문자 단위, 단어 단위, 줄 단위 또는 머릿말) 및 말하기 속도 등을 조절할 수 있습니다.</p>
+<p><strong>4) Rotor</strong><br><strong>The <a href="https://support.apple.com/ko-kr/111796" target="_blank" rel="external nofollow noopener noreferrer">Rotor</a> is a function that changes the unit of the elements that Voice Over reads</strong>, and by using this, you can adjust the navigation options (character unit, word unit, line unit or header) and the speech rate without moving to settings.</p>
 <blockquote>
-<p>로터는 <strong>화면에 엄지와 검지를 대고 시계 또는 반시계 방향으로 돌려서 설정</strong>을 바꾸고 세로 방향으로 스와이프하여 사용할 수 있습니다.</p>
+<p>The rotor can be used by <strong>placing the thumb and index finger on the screen and turning them clockwise or counter-clockwise</strong> to change the setting and swiping vertically.</p>
 </blockquote>
-<p>로터를 머릿말로 설정하면, 아래 영상과 같이 세로 방향으로 스크롤을 하면 빠르게 머릿말들만 탐색할 수 있습니다. 머릿말 요소는 Traits을 <a href="https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/header" target="_blank" rel="external nofollow noopener noreferrer"><strong>header</strong></a>로 설정하여 지정할 수 있습니다.</p>
+<p>If the rotor is set to a header, you can quickly navigate only the headers by scrolling vertically as in the video below. Header elements can be designated by setting the Traits to <a href="https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/header" target="_blank" rel="external nofollow noopener noreferrer"><strong>header</strong></a>.</p>
 <div class="figure " style>
-<video class="fig-video" controls alt="Voice Over 머릿말 로터 영상">
-<source src="/post/ada-4th-guita/voice-over-header.mp4" type="video/mp4">
+<video class="fig-video" controls alt="Voice Over Header Rotor Video">
+<source src="/en/post/ada-4th-guita/voice-over-header.mov" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
-<span class="caption">Voice Over 머릿말 로터 영상</span>
+<span class="caption">Voice Over Header Rotor Video</span>
 </div>
 
-<h2 id="음성-제어"><a href="#음성-제어" class="headerlink" title="음성 제어"></a>음성 제어</h2><p>그 외에도 앱에선 양손으로 기타를 연주하고 있으니, <strong>“다음”, “정지”, “다시” 등의 자주 쓰이는 기능들을 음성으로 제어</strong>할 수 있도록 구현하였습니다. 해당 기능은 <a href="https://developer.apple.com/documentation/speech/sfspeechrecognizer" target="_blank" rel="external nofollow noopener noreferrer">SpeechRecognizer</a>를 활용하여 구현하였습니다.</p>
+<h2 id="Voice-Control"><a href="#Voice-Control" class="headerlink" title="Voice Control"></a>Voice Control</h2><p>Other than that, since the guitar is played with both hands in the app, it was implemented so that <strong>frequently used functions such as “Next”, “Stop”, and “Again” can be controlled by voice.</strong> The function was implemented utilizing <a href="https://developer.apple.com/documentation/speech/sfspeechrecognizer" target="_blank" rel="external nofollow noopener noreferrer">SpeechRecognizer</a>.</p>
 <hr>
-<h1 id="시연"><a href="#시연" class="headerlink" title="시연"></a>시연</h1><iframe width="100%" height="422px" src="https://www.youtube.com/embed/Fc5QiSCGsOU" title="스크린 리더기를 이용한 시연 영상" frameborder="0" allowfullscreen></iframe>
+<h1 id="Demonstration"><a href="#Demonstration" class="headerlink" title="Demonstration"></a>Demonstration</h1><iframe width="100%" height="422px" src="https://www.youtube.com/embed/n7gXgOeOLVY" title="Demonstration video using a screen reader" frameborder="0" allowfullscreen></iframe>
 
 <hr>
-<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>5주 동안 팀원들과 함께 개발한 앱을 들고 다시 권사님을 찾아뵈었고, 권사님이 <strong>다른 사람의 도움 없이 코드를 익히고 연주</strong>하는 모습을 볼 수 있었습니다. 비록 Apple 아카데미 프로젝트의 일환이라 iOS만 간단한 데모 형태로 구현했지만 기획한 대로 앱이 사용되는 것을 보니 뿌듯했습니다.</p>
+<h1 id="Finishing"><a href="#Finishing" class="headerlink" title="Finishing"></a>Finishing</h1><p>We visited Mr. Ha again with the app developed with the team members for 5 weeks, and could see him <strong>learning chords and playing without the help of others.</strong> Although it was only implemented as a simple demo in iOS as part of the Apple Academy project, it was rewarding to see the app being used as planned.</p>
 <blockquote>
-<p><strong>귀타 - 귀로 배우는 기타 학습</strong><br>👉 <a href="https://apps.apple.com/kr/app/id6746475325" target="_blank" rel="external nofollow noopener noreferrer">App Store</a><br>👉 <a href="https://github.com/ADA-4th-C3/guita" target="_blank" rel="external nofollow noopener noreferrer">GitHub - iOS</a> &amp; <a href="https://github.com/ADA-4th-C3/guitar-chord-classification" target="_blank" rel="external nofollow noopener noreferrer">ML Repo</a></p>
+<p><strong>Guita - Learning Guitar by Ear</strong><br>👉 <a href="https://apps.apple.com/en/app/id6746475325" target="_blank" rel="external nofollow noopener noreferrer">App Store</a><br>👉 <a href="https://github.com/ADA-4th-C3/guita" target="_blank" rel="external nofollow noopener noreferrer">GitHub - iOS</a> &amp; <a href="https://github.com/ADA-4th-C3/guitar-chord-classification" target="_blank" rel="external nofollow noopener noreferrer">ML Repo</a></p>
 </blockquote>
-<p>다음으로 <strong>기타를 배우는 모든 시각 장애인 분들을 위해 Flutter로 만든 기타 튜너 이야기</strong>가 2부에서 이어집니다.</p>
-<p><a href="/post/ada-4th-guita-02/">👉 2부. 귀타 - 시각 장애인을 위한 기타 튜너 보러가기</a></p>
+<p>Next, <strong>the story of the guitar tuner made with Flutter for all visually impaired people who learn the guitar</strong> continues in Part 2.</p>
+<p><a href="/en/post/ada-4th-guita-02/">👉 Go to see Part 2. Guita - Guitar Tuner for the Visually Impaired</a></p>
 
 
             <!-- NERO google adsense -->
@@ -569,9 +548,9 @@
     <div id="post-footer" class="post-footer main-content-wrap">
         
         <div class="post-footer-tags">
-            <span class="text-color-light text-small">태그</span><br>
+            <span class="text-color-light text-small">TAGGED IN</span><br>
             
-    <a class="tag tag--primary tag--small t-link" href="/en/tags/Accessibility/" rel="tag">Accessibility</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/Apple-Developer-Acedemy-4th/" rel="tag">Apple Developer Acedemy 4th</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/Guita/" rel="tag">Guita</a>
+    <a class="tag tag--primary tag--small t-link" href="/en/tags/Accessibility/" rel="tag">Accessibility</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/Apple-Developer-Academy-4th/" rel="tag">Apple Developer Academy 4th</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/Guita/" rel="tag">Guita</a>
 
         </div>
         
@@ -584,15 +563,15 @@
                     <a class="post-action-btn btn btn--disabled" aria-hidden="true">
                         
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/ada-4th-guita-02/" data-tooltip="2부. 귀타 - 시각 장애인을 위한 기타 튜너" aria-label="다음: 2부. 귀타 - 시각 장애인을 위한 기타 튜너">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/ada-4th-guita-02/" data-tooltip="Part 2. Guita - Guitar Tuner for the Visually Impaired" aria-label="NEXT: Part 2. Guita - Guitar Tuner for the Visually Impaired">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -600,7 +579,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -608,7 +587,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-guita-01/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-guita-01/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -616,7 +595,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-guita-01/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-guita-01/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -626,7 +605,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -663,15 +642,15 @@
                     <a class="post-action-btn btn btn--disabled" aria-hidden="true">
                         
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
                     </a>
             </li>
             <li class="post-action">
                 
                     
-                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/ada-4th-guita-02/" data-tooltip="2부. 귀타 - 시각 장애인을 위한 기타 튜너" aria-label="다음: 2부. 귀타 - 시각 장애인을 위한 기타 튜너">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/ada-4th-guita-02/" data-tooltip="Part 2. Guita - Guitar Tuner for the Visually Impaired" aria-label="NEXT: Part 2. Guita - Guitar Tuner for the Visually Impaired">
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -679,7 +658,7 @@
     </nav>
     <ul class="post-actions post-action-share">
         <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
         </li>
@@ -687,7 +666,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-guita-01/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-guita-01/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
             </li>
@@ -695,7 +674,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-guita-01/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-guita-01/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
             </li>
@@ -705,7 +684,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -723,16 +702,16 @@
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-guita-01/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-guita-01/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
                     </a>
                 </li>
             
                 
                 
                 <li class="share-option">
-                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-guita-01/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-guita-01/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
                     </a>
                 </li>
             
@@ -790,7 +769,7 @@
 <div id="cover" style="background-image:url('/en/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/en/assets/js/script-yvaktdiyqwbquxs5kxacqxooqexa4rx7n8hr4vx6iuktrjms3nhmpwv4l6pk.min.js"></script>
+<script src="/en/assets/js/script-e2lrnkvnuorebzlu29bvtuv47quxr9savllxj0m8trktmop2pdpowkhc7ttn.min.js"></script>
 
 <!--SCRIPTS END-->
 
