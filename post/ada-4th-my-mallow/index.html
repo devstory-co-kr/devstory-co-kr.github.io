@@ -1,0 +1,688 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>My Mallow - 3D 캐릭터 감정 일기 - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/post/ada-4th-my-mallow/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"내 안의 감정을 마주하는 3D 감정 일기, MyMallow를 소개합니다.👉 English Version\nMyMallow - 내 안의 감정을 마주하다\n👉 App Store\n\nMyMallow는 Apple Developer Academy 4기 팀원들과 2개월간 진행한 iOS 프로젝트로, 자신의 감정을 의인화하고 직접 꾸밀 수 있는 3D 감정 일기 앱입니다.\n\n\n사용자가 직접 그린 그림을 캐릭터의 텍스처로 적용하고, 원하는 동작을 녹화해 캐릭터가 그대로 따라 하도록 설정할 수 있습니다.\n다양한 카테고리의 195개의 모션 제공\nRealityKit 구성\n\nRealityKit에 대한 보다 자세한 내용은 아래 직접 제작한 소개 영상과 공식 문서를 참고해 주세요.\n\n\n\n3D 모델Blender를 이용해 3D 모델을 구현했으며, 표정과 색상을 다르게 설정하여 감정별로 여섯 개의 캐릭터를 제작했습니다.\n유저가 그린 그림을 텍스처로 적용하는 과정\n\n모션MyMallow에는 다양한 카테고리의 195개 모션이 내장되어 있습니다. 내장 모션은 Mixamo에서 제공하는 애니메이션을 커스텀 모델에 적용하여 구현했습니다.\n  \n\n\nYour browser doesn't support HTML5 Video :/\nMixamo에서 제공하는 모션\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\nMixamo로 구현한 내장 모션\n\n\n원하는 모션이 없는 경우, 모션 캡처 기술을 활용해 나만의 동작을 만드는 기능을 제공합니다. 이는 Apple ARKit에 내장된 Body Position Tracking 기술을 활용해 구현했습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\nApple Body Position Tracking을 활용한 데모\n\n\nMixamo와 Apple의 Body Position Tracking 기술에서 지원하는 모델의 본(Bone) 구조는 서로 다릅니다. Mixamo는 65개, Apple의 ARBodyTracking 모델은 91개의 본을 사용합니다.\nMixamo & Apple Bone Rigging\n\n캡처한 모션을 그대로 적용하면 움직임이 다소 부자연스러울 수 있습니다. 이를 보완하기 위해 Low-pass 필터로 위치 이동을 보간하고, Spherical Linear Interpolation(Slerp) 필터로 회전 값을 보정하는 기능을 추가했습니다. 또한, 캡처된 모션을 원하는 길이로 편집할 수 있는 기능도 함께 구현했습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n편집 전\n\n\n\n\nYour browser doesn't support HTML5 Video :/\n편집 후\n\n\n\n\n\nYour browser doesn't support HTML5 Video :/\n모션 캡처\n\n\n\n\nYour browser doesn't support HTML5 Video :/\n모션 캡처 적용 결과물\n\n\n내가 만든 감정 캐릭터들이 단체로 댄스를 추는 모습을 보면 기분이 좋습니다. 💃🕺\n\n\n\nYour browser doesn't support HTML5 Video :/\n단체 댄스\n\n\nParticleRealityKit은 눈, 비, 불과 같은 효과를 생성할 수 있는 Particle 컴포넌트를 지원합니다. 이는 Reality Composer Pro에서 디자인하거나 코드로 직접 구현할 수 있습니다. 특히 공간 음향(Spatial Audio)을 지원하여, 모닥불에 가까이 다가가면 ‘타닥타닥’ 장작 타는 소리가 실감 나게 들리도록 설정했습니다. 🔥\n  \n\n\nYour browser doesn't support HTML5 Video :/\nReality Composer Pro에서 구현한 모닥불\n\n  Skybox\n  배경은 직접 제작한 이미지를 Skybox로 구현했습니다. Skybox는 Scene의 배경을 감싸는 큐브 형태의 텍스처로, 큐브 내부에 위치한 카메라를 통해 360° 전 방향의 이미지를 볼 수 있게 해줍니다.이미지는 2:1 비율로 제작하면 되며, 자세한 사항은 공식 문서를 참고해 주세요.\n\n\n물리 시뮬레이션RealityKit의 Collision Detection을 활용해 충돌 물리 시뮬레이션을 구현할 수 있습니다. Collision Shapes로 충돌 판정 경계를 지정한 뒤 Physics Body를 적용하면 물리 시뮬레이션이 활성화됩니다.\nAgent 상태 업데이트 코드\n\n상태 머신(State Machine)을 활용하면 캐릭터가 특정 장소에 접근했을 때 맥락에 맞는 행동을 수행하게 할 수 있습니다. 예를 들어, 모닥불 근처에 도달하면 자동으로 자리에 앉거나 춤을 추는 상태로 전이되도록 설계했습니다. 또한 상태 전이 조건과 이동 로직을 세밀하게 조정하여, 캐릭터들이 서로 충돌하지 않으면서 조화롭게 맵을 배회하도록 제어했습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\nGameplayKit으로 구현한 캐릭터 상태 머신\n\n\n\n시연\n\n마무리이번 프로젝트는 사용자의 특정 페인 포인트에서 시작하기보다, RealityKit이라는 기술을 탐구하고 이를 활용해 어떤 가치를 창출할 수 있을지 고민하는 과정으로 진행되었습니다. 3D 콘텐츠 앱의 지속 가능성을 고려해 “콘텐츠 생산의 사용자 위임”을 핵심 기획 방향으로 잡았고, 이를 구현하기 위해 RealityKit부터 3D 모델링, 리깅, GameplayKit, ARKit 모션 캡처까지 다양한 기술을 깊이 있게 접목해보는 과정이 즐거웠습니다.\n","dateCreated":"2026-02-20T16:37:00+09:00","dateModified":"2026-02-21T23:57:21+09:00","datePublished":"2026-02-20T16:37:00+09:00","description":"내 안의 감정을 마주하는 3D 감정 일기, MyMallow를 소개합니다.👉 English Version","headline":"My Mallow - 3D 캐릭터 감정 일기","image":["/post/ada-4th-my-mallow/logo.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/ada-4th-my-mallow/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/ada-4th-my-mallow/","keywords":"MyMallow, Apple Developer Academy 4th","thumbnailUrl":"/post/ada-4th-my-mallow/logo.png"}</script>
+    <meta name="description" content="내 안의 감정을 마주하는 3D 감정 일기, MyMallow를 소개합니다.👉 English Version">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="My Mallow - 3D 캐릭터 감정 일기">
+<meta property="og:url" content="https://blog.devstory.co.kr/post/ada-4th-my-mallow/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="내 안의 감정을 마주하는 3D 감정 일기, MyMallow를 소개합니다.👉 English Version">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://blog.devstory.co.kr/post/ada-4th-my-mallow/logo.png">
+<meta property="article:published_time" content="2026-02-20T07:37:00.000Z">
+<meta property="article:modified_time" content="2026-02-21T14:57:21.904Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="MyMallow">
+<meta property="article:tag" content="Apple Developer Academy 4th">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.devstory.co.kr/post/ada-4th-my-mallow/logo.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-hc1pthdwgpughdou6c4c56pzgxjlvmykc5yxffiong3msrglwtztwobotcam.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
+        
+        
+            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about" aria-label="저자에 대해 더 알아보기">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/" title="홈">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">홈</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="태그">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">깃허브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">프로젝트</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">강의</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            My Mallow - 3D 캐릭터 감정 일기
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2026-02-20T16:37:00+09:00">
+	
+		    2026/02/20
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>목차
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#MyMallow-내-안의-감정을-마주하다"><span class="nero-toc-text">MyMallow - 내 안의 감정을 마주하다</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#RealityKit"><span class="nero-toc-text">RealityKit</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#3D-모델"><span class="nero-toc-text">3D 모델</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#모션"><span class="nero-toc-text">모션</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Particle"><span class="nero-toc-text">Particle</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Skybox"><span class="nero-toc-text">Skybox</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#물리-시뮬레이션"><span class="nero-toc-text">물리 시뮬레이션</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#시연"><span class="nero-toc-text">시연</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마무리"><span class="nero-toc-text">마무리</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>내 안의 감정을 마주하는 3D 감정 일기, <strong>MyMallow</strong>를 소개합니다.<br><a href="/en/post/ada-4th-my-mallow/">👉 English Version</a><br><a id="more"></a></p>
+<h1 id="MyMallow-내-안의-감정을-마주하다"><a href="#MyMallow-내-안의-감정을-마주하다" class="headerlink" title="MyMallow - 내 안의 감정을 마주하다"></a>MyMallow - 내 안의 감정을 마주하다</h1><blockquote>
+<p>👉 <a href="https://apps.apple.com/kr/app/id6749623599" target="_blank" rel="external nofollow noopener noreferrer">App Store</a></p>
+</blockquote>
+<p><strong>MyMallow</strong>는 Apple Developer Academy 4기 팀원들과 2개월간 진행한 iOS 프로젝트로, <strong>자신의 감정을 의인화하고 직접 꾸밀 수 있는 3D 감정 일기</strong> 앱입니다.</p>
+<iframe width="100%" height="422px" src="https://youtube.com/embed/MFVS_5zO7Zk" title="MyMallow 시연 영상" frameborder="0" allowfullscreen></iframe>
+
+<p>사용자가 직접 그린 그림을 캐릭터의 텍스처로 적용하고, 원하는 동작을 녹화해 캐릭터가 그대로 따라 하도록 설정할 수 있습니다.</p>
+<div class="nero-grid"><div class="figure " style><a class="fancybox" href="/post/ada-4th-my-mallow/intro-02.png" title="직접 그림그려 나만의 캐릭터 꾸미기" data-caption="직접 그림그려 나만의 캐릭터 꾸미기" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-my-mallow/intro-02.png" alt="직접 그림그려 나만의 캐릭터 꾸미기"></a><span class="caption">직접 그림그려 나만의 캐릭터 꾸미기</span></div>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-my-mallow/intro-03.png" title="다양한 카테고리의 195개의 모션 제공" data-caption="다양한 카테고리의 195개의 모션 제공" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-my-mallow/intro-03.png" alt="다양한 카테고리의 195개의 모션 제공"></a><span class="caption">다양한 카테고리의 195개의 모션 제공</span></div>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-my-mallow/intro-04.png" title="모션 캡쳐로 나만의 모션 만들기" data-caption="모션 캡쳐로 나만의 모션 만들기" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-my-mallow/intro-04.png" alt="모션 캡쳐로 나만의 모션 만들기"></a><span class="caption">모션 캡쳐로 나만의 모션 만들기</span></div></div>
+
+<hr>
+<h1 id="RealityKit"><a href="#RealityKit" class="headerlink" title="RealityKit"></a>RealityKit</h1><blockquote>
+<p>이번 프로젝트는 iOS의 3D 프레임워크인 <strong>RealityKit</strong>을 기반으로 진행되었습니다.</p>
+</blockquote>
+<p><a href="https://developer.apple.com/documentation/realitykit" target="_blank" rel="external nofollow noopener noreferrer">RealityKit</a>은 3D 및 증강 현실(AR) 기반 애플리케이션을 구축할 수 있도록 지원하는 Apple의 iOS 프레임워크입니다.<br>고성능 렌더링, 물리 시뮬레이션, 애니메이션 시스템 등을 제공하여 몰입감 있는 3D 경험을 구현할 수 있습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-my-mallow/realitykit.png" title="RealityKit 구성" data-caption="RealityKit 구성" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-my-mallow/realitykit.png" alt="RealityKit 구성"></a><span class="caption">RealityKit 구성</span></div>
+
+<p>RealityKit에 대한 보다 자세한 내용은 아래 <strong>직접 제작한 소개 영상</strong>과 <a href="https://developer.apple.com/documentation/realitykit" target="_blank" rel="external nofollow noopener noreferrer">공식 문서</a>를 참고해 주세요.</p>
+<iframe width="100%" height="422px" src="https://www.youtube.com/embed/jJ4y9KB48L0?si=wBZ8bvcqHzBuPYHR" title="iOS RealityKit" frameborder="0" allowfullscreen></iframe>
+
+<hr>
+<h1 id="3D-모델"><a href="#3D-모델" class="headerlink" title="3D 모델"></a>3D 모델</h1><p>Blender를 이용해 3D 모델을 구현했으며, 표정과 색상을 다르게 설정하여 감정별로 여섯 개의 캐릭터를 제작했습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-my-mallow/modeling.png" title="하찮은 귀여움(?)을 컨셉으로 한 Mallow 캐릭터" data-caption="하찮은 귀여움(?)을 컨셉으로 한 Mallow 캐릭터" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-my-mallow/modeling.png" alt="하찮은 귀여움(?)을 컨셉으로 한 Mallow 캐릭터"></a><span class="caption">하찮은 귀여움(?)을 컨셉으로 한 Mallow 캐릭터</span></div>
+
+<p>RealityKit은 Pixar의 Universal Scene Description 형식을 지원하며, 텍스처가 하나의 바이너리로 묶인 <strong>USDZ 파일을 사용하면 편리</strong>합니다.</p>
+<table>
+<thead>
+<tr>
+<th>확장자</th>
+<th>형식 설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.usd</td>
+<td>Pixar의 USD(Universal Scene Description) 형식</td>
+</tr>
+<tr>
+<td>.usda</td>
+<td>USD의 ASCII 포맷으로 사람이 읽고 편집 가능</td>
+</tr>
+<tr>
+<td>.usdc</td>
+<td>USD의 압축(Binary) 포맷으로 용량 절감 및 성능 최적화</td>
+</tr>
+<tr>
+<td>.usdz</td>
+<td>USD 포맷에 텍스처 등 리소스를 하나의 패키지로 묶은 형식</td>
+</tr>
+</tbody></table>
+<p>Blender에서 <code>.fbx</code>로 추출한 파일을 Reality Converter를 활용해 <code>.usdz</code> 형식으로 변환하여 사용했습니다.</p>
+<p>캐릭터 <strong>텍스처는 사용자가 직접 그린 그림을 적용</strong>하도록 구현했습니다. 이 아이디어는 애니메이션 ‘짱구는 못말려’에서 그림으로 그린 캐릭터가 살아움직이는 에피소드에서 영감을 얻었습니다.</p>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="짱구는 못말려 극장판 28기 낙서 왕국과 대강 네명의 용사의 한 장면">
+<source src="/post/ada-4th-my-mallow/crayon-shin-chan.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">짱구는 못말려 극장판 28기 낙서 왕국과 대강 네명의 용사의 한 장면</span>
+</div>
+
+<p>RealityKit은 기본적으로 물리 기반 렌더링을 지원하며, <strong>3D 모델의 머티리얼을 런타임에 변경하여 텍스처를 입히는 것이 가능</strong>합니다. 앱에서는 다음과 같은 과정으로 구현했습니다.</p>
+<ol>
+<li>Blender에서 텍스처를 입힐 부위에 Material을 설정합니다.</li>
+<li>Blender에서 모델의 UV Layout을 추출합니다.</li>
+<li>Vision 프레임워크의 Contour 기능을 활용해 도면의 외곽선만 남겨 캔버스(Canvas)에 올립니다.</li>
+<li>사용자가 캔버스 위에 그린 선(Path)을 이미지로 변환하여 3D 모델에 매핑합니다.</li>
+</ol>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-my-mallow/texture.png" title="유저가 그린 그림을 텍스처로 적용하는 과정" data-caption="유저가 그린 그림을 텍스처로 적용하는 과정" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-my-mallow/texture.png" alt="유저가 그린 그림을 텍스처로 적용하는 과정"></a><span class="caption">유저가 그린 그림을 텍스처로 적용하는 과정</span></div>
+
+<h1 id="모션"><a href="#모션" class="headerlink" title="모션"></a>모션</h1><p>MyMallow에는 <strong>다양한 카테고리의 195개 모션이 내장</strong>되어 있습니다. 내장 모션은 <a href="https://www.mixamo.com/" target="_blank" rel="external nofollow noopener noreferrer">Mixamo</a>에서 제공하는 애니메이션을 커스텀 모델에 적용하여 구현했습니다.</p>
+<div class="nero-grid">  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Mixamo에서 제공하는 모션">
+<source src="/post/ada-4th-my-mallow/mixamo.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Mixamo에서 제공하는 모션</span>
+</div>
+  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Mixamo로 구현한 내장 모션">
+<source src="/post/ada-4th-my-mallow/mixamo-demo.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Mixamo로 구현한 내장 모션</span>
+</div></div>
+
+<p>원하는 모션이 없는 경우, <strong>모션 캡처 기술을 활용해 나만의 동작을 만드는 기능</strong>을 제공합니다. 이는 Apple ARKit에 내장된 <a href="https://developer.apple.com/documentation/arkit/capturing-body-motion-in-3d" target="_blank" rel="external nofollow noopener noreferrer">Body Position Tracking</a> 기술을 활용해 구현했습니다.</p>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Apple Body Position Tracking을 활용한 데모">
+<source src="/post/ada-4th-my-mallow/apple-body-tracking.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Apple Body Position Tracking을 활용한 데모</span>
+</div>
+
+<p><strong>Mixamo와 Apple의 Body Position Tracking 기술에서 지원하는 모델의 본(Bone) 구조는 서로 다릅니다.</strong> Mixamo는 65개, Apple의 ARBodyTracking 모델은 91개의 본을 사용합니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-my-mallow/bone.png" title="Mixamo & Apple Bone 차이" data-caption="Mixamo & Apple Bone 차이" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-my-mallow/bone.png" alt="Mixamo & Apple Bone 차이"></a><span class="caption">Mixamo & Apple Bone 차이</span></div>
+
+<p>커스텀으로 제작한 3D 모델에 모션을 적용하기 위해서는, 본의 구조를 맞춰주는 <strong>리깅</strong>(Rigging: 뼈대 구조와 제어 시스템을 설정하여 움직일 수 있게 만드는 작업)이 필수적입니다. 두 모델을 하나의 본 구조로 통합하려 했으나, 관절별 각도를 정밀하게 맞추는 과정이 까다로워 각각의 본 구조에 맞게 리깅된 모델을 상황에 따라 교체하는 방식으로 구현했습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-my-mallow/rigging.png" title="Mixamo & Apple Bone Rigging" data-caption="Mixamo & Apple Bone Rigging" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-my-mallow/rigging.png" alt="Mixamo & Apple Bone Rigging"></a><span class="caption">Mixamo & Apple Bone Rigging</span></div>
+
+<p>캡처한 모션을 그대로 적용하면 움직임이 다소 부자연스러울 수 있습니다. 이를 보완하기 위해 <a href="https://en.wikipedia.org/wiki/Low-pass_filter" target="_blank" rel="external nofollow noopener noreferrer">Low-pass 필터</a>로 위치 이동을 보간하고, <a href="https://en.wikipedia.org/wiki/Slerp" target="_blank" rel="external nofollow noopener noreferrer">Spherical Linear Interpolation(Slerp) 필터</a>로 회전 값을 보정하는 기능을 추가했습니다. 또한, 캡처된 모션을 원하는 길이로 편집할 수 있는 기능도 함께 구현했습니다.</p>
+<div class="nero-grid"><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="편집 전">
+<source src="/post/ada-4th-my-mallow/custom-motion-02.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">편집 전</span>
+</div>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="편집 후">
+<source src="/post/ada-4th-my-mallow/custom-motion-03.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">편집 후</span>
+</div></div>
+
+<div class="nero-grid"><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="모션 캡처">
+<source src="/post/ada-4th-my-mallow/custom-motion-01.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">모션 캡처</span>
+</div>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="모션 캡처 적용 결과물">
+<source src="/post/ada-4th-my-mallow/custom-motion-04.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">모션 캡처 적용 결과물</span>
+</div></div>
+
+<p>내가 만든 감정 캐릭터들이 단체로 댄스를 추는 모습을 보면 기분이 좋습니다. 💃🕺</p>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="단체 댄스">
+<source src="/post/ada-4th-my-mallow/group-dance.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">단체 댄스</span>
+</div>
+
+<h1 id="Particle"><a href="#Particle" class="headerlink" title="Particle"></a>Particle</h1><p>RealityKit은 눈, 비, 불과 같은 효과를 생성할 수 있는 <a href="https://developer.apple.com/documentation/realitykit/particleemittercomponent" target="_blank" rel="external nofollow noopener noreferrer">Particle 컴포넌트</a>를 지원합니다. 이는 <a href="https://developer.apple.com/augmented-reality/tools/" target="_blank" rel="external nofollow noopener noreferrer">Reality Composer Pro</a>에서 디자인하거나 코드로 직접 구현할 수 있습니다. 특히 <strong>공간 음향(Spatial Audio)을 지원</strong>하여, 모닥불에 가까이 다가가면 ‘타닥타닥’ 장작 타는 소리가 실감 나게 들리도록 설정했습니다. 🔥</p>
+<div class="nero-grid">  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Reality Composer Pro에서 구현한 모닥불">
+<source src="/post/ada-4th-my-mallow/fire.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Reality Composer Pro에서 구현한 모닥불</span>
+</div>
+  <div class="figure " style><a class="fancybox" href="/post/ada-4th-my-mallow/reality-composer-pro.png" title="Reality Composer Pro" data-caption="Reality Composer Pro" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-my-mallow/reality-composer-pro.png" alt="Reality Composer Pro"></a><span class="caption">Reality Composer Pro</span></div></div>
+
+<h1 id="Skybox"><a href="#Skybox" class="headerlink" title="Skybox"></a>Skybox</h1><div class="nero-grid">  <div class="flex-2"><div class="figure " style><a class="fancybox" href="/post/ada-4th-my-mallow/skybox.png" title="Skybox" data-caption="Skybox" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-my-mallow/skybox.png" alt="Skybox"></a><span class="caption">Skybox</span></div></div>
+  <div class="flex-3"><p>배경은 직접 제작한 이미지를 <a href="https://developer.apple.com/documentation/realitykit/environmentresource/skybox" target="_blank" rel="external nofollow noopener noreferrer">Skybox</a>로 구현했습니다. Skybox는 Scene의 배경을 감싸는 큐브 형태의 텍스처로, 큐브 내부에 위치한 카메라를 통해 360° 전 방향의 이미지를 볼 수 있게 해줍니다.<br>이미지는 2:1 비율로 제작하면 되며, 자세한 사항은 <a href="https://developer.apple.com/documentation/realitykit/environmentresource" target="_blank" rel="external nofollow noopener noreferrer">공식 문서</a>를 참고해 주세요.</p>
+</div></div>
+
+<h1 id="물리-시뮬레이션"><a href="#물리-시뮬레이션" class="headerlink" title="물리 시뮬레이션"></a>물리 시뮬레이션</h1><p>RealityKit의 <strong>Collision Detection</strong>을 활용해 충돌 물리 시뮬레이션을 구현할 수 있습니다. <code>Collision Shapes</code>로 충돌 판정 경계를 지정한 뒤 <code>Physics Body</code>를 적용하면 물리 시뮬레이션이 활성화됩니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-my-mallow/physics.png" title="Skybox" data-caption="Skybox" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-my-mallow/physics.png" alt="Skybox"></a><span class="caption">Skybox</span></div>
+
+<p><a href="https://developer.apple.com/documentation/gameplaykit" target="_blank" rel="external nofollow noopener noreferrer">GameplayKit</a>은 <strong>경로 탐색</strong>이나 <strong>캐릭터 상태 관리</strong> 기능을 제공하여, 캐릭터들이 마치 살아있는 NPC처럼 자율적으로 동작하도록 만듭니다. RealityKit과 병행하여 사용하면 매우 효과적입니다.</p>
+<p>물리 법칙이 적용된 3D Scene에서는 <strong>캐릭터의 움직임을 속도나 힘을 가하는 방식(Velocity &amp; Force)으로 구현해야 물리 엔진이 올바르게 작동</strong>합니다. 좌표(Position)를 직접 수정할 경우, 캐릭터가 벽을 통과하는 등 물리 시뮬레이션의 현실감이 떨어지는 문제가 발생할 수 있습니다.</p>
+<div class="nero-grid">  <div class="flex-2">  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="GameplayKit으로 경로 탐색">
+<source src="/post/ada-4th-my-mallow/agent-moving.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">GameplayKit으로 경로 탐색</span>
+</div>
+</div>
+  <div class="flex-3"><div class="figure " style><a class="fancybox" href="/post/ada-4th-my-mallow/agent-code.png" title="Agent 상태 업데이트 코드" data-caption="Agent 상태 업데이트 코드" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-my-mallow/agent-code.png" alt="Agent 상태 업데이트 코드"></a><span class="caption">Agent 상태 업데이트 코드</span></div></div></div>
+
+<p><strong>상태 머신(State Machine)</strong>을 활용하면 캐릭터가 특정 장소에 접근했을 때 맥락에 맞는 행동을 수행하게 할 수 있습니다. 예를 들어, 모닥불 근처에 도달하면 자동으로 자리에 앉거나 춤을 추는 상태로 전이되도록 설계했습니다. 또한 상태 전이 조건과 이동 로직을 세밀하게 조정하여, 캐릭터들이 서로 충돌하지 않으면서 조화롭게 맵을 배회하도록 제어했습니다.</p>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="GameplayKit으로 구현한 캐릭터 상태 머신">
+<source src="/post/ada-4th-my-mallow/game-play-kit.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">GameplayKit으로 구현한 캐릭터 상태 머신</span>
+</div>
+
+
+<h1 id="시연"><a href="#시연" class="headerlink" title="시연"></a>시연</h1><iframe width="100%" height="422px" src="https://youtube.com/embed/M70kQo_9TPM" title="MyMallow 시연 영상" frameborder="0" allowfullscreen></iframe>
+
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>이번 프로젝트는 사용자의 특정 페인 포인트에서 시작하기보다, <strong>RealityKit이라는 기술을 탐구하고 이를 활용해 어떤 가치를 창출할 수 있을지 고민하는 과정</strong>으로 진행되었습니다. 3D 콘텐츠 앱의 지속 가능성을 고려해 <strong>“콘텐츠 생산의 사용자 위임”</strong>을 핵심 기획 방향으로 잡았고, 이를 구현하기 위해 RealityKit부터 3D 모델링, 리깅, GameplayKit, ARKit 모션 캡처까지 <strong>다양한 기술을 깊이 있게 접목</strong>해보는 과정이 즐거웠습니다.</p>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">태그</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/tags/Apple-Developer-Academy-4th/" rel="tag">Apple Developer Academy 4th</a> <a class="tag tag--primary tag--small t-link" href="/tags/MyMallow/" rel="tag">MyMallow</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/ada-4th-guita-01/" data-tooltip="1부. 귀타 - 귀로 배우는 기타 학습" aria-label="다음: 1부. 귀타 - 귀로 배우는 기타 학습">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/ada-4th-my-mallow/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/ada-4th-my-mallow/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2026 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/ada-4th-guita-01/" data-tooltip="1부. 귀타 - 귀로 배우는 기타 학습" aria-label="다음: 1부. 귀타 - 귀로 배우는 기타 학습">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/ada-4th-my-mallow/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/ada-4th-my-mallow/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/ada-4th-my-mallow/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/ada-4th-my-mallow/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-bbrugkyef97p1xsjqylkjl2agey5m0fgpggg7vb57mid5xrgvnmjyghkcwy8.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

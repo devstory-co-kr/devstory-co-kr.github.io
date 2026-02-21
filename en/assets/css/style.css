@@ -9382,7 +9382,7 @@ figure.highlight,
 .figure .fig-video {
   width: 100%;
   height: auto;
-  max-height: 400px;
+  max-height: 600px;
   outline: none; }
 
 .figure.fig-20 {
@@ -9410,7 +9410,9 @@ figure.highlight,
     margin: 0 auto; }
 
 @media only screen and (max-width: 767px) {
-  .fig-33 .caption, .fig-25 .caption, .fig-20 .caption {
+  .fig-33 .caption,
+  .fig-25 .caption,
+  .fig-20 .caption {
     display: none; } }
 
 .form-control {
@@ -11100,10 +11102,10 @@ figure.highlight,
   flex-wrap: wrap;
   gap: 16px;
   width: 100%;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 8px; }
   .nero-grid > div {
-    max-width: 250px;
+    max-width: 500px;
     margin-bottom: 16px;
     flex: 1; }
     .nero-grid > div > p:first-child {

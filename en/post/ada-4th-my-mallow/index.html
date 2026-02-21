@@ -1,0 +1,688 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>My Mallow - 3D Character Emotion Diary - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,Deep Learning,Mobile,Android,iOS,cat,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/en/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Introducing MyMallow, a 3D emotion diary where you can face your inner feelings.👉 한국어 버전\nMyMallow - Facing Your Inner Emotions\n👉 App Store\n\nMyMallow is an iOS project conducted for two months with 4th-generation team members of the Apple Developer Academy. It is a 3D emotion diary app that allows you to personify and customize your own emotions.\n\n\nUsers can apply their own drawings as character textures and record desired motions for the character to follow.\nProvides 195 motions across various categories\nRealityKit Components\n\nFor more detailed information about RealityKit, please refer to the introduction video I produced below and the official documentation.\n\n\n\n3D ModelsWe implemented 3D models using Blender and created six characters for each emotion with different facial expressions and colors.\nProcess of applying user-drawn pictures as textures\n\nMotionMyMallow has 195 built-in motions across various categories. Built-in motions were implemented by applying animations provided by Mixamo to custom models.\n  \n\n\nYour browser doesn't support HTML5 Video :/\nMotions provided by Mixamo\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\nBuilt-in motions implemented with Mixamo\n\n\nIf a desired motion is not available, we provide a feature to create your own motion using motion capture technology. This was implemented using the Body Position Tracking technology built into Apple ARKit.\n\n\n\nYour browser doesn't support HTML5 Video :/\nDemo using Apple Body Position Tracking\n\n\nThe bone structures supported by Mixamo and Apple’s Body Position Tracking technology are different. Mixamo uses 65 bones, while Apple’s ARBodyTracking model uses 91 bones.\nMixamo & Apple Bone Rigging\n\nApplying captured motion as-is can result in somewhat unnatural movement. To compensate for this, we added features to interpolate position movement using a Low-pass filter and correct rotation values using a Spherical Linear Interpolation (Slerp) filter. Additionally, we implemented a feature to edit captured motions to the desired length.\n\n\n\nYour browser doesn't support HTML5 Video :/\nBefore editing\n\n\n\n\nYour browser doesn't support HTML5 Video :/\nAfter editing\n\n\n\n\n\nYour browser doesn't support HTML5 Video :/\nMotion Capture\n\n\n\n\nYour browser doesn't support HTML5 Video :/\nMotion Capture Result\n\n\nSeeing my emotion characters dancing together feels great. 💃🕺\n\n\n\nYour browser doesn't support HTML5 Video :/\nGroup Dance\n\n\nParticleRealityKit supports a Particle component that can create effects like snow, rain, and fire. These can be designed in Reality Composer Pro or implemented directly through code. Especially since it supports Spatial Audio, we set it up so that as you get closer to the campfire, you can realistically hear the ‘crackling’ sound of the logs burning. 🔥\n  \n\n\nYour browser doesn't support HTML5 Video :/\nCampfire implemented in Reality Composer Pro\n\n  Skybox\n  The background was implemented as a Skybox using custom-made images. A Skybox is a cube-shaped texture that surrounds the scene’s background, allowing for a 360° omnidirectional view through a camera located inside the cube.Images can be created with a 2:1 aspect ratio; please refer to the official documentation for more details.\n\n\nPhysics SimulationYou can implement collision physics simulations using RealityKit’s Collision Detection. By specifying collision detection boundaries with Collision Shapes and applying a Physics Body, the physics simulation is activated.\nAgent state update code\n\nUsing a State Machine, characters can perform context-appropriate actions when they approach specific locations. For example, we designed them to automatically transition to a sitting or dancing state when they reach near the campfire. Furthermore, by finely tuning state transition conditions and movement logic, we controlled the characters to roam the map harmoniously without colliding with each other.\n\n\n\nYour browser doesn't support HTML5 Video :/\nCharacter State Machine implemented with GameplayKit\n\n\n\nDemonstration\n\nFinishingThis project proceeded not by starting from a specific user pain point, but by exploring the technology of RealityKit and contemplating what value could be created using it. Considering the sustainability of 3D content apps, “delegating content production to the user” was set as the core planning direction. The process of deeply integrating various technologies, from RealityKit to 3D modeling, rigging, GameplayKit, and ARKit motion capture, was very enjoyable.\n","dateCreated":"2026-02-20T16:37:00+09:00","dateModified":"2026-02-21T23:56:50+09:00","datePublished":"2026-02-20T16:37:00+09:00","description":"Introducing MyMallow, a 3D emotion diary where you can face your inner feelings.👉 한국어 버전","headline":"My Mallow - 3D Character Emotion Diary","image":["/en/post/ada-4th-my-mallow/logo.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/","keywords":"MyMallow, Apple Developer Academy 4th","thumbnailUrl":"/en/post/ada-4th-my-mallow/logo.png"}</script>
+    <meta name="description" content="Introducing MyMallow, a 3D emotion diary where you can face your inner feelings.👉 한국어 버전">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="My Mallow - 3D Character Emotion Diary">
+<meta property="og:url" content="https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="Introducing MyMallow, a 3D emotion diary where you can face your inner feelings.👉 한국어 버전">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/logo.png">
+<meta property="article:published_time" content="2026-02-20T07:37:00.000Z">
+<meta property="article:modified_time" content="2026-02-21T14:56:50.895Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="MyMallow">
+<meta property="article:tag" content="Apple Developer Academy 4th">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/logo.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/en/assets/css/style-hc1pthdwgpughdou6c4c56pzgxjlvmykc5yxffiong3msrglwtztwobotcam.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/en/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /en/#about">
+        
+        
+            <img class="header-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/en/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/" title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Projects</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Lecture</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            My Mallow - 3D Character Emotion Diary
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2026-02-20T16:37:00+09:00">
+	
+		    Feb 20, 2026
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/en/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>Table of Contents
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#MyMallow-Facing-Your-Inner-Emotions"><span class="nero-toc-text">MyMallow - Facing Your Inner Emotions</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#RealityKit"><span class="nero-toc-text">RealityKit</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#3D-Models"><span class="nero-toc-text">3D Models</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Motion"><span class="nero-toc-text">Motion</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Particle"><span class="nero-toc-text">Particle</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Skybox"><span class="nero-toc-text">Skybox</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Physics-Simulation"><span class="nero-toc-text">Physics Simulation</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Demonstration"><span class="nero-toc-text">Demonstration</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Finishing"><span class="nero-toc-text">Finishing</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>Introducing <strong>MyMallow</strong>, a 3D emotion diary where you can face your inner feelings.<br><a href="/post/ada-4th-my-mallow/">👉 한국어 버전</a><br><a id="more"></a></p>
+<h1 id="MyMallow-Facing-Your-Inner-Emotions"><a href="#MyMallow-Facing-Your-Inner-Emotions" class="headerlink" title="MyMallow - Facing Your Inner Emotions"></a>MyMallow - Facing Your Inner Emotions</h1><blockquote>
+<p>👉 <a href="https://apps.apple.com/us/app/id6749623599" target="_blank" rel="external nofollow noopener noreferrer">App Store</a></p>
+</blockquote>
+<p><strong>MyMallow</strong> is an iOS project conducted for two months with 4th-generation team members of the Apple Developer Academy. It is a <strong>3D emotion diary</strong> app that allows you to personify and customize your own emotions.</p>
+<iframe width="100%" height="422px" src="https://youtube.com/embed/lilhUlVQew8" title="MyMallow demonstration video" frameborder="0" allowfullscreen></iframe>
+
+<p>Users can apply their own drawings as character textures and record desired motions for the character to follow.</p>
+<div class="nero-grid"><div class="figure " style><a class="fancybox" href="/en/post/ada-4th-my-mallow/intro-02.png" title="Customize your own character by drawing" data-caption="Customize your own character by drawing" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-my-mallow/intro-02.png" alt="Customize your own character by drawing"></a><span class="caption">Customize your own character by drawing</span></div>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-my-mallow/intro-03.png" title="Provides 195 motions across various categories" data-caption="Provides 195 motions across various categories" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-my-mallow/intro-03.png" alt="Provides 195 motions across various categories"></a><span class="caption">Provides 195 motions across various categories</span></div>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-my-mallow/intro-04.png" title="Create your own motion with motion capture" data-caption="Create your own motion with motion capture" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-my-mallow/intro-04.png" alt="Create your own motion with motion capture"></a><span class="caption">Create your own motion with motion capture</span></div></div>
+
+<hr>
+<h1 id="RealityKit"><a href="#RealityKit" class="headerlink" title="RealityKit"></a>RealityKit</h1><blockquote>
+<p>This project was based on <strong>RealityKit</strong>, iOS’s 3D framework.</p>
+</blockquote>
+<p><a href="https://developer.apple.com/documentation/realitykit" target="_blank" rel="external nofollow noopener noreferrer">RealityKit</a> is Apple’s iOS framework for building 3D and augmented reality (AR) based applications.<br>It provides high-performance rendering, physics simulation, animation systems, and more, enabling the implementation of immersive 3D experiences.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-my-mallow/realitykit.png" title="RealityKit Components" data-caption="RealityKit Components" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-my-mallow/realitykit.png" alt="RealityKit Components"></a><span class="caption">RealityKit Components</span></div>
+
+<p>For more detailed information about RealityKit, please refer to the <strong>introduction video I produced</strong> below and the <a href="https://developer.apple.com/documentation/realitykit" target="_blank" rel="external nofollow noopener noreferrer">official documentation</a>.</p>
+<iframe width="100%" height="422px" src="https://www.youtube.com/embed/jJ4y9KB48L0?si=wBZ8bvcqHzBuPYHR" title="iOS RealityKit" frameborder="0" allowfullscreen></iframe>
+
+<hr>
+<h1 id="3D-Models"><a href="#3D-Models" class="headerlink" title="3D Models"></a>3D Models</h1><p>We implemented 3D models using Blender and created six characters for each emotion with different facial expressions and colors.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-my-mallow/modeling.png" title="Mallow characters with the concept of 'unimportant cuteness(?)'" data-caption="Mallow characters with the concept of 'unimportant cuteness(?)'" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-my-mallow/modeling.png" alt="Mallow characters with the concept of 'unimportant cuteness(?)'"></a><span class="caption">Mallow characters with the concept of 'unimportant cuteness(?)'</span></div>
+
+<p>RealityKit supports Pixar’s Universal Scene Description format, and <strong>using USDZ files</strong>, where textures are bundled into a single binary, is convenient.</p>
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Format Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.usd</td>
+<td>Pixar’s USD (Universal Scene Description) format</td>
+</tr>
+<tr>
+<td>.usda</td>
+<td>ASCII format of USD, human-readable and editable</td>
+</tr>
+<tr>
+<td>.usdc</td>
+<td>Compressed (Binary) format of USD for space savings and performance optimization</td>
+</tr>
+<tr>
+<td>.usdz</td>
+<td>A package format that bundles resources like textures into the USD format</td>
+</tr>
+</tbody></table>
+<p>We used files extracted as <code>.fbx</code> from Blender and converted them to <code>.usdz</code> format using Reality Converter.</p>
+<p>Character <strong>textures were implemented to apply drawings created directly by the user</strong>. This idea was inspired by an episode of the animation ‘Crayon Shin-chan’ where characters drawn as pictures come to life.</p>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="A scene from Crayon Shin-chan Movie 28: Crash! Rakuga Kingdom and Almost Four Heroes">
+<source src="/en/post/ada-4th-my-mallow/crayon-shin-chan.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">A scene from Crayon Shin-chan Movie 28: Crash! Rakuga Kingdom and Almost Four Heroes</span>
+</div>
+
+<p>RealityKit natively supports physically-based rendering, and it is <strong>possible to apply textures by changing the material of 3D models at runtime</strong>. In the app, it was implemented through the following process:</p>
+<ol>
+<li>Set Materials on target areas for texturing in Blender.</li>
+<li>Extract the model’s UV Layout from Blender.</li>
+<li>Use the Contour feature of the Vision framework to leave only the outlines of the drawing and place them on a canvas.</li>
+<li>Convert the paths drawn by the user on the canvas into an image and map it to the 3D model.</li>
+</ol>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-my-mallow/texture.png" title="Process of applying user-drawn pictures as textures" data-caption="Process of applying user-drawn pictures as textures" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-my-mallow/texture.png" alt="Process of applying user-drawn pictures as textures"></a><span class="caption">Process of applying user-drawn pictures as textures</span></div>
+
+<h1 id="Motion"><a href="#Motion" class="headerlink" title="Motion"></a>Motion</h1><p>MyMallow has <strong>195 built-in motions across various categories</strong>. Built-in motions were implemented by applying animations provided by <a href="https://www.mixamo.com/" target="_blank" rel="external nofollow noopener noreferrer">Mixamo</a> to custom models.</p>
+<div class="nero-grid">  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Motions provided by Mixamo">
+<source src="/en/post/ada-4th-my-mallow/mixamo.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Motions provided by Mixamo</span>
+</div>
+  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Built-in motions implemented with Mixamo">
+<source src="/en/post/ada-4th-my-mallow/mixamo-demo.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Built-in motions implemented with Mixamo</span>
+</div></div>
+
+<p>If a desired motion is not available, we provide a <strong>feature to create your own motion using motion capture technology</strong>. This was implemented using the <a href="https://developer.apple.com/documentation/arkit/capturing-body-motion-in-3d" target="_blank" rel="external nofollow noopener noreferrer">Body Position Tracking</a> technology built into Apple ARKit.</p>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Demo using Apple Body Position Tracking">
+<source src="/en/post/ada-4th-my-mallow/apple-body-tracking.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Demo using Apple Body Position Tracking</span>
+</div>
+
+<p><strong>The bone structures supported by Mixamo and Apple’s Body Position Tracking technology are different.</strong> Mixamo uses 65 bones, while Apple’s ARBodyTracking model uses 91 bones.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-my-mallow/bone.png" title="Difference between Mixamo & Apple Bones" data-caption="Difference between Mixamo & Apple Bones" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-my-mallow/bone.png" alt="Difference between Mixamo & Apple Bones"></a><span class="caption">Difference between Mixamo & Apple Bones</span></div>
+
+<p>To apply motion to a custom-made 3D model, <strong>rigging</strong> (the process of setting up a skeleton structure and control system to make it move) is essential. We attempted to integrate both models into a single bone structure, but because the process of precisely aligning joint angles was difficult, we implemented it by swapping models rigged for each bone structure depending on the situation.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-my-mallow/rigging.png" title="Mixamo & Apple Bone Rigging" data-caption="Mixamo & Apple Bone Rigging" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-my-mallow/rigging.png" alt="Mixamo & Apple Bone Rigging"></a><span class="caption">Mixamo & Apple Bone Rigging</span></div>
+
+<p>Applying captured motion as-is can result in somewhat unnatural movement. To compensate for this, we added features to interpolate position movement using a <a href="https://en.wikipedia.org/wiki/Low-pass_filter" target="_blank" rel="external nofollow noopener noreferrer">Low-pass filter</a> and correct rotation values using a <a href="https://en.wikipedia.org/wiki/Slerp" target="_blank" rel="external nofollow noopener noreferrer">Spherical Linear Interpolation (Slerp) filter</a>. Additionally, we implemented a feature to edit captured motions to the desired length.</p>
+<div class="nero-grid"><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Before editing">
+<source src="/en/post/ada-4th-my-mallow/custom-motion-02.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Before editing</span>
+</div>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="After editing">
+<source src="/en/post/ada-4th-my-mallow/custom-motion-03.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">After editing</span>
+</div></div>
+
+<div class="nero-grid"><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Motion Capture">
+<source src="/en/post/ada-4th-my-mallow/custom-motion-01.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Motion Capture</span>
+</div>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Motion Capture Result">
+<source src="/en/post/ada-4th-my-mallow/custom-motion-04.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Motion Capture Result</span>
+</div></div>
+
+<p>Seeing my emotion characters dancing together feels great. 💃🕺</p>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Group Dance">
+<source src="/en/post/ada-4th-my-mallow/group-dance.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Group Dance</span>
+</div>
+
+<h1 id="Particle"><a href="#Particle" class="headerlink" title="Particle"></a>Particle</h1><p>RealityKit supports a <a href="https://developer.apple.com/documentation/realitykit/particleemittercomponent" target="_blank" rel="external nofollow noopener noreferrer">Particle component</a> that can create effects like snow, rain, and fire. These can be designed in <a href="https://developer.apple.com/augmented-reality/tools/" target="_blank" rel="external nofollow noopener noreferrer">Reality Composer Pro</a> or implemented directly through code. Especially since it <strong>supports Spatial Audio</strong>, we set it up so that as you get closer to the campfire, you can realistically hear the ‘crackling’ sound of the logs burning. 🔥</p>
+<div class="nero-grid">  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Campfire implemented in Reality Composer Pro">
+<source src="/en/post/ada-4th-my-mallow/fire.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Campfire implemented in Reality Composer Pro</span>
+</div>
+  <div class="figure " style><a class="fancybox" href="/en/post/ada-4th-my-mallow/reality-composer-pro.png" title="Reality Composer Pro" data-caption="Reality Composer Pro" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-my-mallow/reality-composer-pro.png" alt="Reality Composer Pro"></a><span class="caption">Reality Composer Pro</span></div></div>
+
+<h1 id="Skybox"><a href="#Skybox" class="headerlink" title="Skybox"></a>Skybox</h1><div class="nero-grid">  <div class="flex-2"><div class="figure " style><a class="fancybox" href="/en/post/ada-4th-my-mallow/skybox.png" title="Skybox" data-caption="Skybox" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-my-mallow/skybox.png" alt="Skybox"></a><span class="caption">Skybox</span></div></div>
+  <div class="flex-3"><p>The background was implemented as a <a href="https://developer.apple.com/documentation/realitykit/environmentresource/skybox" target="_blank" rel="external nofollow noopener noreferrer">Skybox</a> using custom-made images. A Skybox is a cube-shaped texture that surrounds the scene’s background, allowing for a 360° omnidirectional view through a camera located inside the cube.<br>Images can be created with a 2:1 aspect ratio; please refer to the <a href="https://developer.apple.com/documentation/realitykit/environmentresource" target="_blank" rel="external nofollow noopener noreferrer">official documentation</a> for more details.</p>
+</div></div>
+
+<h1 id="Physics-Simulation"><a href="#Physics-Simulation" class="headerlink" title="Physics Simulation"></a>Physics Simulation</h1><p>You can implement collision physics simulations using RealityKit’s <strong>Collision Detection</strong>. By specifying collision detection boundaries with <code>Collision Shapes</code> and applying a <code>Physics Body</code>, the physics simulation is activated.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-my-mallow/physics.png" title="Physics" data-caption="Physics" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-my-mallow/physics.png" alt="Physics"></a><span class="caption">Physics</span></div>
+
+<p><a href="https://developer.apple.com/documentation/gameplaykit" target="_blank" rel="external nofollow noopener noreferrer">GameplayKit</a> provides features such as <strong>pathfinding</strong> and <strong>character state management</strong>, making characters behave autonomously as if they were living NPCs. Using it alongside RealityKit is very effective.</p>
+<p>In a 3D scene where physics laws are applied, <strong>character movement should be implemented by applying velocity or force (Velocity &amp; Force) for the physics engine to work correctly</strong>. Directly modifying coordinates (Position) can lead to issues where characters pass through walls, reducing the realism of the physics simulation.</p>
+<div class="nero-grid">  <div class="flex-2">  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Pathfinding with GameplayKit">
+<source src="/en/post/ada-4th-my-mallow/agent-moving.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Pathfinding with GameplayKit</span>
+</div>
+</div>
+  <div class="flex-3"><div class="figure " style><a class="fancybox" href="/en/post/ada-4th-my-mallow/agent-code.png" title="Agent state update code" data-caption="Agent state update code" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-my-mallow/agent-code.png" alt="Agent state update code"></a><span class="caption">Agent state update code</span></div></div></div>
+
+<p>Using a <strong>State Machine</strong>, characters can perform context-appropriate actions when they approach specific locations. For example, we designed them to automatically transition to a sitting or dancing state when they reach near the campfire. Furthermore, by finely tuning state transition conditions and movement logic, we controlled the characters to roam the map harmoniously without colliding with each other.</p>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Character State Machine implemented with GameplayKit">
+<source src="/en/post/ada-4th-my-mallow/game-play-kit.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Character State Machine implemented with GameplayKit</span>
+</div>
+
+
+<h1 id="Demonstration"><a href="#Demonstration" class="headerlink" title="Demonstration"></a>Demonstration</h1><iframe width="100%" height="422px" src="https://youtube.com/embed/x5tE3Ng1jVY" title="MyMallow demo video" frameborder="0" allowfullscreen></iframe>
+
+<h1 id="Finishing"><a href="#Finishing" class="headerlink" title="Finishing"></a>Finishing</h1><p>This project proceeded not by starting from a specific user pain point, but by <strong>exploring the technology of RealityKit and contemplating what value could be created using it</strong>. Considering the sustainability of 3D content apps, “delegating content production to the user” was set as the core planning direction. The process of <strong>deeply integrating various technologies</strong>, from RealityKit to 3D modeling, rigging, GameplayKit, and ARKit motion capture, was very enjoyable.</p>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">TAGGED IN</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/en/tags/Apple-Developer-Academy-4th/" rel="tag">Apple Developer Academy 4th</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/MyMallow/" rel="tag">MyMallow</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/ada-4th-guita-01/" data-tooltip="Part 1. Guita - Learning Guitar by Ear" aria-label="NEXT: Part 1. Guita - Learning Guitar by Ear">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2026 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/ada-4th-guita-01/" data-tooltip="Part 1. Guita - Learning Guitar by Ear" aria-label="NEXT: Part 1. Guita - Learning Guitar by Ear">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/en/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/en/assets/js/script-bbrugkyef97p1xsjqylkjl2agey5m0fgpggg7vb57mid5xrgvnmjyghkcwy8.min.js"></script>
+
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+
+
+
+    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
+</html>

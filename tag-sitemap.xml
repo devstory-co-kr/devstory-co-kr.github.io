@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>https://blog.devstory.co.kr/tags/Apple-Developer-Academy-4th/</loc>
+        <lastmod>2026-02-21T14:57:21.904Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/tags/MyMallow/</loc>
+        <lastmod>2026-02-21T14:57:21.904Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/tags/Accessibility/</loc>
         <lastmod>2026-02-19T09:57:27.355Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -73,14 +87,14 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/tags/Gentle-Map/</loc>
+        <loc>https://blog.devstory.co.kr/tags/I18n/</loc>
         <lastmod>2025-04-30T10:54:58.091Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/tags/I18n/</loc>
+        <loc>https://blog.devstory.co.kr/tags/Gentle-Map/</loc>
         <lastmod>2025-04-30T10:54:58.091Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

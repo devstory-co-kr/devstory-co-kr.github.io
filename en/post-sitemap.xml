@@ -8,8 +8,16 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/</loc>
+        <lastmod>2026-02-21T14:56:50.895Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/post/ada-4th-guita-02/</loc>
-        <lastmod>2026-02-19T10:01:52.023Z</lastmod>
+        <lastmod>2026-02-19T10:26:47.188Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -104,7 +112,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/en/post/prography-8th/</loc>
+        <loc>https://blog.devstory.co.kr/en/post/open-source-contributhon/</loc>
         <lastmod>2025-04-30T10:54:58.091Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -112,7 +120,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/en/post/open-source-contributhon/</loc>
+        <loc>https://blog.devstory.co.kr/en/post/prography-8th/</loc>
         <lastmod>2025-04-30T10:54:58.091Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

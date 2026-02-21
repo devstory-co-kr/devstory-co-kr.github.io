@@ -9,8 +9,23 @@
     <atom:link href="/en/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Thu, 19 Feb 2026 10:01:01 GMT</pubDate>
+    <pubDate>Sat, 21 Feb 2026 14:56:50 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>My Mallow - 3D Character Emotion Diary</title>
+      <link>https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/</link>
+      <guid>https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/</guid>
+      <pubDate>Fri, 20 Feb 2026 07:37:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Introducing &lt;strong&gt;MyMallow&lt;/strong&gt;, a 3D emotion diary where you can face your inner feelings.&lt;br&gt;&lt;a href=&quot;/post/ada-4th-my-mallow/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Part 1. Guita - Learning Guitar by Ear</title>
