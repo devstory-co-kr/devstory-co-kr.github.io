@@ -9,7 +9,15 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/en/post/ada-4th-my-mallow/</loc>
-        <lastmod>2026-02-21T14:56:50.895Z</lastmod>
+        <lastmod>2026-02-23T01:33:06.499Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/post/ada-4th-tadak/</loc>
+        <lastmod>2026-02-23T00:49:42.595Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -72,6 +80,14 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/post/too-real-04/</loc>
+        <lastmod>2025-04-30T10:54:58.092Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/post/too-real-03/</loc>
         <lastmod>2025-04-30T10:54:58.092Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -81,14 +97,6 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/en/post/worcation-sokcho/</loc>
-        <lastmod>2025-04-30T10:54:58.092Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/too-real-04/</loc>
         <lastmod>2025-04-30T10:54:58.092Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

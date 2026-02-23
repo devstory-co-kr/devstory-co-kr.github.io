@@ -9,8 +9,23 @@
     <atom:link href="/en/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Sat, 21 Feb 2026 14:56:50 GMT</pubDate>
+    <pubDate>Mon, 23 Feb 2026 00:49:42 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Tadak</title>
+      <link>https://blog.devstory.co.kr/en/post/ada-4th-tadak/</link>
+      <guid>https://blog.devstory.co.kr/en/post/ada-4th-tadak/</guid>
+      <pubDate>Mon, 23 Feb 2026 00:49:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;맞춤형 백색 소음 플레이리스트 Tadak을 소개합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/ada-4th-tadak/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>My Mallow - 3D Character Emotion Diary</title>

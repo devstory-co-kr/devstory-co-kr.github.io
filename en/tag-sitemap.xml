@@ -4,14 +4,28 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Apple-Developer-Academy-4th/</loc>
-        <lastmod>2026-02-21T14:56:50.895Z</lastmod>
+        <lastmod>2026-02-23T01:33:06.499Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/MyMallow/</loc>
-        <lastmod>2026-02-21T14:56:50.895Z</lastmod>
+        <lastmod>2026-02-23T01:33:06.499Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Tadak/</loc>
+        <lastmod>2026-02-23T00:49:42.595Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Apple-Developer-Acedemy-4th/</loc>
+        <lastmod>2026-02-23T00:49:42.595Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
