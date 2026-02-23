@@ -3,14 +3,14 @@
 
 
     <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Apple-Developer-Academy-4th/</loc>
+        <loc>https://blog.devstory.co.kr/en/tags/MyMallow/</loc>
         <lastmod>2026-02-23T01:33:06.499Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/en/tags/MyMallow/</loc>
+        <loc>https://blog.devstory.co.kr/en/tags/Apple-Developer-Academy-4th/</loc>
         <lastmod>2026-02-23T01:33:06.499Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -31,6 +31,13 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Apple-Developer-Acedemy-4th/</loc>
+        <lastmod>2026-02-19T09:57:27.355Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/tags/Worcation/</loc>
         <lastmod>2026-02-09T10:11:44.963Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -38,14 +45,21 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Trouble-Painter/</loc>
-        <lastmod>2026-02-05T12:48:52.695Z</lastmod>
+        <loc>https://blog.devstory.co.kr/en/tags/%25EC%2598%25A4%25EB%258A%2598-%25ED%2595%2598%25EB%25A3%25A8%25EB%25A5%25BC-%25EA%25B7%25B8%25EB%25A0%25A4%25EC%25A4%2598-AI-%25EA%25B7%25B8%25EB%25A6%25BC-%25EC%259D%25BC%25EA%25B8%25B0/</loc>
+        <lastmod>2026-02-05T12:53:20.851Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Project/</loc>
+        <lastmod>2026-02-05T12:53:20.851Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Trouble-Painter/</loc>
         <lastmod>2026-02-05T12:48:52.695Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -66,6 +80,13 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Gentle-Map/</loc>
+        <lastmod>2025-04-30T10:54:58.091Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/tags/Prography-8%25EA%25B8%25B0/</loc>
         <lastmod>2025-04-30T10:54:58.091Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -73,7 +94,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Gentle-Map/</loc>
+        <loc>https://blog.devstory.co.kr/en/tags/I18n/</loc>
         <lastmod>2025-04-30T10:54:58.091Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -95,13 +116,6 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Draw-My-Today-AI-Picture-Diary/</loc>
-        <lastmod>2025-04-30T10:54:57.832Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/I18n/</loc>
         <lastmod>2025-04-30T10:54:57.832Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

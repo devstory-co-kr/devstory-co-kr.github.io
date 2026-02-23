@@ -1,0 +1,711 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>지도 제작 웹사이트 GentleMap - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/en/post/web/gentle-map/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,Deep Learning,Mobile,Android,iOS,cat,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/en/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Vue.js &amp; Firebase 기반으로 주소가 담긴 Excel 파일을 파싱하여 지도를 만들어주는 반응형 웹 어플리케이션 GentleMap을 개발한 이야기를 공유합니다.\n프로젝트 소개사이드 프로젝트로 전체 개발 기간은 3개월 정도 소요되었고, 혼자서 개발하였습니다.\n\n최종 결과물은 https://gentle-map.devstory.co.kr에서 이용하실 수 있습니다.\n\n\n개발 동기100명의 자원 봉사자들과 팀을 이루어 120가구에 반찬을 나누는 사랑의 반찬나눔 봉사와 취약계층 60가구를 대상으로 화재감지기 설치 봉사를 진행하였는데, 당시 Android 지도 앱을 만들어 봉사활동을 편하게 진행할 수 있었습니다.\n이후 다른 사람들도 비슷한 니즈를 가지고 있을것이라 생각이 들어 누구든지 손쉽게 지도를 만들 수 있는 웹 플랫폼인 Gentle Map을 만들어 보았습니다.\n\n기능 소개\nExcel 데이터를 지도상에 시각화\n활동하는 팀 수에 맞추어 동선이 최소화되도록 마커 자동 분배\n관심있는 팀의 마커만 볼 수 있는 마커 필터링 기능\n모든 마커의 상태가 실시간으로 동기화 되어 진행상황로 실시간으로 모니터링 가능\n카카오톡 계정을 이용한 소셜 로그인 기능\n카카오톡 링크 이용하여 손쉽게 프로젝트 초대 기능\n프로젝트 참가자는 회원가입 없이 비밀번호만으로 참여 가능\n별도의 어플리케이션 설치 없이 모바일 웹을 이용하여 이용 가능\n모바일에서도 이용가능한 반응형 디자인\nHTML5의 Geolocation을 이용한 GPS 기능\n\n\n개발 내용Vue.js 기반의 반응형 웹 어플리케이션과 Firebase 기반의 백엔드로 설계하였습니다.\n\n✔︎ FrontEnd\n\n\nVue.js\nVuex\nVue Router\nElement\nVusax\nKakao Map\nKakao Login\nKakao Link\n\n\n✔︎ BackEnd\n\n\nFirebase Hosting\nFirebase Firestore\nFirebase Functions\nFirebase Authentication\nFirebase Storage\n\n\nDesignKakao API를 이용하여 지도 및 Marker Clustering 기능을 구현하였습니다.\n\n프로젝트를 생성 및 관리를 위해선 로그인이 필요합니다. 이때 회원가입 과정을 손쉽게 할 수 있도록 Kakao 소셜 로그인 기능을 이용하였는데, Firebase에서는 카카오톡 소셜 로그인을 정식적으로 지원하지 않기 때문에 Firebase Functions에 Custom Token을 발급하는 함수를 만들고, 클라이언트에서 signInWithCustomToken을 이용하여 로그인하도록 구현하였습니다.\n\nHostingHTML5 Geolocation을 이용하기 위해선, HTTPS가 필요합니다. Firebase Hosting에서는 기본적으로 SSL을 제공해주기 때문에 별도로 인증서를 구매하지 않고 HTTPS를 이용할 수 있습니다. 또한 Custom Domain도 HTTPS가 지원되기 때문에 gentle-map.devstory.co.kr 를 연결하여 호스팅하였습니다.\n\nFirestore\n\n\nYour browser doesn't support HTML5 Video :/\nFirestore를 이용한 실시간 마커상태 동기화 영상  (왼쪽 : Desktop, 오른쪽 : Mobile)\n\n\n마커 상태를 새로고침 없이 실시간으로 동기화 되도록 Firestore를 이용하였습니다. 초기에 마커들의 상태를 하나의 Document 안에 배열로 구현하였는데, Firestore에서는 배열의 특정 원소만을 업데이트하는 기능을 지원하지 않아 변경된 배열 전체를 업데이트하도록 구현하였습니다. 그런데 짧은 시간 안에 두 유저가 업데이트를 요청하는 경우, 아래 sequence diagram 처럼 늦게 요청한 유저의 요청값이 이전 유저의 값으로 동기화되어 화면상 결과가 데이터베이스와 달라지는 문제가 발생하였습니다.\n","dateCreated":"2020-04-30T15:02:28+09:00","dateModified":"2025-04-30T19:54:58+09:00","datePublished":"2020-04-30T15:02:28+09:00","description":"Vue.js &amp; Firebase 기반으로 주소가 담긴 Excel 파일을 파싱하여 지도를 만들어주는 반응형 웹 어플리케이션 GentleMap을 개발한 이야기를 공유합니다.","headline":"지도 제작 웹사이트 GentleMap","image":["https://user-images.githubusercontent.com/26322627/80855964-c494a580-8c80-11ea-8f11-843d96980050.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/web/gentle-map/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/web/gentle-map/","keywords":"Gentle Map","thumbnailUrl":"https://user-images.githubusercontent.com/26322627/80855964-c494a580-8c80-11ea-8f11-843d96980050.png"}</script>
+    <meta name="description" content="Vue.js &amp; Firebase 기반으로 주소가 담긴 Excel 파일을 파싱하여 지도를 만들어주는 반응형 웹 어플리케이션 GentleMap을 개발한 이야기를 공유합니다.">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="지도 제작 웹사이트 GentleMap">
+<meta property="og:url" content="https://blog.devstory.co.kr/en/post/web/gentle-map/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="Vue.js &amp; Firebase 기반으로 주소가 담긴 Excel 파일을 파싱하여 지도를 만들어주는 반응형 웹 어플리케이션 GentleMap을 개발한 이야기를 공유합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26322627/80855964-c494a580-8c80-11ea-8f11-843d96980050.png">
+<meta property="article:published_time" content="2020-04-30T06:02:28.000Z">
+<meta property="article:modified_time" content="2025-04-30T10:54:58.091Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Gentle Map">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26322627/80855964-c494a580-8c80-11ea-8f11-843d96980050.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/en/assets/css/style-hc1pthdwgpughdou6c4c56pzgxjlvmykc5yxffiong3msrglwtztwobotcam.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/en/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /en/#about">
+        
+        
+            <img class="header-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/en/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/" title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Projects</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Lecture</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            지도 제작 웹사이트 GentleMap
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2020-04-30T15:02:28+09:00">
+	
+		    Apr 30, 2020
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/en/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>Table of Contents
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#프로젝트-소개"><span class="nero-toc-text">프로젝트 소개</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#개발-동기"><span class="nero-toc-text">개발 동기</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#기능-소개"><span class="nero-toc-text">기능 소개</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#개발-내용"><span class="nero-toc-text">개발 내용</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Design"><span class="nero-toc-text">Design</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Kakao-API"><span class="nero-toc-text">Kakao API</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Hosting"><span class="nero-toc-text">Hosting</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Firestore"><span class="nero-toc-text">Firestore</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Firebase-Functions-amp-Authentication"><span class="nero-toc-text">Firebase Functions &amp; Authentication</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마치며"><span class="nero-toc-text">마치며</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+    
+    <div class="image-gallery">
+        <div class="image-gallery-metabar">
+            <span>Gallery: 11 images</span>
+        </div>
+        <div class="image-gallery-photos image-gallery-photos--thumbnail">
+            
+            
+            <div class="photo-box">
+                <a class="photo-box-inner fancybox" data-fancybox="gallery-cmlyjzx5g003o4mqa5b363qt2" data-caption title href="https://user-images.githubusercontent.com/26322627/80858334-bac86d80-8c93-11ea-8d65-232ed505e737.png" aria-label rel="external nofollow noopener noreferrer" target="_blank">
+                    
+
+                        <img class="photo" src="https://user-images.githubusercontent.com/26322627/80858334-bac86d80-8c93-11ea-8d65-232ed505e737.png">
+                    
+                </a>
+            </div>
+            
+            
+            <div class="photo-box">
+                <a class="photo-box-inner fancybox" data-fancybox="gallery-cmlyjzx5g003o4mqa5b363qt2" data-caption title href="https://user-images.githubusercontent.com/26322627/80858337-c025b800-8c93-11ea-8a23-d88cb0b58dc0.png" aria-label rel="external nofollow noopener noreferrer" target="_blank">
+                    
+
+                        <img class="photo" src="https://user-images.githubusercontent.com/26322627/80858337-c025b800-8c93-11ea-8a23-d88cb0b58dc0.png">
+                    
+                </a>
+            </div>
+            
+            
+            <div class="photo-box">
+                <a class="photo-box-inner fancybox" data-fancybox="gallery-cmlyjzx5g003o4mqa5b363qt2" data-caption title href="https://user-images.githubusercontent.com/26322627/80858339-c156e500-8c93-11ea-993f-65bcc041034e.png" aria-label rel="external nofollow noopener noreferrer" target="_blank">
+                    
+
+                        <img class="photo" src="https://user-images.githubusercontent.com/26322627/80858339-c156e500-8c93-11ea-993f-65bcc041034e.png">
+                    
+                </a>
+            </div>
+            
+            
+            <div class="photo-box">
+                <a class="photo-box-inner fancybox" data-fancybox="gallery-cmlyjzx5g003o4mqa5b363qt2" data-caption title href="https://user-images.githubusercontent.com/26322627/80858340-c1ef7b80-8c93-11ea-9acb-31c03d3d954a.png" aria-label rel="external nofollow noopener noreferrer" target="_blank">
+                    
+                </a>
+            </div>
+            
+            
+            <div class="photo-box">
+                <a class="photo-box-inner fancybox" data-fancybox="gallery-cmlyjzx5g003o4mqa5b363qt2" data-caption title href="https://user-images.githubusercontent.com/26322627/80858343-c320a880-8c93-11ea-9720-6e086b0c7aee.png" aria-label rel="external nofollow noopener noreferrer" target="_blank">
+                    
+                </a>
+            </div>
+            
+            
+            <div class="photo-box">
+                <a class="photo-box-inner fancybox" data-fancybox="gallery-cmlyjzx5g003o4mqa5b363qt2" data-caption title href="https://user-images.githubusercontent.com/26322627/80858499-886b4000-8c94-11ea-863d-db8a50412f8c.png" aria-label rel="external nofollow noopener noreferrer" target="_blank">
+                    
+                </a>
+            </div>
+            
+            
+            <div class="photo-box">
+                <a class="photo-box-inner fancybox" data-fancybox="gallery-cmlyjzx5g003o4mqa5b363qt2" data-caption title href="https://user-images.githubusercontent.com/26322627/80858501-8d2ff400-8c94-11ea-952f-779a00d371bf.png" aria-label rel="external nofollow noopener noreferrer" target="_blank">
+                    
+                </a>
+            </div>
+            
+            
+            <div class="photo-box">
+                <a class="photo-box-inner fancybox" data-fancybox="gallery-cmlyjzx5g003o4mqa5b363qt2" data-caption title href="https://user-images.githubusercontent.com/26322627/80858502-8e612100-8c94-11ea-95ee-9f408dcc33ab.png" aria-label rel="external nofollow noopener noreferrer" target="_blank">
+                    
+                </a>
+            </div>
+            
+            
+            <div class="photo-box">
+                <a class="photo-box-inner fancybox" data-fancybox="gallery-cmlyjzx5g003o4mqa5b363qt2" data-caption title href="https://user-images.githubusercontent.com/26322627/80858504-902ae480-8c94-11ea-9020-8850aa05e89d.png" aria-label rel="external nofollow noopener noreferrer" target="_blank">
+                    
+                </a>
+            </div>
+            
+            
+            <div class="photo-box">
+                <a class="photo-box-inner fancybox" data-fancybox="gallery-cmlyjzx5g003o4mqa5b363qt2" data-caption title href="https://user-images.githubusercontent.com/26322627/80858506-915c1180-8c94-11ea-94b2-70c593beddda.png" aria-label rel="external nofollow noopener noreferrer" target="_blank">
+                    
+                </a>
+            </div>
+            
+            
+            <div class="photo-box">
+                <a class="photo-box-inner fancybox" data-fancybox="gallery-cmlyjzx5g003o4mqa5b363qt2" data-caption title href="https://user-images.githubusercontent.com/26322627/80858508-928d3e80-8c94-11ea-836d-8c17b9e796a6.png" aria-label rel="external nofollow noopener noreferrer" target="_blank">
+                    
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+
+            <p>Vue.js &amp; Firebase 기반으로 주소가 담긴 Excel 파일을 파싱하여 지도를 만들어주는 반응형 웹 어플리케이션 <a href="https://gentle-map.devstory.co.kr/" target="_blank" rel="external nofollow noopener noreferrer">GentleMap</a>을 개발한 이야기를 공유합니다.<br><a id="more"></a></p>
+<h1 id="프로젝트-소개"><a href="#프로젝트-소개" class="headerlink" title="프로젝트 소개"></a>프로젝트 소개</h1><p>사이드 프로젝트로 전체 개발 기간은 3개월 정도 소요되었고, 혼자서 개발하였습니다.</p>
+<blockquote>
+<p>최종 결과물은 <a href="https://gentle-map.devstory.co.kr/" target="_blank" rel="external nofollow noopener noreferrer">https://gentle-map.devstory.co.kr</a>에서 이용하실 수 있습니다.</p>
+</blockquote>
+<hr>
+<h2 id="개발-동기"><a href="#개발-동기" class="headerlink" title="개발 동기"></a>개발 동기</h2><p>100명의 자원 봉사자들과 팀을 이루어 120가구에 반찬을 나누는 <a href="http://www.jeonguknews.co.kr/news/articleView.html?idxno=22503" target="_blank" rel="external nofollow noopener noreferrer">사랑의 반찬나눔 봉사</a>와 취약계층 60가구를 대상으로 <a href="http://www.globalnewsagency.kr/news/articleView.html?idxno=76064" target="_blank" rel="external nofollow noopener noreferrer">화재감지기 설치 봉사</a>를 진행하였는데, 당시 Android 지도 앱을 만들어 봉사활동을 편하게 진행할 수 있었습니다.</p>
+<p>이후 다른 사람들도 비슷한 니즈를 가지고 있을것이라 생각이 들어 누구든지 손쉽게 지도를 만들 수 있는 웹 플랫폼인 <a href="https://gentle-map.devstory.co.kr/" target="_blank" rel="external nofollow noopener noreferrer">Gentle Map</a>을 만들어 보았습니다.</p>
+<hr>
+<h2 id="기능-소개"><a href="#기능-소개" class="headerlink" title="기능 소개"></a>기능 소개</h2><ul>
+<li>Excel 데이터를 지도상에 <strong>시각화</strong></li>
+<li>활동하는 팀 수에 맞추어 <strong>동선이 최소화되도록 마커 자동 분배</strong></li>
+<li>관심있는 팀의 마커만 볼 수 있는 <strong>마커 필터링</strong> 기능</li>
+<li>모든 마커의 상태가 실시간으로 동기화 되어 진행상황로 <strong>실시간</strong>으로 모니터링 가능</li>
+<li>카카오톡 계정을 이용한 <strong>소셜 로그인 기능</strong></li>
+<li>카카오톡 링크 이용하여 손쉽게 <strong>프로젝트 초대 기능</strong></li>
+<li>프로젝트 참가자는 회원가입 없이 <strong>비밀번호만으로 참여 가능</strong></li>
+<li><strong>별도의 어플리케이션 설치 없이</strong> 모바일 웹을 이용하여 <strong>이용 가능</strong></li>
+<li>모바일에서도 이용가능한 <strong>반응형 디자인</strong></li>
+<li>HTML5의 Geolocation을 이용한 <strong>GPS 기능</strong></li>
+</ul>
+<hr>
+<h1 id="개발-내용"><a href="#개발-내용" class="headerlink" title="개발 내용"></a>개발 내용</h1><p>Vue.js 기반의 반응형 웹 어플리케이션과 Firebase 기반의 백엔드로 설계하였습니다.</p>
+<blockquote>
+<p>✔︎ FrontEnd</p>
+</blockquote>
+<ul>
+<li><a href="https://vuejs.org/" target="_blank" rel="external nofollow noopener noreferrer">Vue.js</a></li>
+<li><a href="https://vuex.vuejs.org/kr/" target="_blank" rel="external nofollow noopener noreferrer">Vuex</a></li>
+<li><a href="https://router.vuejs.org/" target="_blank" rel="external nofollow noopener noreferrer">Vue Router</a></li>
+<li><a href="https://element.eleme.io/#/en-US" target="_blank" rel="external nofollow noopener noreferrer">Element</a></li>
+<li><a href="https://lusaxweb.github.io/vuesax/" target="_blank" rel="external nofollow noopener noreferrer">Vusax</a></li>
+<li><a href="https://developers.kakao.com/product/map" target="_blank" rel="external nofollow noopener noreferrer">Kakao Map</a></li>
+<li><a href="https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api" target="_blank" rel="external nofollow noopener noreferrer">Kakao Login</a></li>
+<li><a href="https://developers.kakao.com/product/message" target="_blank" rel="external nofollow noopener noreferrer">Kakao Link</a></li>
+</ul>
+<blockquote>
+<p>✔︎ BackEnd</p>
+</blockquote>
+<ul>
+<li><a href="https://firebase.google.com/docs/hosting" target="_blank" rel="external nofollow noopener noreferrer">Firebase Hosting</a></li>
+<li><a href="https://firebase.google.com/docs/firestore?hl=ko" target="_blank" rel="external nofollow noopener noreferrer">Firebase Firestore</a></li>
+<li><a href="https://firebase.google.com/docs/functions" target="_blank" rel="external nofollow noopener noreferrer">Firebase Functions</a></li>
+<li><a href="https://firebase.google.com/docs/auth?hl=ko" target="_blank" rel="external nofollow noopener noreferrer">Firebase Authentication</a></li>
+<li><a href="https://firebase.google.com/docs/storage?hl=ko" target="_blank" rel="external nofollow noopener noreferrer">Firebase Storage</a></li>
+</ul>
+<hr>
+<h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><div class="figure center" style><a class="fancybox" href="https://user-images.githubusercontent.com/26322627/80855964-c494a580-8c80-11ea-8f11-843d96980050.png" target="_blank" rel="external nofollow noopener noreferrer" title data-caption data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="https://user-images.githubusercontent.com/26322627/80855964-c494a580-8c80-11ea-8f11-843d96980050.png" style="width:500px;" alt></a></div>
+
+<p>처음에는 GPS 기능 때문에 모바일 어플리케이션 형태를 고려하다가, <a href="https://www.w3schools.com/html/html5_geolocation.asp" target="_blank" rel="external nofollow noopener noreferrer">HTML5 Geolocation</a> 성능이 생각보다 괜찮아 모바일 환경에서도 별도의 설치 없이 이용가능하도록 반응형 웹사이트로 구현하였습니다.</p>
+<p>UI는 <a href="https://element.eleme.io/#/en-US" target="_blank" rel="external nofollow noopener noreferrer">Element</a>와 <a href="https://lusaxweb.github.io/vuesax/" target="_blank" rel="external nofollow noopener noreferrer">Vusax</a>를 조합하여 사용하였습니다. 두 라이브러리 모두 테마 변경 기능과 반응형 디자인을 지원합니다.</p>
+<blockquote>
+<p>✔︎ Element와 Vuesax 사용시 주의할 점 (2019.08 기준)</p>
+</blockquote>
+<ul>
+<li>Element의 <a href="https://element.eleme.io/#/en-US/component/dialog" target="_blank" rel="external nofollow noopener noreferrer">Dialog</a> 컴포넌트는 모바일에 지원이 안됨</li>
+<li>Vuesax <a href="https://lusaxweb.github.io/vuesax/components/dialog.html#alert" target="_blank" rel="external nofollow noopener noreferrer">Dialog</a> 컴포넌트 위에 Element의 <a href="https://element.eleme.io/#/en-US/component/select" target="_blank" rel="external nofollow noopener noreferrer">Select</a> 컴포넌트 사용시 선택창이 보이지 않음</li>
+<li>Vuesax는 Safari에서 <a href="https://element.eleme.io/#/en-US/component/select" target="_blank" rel="external nofollow noopener noreferrer">Select</a> 컴포넌트가 작동하지 않음</li>
+<li>Vuesax는 Safari에서 <a href="https://lusaxweb.github.io/vuesax/components/#filled" target="_blank" rel="external nofollow noopener noreferrer">Button</a> 컴포넌트의 클릭 effect 효과가 사라지지 않음</li>
+</ul>
+<hr>
+<h2 id="Kakao-API"><a href="#Kakao-API" class="headerlink" title="Kakao API"></a>Kakao API</h2><p>이번 프로젝트에서는 로그인, 지도, 주소 좌표변환 및 공유 등 다양한 Kakao API를 이용하여 개발하였습니다.</p>
+<blockquote>
+<p>✔︎ 이용한 Kakao API 목록</p>
+</blockquote>
+<ul>
+<li><a href="https://developers.kakao.com/product/map" target="_blank" rel="external nofollow noopener noreferrer">Kakao Map</a> : 지도 및 주소 좌표변환 기능</li>
+<li><a href="https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api" target="_blank" rel="external nofollow noopener noreferrer">Kakao Login</a> : 카카오톡 소셜 로그인</li>
+<li><a href="https://developers.kakao.com/product/message" target="_blank" rel="external nofollow noopener noreferrer">Kakao Link</a> : 프로젝트 초대 기능</li>
+</ul>
+<p>지도 API는 <a href="https://cloud.google.com/maps-platform/pricing" target="_blank" rel="external nofollow noopener noreferrer">Google Map</a>, <a href="https://www.ncloud.com/product/applicationService/maps" target="_blank" rel="external nofollow noopener noreferrer">Naver Map</a>, <a href="https://apis.map.kakao.com/web/" target="_blank" rel="external nofollow noopener noreferrer">Kakao Map</a>을 검토하였는데, Web Dynamic Map은 Kakao에서만 월 30만회 무료 사용량을 제공하여 Kakao Map을 선택하였습니다. (20.05.02 기준으로 네이버도 월 천만건 무료로 풀렸네요)</p>
+<div class="figure center" style><a class="fancybox" href="https://user-images.githubusercontent.com/26322627/80860760-f9b2ef00-8ca4-11ea-81bb-2e2ce5c2b08b.png" target="_blank" rel="external nofollow noopener noreferrer" title="Kakao API를 이용하여 지도 및 Marker Clustering 기능을 구현하였습니다." data-caption="Kakao API를 이용하여 지도 및 Marker Clustering 기능을 구현하였습니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="https://user-images.githubusercontent.com/26322627/80860760-f9b2ef00-8ca4-11ea-81bb-2e2ce5c2b08b.png" alt="Kakao API를 이용하여 지도 및 Marker Clustering 기능을 구현하였습니다."></a><span class="caption">Kakao API를 이용하여 지도 및 Marker Clustering 기능을 구현하였습니다.</span></div>
+
+<p>프로젝트를 생성 및 관리를 위해선 로그인이 필요합니다. 이때 회원가입 과정을 손쉽게 할 수 있도록 Kakao 소셜 로그인 기능을 이용하였는데, Firebase에서는 카카오톡 소셜 로그인을 정식적으로 지원하지 않기 때문에 Firebase Functions에 Custom Token을 발급하는 함수를 만들고, 클라이언트에서 <a href="https://firebase.google.com/docs/auth/admin/create-custom-tokens?hl=ko" target="_blank" rel="external nofollow noopener noreferrer">signInWithCustomToken</a>을 이용하여 로그인하도록 구현하였습니다.</p>
+<hr>
+<h2 id="Hosting"><a href="#Hosting" class="headerlink" title="Hosting"></a>Hosting</h2><p><a href="https://www.w3schools.com/html/html5_geolocation.asp" target="_blank" rel="external nofollow noopener noreferrer">HTML5 Geolocation</a>을 이용하기 위해선, <a href="https://ko.wikipedia.org/wiki/HTTPS" target="_blank" rel="external nofollow noopener noreferrer">HTTPS</a>가 필요합니다. <a href="https://firebase.google.com/docs/hosting" target="_blank" rel="external nofollow noopener noreferrer">Firebase Hosting</a>에서는 기본적으로 SSL을 제공해주기 때문에 별도로 인증서를 구매하지 않고 HTTPS를 이용할 수 있습니다. 또한 Custom Domain도 HTTPS가 지원되기 때문에 <a href="https://gentle-map.devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer">gentle-map.devstory.co.kr</a> 를 연결하여 호스팅하였습니다.</p>
+<hr>
+<h2 id="Firestore"><a href="#Firestore" class="headerlink" title="Firestore"></a>Firestore</h2><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Firestore를 이용한 실시간 마커상태 동기화 영상 <br> (왼쪽 : Desktop, 오른쪽 : Mobile)">
+<source src="/post/gentle-map/gentle-map-sync.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Firestore를 이용한 실시간 마커상태 동기화 영상 <br> (왼쪽 : Desktop, 오른쪽 : Mobile)</span>
+</div>
+
+<p>마커 상태를 새로고침 없이 <strong>실시간으로 동기화</strong> 되도록 <a href="https://firebase.google.com/docs/firestore?hl=ko" target="_blank" rel="external nofollow noopener noreferrer">Firestore</a>를 이용하였습니다. 초기에 마커들의 상태를 하나의 <a href="https://firebase.google.com/docs/firestore/data-model?hl=ko#documents" target="_blank" rel="external nofollow noopener noreferrer">Document</a> 안에 배열로 구현하였는데, <a href="https://stackoverflow.com/questions/54004272/is-there-any-way-to-update-a-specific-index-from-the-array-in-firestore" target="_blank" rel="external nofollow noopener noreferrer">Firestore에서는 배열의 특정 원소만을 업데이트하는 기능을 지원하지 않아</a> 변경된 배열 전체를 업데이트하도록 구현하였습니다. 그런데 짧은 시간 안에 두 유저가 업데이트를 요청하는 경우, 아래 sequence diagram 처럼 늦게 요청한 유저의 요청값이 이전 유저의 값으로 동기화되어 화면상 결과가 데이터베이스와 달라지는 문제가 발생하였습니다.</p>
+<div class="figure center" style><a class="fancybox" href="https://user-images.githubusercontent.com/26322627/80939966-415a8780-8e19-11ea-8078-0062533ed7a5.png" target="_blank" rel="external nofollow noopener noreferrer" title="두 유저가 서로 다른 마커의 상태를 동시에 변경한 경우, 늦게 요청한 유저의 변경한 사항이 날아가고, 다른 유저의 요청값으로 동기화되는 문제 발생" data-caption="두 유저가 서로 다른 마커의 상태를 동시에 변경한 경우, 늦게 요청한 유저의 변경한 사항이 날아가고, 다른 유저의 요청값으로 동기화되는 문제 발생" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="https://user-images.githubusercontent.com/26322627/80939966-415a8780-8e19-11ea-8078-0062533ed7a5.png" alt="두 유저가 서로 다른 마커의 상태를 동시에 변경한 경우, 늦게 요청한 유저의 변경한 사항이 날아가고, 다른 유저의 요청값으로 동기화되는 문제 발생"></a><span class="caption">두 유저가 서로 다른 마커의 상태를 동시에 변경한 경우, 늦게 요청한 유저의 변경한 사항이 날아가고, 다른 유저의 요청값으로 동기화되는 문제 발생</span></div>
+
+<p>해당 문제는 마커의 상태 변경시, 관심 마커 이외에 <u>모든 마커를 함께 업데이트하기 때문에 발생하는 문제</u>입니다. 따라서 전체 마커를 하나의 문서에 속한 배열이 아닌, 마커 하나당 개별 문서로 구현하고 각 문서 별 리스너를 등록해주어 마커들의 상태 값을 개별적으로 업데이트 할 수 있도록 구현하여 문제를 해결하였습니다.</p>
+<hr>
+<h2 id="Firebase-Functions-amp-Authentication"><a href="#Firebase-Functions-amp-Authentication" class="headerlink" title="Firebase Functions &amp; Authentication"></a>Firebase Functions &amp; Authentication</h2><p>유저에 따른 Firestore 접근 규칙을 설정하려면 Firebase Authentication과 로그인 기능이 연동되어야합니다. Firebase Authentication에서 카카오톡 소셜 로그인을 지원하지 않기 때문에, Firebase Functions에 Node.js 기반의 <a href="https://firebase.google.com/docs/auth/admin/create-custom-tokens?hl=ko" target="_blank" rel="external nofollow noopener noreferrer">Custom Token</a> 발급 함수를 만들고, 클라이언트에서 <a href="https://firebase.google.com/docs/auth/admin/create-custom-tokens?hl=ko" target="_blank" rel="external nofollow noopener noreferrer">signInWithCustomToken</a>을 이용하여 로그인하도록 구현하였습니다.</p>
+<figure class="highlight javascript"><figcaption><span>Node.js 기반 Custom Token 발급 함수</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 도쿄리전 사용</span></span><br><span class="line"><span class="keyword">const</span> functions = <span class="built_in">require</span>(<span class="string">'firebase-functions'</span>).region(<span class="string">'asia-northeast1'</span>)</span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">'cors'</span>)</span><br><span class="line"><span class="keyword">const</span> admin = <span class="built_in">require</span>(<span class="string">'firebase-admin'</span>)</span><br><span class="line"><span class="keyword">const</span> app = express()</span><br><span class="line"></span><br><span class="line"><span class="comment">// Automatically allow cross-origin requests</span></span><br><span class="line">app.use(cors(&#123; <span class="attr">origin</span>: <span class="literal">true</span> &#125;))</span><br><span class="line"></span><br><span class="line"><span class="comment">// Init auth</span></span><br><span class="line">admin.initializeApp(&#123;</span><br><span class="line">  credential: admin.credential.cert(&#123;</span><br><span class="line">    <span class="comment">// credential 정보 생략</span></span><br><span class="line">  &#125;),</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (!req.query.uid) <span class="keyword">return</span> res.status(<span class="number">400</span>).send(<span class="string">'uid cannot be empty'</span>)</span><br><span class="line">  <span class="keyword">const</span> uid = req.query.uid</span><br><span class="line">  admin</span><br><span class="line">    .auth()</span><br><span class="line">    .createCustomToken(uid)</span><br><span class="line">    .then(<span class="function">(<span class="params">token</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> res.send(&#123;</span><br><span class="line">        token: token,</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> res.send(&#123;</span><br><span class="line">        error: err,</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Expose Express API as a single Cloud Function</span></span><br><span class="line">exports.token = functions.https.onRequest(app)</span><br></pre></td></tr></table></figure>
+
+<p>전체 로그인 순서는 먼저 카카오톡에 로그인 한 뒤, Firebase Functions에서 토큰을 발급받고, 해당 토큰으로 signInWithCustomToken를 호출하여 최종 로그인을 하게 됩니다. 이후 Firestore에 접근하는 경우 아래와 같은 규칙에 따라 권한을 확인하게 됩니다.</p>
+<figure class="highlight javascript"><figcaption><span>firestore 규칙 예시</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">service cloud.firestore &#123;</span><br><span class="line">  match /databases/&#123;database&#125;/documents &#123;</span><br><span class="line">    match /&#123;<span class="built_in">document</span>=**&#125; &#123;</span><br><span class="line">      allow read, <span class="attr">write</span>: <span class="keyword">if</span> request.auth.uid != <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>Firebase와 Vue를 이용하여 반응형에 실시간 동기화까지 구현된 지도 서비스를 구현해 보았습니다. 다만 SPA의 한계로 SEO가 안되는 점이 아쉬웠는데, 다음번 프로젝트에서는 SSR Framework를 고려해 보도록 하겠습니다.</p>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">TAGGED IN</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/en/tags/Gentle-Map/" rel="tag">Gentle Map</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/flutter/open-source-contributhon/" data-tooltip="오픈소스 컨트리뷰톤 후기 (Flutter Contribution)" aria-label="PREVIOUS: 오픈소스 컨트리뷰톤 후기 (Flutter Contribution)">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/nlp/endpoint-detector/" data-tooltip="딥러닝으로 문장의 끝점 검출기 만들기" aria-label="NEXT: 딥러닝으로 문장의 끝점 검출기 만들기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/web/gentle-map/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/web/gentle-map/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2026 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/flutter/open-source-contributhon/" data-tooltip="오픈소스 컨트리뷰톤 후기 (Flutter Contribution)" aria-label="PREVIOUS: 오픈소스 컨트리뷰톤 후기 (Flutter Contribution)">
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/nlp/endpoint-detector/" data-tooltip="딥러닝으로 문장의 끝점 검출기 만들기" aria-label="NEXT: 딥러닝으로 문장의 끝점 검출기 만들기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/web/gentle-map/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/web/gentle-map/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/web/gentle-map/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/web/gentle-map/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/en/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/en/assets/js/script-bbrugkyef97p1xsjqylkjl2agey5m0fgpggg7vb57mid5xrgvnmjyghkcwy8.min.js"></script>
+
+<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+
+
+
+    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
+</html>
