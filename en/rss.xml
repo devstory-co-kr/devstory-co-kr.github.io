@@ -9,23 +9,8 @@
     <atom:link href="/en/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Mon, 23 Feb 2026 01:32:31 GMT</pubDate>
+    <pubDate>Mon, 23 Feb 2026 01:33:06 GMT</pubDate>
     <generator>http://hexo.io/</generator>
-    
-    <item>
-      <title>My Mallow - 3D 캐릭터 감정 일기</title>
-      <link>https://blog.devstory.co.kr/en/post/ada/ada-4th-my-mallow/</link>
-      <guid>https://blog.devstory.co.kr/en/post/ada/ada-4th-my-mallow/</guid>
-      <pubDate>Fri, 20 Feb 2026 07:37:00 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;내 안의 감정을 마주하는 3D 감정 일기, &lt;strong&gt;MyMallow&lt;/strong&gt;를 소개합니다.&lt;br&gt;&lt;a href=&quot;/en/post/ada-4th-my-mallow/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/en/post/ada/ada-4th-my-mallow/#disqus_thread</comments>
-    </item>
     
     <item>
       <title>My Mallow - 3D Character Emotion Diary</title>
@@ -43,21 +28,6 @@
     </item>
     
     <item>
-      <title>1부. 귀타 - 귀로 배우는 기타 학습</title>
-      <link>https://blog.devstory.co.kr/en/post/ada/ada-4th-guita-01/</link>
-      <guid>https://blog.devstory.co.kr/en/post/ada/ada-4th-guita-01/</guid>
-      <pubDate>Mon, 16 Feb 2026 02:55:00 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;시각 장애인을 위한 기타 학습 앱 &lt;strong&gt;‘귀타’&lt;/strong&gt;를 소개합니다.&lt;br&gt;&lt;a href=&quot;/en/post/ada-4th-guita-01/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/en/post/ada/ada-4th-guita-01/#disqus_thread</comments>
-    </item>
-    
-    <item>
       <title>Part 1. Guita - Learning Guitar by Ear</title>
       <link>https://blog.devstory.co.kr/en/post/ada-4th-guita-01/</link>
       <guid>https://blog.devstory.co.kr/en/post/ada-4th-guita-01/</guid>
@@ -70,21 +40,6 @@
       
       
       <comments>https://blog.devstory.co.kr/en/post/ada-4th-guita-01/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>2부. 귀타 - 시각 장애인을 위한 기타 튜너</title>
-      <link>https://blog.devstory.co.kr/en/post/ada/ada-4th-guita-02/</link>
-      <guid>https://blog.devstory.co.kr/en/post/ada/ada-4th-guita-02/</guid>
-      <pubDate>Sun, 15 Feb 2026 02:55:00 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;시각 장애인을 위한 기타 튜너 앱을 소개합니다.&lt;br&gt;&lt;a href=&quot;/en/post/ada-4th-guita-02/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/en/post/ada/ada-4th-guita-02/#disqus_thread</comments>
     </item>
     
     <item>
@@ -104,8 +59,8 @@
     
     <item>
       <title>영월 워케이션 후기</title>
-      <link>https://blog.devstory.co.kr/en/post/worcation/worcation-yeongwol/</link>
-      <guid>https://blog.devstory.co.kr/en/post/worcation/worcation-yeongwol/</guid>
+      <link>https://blog.devstory.co.kr/en/post/worcation-yeongwol/</link>
+      <guid>https://blog.devstory.co.kr/en/post/worcation-yeongwol/</guid>
       <pubDate>Sat, 11 Jan 2025 06:15:00 GMT</pubDate>
       <description>
       
@@ -114,22 +69,7 @@
       </description>
       
       
-      <comments>https://blog.devstory.co.kr/en/post/worcation/worcation-yeongwol/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>1부. Trouble Painter - 드로잉 마피아 게임</title>
-      <link>https://blog.devstory.co.kr/en/post/trouble-painter/trouble-painter-01/</link>
-      <guid>https://blog.devstory.co.kr/en/post/trouble-painter/trouble-painter-01/</guid>
-      <pubDate>Mon, 23 Sep 2024 07:53:36 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;“Trouble Painter - 드로잉 마피아 게임” 서비스를 소개합니다.&lt;br&gt;&lt;a href=&quot;/en/post/trouble-painter-01/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/en/post/trouble-painter/trouble-painter-01/#disqus_thread</comments>
+      <comments>https://blog.devstory.co.kr/en/post/worcation-yeongwol/#disqus_thread</comments>
     </item>
     
     <item>
@@ -145,21 +85,6 @@
       
       
       <comments>https://blog.devstory.co.kr/en/post/trouble-painter-01/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>2부. Flutter로 실시간 드로잉 게임 만들기</title>
-      <link>https://blog.devstory.co.kr/en/post/trouble-painter/trouble-painter-02/</link>
-      <guid>https://blog.devstory.co.kr/en/post/trouble-painter/trouble-painter-02/</guid>
-      <pubDate>Thu, 12 Sep 2024 22:27:02 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;Trouble Painter 개발 과정을 공유합니다.&lt;br&gt;&lt;a href=&quot;/en/post/trouble-painter-02/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/en/post/trouble-painter/trouble-painter-02/#disqus_thread</comments>
     </item>
     
     <item>
@@ -179,8 +104,8 @@
     
     <item>
       <title>속초 워케이션 후기</title>
-      <link>https://blog.devstory.co.kr/en/post/worcation/worcation-sokcho/</link>
-      <guid>https://blog.devstory.co.kr/en/post/worcation/worcation-sokcho/</guid>
+      <link>https://blog.devstory.co.kr/en/post/worcation-sokcho/</link>
+      <guid>https://blog.devstory.co.kr/en/post/worcation-sokcho/</guid>
       <pubDate>Tue, 03 Sep 2024 05:23:18 GMT</pubDate>
       <description>
       
@@ -189,22 +114,7 @@
       </description>
       
       
-      <comments>https://blog.devstory.co.kr/en/post/worcation/worcation-sokcho/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>1부. Flutter 다국어 지원 - 준비</title>
-      <link>https://blog.devstory.co.kr/en/post/flutter/flutter-i18n-01/</link>
-      <guid>https://blog.devstory.co.kr/en/post/flutter/flutter-i18n-01/</guid>
-      <pubDate>Mon, 29 Apr 2024 07:38:00 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;Flutter 프로젝트에 72개 언어를 추가한 이야기를 공유합니다.&lt;br&gt;&lt;a href=&quot;/en/post/flutter-i18n-01/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/en/post/flutter/flutter-i18n-01/#disqus_thread</comments>
+      <comments>https://blog.devstory.co.kr/en/post/worcation-sokcho/#disqus_thread</comments>
     </item>
     
     <item>
@@ -223,21 +133,6 @@
     </item>
     
     <item>
-      <title>2부. Flutter 다국어 지원 - 도구 만들기</title>
-      <link>https://blog.devstory.co.kr/en/post/flutter/flutter-i18n-02/</link>
-      <guid>https://blog.devstory.co.kr/en/post/flutter/flutter-i18n-02/</guid>
-      <pubDate>Mon, 29 Apr 2024 07:37:00 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;Flutter 다국어 지원을 효율적으로 끝낼 수 있는 도구를 만들어 보았습니다.&lt;br&gt;&lt;a href=&quot;/en/post/flutter-i18n-02/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/en/post/flutter/flutter-i18n-02/#disqus_thread</comments>
-    </item>
-    
-    <item>
       <title>Part 2. Flutter Multilingual Support - Tool Making</title>
       <link>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</link>
       <guid>https://blog.devstory.co.kr/en/post/flutter-i18n-02/</guid>
@@ -250,21 +145,6 @@
       
       
       <comments>https://blog.devstory.co.kr/en/post/flutter-i18n-02/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>오늘 하루를 그려줘 - AI 그림 일기</title>
-      <link>https://blog.devstory.co.kr/en/post/draw-my-today/draw-my-today/</link>
-      <guid>https://blog.devstory.co.kr/en/post/draw-my-today/draw-my-today/</guid>
-      <pubDate>Mon, 20 Nov 2023 05:23:18 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;“오늘 하루를 그려줘 - AI 그림 일기” 서비스를 개발한 이야기를 공유합니다.&lt;br&gt;&lt;a href=&quot;/en/post/draw-my-today/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/en/post/draw-my-today/draw-my-today/#disqus_thread</comments>
     </item>
     
     <item>
@@ -284,8 +164,8 @@
     
     <item>
       <title>Prography 8기 후기</title>
-      <link>https://blog.devstory.co.kr/en/post/draw-my-today/prography-8th/</link>
-      <guid>https://blog.devstory.co.kr/en/post/draw-my-today/prography-8th/</guid>
+      <link>https://blog.devstory.co.kr/en/post/prography-8th/</link>
+      <guid>https://blog.devstory.co.kr/en/post/prography-8th/</guid>
       <pubDate>Sun, 19 Nov 2023 05:23:18 GMT</pubDate>
       <description>
       
@@ -294,13 +174,13 @@
       </description>
       
       
-      <comments>https://blog.devstory.co.kr/en/post/draw-my-today/prography-8th/#disqus_thread</comments>
+      <comments>https://blog.devstory.co.kr/en/post/prography-8th/#disqus_thread</comments>
     </item>
     
     <item>
       <title>오픈소스 컨트리뷰톤 후기 (Flutter Contribution)</title>
-      <link>https://blog.devstory.co.kr/en/post/flutter/open-source-contributhon/</link>
-      <guid>https://blog.devstory.co.kr/en/post/flutter/open-source-contributhon/</guid>
+      <link>https://blog.devstory.co.kr/en/post/open-source-contributhon/</link>
+      <guid>https://blog.devstory.co.kr/en/post/open-source-contributhon/</guid>
       <pubDate>Sun, 13 Sep 2020 12:43:00 GMT</pubDate>
       <description>
       
@@ -309,7 +189,112 @@
       </description>
       
       
-      <comments>https://blog.devstory.co.kr/en/post/flutter/open-source-contributhon/#disqus_thread</comments>
+      <comments>https://blog.devstory.co.kr/en/post/open-source-contributhon/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>지도 제작 웹사이트 GentleMap</title>
+      <link>https://blog.devstory.co.kr/en/post/gentle-map/</link>
+      <guid>https://blog.devstory.co.kr/en/post/gentle-map/</guid>
+      <pubDate>Thu, 30 Apr 2020 06:02:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Vue.js &amp;amp; Firebase 기반으로 주소가 담긴 Excel 파일을 파싱하여 지도를 만들어주는 반응형 웹 어플리케이션 &lt;a href=&quot;https://gentle-map.devstory.co.kr/&quot; target=&quot;_blank&quot; rel=&quot;external nofollow noopener noreferrer&quot;&gt;GentleMap&lt;/a&gt;을 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/gentle-map/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>딥러닝으로 문장의 끝점 검출기 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/endpoint-detector/</link>
+      <guid>https://blog.devstory.co.kr/en/post/endpoint-detector/</guid>
+      <pubDate>Sat, 25 Apr 2020 12:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;문장의 끝점(마침표, 물음표)을 검출하는 딥러닝 모델을 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/endpoint-detector/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>딥러닝으로 문서 분류기 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/devblog-classifier/</link>
+      <guid>https://blog.devstory.co.kr/en/post/devblog-classifier/</guid>
+      <pubDate>Tue, 18 Feb 2020 12:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Daily Devblog 서비스를 위한 개발 문서 분류기를 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/devblog-classifier/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>1부. 딥러닝으로 더욱 현실감 있는 AR 앱 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/too-real-01/</link>
+      <guid>https://blog.devstory.co.kr/en/post/too-real-01/</guid>
+      <pubDate>Wed, 25 Dec 2019 07:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;딥러닝을 이용하여 더욱 현실감 있는 AR 어플리케이션을 개발한 이야기를 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/too-real-01/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>2부. ARKit을 이용하여 iOS AR앱 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/too-real-02/</link>
+      <guid>https://blog.devstory.co.kr/en/post/too-real-02/</guid>
+      <pubDate>Tue, 24 Dec 2019 07:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;ARKit을 이용하여 현실감 있는 iOS AR 어플리케이션 개발 내용을 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/too-real-02/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>3부. Custom YOLO v3 모델 만들기</title>
+      <link>https://blog.devstory.co.kr/en/post/too-real-03/</link>
+      <guid>https://blog.devstory.co.kr/en/post/too-real-03/</guid>
+      <pubDate>Mon, 23 Dec 2019 07:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;실시간 객체 탐지 모델인 YOLO 모델을 학습하는 방법에 대해 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/too-real-03/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title>4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기</title>
+      <link>https://blog.devstory.co.kr/en/post/too-real-04/</link>
+      <guid>https://blog.devstory.co.kr/en/post/too-real-04/</guid>
+      <pubDate>Sun, 22 Dec 2019 07:44:28 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;CoreML을 이용하여 iOS 어플리케이션에 YOLO v3 모델을 탑재하는 방법에 대해 공유합니다.&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/too-real-04/#disqus_thread</comments>
     </item>
     
   </channel>
