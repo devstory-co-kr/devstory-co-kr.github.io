@@ -16,14 +16,6 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/ada-4th-tadak/</loc>
-        <lastmod>2026-02-23T00:49:42.595Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://blog.devstory.co.kr/post/ada-4th-guita-02/</loc>
         <lastmod>2026-02-19T09:57:27.355Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -88,7 +80,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-04/</loc>
+        <loc>https://blog.devstory.co.kr/post/worcation-sokcho/</loc>
         <lastmod>2025-04-30T10:54:58.092Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -104,7 +96,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/worcation-sokcho/</loc>
+        <loc>https://blog.devstory.co.kr/post/too-real-04/</loc>
         <lastmod>2025-04-30T10:54:58.092Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -120,23 +112,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/gentle-map/</loc>
-        <lastmod>2025-04-30T10:54:58.091Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://blog.devstory.co.kr/post/flutter-i18n-02/</loc>
-        <lastmod>2025-04-30T10:54:58.091Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-02/</loc>
         <lastmod>2025-04-30T10:54:58.091Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -152,7 +128,23 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/post/gentle-map/</loc>
+        <lastmod>2025-04-30T10:54:58.091Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/post/prography-8th/</loc>
+        <lastmod>2025-04-30T10:54:58.091Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/too-real-02/</loc>
         <lastmod>2025-04-30T10:54:58.091Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
