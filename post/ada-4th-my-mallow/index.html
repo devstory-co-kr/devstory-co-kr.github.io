@@ -20,7 +20,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"내 안의 감정을 마주하는 3D 감정 일기, MyMallow를 소개합니다.👉 English Version\nMyMallow - 내 안의 감정을 마주하다\n👉 App Store\n\nMyMallow는 Apple Developer Academy 4기 팀원들과 2개월간 진행한 iOS 프로젝트로, 자신의 감정을 의인화하고 직접 꾸밀 수 있는 3D 감정 일기 앱입니다.\n\n\n사용자가 직접 그린 그림을 캐릭터의 텍스처로 적용하고, 원하는 동작을 녹화해 캐릭터가 그대로 따라 하도록 설정할 수 있습니다.\n다양한 카테고리의 195개의 모션 제공\nRealityKit 구성\n\nRealityKit에 대한 보다 자세한 내용은 아래 직접 제작한 소개 영상과 공식 문서를 참고해 주세요.\n\n\n\n3D 모델Blender를 이용해 3D 모델을 구현했으며, 표정과 색상을 다르게 설정하여 감정별로 여섯 개의 캐릭터를 제작했습니다.\n유저가 그린 그림을 텍스처로 적용하는 과정\n\n모션MyMallow에는 다양한 카테고리의 195개 모션이 내장되어 있습니다. 내장 모션은 Mixamo에서 제공하는 애니메이션을 커스텀 모델에 적용하여 구현했습니다.\n  \n\n\nYour browser doesn't support HTML5 Video :/\nMixamo에서 제공하는 모션\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\nMixamo로 구현한 내장 모션\n\n\n원하는 모션이 없는 경우, 모션 캡처 기술을 활용해 나만의 동작을 만드는 기능을 제공합니다. 이는 Apple ARKit에 내장된 Body Position Tracking 기술을 활용해 구현했습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\nApple Body Position Tracking을 활용한 데모\n\n\nMixamo와 Apple의 Body Position Tracking 기술에서 지원하는 모델의 본(Bone) 구조는 서로 다릅니다. Mixamo는 65개, Apple의 ARBodyTracking 모델은 91개의 본을 사용합니다.\nMixamo & Apple Bone Rigging\n\n캡처한 모션을 그대로 적용하면 움직임이 다소 부자연스러울 수 있습니다. 이를 보완하기 위해 Low-pass 필터로 위치 이동을 보간하고, Spherical Linear Interpolation(Slerp) 필터로 회전 값을 보정하는 기능을 추가했습니다. 또한, 캡처된 모션을 원하는 길이로 편집할 수 있는 기능도 함께 구현했습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n편집 전\n\n\n\n\nYour browser doesn't support HTML5 Video :/\n편집 후\n\n\n\n\n\nYour browser doesn't support HTML5 Video :/\n모션 캡처\n\n\n\n\nYour browser doesn't support HTML5 Video :/\n모션 캡처 적용 결과물\n\n\n내가 만든 감정 캐릭터들이 단체로 댄스를 추는 모습을 보면 기분이 좋습니다. 💃🕺\n\n\n\nYour browser doesn't support HTML5 Video :/\n단체 댄스\n\n\nParticleRealityKit은 눈, 비, 불과 같은 효과를 생성할 수 있는 Particle 컴포넌트를 지원합니다. 이는 Reality Composer Pro에서 디자인하거나 코드로 직접 구현할 수 있습니다. 특히 공간 음향(Spatial Audio)을 지원하여, 모닥불에 가까이 다가가면 ‘타닥타닥’ 장작 타는 소리가 실감 나게 들리도록 설정했습니다. 🔥\n  \n\n\nYour browser doesn't support HTML5 Video :/\nReality Composer Pro에서 구현한 모닥불\n\n  Skybox\n  배경은 직접 제작한 이미지를 Skybox로 구현했습니다. Skybox는 Scene의 배경을 감싸는 큐브 형태의 텍스처로, 큐브 내부에 위치한 카메라를 통해 360° 전 방향의 이미지를 볼 수 있게 해줍니다.이미지는 2:1 비율로 제작하면 되며, 자세한 사항은 공식 문서를 참고해 주세요.\n\n\n물리 시뮬레이션RealityKit의 Collision Detection을 활용해 충돌 물리 시뮬레이션을 구현할 수 있습니다. Collision Shapes로 충돌 판정 경계를 지정한 뒤 Physics Body를 적용하면 물리 시뮬레이션이 활성화됩니다.\nAgent 상태 업데이트 코드\n\n상태 머신(State Machine)을 활용하면 캐릭터가 특정 장소에 접근했을 때 맥락에 맞는 행동을 수행하게 할 수 있습니다. 예를 들어, 모닥불 근처에 도달하면 자동으로 자리에 앉거나 춤을 추는 상태로 전이되도록 설계했습니다. 또한 상태 전이 조건과 이동 로직을 세밀하게 조정하여, 캐릭터들이 서로 충돌하지 않으면서 조화롭게 맵을 배회하도록 제어했습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\nGameplayKit으로 구현한 캐릭터 상태 머신\n\n\n\n시연\n\n마무리이번 프로젝트는 사용자의 특정 페인 포인트에서 시작하기보다, RealityKit이라는 기술을 탐구하고 이를 활용해 어떤 가치를 창출할 수 있을지 고민하는 과정으로 진행되었습니다. 3D 콘텐츠 앱의 지속 가능성을 고려해 “콘텐츠 생산의 사용자 위임”을 핵심 기획 방향으로 잡았고, 이를 구현하기 위해 RealityKit부터 3D 모델링, 리깅, GameplayKit, ARKit 모션 캡처까지 다양한 기술을 깊이 있게 접목해보는 과정이 즐거웠습니다.\n\nMy Mallow - 내 안의 감정을 마주하다👉 App Store👉 Dev Journey👉 Project Wiki\n\n","dateCreated":"2026-02-20T16:37:00+09:00","dateModified":"2026-02-23T10:32:31+09:00","datePublished":"2026-02-20T16:37:00+09:00","description":"내 안의 감정을 마주하는 3D 감정 일기, MyMallow를 소개합니다.👉 English Version","headline":"My Mallow - 3D 캐릭터 감정 일기","image":["/post/ada-4th-my-mallow/logo.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/ada-4th-my-mallow/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/ada-4th-my-mallow/","keywords":"Apple Developer Academy 4th, MyMallow","thumbnailUrl":"/post/ada-4th-my-mallow/logo.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"내 안의 감정을 마주하는 3D 감정 일기, MyMallow를 소개합니다.👉 English Version\nMyMallow - 내 안의 감정을 마주하다\n👉 App Store\n\nMyMallow는 Apple Developer Academy 4기 팀원들과 2개월간 진행한 iOS 프로젝트로, 자신의 감정을 의인화하고 직접 꾸밀 수 있는 3D 감정 일기 앱입니다.\n\n\n사용자가 직접 그린 그림을 캐릭터의 텍스처로 적용하고, 원하는 동작을 녹화해 캐릭터가 그대로 따라 하도록 설정할 수 있습니다.\n다양한 카테고리의 195개의 모션 제공\nRealityKit 구성\n\nRealityKit에 대한 보다 자세한 내용은 아래 직접 제작한 소개 영상과 공식 문서를 참고해 주세요.\n\n\n\n3D 모델Blender를 이용해 3D 모델을 구현했으며, 표정과 색상을 다르게 설정하여 감정별로 여섯 개의 캐릭터를 제작했습니다.\n유저가 그린 그림을 텍스처로 적용하는 과정\n\n모션MyMallow에는 다양한 카테고리의 195개 모션이 내장되어 있습니다. 내장 모션은 Mixamo에서 제공하는 애니메이션을 커스텀 모델에 적용하여 구현했습니다.\n  \n\n\nYour browser doesn't support HTML5 Video :/\nMixamo에서 제공하는 모션\n\n  \n\n\nYour browser doesn't support HTML5 Video :/\nMixamo로 구현한 내장 모션\n\n\n원하는 모션이 없는 경우, 모션 캡처 기술을 활용해 나만의 동작을 만드는 기능을 제공합니다. 이는 Apple ARKit에 내장된 Body Position Tracking 기술을 활용해 구현했습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\nApple Body Position Tracking을 활용한 데모\n\n\nMixamo와 Apple의 Body Position Tracking 기술에서 지원하는 모델의 본(Bone) 구조는 서로 다릅니다. Mixamo는 65개, Apple의 ARBodyTracking 모델은 91개의 본을 사용합니다.\nMixamo & Apple Bone Rigging\n\n캡처한 모션을 그대로 적용하면 움직임이 다소 부자연스러울 수 있습니다. 이를 보완하기 위해 Low-pass 필터로 위치 이동을 보간하고, Spherical Linear Interpolation(Slerp) 필터로 회전 값을 보정하는 기능을 추가했습니다. 또한, 캡처된 모션을 원하는 길이로 편집할 수 있는 기능도 함께 구현했습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n편집 전\n\n\n\n\nYour browser doesn't support HTML5 Video :/\n편집 후\n\n\n\n\n\nYour browser doesn't support HTML5 Video :/\n모션 캡처\n\n\n\n\nYour browser doesn't support HTML5 Video :/\n모션 캡처 적용 결과물\n\n\n내가 만든 감정 캐릭터들이 단체로 댄스를 추는 모습을 보면 기분이 좋습니다. 💃🕺\n\n\n\nYour browser doesn't support HTML5 Video :/\n단체 댄스\n\n\nParticleRealityKit은 눈, 비, 불과 같은 효과를 생성할 수 있는 Particle 컴포넌트를 지원합니다. 이는 Reality Composer Pro에서 디자인하거나 코드로 직접 구현할 수 있습니다. 특히 공간 음향(Spatial Audio)을 지원하여, 모닥불에 가까이 다가가면 ‘타닥타닥’ 장작 타는 소리가 실감 나게 들리도록 설정했습니다. 🔥\n  \n\n\nYour browser doesn't support HTML5 Video :/\nReality Composer Pro에서 구현한 모닥불\n\n  Skybox\n  배경은 직접 제작한 이미지를 Skybox로 구현했습니다. Skybox는 Scene의 배경을 감싸는 큐브 형태의 텍스처로, 큐브 내부에 위치한 카메라를 통해 360° 전 방향의 이미지를 볼 수 있게 해줍니다.이미지는 2:1 비율로 제작하면 되며, 자세한 사항은 공식 문서를 참고해 주세요.\n\n\n물리 시뮬레이션RealityKit의 Collision Detection을 활용해 충돌 물리 시뮬레이션을 구현할 수 있습니다. Collision Shapes로 충돌 판정 경계를 지정한 뒤 Physics Body를 적용하면 물리 시뮬레이션이 활성화됩니다.\nAgent 상태 업데이트 코드\n\n상태 머신(State Machine)을 활용하면 캐릭터가 특정 장소에 접근했을 때 맥락에 맞는 행동을 수행하게 할 수 있습니다. 예를 들어, 모닥불 근처에 도달하면 자동으로 자리에 앉거나 춤을 추는 상태로 전이되도록 설계했습니다. 또한 상태 전이 조건과 이동 로직을 세밀하게 조정하여, 캐릭터들이 서로 충돌하지 않으면서 조화롭게 맵을 배회하도록 제어했습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\nGameplayKit으로 구현한 캐릭터 상태 머신\n\n\n\n시연\n\n마무리이번 프로젝트는 사용자의 특정 페인 포인트에서 시작하기보다, RealityKit이라는 기술을 탐구하고 이를 활용해 어떤 가치를 창출할 수 있을지 고민하는 과정으로 진행되었습니다. 3D 콘텐츠 앱의 지속 가능성을 고려해 “콘텐츠 생산의 사용자 위임”을 핵심 기획 방향으로 잡았고, 이를 구현하기 위해 RealityKit부터 3D 모델링, 리깅, GameplayKit, ARKit 모션 캡처까지 다양한 기술을 깊이 있게 접목해보는 과정이 즐거웠습니다.\n\nMy Mallow - 내 안의 감정을 마주하다👉 App Store👉 Dev Journey👉 Project Wiki\n\n","dateCreated":"2026-02-20T16:37:00+09:00","dateModified":"2026-02-23T10:32:31+09:00","datePublished":"2026-02-20T16:37:00+09:00","description":"내 안의 감정을 마주하는 3D 감정 일기, MyMallow를 소개합니다.👉 English Version","headline":"My Mallow - 3D 캐릭터 감정 일기","image":["/post/ada-4th-my-mallow/logo.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/ada-4th-my-mallow/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/ada-4th-my-mallow/","keywords":"MyMallow, Apple Developer Academy 4th","thumbnailUrl":"/post/ada-4th-my-mallow/logo.png"}</script>
     <meta name="description" content="내 안의 감정을 마주하는 3D 감정 일기, MyMallow를 소개합니다.👉 English Version">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="My Mallow - 3D 캐릭터 감정 일기">
@@ -32,8 +32,8 @@
 <meta property="article:published_time" content="2026-02-20T07:37:00.000Z">
 <meta property="article:modified_time" content="2026-02-23T01:32:31.524Z">
 <meta property="article:author" content="DevStory">
-<meta property="article:tag" content="Apple Developer Academy 4th">
 <meta property="article:tag" content="MyMallow">
+<meta property="article:tag" content="Apple Developer Academy 4th">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.devstory.co.kr/post/ada-4th-my-mallow/logo.png">
     
@@ -42,7 +42,7 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-hc1pthdwgpughdou6c4c56pzgxjlvmykc5yxffiong3msrglwtztwobotcam.min.css">
+<link rel="stylesheet" href="/assets/css/style-polahoe9q4ftkjbyyt3vntcmn4fmygwd78iimm9z3vg8njotz20cyqsxuryv.min.css">
 
     <!--STYLES END-->
 
@@ -468,8 +468,9 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
-                        
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/ada-4th-tadak/" data-tooltip="타닥 - 나만의 백색소음 플레이어" aria-label="이전: 타닥 - 나만의 백색소음 플레이어">
+                    
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
@@ -547,8 +548,9 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
-                        
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/ada-4th-tadak/" data-tooltip="타닥 - 나만의 백색소음 플레이어" aria-label="이전: 타닥 - 나만의 백색소음 플레이어">
+                    
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
@@ -677,7 +679,7 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-bbrugkyef97p1xsjqylkjl2agey5m0fgpggg7vb57mid5xrgvnmjyghkcwy8.min.js"></script>
+<script src="/assets/js/script-8yk2rkph1z4hubjk8sibxkifzebd5jeskqt6ptboxrycfm6xsfmec1y1rwuq.min.js"></script>
 
 <!--SCRIPTS END-->
 

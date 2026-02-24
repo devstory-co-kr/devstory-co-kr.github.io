@@ -9,8 +9,23 @@
     <atom:link href="/en/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Mon, 23 Feb 2026 01:33:06 GMT</pubDate>
+    <pubDate>Tue, 24 Feb 2026 18:50:05 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>TaDak - Your Personal White Noise Player</title>
+      <link>https://blog.devstory.co.kr/en/post/ada-4th-tadak/</link>
+      <guid>https://blog.devstory.co.kr/en/post/ada-4th-tadak/</guid>
+      <pubDate>Mon, 23 Feb 2026 00:49:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Introducing &lt;strong&gt;TaDak&lt;/strong&gt;, your customizable white noise player.&lt;br&gt;&lt;a href=&quot;/post/ada-4th-tadak&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/ada-4th-tadak/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>My Mallow - 3D Character Emotion Diary</title>
@@ -34,7 +49,7 @@
       <pubDate>Mon, 16 Feb 2026 02:55:00 GMT</pubDate>
       <description>
       
-        &lt;p&gt;Introducing &lt;strong&gt;‘Guita’&lt;/strong&gt;, a guitar learning app for the visually impaired.&lt;br&gt;&lt;a href=&quot;/post/ada-4th-guita-01/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
+        &lt;p&gt;Introducing &lt;strong&gt;Guita&lt;/strong&gt;, a guitar learning app for the visually impaired.&lt;br&gt;&lt;a href=&quot;/post/ada-4th-guita-01/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
       
       </description>
       

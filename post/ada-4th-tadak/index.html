@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>타닥 - 나만의 백색소음 플레이어 - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/post/ada-4th-tadak/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"맞춤형 백색소음 플레이어 타닥을 소개합니다.👉 English Version\n\n타닥 - 나만의 백색소음 플레이어\n취향과 목적에 맞게 소리를 쌓아 나만의 공간 음향을 디자인해 보세요.👉 App Store\n\n타닥은 Apple Developer Academy 4기 팀원들과 3개월간 진행한 iOS 프로젝트로, 나에게 맞는 소리들을 여러 레이어로 쌓고 공간 속에 배치하여 자신만의 사운드 환경을 만들고 즐기는 앱입니다.\n유튜브에서 백색소음 검색 시 나오는 영상들\n\n많은 사람들이 유튜브에서 백색소음 영상을 찾습니다. 타닥은 유튜브에서 인기 있는 백색소음 영상들의 댓글을 분석하여 백색소음을 듣는 사용자의 니즈를 파악하는 것으로 시작되었습니다.\nPhysical Audio Spatialization Engine - 출처\n\n프랙탈 차원프랙탈 차원(Fractal Dimension)은 구조가 얼마나 불규칙적이고 자기유사적인지를 수치로 나타내는 이론입니다. 이를 이용하여 자연에 있는 소리들을 분석해 보면, 완전한 랜덤에 가깝지도 않고, 단순 주기 신호에도 가깝지 않은 적당히 복잡한 중간 영역에 위치해 있습니다.\nNoise Color\n\n이와 같이 어떤 주파수 대역이 강조되었는지에 따라 구분되는 유형을 노이즈 컬러(Noise Color)라고 부르며, 어떤 주파수 대역이 더 강하게 포함되는지에 따라 청감상의 질감과 피로도, 집중도에 영향을 줍니다.\n\n\n\nNoise Color\n특성\n청감\n\n\n\nViolet\n주파수 증가시 +6dB/oct\n매우 날카로움\n\n\nBlue\n주파수 증가시 +3dB/oct\n밝고 선명함\n\n\nWhite\n전 대역 동일 에너지\n균등\n\n\nPink\n주파수 증가시 -3dB/oct\n부드럽고 자연스러움\n\n\nBrown\n주파수 증가시 -6dB/oct\n저음 강조, 묵직함\n\n\n사람마다 편안함을 느끼는 주파수 대역은 서로 다릅니다. 같은 빗소리라도 누군가에게는 안정감을 주지만, 다른 누군가에게는 거슬리는 고주파로 느껴질 수 있습니다.\n타닥은 이러한 개인차를 고려하여, 주파수 특성 자체를 조정할 수 있는 이퀄라이저 구조를 설계했습니다.\n이퀄라이저기존의 일반적인 이퀄라이저는 특정 대역(저음·중음·고음)을 증폭하거나 감쇠하는 방식으로 동작합니다. 반면 타닥은 음원을 짧은 구간으로 나눈 뒤 주파수 영역으로 변환하여, 노이즈 컬러에 따른 스펙트럼 특성을 직접 재구성하는 방식으로 설계하였습니다.\n    \n\n\nYour browser doesn't support HTML5 Video :/\n이퀄라이저 (🎧)\n\n\n  이 과정은 iOS의 Accelerate(vDSP) 프레임워크를 활용한 FFT(Fast Fourier Transform) 기반 처리로 구현되었으며, 이를 통해 단순한 “톤 조절”이 아니라, 소리의 질감 자체를 재설계할 수 있습니다.\n이퀄라이징 이후에는 주파수 조정 과정에서 발생할 수 있는 음량 왜곡이나 피크 클리핑을 방지하기 위해 RMS 기반 게인 보정과 소프트 클리핑을 적용하였습니다.\n성능 측면에서도 대용량 오디오 파일을 부드럽게 처리할 수 있도록 벡터 연산(vDSP)을 활용해 윈도잉, 스케일링, 누적 합산 과정을 SIMD 기반으로 처리했고, 반복적인 메모리 할당을 제거하여 연산 오버헤드 최적화를 진행했습니다.\n그 결과, 실시간에 가까운 처리 속도를 확보할 수 있었습니다.\n\n\n시연\n\n마무리타닥은 Apple Developer Academy 4기의 마지막 프로젝트로 우여곡절이 많았지만, 많은 것들을 배우고 완성도 높은 결과물을 만들 수 있었습니다. 함께 고생한 샐리, 아일라, 리나, 파란, 제제 그리고 물심양면으로 도와주신 제이슨, 도라, 섭에게 감사를 전합니다. 🫶🏻\n\n타닥 - 나만의 백색소음 플레이어👉 App Store👉 Youtube👉 Project Wiki\n\n","dateCreated":"2026-02-23T09:49:00+09:00","dateModified":"2026-02-25T03:50:02+09:00","datePublished":"2026-02-23T09:49:00+09:00","description":"맞춤형 백색소음 플레이어 타닥을 소개합니다.👉 English Version","headline":"타닥 - 나만의 백색소음 플레이어","image":["/post/ada-4th-tadak/thumbnail.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/ada-4th-tadak/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/ada-4th-tadak/","keywords":"Apple Developer Academy 4th, 타닥, iOS, Spatial Audio","thumbnailUrl":"/post/ada-4th-tadak/thumbnail.png"}</script>
+    <meta name="description" content="맞춤형 백색소음 플레이어 타닥을 소개합니다.👉 English Version">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="타닥 - 나만의 백색소음 플레이어">
+<meta property="og:url" content="https://blog.devstory.co.kr/post/ada-4th-tadak/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="맞춤형 백색소음 플레이어 타닥을 소개합니다.👉 English Version">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://blog.devstory.co.kr/post/ada-4th-tadak/thumbnail.png">
+<meta property="article:published_time" content="2026-02-23T00:49:00.000Z">
+<meta property="article:modified_time" content="2026-02-24T18:50:02.574Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Apple Developer Academy 4th">
+<meta property="article:tag" content="타닥">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Spatial Audio">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.devstory.co.kr/post/ada-4th-tadak/thumbnail.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-polahoe9q4ftkjbyyt3vntcmn4fmygwd78iimm9z3vg8njotz20cyqsxuryv.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
+        
+        
+            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about" aria-label="저자에 대해 더 알아보기">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/" title="홈">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">홈</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="태그">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">깃허브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">프로젝트</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">강의</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            타닥 - 나만의 백색소음 플레이어
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2026-02-23T09:49:00+09:00">
+	
+		    2026/02/23
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>목차
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#타닥-나만의-백색소음-플레이어"><span class="nero-toc-text">타닥 - 나만의 백색소음 플레이어</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#디자인"><span class="nero-toc-text">디자인</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#맞춤형-공간-음향"><span class="nero-toc-text">맞춤형 공간 음향</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#프랙탈-차원"><span class="nero-toc-text">프랙탈 차원</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#노이즈-컬러"><span class="nero-toc-text">노이즈 컬러</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#이퀄라이저"><span class="nero-toc-text">이퀄라이저</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#시연"><span class="nero-toc-text">시연</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마무리"><span class="nero-toc-text">마무리</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>맞춤형 백색소음 플레이어 <strong>타닥</strong>을 소개합니다.<br><a href="/en/post/ada-4th-tadak">👉 English Version</a><br><a id="more"></a></p>
+<hr>
+<h1 id="타닥-나만의-백색소음-플레이어"><a href="#타닥-나만의-백색소음-플레이어" class="headerlink" title="타닥 - 나만의 백색소음 플레이어"></a>타닥 - 나만의 백색소음 플레이어</h1><blockquote>
+<p>취향과 목적에 맞게 소리를 쌓아 나만의 공간 음향을 디자인해 보세요.<br>👉 <a href="https://apps.apple.com/kr/app/id6754827360" target="_blank" rel="external nofollow noopener noreferrer">App Store</a></p>
+</blockquote>
+<p><strong>타닥</strong>은 Apple Developer Academy 4기 팀원들과 3개월간 진행한 iOS 프로젝트로, <strong>나에게 맞는 소리들을 여러 레이어로 쌓고 공간 속에 배치하여 자신만의 사운드 환경을 만들고 즐기는 앱</strong>입니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-tadak/intro.png" title="LP를 모티브로 디자인했습니다." data-caption="LP를 모티브로 디자인했습니다." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-tadak/intro.png" alt="LP를 모티브로 디자인했습니다."></a><span class="caption">LP를 모티브로 디자인했습니다.</span></div>
+
+<p><strong>백색소음(white noise)</strong>은 <strong>모든 주파수 대역의 소리를 거의 동일한 강도로 포함하는 일정한 잡음</strong>입니다. 이 소리는 주변의 갑작스러운 소리를 덜 두드러지게 만들어 <strong>집중력을 높이고 심리적 안정감을 줍니다.</strong> 그래서 공부나 업무 집중, 수면 보조, 이명 완화 등 다양한 용도로 활용됩니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-tadak/youtube-white-noise.png" title="유튜브에서 백색소음 검색 시 나오는 영상들" data-caption="유튜브에서 백색소음 검색 시 나오는 영상들" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-tadak/youtube-white-noise.png" alt="유튜브에서 백색소음 검색 시 나오는 영상들"></a><span class="caption">유튜브에서 백색소음 검색 시 나오는 영상들</span></div>
+
+<p>많은 사람들이 유튜브에서 백색소음 영상을 찾습니다. 타닥은 유튜브에서 인기 있는 <strong>백색소음 영상들의 댓글을 분석</strong>하여 백색소음을 듣는 <strong>사용자의 니즈를 파악</strong>하는 것으로 시작되었습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-tadak/reviews.png" title="유튜브 백색소음 영상에서 공감을 많이 받은 댓글들" data-caption="유튜브 백색소음 영상에서 공감을 많이 받은 댓글들" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-tadak/reviews.png" alt="유튜브 백색소음 영상에서 공감을 많이 받은 댓글들"></a><span class="caption">유튜브 백색소음 영상에서 공감을 많이 받은 댓글들</span></div>
+
+<p>유튜브 댓글 분석을 통해 도출한 <strong>사용자 니즈</strong>는 다음과 같습니다.</p>
+<ol>
+<li>사용자들은 개인 취향에 맞춰 <strong>특정 소리를 추가하거나 제외하길 원합니다.</strong></li>
+<li><strong>반복되거나 인위적으로 들리는 소리</strong>를 쉽게 인지하며, 이에 대해 <strong>불편함</strong>을 느낍니다.</li>
+<li>개인마다 <strong>편안함을 느끼는 주파수 대역이 서로 다릅니다.</strong></li>
+</ol>
+<p>많은 유저들이 자신의 취향에 꼭 맞는 <strong>맞춤형 백색소음을 원하고 있다</strong>는 점에 주목했습니다. 타닥은 바로 이 고민을 해결하기 위해 만들어진 서비스입니다.</p>
+<h1 id="디자인"><a href="#디자인" class="headerlink" title="디자인"></a>디자인</h1><div class="nero-grid">  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Stack Layout (🎧)">
+<source src="/post/ada-4th-tadak/home-stack.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Stack Layout (🎧)</span>
+</div>
+  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Grid Layout (🎧)">
+<source src="/post/ada-4th-tadak/home-grid.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Grid Layout (🎧)</span>
+</div>
+  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="턴테이블을 직접 조작할 수 있어요. (🎧)">
+<source src="/post/ada-4th-tadak/lp-player.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">턴테이블을 직접 조작할 수 있어요. (🎧)</span>
+</div></div>
+
+<p>홈 화면에는 비행기 소리, 화이트 크리스마스, 깊은 바다 그리고 비 오는 도시 소리까지, <strong>다양한 백색소음 프리셋이 준비</strong>되어 있으며, 기본적으로 Stack과 Grid 두 가지 레이아웃을 지원합니다. iOS 26부터 지원하는 <strong><a href="https://developer.apple.com/documentation/TechnologyOverviews/liquid-glass" target="_blank" rel="external nofollow noopener noreferrer">Liquid Glass</a>를 사용</strong>하였고, iOS 26 이하 버전에서도 동일한 느낌을 받을 수 있도록 <strong>호환성을 고려</strong>하였습니다.</p>
+<p><strong>LP 콘셉트를 기반으로 디자인</strong>하였으며, 사용자가 음원을 선택하면 LP 커버에서 레코드를 직접 꺼내는 듯한 인터랙션을 통해 <strong>아날로그적인 경험을 제공</strong>합니다.</p>
+<p>턴테이블 영역에서는 실제 <strong>LP 레코드의 회전 속도에 따라 볼륨이 조절되도록 구현</strong>하였고, <strong>톤암(Arm)을 사용자가 직접 제어</strong>할 수 있도록 설계하여 각 구성 요소를 <strong>단순한 시각적 오브제가 아닌, 실제 장비를 조작하는 감각을 재현하는 인터랙티브 요소로 구현</strong>했습니다.</p>
+<p>또한 iPad의 멀티태스킹 환경에서도 편안하게 이용할 수 있도록 <strong>반응형 레이아웃을 지원</strong>합니다. 특히 iPad에서는 실제 턴테이블을 조작하는 듯한 몰입감을 제공하기 위해 <strong>화면 전면을 턴테이블 UI로 구성</strong>했습니다.</p>
+<div class="nero-grid">  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="홈 화면 반응형 구현">
+<source src="/post/ada-4th-tadak/responsive1.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">홈 화면 반응형 구현</span>
+</div>
+  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="턴테이블 화면 반응형 구현">
+<source src="/post/ada-4th-tadak/responsive2.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">턴테이블 화면 반응형 구현</span>
+</div></div>
+
+<h1 id="맞춤형-공간-음향"><a href="#맞춤형-공간-음향" class="headerlink" title="맞춤형 공간 음향"></a>맞춤형 공간 음향</h1><blockquote>
+<p>사용자는 단순히 프리셋을 선택하는 데 그치지 않고, 빗소리 위에 모닥불 소리를 얹거나 거슬리는 소리를 제거하는 등 <strong>다양한 조합을 직접 커스텀</strong>할 수 있습니다.</p>
+</blockquote>
+<div class="nero-grid">  <div class="flex-2">  <div class="figure " style>
+<video class="fig-video" loop controls alt="소리를 직접 쌓아 올려 만드는 맞춤형 공간 음향 (🎧)">
+<source src="/post/ada-4th-tadak/phase.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">소리를 직접 쌓아 올려 만드는 맞춤형 공간 음향 (🎧)</span>
+</div>
+</div>
+  <div class="flex-3"><p>화면 중앙에는 사용자 머리를 기준으로 <strong>음원들이 2차원 공간 좌표에 배치</strong>되어 있으며, <strong>음원을 드래그해서 방향과 거리를 조절</strong>하거나 <strong>다른 테마의 음원과 조합</strong>할 수 있습니다.</p>
+<p>음원들은 <a href="https://en.wikipedia.org/wiki/Soundscape" target="_blank" rel="external nofollow noopener noreferrer">R. Murray Schafer의 Soundscape Theory</a>를 참고하여 <strong>배경처럼 지속적으로 존재하는 기조음(Keynote sound)</strong>과 <strong>이벤트성으로 주의를 끄는 신호음(Sound Signal)</strong> 두 가지 종류로 구성되어 있습니다.</p>
+<p>참고로 <a href="https://en.wikipedia.org/wiki/Auditory_scene_analysis" target="_blank" rel="external nofollow noopener noreferrer">Albert Bregman의 Auditory scene analysis</a> 이론에 따르면 <strong>사람이 인지할 수 있는 최대 소리의 개수는 8개</strong>라고 하니, 조합하실 때 참고하시기 바랍니다.</p>
+</div></div>
+
+<blockquote>
+<p><strong>공간 음향을 제대로 경험</strong>해 보시려면 앱을 다운로드하고, <strong>공간 음향을 지원하는 AirPods이나 AirPods Max 기기로 감상</strong>해 보세요.</p>
+</blockquote>
+<p>공간 음향은 iOS의 <a href="https://developer.apple.com/documentation/phase/" target="_blank" rel="external nofollow noopener noreferrer"><strong>PHASE (Physical Audio Spatialization Engine)</strong></a> 프레임워크로 구현했습니다. PHASE는 앱의 장면에 대한 기본적인 이해를 바탕으로 <strong>오디오가 장면의 특성에 따라 재생</strong>되므로 더욱 현실감 있는 공간 음향을 구현할 수 있습니다. 이를 이용하면 <strong>공간의 크기와 물체의 물리적 표면 특성에 따라 잔향 및 음향적 특성을 다르게 표현</strong>하는 것도 가능합니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-tadak/phase.png" title="Physical Audio Spatialization Engine - <a href=https://developer.apple.com/documentation/phase>출처</a>" data-caption="Physical Audio Spatialization Engine - <a href=https://developer.apple.com/documentation/phase>출처</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-tadak/phase.png" alt="Physical Audio Spatialization Engine - <a href=https://developer.apple.com/documentation/phase>출처</a>"></a><span class="caption">Physical Audio Spatialization Engine - <a href="https://developer.apple.com/documentation/phase" rel="external nofollow noopener noreferrer" target="_blank">출처</a></span></div>
+
+<h1 id="프랙탈-차원"><a href="#프랙탈-차원" class="headerlink" title="프랙탈 차원"></a>프랙탈 차원</h1><p><strong><a href="https://en.wikipedia.org/wiki/Fractal_dimension" target="_blank" rel="external nofollow noopener noreferrer">프랙탈 차원(Fractal Dimension)</a>은 구조가 얼마나 불규칙적이고 자기유사적인지를 수치로 나타내는 이론</strong>입니다. 이를 이용하여 <strong>자연에 있는 소리</strong>들을 분석해 보면, 완전한 랜덤에 가깝지도 않고, 단순 주기 신호에도 가깝지 않은 <strong>적당히 복잡한 중간 영역에 위치</strong>해 있습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-tadak/fractal.webp" title="Fractal Dimension - <a href=https://galileo-unbound.blog/2020/12/26/
+a-short-history-of-fractal-dimension/>출처</a>" data-caption="Fractal Dimension - <a href=https://galileo-unbound.blog/2020/12/26/
+a-short-history-of-fractal-dimension/>출처</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-tadak/fractal.webp" alt="Fractal Dimension - <a href=https://galileo-unbound.blog/2020/12/26/
+a-short-history-of-fractal-dimension/>출처</a>"></a><span class="caption">Fractal Dimension - <a href="https://galileo-unbound.blog/2020/12/26/" a-short-history-of-fractal-dimension rel="external nofollow noopener noreferrer" target="_blank">출처</a></span></div>
+
+<p><strong>백색소음의 목적</strong>은 <strong>예측 불가능한 무작위성으로 외부 소리를 마스킹하는 것</strong>입니다. 그런데 <strong>음원 간격이 지나치게 규칙적</strong>이면, 백색소음이 아니라 주기 신호가 되므로 패턴 인식이 유도되고, 예측 가능성이 증가하여 <strong>사용자의 집중력을 빼앗게 됩니다.</strong></p>
+<p>타닥의 모든 신호음(Sound Signal)들은 고정된 루프를 따르지 않습니다. <strong>프랙탈 차원을 이용한 알고리즘에 의해 재생 시점과 빈도가 유동적으로 조절</strong>됩니다. 이는 마치 실제 숲속에서 언제 새가 울지 모르는 것처럼, <strong>인위적인 패턴을 지워내어 뇌의 피로도를 획기적으로 낮춥니다.</strong></p>
+<h1 id="노이즈-컬러"><a href="#노이즈-컬러" class="headerlink" title="노이즈 컬러"></a>노이즈 컬러</h1><p>소리에서 어떤 주파수 대역이 강조되었는지에 따라 구분되는 소리의 유형을 <strong>노이즈 컬러(Noise Color)</strong>라고 부릅니다.<br>우리가 흔히 말하는 <strong>백색소음(White Noise)</strong>은 <strong>모든 주파수 대역의 에너지를 거의 동일하게</strong> 포함하는 신호이며, <strong>Pink와 Brown은 저주파가 강조</strong>되고, <strong>Blue와 Violet은 고주파가 강조</strong>되는 형태입니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/ada-4th-tadak/noise-color.png" title="Noise Color" data-caption="Noise Color" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ada-4th-tadak/noise-color.png" alt="Noise Color"></a><span class="caption">Noise Color</span></div>
+
+<p>이와 같이 어떤 주파수 대역이 강조되었는지에 따라 구분되는 유형을 <strong>노이즈 컬러(Noise Color)</strong>라고 부르며, 어떤 주파수 대역이 더 강하게 포함되는지에 따라 청감상의 질감과 피로도, 집중도에 영향을 줍니다.</p>
+<table>
+<thead>
+<tr>
+<th>Noise Color</th>
+<th>특성</th>
+<th>청감</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Violet</td>
+<td>주파수 증가시 +6dB/oct</td>
+<td>매우 날카로움</td>
+</tr>
+<tr>
+<td>Blue</td>
+<td>주파수 증가시 +3dB/oct</td>
+<td>밝고 선명함</td>
+</tr>
+<tr>
+<td>White</td>
+<td>전 대역 동일 에너지</td>
+<td>균등</td>
+</tr>
+<tr>
+<td>Pink</td>
+<td>주파수 증가시 -3dB/oct</td>
+<td>부드럽고 자연스러움</td>
+</tr>
+<tr>
+<td>Brown</td>
+<td>주파수 증가시 -6dB/oct</td>
+<td>저음 강조, 묵직함</td>
+</tr>
+</tbody></table>
+<p><strong>사람마다 편안함을 느끼는 주파수 대역은 서로 다릅니다.</strong> 같은 빗소리라도 누군가에게는 안정감을 주지만, 다른 누군가에게는 거슬리는 고주파로 느껴질 수 있습니다.</p>
+<p>타닥은 이러한 개인차를 고려하여, <strong>주파수 특성 자체를 조정할 수 있는 이퀄라이저 구조를 설계</strong>했습니다.</p>
+<h1 id="이퀄라이저"><a href="#이퀄라이저" class="headerlink" title="이퀄라이저"></a>이퀄라이저</h1><p>기존의 일반적인 이퀄라이저는 특정 대역(저음·중음·고음)을 증폭하거나 감쇠하는 방식으로 동작합니다. 반면 타닥은 <strong>음원을 짧은 구간으로 나눈 뒤 주파수 영역으로 변환</strong>하여, <strong>노이즈 컬러에 따른 스펙트럼 특성을 직접 재구성</strong>하는 방식으로 설계하였습니다.</p>
+<div class="nero-grid">  <div class="flex-2">  <div class="figure " style>
+<video class="fig-video" loop controls alt="이퀄라이저 (🎧)">
+<source src="/post/ada-4th-tadak/equalizer.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">이퀄라이저 (🎧)</span>
+</div>
+</div>
+  <div class="flex-3"><p>이 과정은 iOS의 <a href="https://developer.apple.com/documentation/accelerate/vdsp/" target="_blank" rel="external nofollow noopener noreferrer">Accelerate(vDSP)</a> 프레임워크를 활용한 FFT(Fast Fourier Transform) 기반 처리로 구현되었으며, 이를 통해 단순한 “톤 조절”이 아니라, <strong>소리의 질감 자체를 재설계</strong>할 수 있습니다.</p>
+<p>이퀄라이징 이후에는 주파수 조정 과정에서 발생할 수 있는 <strong>음량 왜곡이나 피크 클리핑을 방지</strong>하기 위해 RMS 기반 게인 보정과 소프트 클리핑을 적용하였습니다.</p>
+<p><strong>성능 측면</strong>에서도 대용량 오디오 파일을 부드럽게 처리할 수 있도록 벡터 연산(vDSP)을 활용해 윈도잉, 스케일링, 누적 합산 과정을 SIMD 기반으로 처리했고, 반복적인 메모리 할당을 제거하여 연산 오버헤드 <strong>최적화를 진행</strong>했습니다.</p>
+<p>그 결과, <strong>실시간에 가까운 처리 속도</strong>를 확보할 수 있었습니다.</p>
+</div></div>
+
+<h1 id="시연"><a href="#시연" class="headerlink" title="시연"></a>시연</h1><iframe width="100%" height="422px" src="https://youtube.com/embed/ZA_64BGj3Ps" title="타닥 시연 영상" frameborder="0" allowfullscreen></iframe>
+
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>타닥은 Apple Developer Academy 4기의 마지막 프로젝트로 우여곡절이 많았지만, 많은 것들을 배우고 완성도 높은 결과물을 만들 수 있었습니다. 함께 고생한 샐리, 아일라, 리나, 파란, 제제 그리고 물심양면으로 도와주신 제이슨, 도라, 섭에게 감사를 전합니다. 🫶🏻</p>
+<blockquote>
+<p>타닥 - 나만의 백색소음 플레이어<br>👉 <a href="https://apps.apple.com/kr/app/id6754827360" target="_blank" rel="external nofollow noopener noreferrer">App Store</a><br>👉 <a href="https://m.youtube.com/@LPNoise-TaDak" target="_blank" rel="external nofollow noopener noreferrer">Youtube</a><br>👉 <a href="https://jup.notion.site/25aab240aa18802bbbe2d22788b5d68a?v=2b4ab240aa188006a923000c5b7aa9f6" target="_blank" rel="external nofollow noopener noreferrer">Project Wiki</a></p>
+</blockquote>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">태그</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/tags/Apple-Developer-Academy-4th/" rel="tag">Apple Developer Academy 4th</a> <a class="tag tag--primary tag--small t-link" href="/tags/Spatial-Audio/" rel="tag">Spatial Audio</a> <a class="tag tag--primary tag--small t-link" href="/tags/iOS/" rel="tag">iOS</a> <a class="tag tag--primary tag--small t-link" href="/tags/%ED%83%80%EB%8B%A5/" rel="tag">타닥</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/ada-4th-my-mallow/" data-tooltip="My Mallow - 3D 캐릭터 감정 일기" aria-label="다음: My Mallow - 3D 캐릭터 감정 일기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/ada-4th-tadak/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/ada-4th-tadak/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2026 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/ada-4th-my-mallow/" data-tooltip="My Mallow - 3D 캐릭터 감정 일기" aria-label="다음: My Mallow - 3D 캐릭터 감정 일기">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/ada-4th-tadak/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/ada-4th-tadak/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/ada-4th-tadak/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/ada-4th-tadak/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-8yk2rkph1z4hubjk8sibxkifzebd5jeskqt6ptboxrycfm6xsfmec1y1rwuq.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

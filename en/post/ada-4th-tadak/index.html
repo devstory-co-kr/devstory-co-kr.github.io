@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>TaDak - Your Personal White Noise Player - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/en/post/ada-4th-tadak/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,Deep Learning,Mobile,Android,iOS,cat,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/en/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Introducing TaDak, your customizable white noise player.👉 한국어 버전\n\nTaDak - Your Personal White Noise Player\nDesign your own spatial audio by layering sounds to suit your taste and purpose.👉 App Store\n\nTaDak is an iOS project developed over three months with team members from the 4th Apple Developer Academy. It’s an app where you can create and enjoy your own sound environment by layering sounds that suit you and placing them within a 3D space.\nVideos that appear when searching for white noise on YouTube.\n\nMany people look for white noise videos on YouTube. TaDak began by analyzing comments on popular white noise videos on YouTube to identify the needs of users who listen to white noise.\nPhysical Audio Spatialization Engine - Source\n\nFractal DimensionFractal Dimension is a theory that expresses how irregular and self-similar a structure is with numerical values. Analyzing sounds in nature using this theory shows that they are located in a moderately complex intermediate region, neither completely random nor close to simple periodic signals.\nNoise Color\n\nAs such, types classified based on which frequency band is emphasized are called Noise Color, and they affect the perceived texture, fatigue, and concentration depending on which frequency band is more strongly included.\n\n\n\nNoise Color\nCharacteristics\nAudible Impression\n\n\n\nViolet\n+6dB/oct as frequency increases\nVery sharp\n\n\nBlue\n+3dB/oct as frequency increases\nBright and clear\n\n\nWhite\nEqual energy across all bands\nUniform\n\n\nPink\n-3dB/oct as frequency increases\nSoft and natural\n\n\nBrown\n-6dB/oct as frequency increases\nHeavy with emphasized bass\n\n\nThe frequency bands where individuals feel comfortable differ. Even the same rain sound can give a sense of stability to someone, but may be felt as an annoying high frequency by someone else.\nConsidering these individual differences, TaDak designed an equalizer structure that can adjust the frequency characteristics themselves.\nEqualizerExisting general equalizers operate by amplifying or attenuating specific bands (bass, mid, treble). In contrast, TaDak was designed to divide the sound source into short segments, convert them into the frequency domain, and directly reconstruct the spectrum characteristics based on noise color.\n    \n\n\nYour browser doesn't support HTML5 Video :/\nEqualizer (🎧)\n\n\n  This process was implemented with FFT (Fast Fourier Transform)-based processing using iOS’s Accelerate(vDSP) framework. Through this, we can redesign the texture of the sound itself, rather than just performing simple “tone adjustment.”\nAfter equalizing, we applied RMS-based gain compensation and soft clipping to prevent volume distortion or peak clipping that might occur during the frequency adjustment process.\nIn terms of performance, to smoothly process large audio files, we used vector operations (vDSP) to handle windowing, scaling, and accumulation processes based on SIMD, and optimized the calculation overhead by removing repetitive memory allocation.\nAs a result, we were able to secure near-real-time processing speeds.\n\n\nDemo\n\nConclusionTaDak was the final project of the 4th Apple Developer Academy, and although there were many ups and downs, we were able to learn a lot and create a high-quality result. I would like to express my gratitude to Sally, Isla, Lina, Paran, Jeje, who worked hard together, and Jason, Dora, and Sup, who helped us in many ways. 🫶🏻\n\nTaDak - Your Personal White Noise Player👉 App Store👉 YouTube👉 Project Wiki\n\n","dateCreated":"2026-02-23T09:49:00+09:00","dateModified":"2026-02-25T03:50:05+09:00","datePublished":"2026-02-23T09:49:00+09:00","description":"Introducing TaDak, your customizable white noise player.👉 한국어 버전","headline":"TaDak - Your Personal White Noise Player","image":["/en/post/ada-4th-tadak/thumbnail.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/ada-4th-tadak/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/ada-4th-tadak/","keywords":"Apple Developer Academy 4th, iOS, Spatial Audio, TaDak","thumbnailUrl":"/en/post/ada-4th-tadak/thumbnail.png"}</script>
+    <meta name="description" content="Introducing TaDak, your customizable white noise player.👉 한국어 버전">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="TaDak - Your Personal White Noise Player">
+<meta property="og:url" content="https://blog.devstory.co.kr/en/post/ada-4th-tadak/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="Introducing TaDak, your customizable white noise player.👉 한국어 버전">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://blog.devstory.co.kr/en/post/ada-4th-tadak/thumbnail.png">
+<meta property="article:published_time" content="2026-02-23T00:49:00.000Z">
+<meta property="article:modified_time" content="2026-02-24T18:50:05.425Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Apple Developer Academy 4th">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Spatial Audio">
+<meta property="article:tag" content="TaDak">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.devstory.co.kr/en/post/ada-4th-tadak/thumbnail.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/en/assets/css/style-polahoe9q4ftkjbyyt3vntcmn4fmygwd78iimm9z3vg8njotz20cyqsxuryv.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/en/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /en/#about">
+        
+        
+            <img class="header-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/en/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/" title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Projects</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Lecture</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            TaDak - Your Personal White Noise Player
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2026-02-23T09:49:00+09:00">
+	
+		    Feb 23, 2026
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/en/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>Table of Contents
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#TaDak-Your-Personal-White-Noise-Player"><span class="nero-toc-text">TaDak - Your Personal White Noise Player</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Design"><span class="nero-toc-text">Design</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Customizable-Spatial-Audio"><span class="nero-toc-text">Customizable Spatial Audio</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Fractal-Dimension"><span class="nero-toc-text">Fractal Dimension</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Noise-Color"><span class="nero-toc-text">Noise Color</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Equalizer"><span class="nero-toc-text">Equalizer</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Demo"><span class="nero-toc-text">Demo</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Conclusion"><span class="nero-toc-text">Conclusion</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>Introducing <strong>TaDak</strong>, your customizable white noise player.<br><a href="/post/ada-4th-tadak">👉 한국어 버전</a><br><a id="more"></a></p>
+<hr>
+<h1 id="TaDak-Your-Personal-White-Noise-Player"><a href="#TaDak-Your-Personal-White-Noise-Player" class="headerlink" title="TaDak - Your Personal White Noise Player"></a>TaDak - Your Personal White Noise Player</h1><blockquote>
+<p>Design your own spatial audio by layering sounds to suit your taste and purpose.<br>👉 <a href="https://apps.apple.com/us/app/id6754827360" target="_blank" rel="external nofollow noopener noreferrer">App Store</a></p>
+</blockquote>
+<p><strong>TaDak</strong> is an iOS project developed over three months with team members from the 4th Apple Developer Academy. It’s an app where you can <strong>create and enjoy your own sound environment by layering sounds that suit you and placing them within a 3D space.</strong></p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-tadak/intro.png" title="Designed with an LP record motif." data-caption="Designed with an LP record motif." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-tadak/intro.png" alt="Designed with an LP record motif."></a><span class="caption">Designed with an LP record motif.</span></div>
+
+<p><strong>White noise</strong> is a <strong>constant sound that contains almost equal intensity across all frequency bands.</strong> This sound helps <strong>improve concentration and provides psychological stability</strong> by making sudden surrounding noises less prominent. As a result, it is used for various purposes like studying, working, aiding sleep, and alleviating tinnitus.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-tadak/youtube-white-noise.png" title="Videos that appear when searching for white noise on YouTube." data-caption="Videos that appear when searching for white noise on YouTube." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-tadak/youtube-white-noise.png" alt="Videos that appear when searching for white noise on YouTube."></a><span class="caption">Videos that appear when searching for white noise on YouTube.</span></div>
+
+<p>Many people look for white noise videos on YouTube. TaDak began by <strong>analyzing comments on popular white noise videos</strong> on YouTube to <strong>identify the needs of users</strong> who listen to white noise.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-tadak/reviews.png" title="Highly liked comments from YouTube white noise videos." data-caption="Highly liked comments from YouTube white noise videos." data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-tadak/reviews.png" alt="Highly liked comments from YouTube white noise videos."></a><span class="caption">Highly liked comments from YouTube white noise videos.</span></div>
+
+<p>The <strong>user needs</strong> derived from the YouTube comment analysis are as follows:</p>
+<ol>
+<li>Users want to <strong>add or exclude specific sounds</strong> according to their personal preferences.</li>
+<li>They easily notice and feel <strong>uncomfortable with sounds that sound repetitive or artificial.</strong></li>
+<li>Every individual has different <strong>frequency bands where they feel comfortable.</strong></li>
+</ol>
+<p>We focused on the fact that many users <strong>want customized white noise</strong> that perfectly fits their tastes. TaDak is a service created to solve exactly this problem.</p>
+<h1 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h1><div class="nero-grid">  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Stack Layout (🎧)">
+<source src="/en/post/ada-4th-tadak/home-stack.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Stack Layout (🎧)</span>
+</div>
+  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Grid Layout (🎧)">
+<source src="/en/post/ada-4th-tadak/home-grid.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Grid Layout (🎧)</span>
+</div>
+  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="You can directly interact with the turntable. (🎧)">
+<source src="/en/post/ada-4th-tadak/lp-player.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">You can directly interact with the turntable. (🎧)</span>
+</div></div>
+
+<p>On the home screen, <strong>various white noise presets are available</strong>, ranging from airplane sounds and White Christmas to the deep sea and rainy city sounds. It basically supports two layouts: Stack and Grid. We used <strong><a href="https://developer.apple.com/documentation/TechnologyOverviews/liquid-glass" target="_blank" rel="external nofollow noopener noreferrer">Liquid Glass</a></strong>, which is supported from iOS 26, and <strong>considered compatibility</strong> so that users on versions below iOS 26 can still get the same feel.</p>
+<p>The app is <strong>designed based on an LP record concept</strong>. When a user selects a sound source, it provides an <strong>analog experience</strong> through interactions that feel like pulling a record out of an LP cover.</p>
+<p>In the turntable area, we implemented <strong>volume control based on the actual rotation speed of the LP record</strong>, and designed the <strong>tonearm for direct user control</strong>. Each component was implemented as an <strong>interactive element that reproduces the sensation of operating real equipment</strong>, rather than just a simple visual object.</p>
+<p>Furthermore, we <strong>support a responsive layout</strong> for comfortable use even in the iPad’s multitasking environment. Especially on iPad, we <strong>configured the entire screen with a turntable UI</strong> to provide an immersive feeling as if operating an actual turntable.</p>
+<div class="nero-grid">  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Responsive implementation of the home screen">
+<source src="/en/post/ada-4th-tadak/responsive1.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Responsive implementation of the home screen</span>
+</div>
+  <div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Responsive implementation of the turntable screen">
+<source src="/en/post/ada-4th-tadak/responsive2.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Responsive implementation of the turntable screen</span>
+</div></div>
+
+<h1 id="Customizable-Spatial-Audio"><a href="#Customizable-Spatial-Audio" class="headerlink" title="Customizable Spatial Audio"></a>Customizable Spatial Audio</h1><blockquote>
+<p>Users don’t just select presets; they can <strong>directly customize various combinations</strong>, such as layering campfire sounds over the sound of rain or removing distracting noises.</p>
+</blockquote>
+<div class="nero-grid">  <div class="flex-2">  <div class="figure " style>
+<video class="fig-video" loop controls alt="Custom spatial audio created by layering sounds (🎧)">
+<source src="/en/post/ada-4th-tadak/phase.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Custom spatial audio created by layering sounds (🎧)</span>
+</div>
+</div>
+  <div class="flex-3"><p>In the center of the screen, <strong>sound sources are placed on 2D space coordinates</strong> relative to the user’s head. You can <strong>adjust the direction and distance by dragging the sound source</strong> or <strong>combine it with sound sources from other themes.</strong></p>
+<p>The sound sources are composed of two types, referring to <a href="https://en.wikipedia.org/wiki/Soundscape" target="_blank" rel="external nofollow noopener noreferrer">R. Murray Schafer’s Soundscape Theory</a>: <strong>Keynote sounds</strong>, which exist continuously like a background, and <strong>Sound Signals</strong>, which attract attention as events.</p>
+<p>As a side note, according to <a href="https://en.wikipedia.org/wiki/Auditory_scene_analysis" target="_blank" rel="external nofollow noopener noreferrer">Albert Bregman’s Auditory scene analysis</a> theory, <strong>the maximum number of sounds a human can perceive is eight</strong>, so please keep this in mind when making combinations.</p>
+</div></div>
+
+<blockquote>
+<p>To <strong>properly experience spatial audio</strong>, please download the app and <strong>listen with AirPods or AirPods Max that support spatial audio.</strong></p>
+</blockquote>
+<p>Spatial audio was implemented using iOS’s <a href="https://developer.apple.com/documentation/phase/" target="_blank" rel="external nofollow noopener noreferrer"><strong>PHASE (Physical Audio Spatialization Engine)</strong></a> framework. PHASE understands the basic context of the app’s scene and <strong>plays audio based on the scene’s characteristics</strong>, allowing for a more realistic spatial audio implementation. Using this, it’s also possible to <strong>express different reverberation and acoustic characteristics depending on the size of the space and the physical surface properties of objects.</strong></p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-tadak/phase.png" title="Physical Audio Spatialization Engine - <a href=https://developer.apple.com/documentation/phase>Source</a>" data-caption="Physical Audio Spatialization Engine - <a href=https://developer.apple.com/documentation/phase>Source</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-tadak/phase.png" alt="Physical Audio Spatialization Engine - <a href=https://developer.apple.com/documentation/phase>Source</a>"></a><span class="caption">Physical Audio Spatialization Engine - <a href="https://developer.apple.com/documentation/phase" rel="external nofollow noopener noreferrer" target="_blank">Source</a></span></div>
+
+<h1 id="Fractal-Dimension"><a href="#Fractal-Dimension" class="headerlink" title="Fractal Dimension"></a>Fractal Dimension</h1><p><strong><a href="https://en.wikipedia.org/wiki/Fractal_dimension" target="_blank" rel="external nofollow noopener noreferrer">Fractal Dimension</a> is a theory that expresses how irregular and self-similar a structure is with numerical values.</strong> Analyzing <strong>sounds in nature</strong> using this theory shows that they are located in a <strong>moderately complex intermediate region</strong>, neither completely random nor close to simple periodic signals.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-tadak/fractal.webp" title="Fractal Dimension - <a href=https://galileo-unbound.blog/2020/12/26/a-short-history-of-fractal-dimension/>Source</a>" data-caption="Fractal Dimension - <a href=https://galileo-unbound.blog/2020/12/26/a-short-history-of-fractal-dimension/>Source</a>" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-tadak/fractal.webp" alt="Fractal Dimension - <a href=https://galileo-unbound.blog/2020/12/26/a-short-history-of-fractal-dimension/>Source</a>"></a><span class="caption">Fractal Dimension - <a href="https://galileo-unbound.blog/2020/12/26/a-short-history-of-fractal-dimension/" rel="external nofollow noopener noreferrer" target="_blank">Source</a></span></div>
+
+<p><strong>The purpose of white noise</strong> is to <strong>mask external sounds with unpredictable randomness.</strong> However, if the <strong>sound interval is too regular</strong>, it becomes a periodic signal rather than white noise, inducing pattern recognition and increasing predictability, which <strong>distracts the user’s concentration.</strong></p>
+<p>All Sound Signals in TaDak do not follow a fixed loop. <strong>The timing and frequency of playback are dynamically adjusted by an algorithm using fractal dimension.</strong> This <strong>erases artificial patterns and significantly reduces brain fatigue</strong>, much like not knowing when a bird will chirp in a real forest.</p>
+<h1 id="Noise-Color"><a href="#Noise-Color" class="headerlink" title="Noise Color"></a>Noise Color</h1><p>The types of sounds categorized according to which frequency bands are emphasized in the sound are called <strong>Noise Colors</strong>.<br>The <strong>White Noise</strong> we commonly refer to is a signal that contains <strong>almost equal energy across all frequency bands</strong>. <strong>Pink and Brown have low frequencies emphasized</strong>, while <strong>Blue and Violet have high frequencies emphasized</strong>.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/ada-4th-tadak/noise-color.png" title="Noise Color" data-caption="Noise Color" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/ada-4th-tadak/noise-color.png" alt="Noise Color"></a><span class="caption">Noise Color</span></div>
+
+<p>As such, types classified based on which frequency band is emphasized are called <strong>Noise Color</strong>, and they affect the perceived texture, fatigue, and concentration depending on which frequency band is more strongly included.</p>
+<table>
+<thead>
+<tr>
+<th>Noise Color</th>
+<th>Characteristics</th>
+<th>Audible Impression</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Violet</td>
+<td>+6dB/oct as frequency increases</td>
+<td>Very sharp</td>
+</tr>
+<tr>
+<td>Blue</td>
+<td>+3dB/oct as frequency increases</td>
+<td>Bright and clear</td>
+</tr>
+<tr>
+<td>White</td>
+<td>Equal energy across all bands</td>
+<td>Uniform</td>
+</tr>
+<tr>
+<td>Pink</td>
+<td>-3dB/oct as frequency increases</td>
+<td>Soft and natural</td>
+</tr>
+<tr>
+<td>Brown</td>
+<td>-6dB/oct as frequency increases</td>
+<td>Heavy with emphasized bass</td>
+</tr>
+</tbody></table>
+<p><strong>The frequency bands where individuals feel comfortable differ.</strong> Even the same rain sound can give a sense of stability to someone, but may be felt as an annoying high frequency by someone else.</p>
+<p>Considering these individual differences, TaDak <strong>designed an equalizer structure that can adjust the frequency characteristics themselves.</strong></p>
+<h1 id="Equalizer"><a href="#Equalizer" class="headerlink" title="Equalizer"></a>Equalizer</h1><p>Existing general equalizers operate by amplifying or attenuating specific bands (bass, mid, treble). In contrast, TaDak was designed to <strong>divide the sound source into short segments, convert them into the frequency domain</strong>, and <strong>directly reconstruct the spectrum characteristics based on noise color.</strong></p>
+<div class="nero-grid">  <div class="flex-2">  <div class="figure " style>
+<video class="fig-video" loop controls alt="Equalizer (🎧)">
+<source src="/en/post/ada-4th-tadak/equalizer.mp4" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Equalizer (🎧)</span>
+</div>
+</div>
+  <div class="flex-3"><p>This process was implemented with FFT (Fast Fourier Transform)-based processing using iOS’s <a href="https://developer.apple.com/documentation/accelerate/vdsp/" target="_blank" rel="external nofollow noopener noreferrer">Accelerate(vDSP)</a> framework. Through this, we can <strong>redesign the texture of the sound itself</strong>, rather than just performing simple “tone adjustment.”</p>
+<p>After equalizing, we applied RMS-based gain compensation and soft clipping to <strong>prevent volume distortion or peak clipping</strong> that might occur during the frequency adjustment process.</p>
+<p>In terms of <strong>performance</strong>, to smoothly process large audio files, we used vector operations (vDSP) to handle windowing, scaling, and accumulation processes based on SIMD, and <strong>optimized</strong> the calculation overhead by removing repetitive memory allocation.</p>
+<p>As a result, we were able to secure <strong>near-real-time processing speeds.</strong></p>
+</div></div>
+
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><iframe width="100%" height="422px" src="https://youtube.com/embed/5CJruY6EUv0" title="Tadak demo video" frameborder="0" allowfullscreen></iframe>
+
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>TaDak was the final project of the 4th Apple Developer Academy, and although there were many ups and downs, we were able to learn a lot and create a high-quality result. I would like to express my gratitude to Sally, Isla, Lina, Paran, Jeje, who worked hard together, and Jason, Dora, and Sup, who helped us in many ways. 🫶🏻</p>
+<blockquote>
+<p>TaDak - Your Personal White Noise Player<br>👉 <a href="https://apps.apple.com/us/app/id6754827360" target="_blank" rel="external nofollow noopener noreferrer">App Store</a><br>👉 <a href="https://m.youtube.com/@LPNoise-TaDak" target="_blank" rel="external nofollow noopener noreferrer">YouTube</a><br>👉 <a href="https://jup.notion.site/25aab240aa18802bbbe2d22788b5d68a?v=2b4ab240aa188006a923000c5b7aa9f6" target="_blank" rel="external nofollow noopener noreferrer">Project Wiki</a></p>
+</blockquote>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">TAGGED IN</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/en/tags/Apple-Developer-Academy-4th/" rel="tag">Apple Developer Academy 4th</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/Spatial-Audio/" rel="tag">Spatial Audio</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/TaDak/" rel="tag">TaDak</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/iOS/" rel="tag">iOS</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/ada-4th-my-mallow/" data-tooltip="My Mallow - 3D Character Emotion Diary" aria-label="NEXT: My Mallow - 3D Character Emotion Diary">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-tadak/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-tadak/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2026 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/ada-4th-my-mallow/" data-tooltip="My Mallow - 3D Character Emotion Diary" aria-label="NEXT: My Mallow - 3D Character Emotion Diary">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-tadak/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-tadak/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/ada-4th-tadak/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/ada-4th-tadak/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/en/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/en/assets/js/script-8yk2rkph1z4hubjk8sibxkifzebd5jeskqt6ptboxrycfm6xsfmec1y1rwuq.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>
