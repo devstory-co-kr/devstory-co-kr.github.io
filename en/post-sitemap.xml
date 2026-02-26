@@ -8,6 +8,30 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/post/nasa-space-app-challenge/</loc>
+        <lastmod>2026-02-26T16:07:21.101Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/post/worcation-sokcho/</loc>
+        <lastmod>2026-02-26T15:49:38.066Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/post/worcation-yeongwol/</loc>
+        <lastmod>2026-02-26T15:49:38.066Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/post/ada-4th-tadak/</loc>
         <lastmod>2026-02-24T18:59:18.783Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -74,22 +98,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/post/trouble-painter-01/</loc>
         <lastmod>2026-02-23T02:28:01.741Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/worcation-yeongwol/</loc>
-        <lastmod>2026-02-23T02:26:16.893Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/worcation-sokcho/</loc>
-        <lastmod>2026-02-23T02:26:02.499Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

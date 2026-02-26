@@ -9,8 +9,23 @@
     <atom:link href="/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Tue, 24 Feb 2026 18:50:02 GMT</pubDate>
+    <pubDate>Thu, 26 Feb 2026 16:08:10 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>2025 NASA Space App Challenge</title>
+      <link>https://blog.devstory.co.kr/post/nasa-space-app-challenge/</link>
+      <guid>https://blog.devstory.co.kr/post/nasa-space-app-challenge/</guid>
+      <pubDate>Thu, 26 Feb 2026 07:50:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;NASA에서 주최하는 Space App Challenge 참가 후기&lt;br&gt;&lt;a href=&quot;/post/nasa-space-app-challenge&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/post/nasa-space-app-challenge/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>타닥 - 나만의 백색소음 플레이어</title>
@@ -295,21 +310,6 @@
       
       
       <comments>https://blog.devstory.co.kr/post/too-real-03/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>4부. CoreML을 이용하여 iOS에 YOLO v3 모델 탑재하기</title>
-      <link>https://blog.devstory.co.kr/post/too-real-04/</link>
-      <guid>https://blog.devstory.co.kr/post/too-real-04/</guid>
-      <pubDate>Sun, 22 Dec 2019 07:44:28 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;CoreML을 이용하여 iOS 어플리케이션에 YOLO v3 모델을 탑재하는 방법에 대해 공유합니다.&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/post/too-real-04/#disqus_thread</comments>
     </item>
     
   </channel>

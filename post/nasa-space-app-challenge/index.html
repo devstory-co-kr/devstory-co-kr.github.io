@@ -1,0 +1,972 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>2025 NASA Space App Challenge - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/post/nasa-space-app-challenge/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"NASA에서 주최하는 Space App Challenge 참가 후기👉 English Version\n\nNASA Space App ChallengeNASA Space Apps Challenge는 전 세계에서 가장 큰 규모의 연례 글로벌 해커톤입니다. 이틀 동안 진행되는 이 행사는, NASA의 공개 데이터(Open Data)와 우주국 파트너 기관들의 우주 기반 데이터를 활용하여 지구와 우주가 직면한 실제 문제를 해결하는 것을 목표로 합니다.\n2025년 해커톤에는 167개국에서 총 114,094명이 18,860팀으로 참가했으며, 이 중 11,511개의 프로젝트가 제출되었습니다.\n2025 Award\n\n1단계: 지역 행사 심사 및 글로벌 후보자1단계 Global Nominees 심사는 Local Event에서 진행됩니다. 이번 해커톤에는 167개국에서 Local Event가 열렸으며 자세한 위치는 링크에서 확인할 수 있습니다.\nThe Three Solar Rascals\n\n챌린지 결과물로 태양에서 나오는 Flare, Radiation Storm, CME(Coronal Mass Ejection)를 의인화하여 지구에 미치는 영향을 인터랙티브한 iPad 앱인 “The Three Solar Rascals”를 만들었고, 해커톤 기간 내에 App Store 등록까지 완료하였습니다.\n\nThe Three Solar Rascals👉 Github👉 App Store👉 Presentation👉 SPACEWALK Team Profile\n\n첫 화면에선 모찌모찌한 HERMES 캐릭터가 등장해 내레이션을 시작합니다. 이 캐릭터는 달 궤도를 도는 국제 우주 정거장인 Gateway에 탑재된 NASA의 우주 기상 관측 장비인 HERMES를 의인화한 캐릭터입니다.\n태양에서 지구로 날아오는 세 친구들\n\n\n\n\n구분\nFlare\nRadi\nCME\n\n\n\n정식 명칭\nSolar Flare\nRadiation Storm\nCoronal Mass Ejection\n\n\n주요 구성\n전자기파\n전자 &amp; 양성자\n플라즈마 &amp; 자기장\n\n\n지구 도달 시간\n약 8분\n약 30분 이내\n약 15시간 ~ 수일\n\n\n대표 영향\n무선 통신 장애\n위성 회로 손상\n대규모 정전 가능\n\n\n가장 빠른 Flare는 iPad를 지구 방향으로 기울이면 미끄러지도록, 입자를 흘리고 다니는 과자 캐릭터 Radi는 iPad를 흔들면 과자 가루를 흘리며 지나가도록, 그리고 가스 형태의 CME는 iPad를 후 불면 빙글빙글 돌며 날아가도록 구현하여 아이가 동화를 즐길 수 있도록 인터랙션을 넣었습니다. 또한 캐릭터들이 지구에 미치는 영향도 알 수 있도록 스토리를 구성하였습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\niPad를 기울이면 Flare가 미끄러집니다.\n\n\n\n\nYour browser doesn't support HTML5 Video :/\niPad를 흔들면 Radi가 쿠키(입자)를 흘리며 지나갑니다.\n\n\n\n\nYour browser doesn't support HTML5 Video :/\niPad를 후! 불면 CME가 빙글빙글 날아갑니다.\n\n\n세 친구들이 지구에 나쁜 영향만 주는 것 같지만, 우리 은하계에 Heliosphere를 형성하여 외계에서 오는 우주 방사선과 자기장으로부터 행성을 보호하는 역할도 하고, 아름다운 오로라도 이 친구들 때문에 만들어진 것을 보여주며 동화가 마무리 됩니다. 오로라 장면은 Video 프레임을 잘라서 화면을 드래그함에 따라 각 프레임이 재생되도록 구현하였습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n드래그를 하면 Aurora가 나타납니다.\n\n\n시연아이가 우주 날씨가 지구에 미치는 영향을 지루하지 않고 즐겁게 배울 수 있도록 다양한 인터랙션과 함께 구현하였습니다.\n\n\n동화에 사용된 과학적 사실들은 NASA에서 제공하는 자료들을 참고하여 만들어졌습니다.\n\nHERMES - NASA Science\nSolar Storms and Flares - NASA Science\nSunspots - NASA Science\nHeliosphere - NASA Science\nResults of the First National Survey of User Needs for Space Weather (NASA resource)\nSpace Weather - NASA Science\nNASA | X-Class: A Guide to Solar Flares\nHow Does the Sun’s Magnetosphere Cause Aurora by Rachel Geiter - NASA Science\nNASA, NOAA: Sun Reaches Maximum Phase in 11-Year Solar Cycle\nSolar Cycle Progression and Forecast - NASA Science\nSolar Cycle Progression - NOAA Scales\nAurora Tutorial - NOAA Scales\n\n\n이번 해커톤에선 AI를 적극 활용하는 것이 권장되어, TTS(Text To Speech) 음성이나 이미지 에셋 제작에 생성형 AI를 활용하였습니다.\n\n마치며  ","dateCreated":"2026-02-26T16:50:00+09:00","dateModified":"2026-02-27T01:08:10+09:00","datePublished":"2026-02-26T16:50:00+09:00","description":"NASA에서 주최하는 Space App Challenge 참가 후기👉 English Version","headline":"2025 NASA Space App Challenge","image":["/post/nasa-space-app-challenge/nasa.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/nasa-space-app-challenge/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/nasa-space-app-challenge/","keywords":"Apple Developer Academy 4th, NASA Space App Challenge, Global Finalist","thumbnailUrl":"/post/nasa-space-app-challenge/nasa.png"}</script>
+    <meta name="description" content="NASA에서 주최하는 Space App Challenge 참가 후기👉 English Version">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="2025 NASA Space App Challenge">
+<meta property="og:url" content="https://blog.devstory.co.kr/post/nasa-space-app-challenge/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="NASA에서 주최하는 Space App Challenge 참가 후기👉 English Version">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://blog.devstory.co.kr/post/nasa-space-app-challenge/nasa.png">
+<meta property="article:published_time" content="2026-02-26T07:50:00.000Z">
+<meta property="article:modified_time" content="2026-02-26T16:08:10.281Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="Apple Developer Academy 4th">
+<meta property="article:tag" content="NASA Space App Challenge">
+<meta property="article:tag" content="Global Finalist">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.devstory.co.kr/post/nasa-space-app-challenge/nasa.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-km3ppccb68fyxtbrn4miqqjht5aox4vpmpgkiydtymknyxsgemcr5wotechj.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
+        
+        
+            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about" aria-label="저자에 대해 더 알아보기">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/" title="홈">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">홈</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="태그">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">깃허브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">프로젝트</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">강의</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            2025 NASA Space App Challenge
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2026-02-26T16:50:00+09:00">
+	
+		    2026/02/26
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Project/">Project</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>목차
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#NASA-Space-App-Challenge"><span class="nero-toc-text">NASA Space App Challenge</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#심사-기준-및-선발-과정"><span class="nero-toc-text">심사 기준 및 선발 과정</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#1단계-지역-행사-심사-및-글로벌-후보자"><span class="nero-toc-text">1단계: 지역 행사 심사 및 글로벌 후보자</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#2단계-글로벌-결선-진출자-및-우수상"><span class="nero-toc-text">2단계: 글로벌 결선 진출자 및 우수상</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#3단계-글로벌-우승자"><span class="nero-toc-text">3단계: 글로벌 우승자</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#The-Three-Solar-Rascals"><span class="nero-toc-text">The Three Solar Rascals</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#시연"><span class="nero-toc-text">시연</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마치며"><span class="nero-toc-text">마치며</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>NASA에서 주최하는 Space App Challenge 참가 후기<br><a href="/post/nasa-space-app-challenge">👉 English Version</a><br><a id="more"></a></p>
+<hr>
+<h1 id="NASA-Space-App-Challenge"><a href="#NASA-Space-App-Challenge" class="headerlink" title="NASA Space App Challenge"></a>NASA Space App Challenge</h1><p><strong><a href="https://www.spaceappschallenge.org/" target="_blank" rel="external nofollow noopener noreferrer">NASA Space Apps Challenge</a></strong>는 <strong>전 세계에서 가장 큰 규모의 연례 글로벌 해커톤</strong>입니다. 이틀 동안 진행되는 이 행사는, NASA의 <strong>공개 데이터(Open Data)</strong>와 우주국 파트너 기관들의 <strong>우주 기반 데이터</strong>를 활용하여 지구와 우주가 직면한 실제 문제를 해결하는 것을 목표로 합니다.</p>
+<p>2025년 해커톤에는 167개국에서 총 114,094명이 18,860팀으로 참가했으며, 이 중 11,511개의 프로젝트가 제출되었습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/nasa-space-app-challenge/nasa-space-app-challenge.png" title="숫자로 보는 2025 NASA Space App Challenge" data-caption="숫자로 보는 2025 NASA Space App Challenge" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/nasa-space-app-challenge/nasa-space-app-challenge.png" alt="숫자로 보는 2025 NASA Space App Challenge"></a><span class="caption">숫자로 보는 2025 NASA Space App Challenge</span></div>
+
+<p>해커톤은 주말 이틀간 온라인으로 진행되었으며, 최대 6인까지 팀을 구성할 수 있습니다. 총 <a href="https://www.spaceappschallenge.org/2025/challenges/" target="_blank" rel="external nofollow noopener noreferrer">18개의 챌린지</a>가 한 달 전에 공개됩니다.</p>
+<table>
+<thead>
+<tr>
+<th>번호</th>
+<th>챌린지 목록</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/bloomwatch-an-earth-observation-application-for-global-flowering-phenology/" target="_blank" rel="external nofollow noopener noreferrer">위성 데이터를 활용해 전 세계 식물 개화 패턴을 모니터링하는 도구 개발</a></td>
+</tr>
+<tr>
+<td>2.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/build-a-space-biology-knowledge-engine/" target="_blank" rel="external nofollow noopener noreferrer">우주 생물학 데이터를 구조화하여 쉽게 탐색·분석할 수 있는 지식 플랫폼 구축</a></td>
+</tr>
+<tr>
+<td>3.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/commercializing-low-earth-orbit-leo/" target="_blank" rel="external nofollow noopener noreferrer">저궤도(LEO) 상업 활동을 위한 지속 가능한 비즈니스 모델 설계</a></td>
+</tr>
+<tr>
+<td>4.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/animation-celebration-of-terra-data" target="_blank" rel="external nofollow noopener noreferrer">Terra 기기 데이터로 지구과학 영향 애니메이션 제작</a></td>
+</tr>
+<tr>
+<td>5.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/data-pathways-to-healthy-cities-and-human-settlements/" target="_blank" rel="external nofollow noopener noreferrer">NASA 지구 관측 데이터를 활용해 사람과 환경을 위하는 스마트 도시 성장 전략 세우기</a></td>
+</tr>
+<tr>
+<td>6.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/deep-dive-immersive-data-stories-from-ocean-to-sky/" target="_blank" rel="external nofollow noopener noreferrer">해양과 대기 데이터를 활용한 몰입형 시각화·스토리텔링 제작</a></td>
+</tr>
+<tr>
+<td>7.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/embiggen-your-eyes/" target="_blank" rel="external nofollow noopener noreferrer">대규모 고해상도 NASA 이미지 데이터 탐색·시각화 도구 개발</a></td>
+</tr>
+<tr>
+<td>8.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/from-earthdata-to-action-cloud-computing-with-earth-observation-data-for-predicting-cleaner-safer-skies/" target="_blank" rel="external nofollow noopener noreferrer">지구관측 데이터를 활용한 대기질 예측 및 환경 개선 도구 개발</a></td>
+</tr>
+<tr>
+<td>9.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/international-space-station-25th-anniversary-apps/" target="_blank" rel="external nofollow noopener noreferrer">ISS 25주년을 기념하는 교육·시각화·체험형 애플리케이션 제작</a></td>
+</tr>
+<tr>
+<td>10.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/meteor-madness/" target="_blank" rel="external nofollow noopener noreferrer">소행성 충돌 시나리오를 시뮬레이션하고 위험 대응 전략 모델링</a></td>
+</tr>
+<tr>
+<td>11.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/nasa-farm-navigators-using-nasa-data-exploration-in-agriculture/" target="_blank" rel="external nofollow noopener noreferrer">NASA 데이터를 활용한 농업 이해·개선용 교육 시뮬레이션 또는 게임 제작</a></td>
+</tr>
+<tr>
+<td>12.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/sharks-from-space/" target="_blank" rel="external nofollow noopener noreferrer">위성 데이터를 기반으로 상어 이동 경로 및 서식지 예측 모델 개발</a></td>
+</tr>
+<tr>
+<td>13.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/spacetrash-hack-revolutionizing-recycling-on-mars/" target="_blank" rel="external nofollow noopener noreferrer">화성 환경에서의 폐기물 처리 및 재활용 시스템 설계</a></td>
+</tr>
+<tr>
+<td>14.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings/" target="_blank" rel="external nofollow noopener noreferrer">우주 날씨를 이해하기 쉽게 전달하는 스토리·교육 콘텐츠 제작</a></td>
+</tr>
+<tr>
+<td>15.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/through-the-radar-looking-glass-revealing-earth-processes-with-sar/" target="_blank" rel="external nofollow noopener noreferrer">SAR 데이터를 활용해 지구 물리적 현상 분석·시각화</a></td>
+</tr>
+<tr>
+<td>16.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/will-it-rain-on-my-parade/" target="_blank" rel="external nofollow noopener noreferrer">개인 맞춤형 날씨 예측으로 일정의 기상 위험 평가 도구 개발</a></td>
+</tr>
+<tr>
+<td>17.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/your-home-in-space-the-habitat-layout-creator/" target="_blank" rel="external nofollow noopener noreferrer">우주 거주지 설계 및 평가를 위한 레이아웃 제작 도구 개발</a></td>
+</tr>
+<tr>
+<td>18.</td>
+<td><a href="https://www.spaceappschallenge.org/2025/challenges/a-world-away-hunting-for-exoplanets-with-ai/" target="_blank" rel="external nofollow noopener noreferrer">AI를 활용한 외계행성 탐지 및 분류 모델 개발</a></td>
+</tr>
+</tbody></table>
+<p>참가자들은 챌린지 중 하나를 선택하여 해커톤 당일 전까지 자료 조사 및 기획을 진행할 수 있습니다.</p>
+<h2 id="심사-기준-및-선발-과정"><a href="#심사-기준-및-선발-과정" class="headerlink" title="심사 기준 및 선발 과정"></a>심사 기준 및 선발 과정</h2><p>Global Winner 선발 과정은 총 3단계로 진행됐습니다. 1단계에서 전체 18,860개 팀 중 <strong>1,294개 팀이 Global Nominees</strong>로 선정됐습니다. 이후 2단계에서 <strong>45개 팀이 Global Finalists</strong>로 선정됐고, 마지막 3단계에서 최종 <strong>10개 팀이 Global Winners</strong>로 선정되었습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/nasa-space-app-challenge/award.png" title="2025 Award" data-caption="2025 Award" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/nasa-space-app-challenge/award.png" alt="2025 Award"></a><span class="caption">2025 Award</span></div>
+
+<h2 id="1단계-지역-행사-심사-및-글로벌-후보자"><a href="#1단계-지역-행사-심사-및-글로벌-후보자" class="headerlink" title="1단계: 지역 행사 심사 및 글로벌 후보자"></a>1단계: 지역 행사 심사 및 글로벌 후보자</h2><p>1단계 Global Nominees 심사는 Local Event에서 진행됩니다. 이번 해커톤에는 167개국에서 Local Event가 열렸으며 자세한 위치는 <a href="https://www.spaceappschallenge.org/2025/local-events/" target="_blank" rel="external nofollow noopener noreferrer">링크</a>에서 확인할 수 있습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/nasa-space-app-challenge/local-event.png" title="전 세계 167개국의 Local Event" data-caption="전 세계 167개국의 Local Event" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/nasa-space-app-challenge/local-event.png" alt="전 세계 167개국의 Local Event"></a><span class="caption">전 세계 167개국의 Local Event</span></div>
+
+<p><a href="https://www.spaceappschallenge.org/2025/local-events/seoul/?tab=details" target="_blank" rel="external nofollow noopener noreferrer">서울</a>에선 박성홍 박사님(한국천문연구원, 과학기술연합대학원대학교), 박현우 교수님(서울대학교 데이터사이언스대학원), 이수경 교수(연세대학교 컴퓨터과학과), 윤명환 교수님(서울대학교 산업공학과) 그리고 AWS의 유원두 리더님이 심사위원으로 참여해 주셨으며, 다음과 같은 기준으로 심사가 진행되었습니다.</p>
+<p>서울 지역 행사는 총 <strong><a href="https://www.spaceappschallenge.org/2025/local-events/seoul/?tab=teams" target="_blank" rel="external nofollow noopener noreferrer">54개 팀</a></strong>이 신청했고, 그 중 다음 <strong>4팀이 글로벌 후보로 선발</strong>되었습니다.</p>
+<ul>
+<li><a href="https://www.spaceappschallenge.org/2025/find-a-team/ds/" target="_blank" rel="external nofollow noopener noreferrer">!DS</a></li>
+<li><a href="https://www.spaceappschallenge.org/2025/find-a-team/find-your-friend/" target="_blank" rel="external nofollow noopener noreferrer">find your friend</a></li>
+<li><a href="https://www.spaceappschallenge.org/2025/find-a-team/nups/" target="_blank" rel="external nofollow noopener noreferrer">NUPS</a></li>
+<li><a href="https://www.spaceappschallenge.org/2025/find-a-team/jakdang-moui/" target="_blank" rel="external nofollow noopener noreferrer">SPACEWALK</a></li>
+</ul>
+<blockquote>
+<p>전체 18,860팀 중 <a href="https://www.spaceappschallenge.org/2025/awards/global-nominees/" target="_blank" rel="external nofollow noopener noreferrer">1,294팀</a>이 Global Nominees로 선발되었습니다.</p>
+</blockquote>
+<h2 id="2단계-글로벌-결선-진출자-및-우수상"><a href="#2단계-글로벌-결선-진출자-및-우수상" class="headerlink" title="2단계: 글로벌 결선 진출자 및 우수상"></a>2단계: 글로벌 결선 진출자 및 우수상</h2><p>Global Finalists는 전문가 심사위원팀에 의해 투표로 결정되며, 이번 해커톤에선 1,294팀 중 <a href="https://www.spaceappschallenge.org/2025/awards/global-finalists/" target="_blank" rel="external nofollow noopener noreferrer">45개 팀이 Global Finalists</a>로 선발되었습니다.</p>
+<table>
+<thead>
+<tr>
+<th align="left">팀 명 (Team Name)</th>
+<th align="left">지역 (Local Event)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Astro Sweepers</td>
+<td align="left">Universal Event</td>
+</tr>
+<tr>
+<td align="left">A.T.L.A.S.</td>
+<td align="left">Campinas, Brazil</td>
+</tr>
+<tr>
+<td align="left">Bagis</td>
+<td align="left">Manila, Philippines</td>
+</tr>
+<tr>
+<td align="left">BuBu</td>
+<td align="left">Taichung City, Taiwan</td>
+</tr>
+<tr>
+<td align="left">Celesta</td>
+<td align="left">Kanjirappally, India</td>
+</tr>
+<tr>
+<td align="left">Ceylon Xzora</td>
+<td align="left">Colombo, Sri Lanka</td>
+</tr>
+<tr>
+<td align="left">CloudMap</td>
+<td align="left">Universal Event</td>
+</tr>
+<tr>
+<td align="left">CosmicNova</td>
+<td align="left">Kuching, Malaysia</td>
+</tr>
+<tr>
+<td align="left">Earth Tellers 2</td>
+<td align="left">Universal Event</td>
+</tr>
+<tr>
+<td align="left">ECI Centauri</td>
+<td align="left">Bogotá, Colombia</td>
+</tr>
+<tr>
+<td align="left">ExoVisionaries</td>
+<td align="left">Chattogram, Bangladesh</td>
+</tr>
+<tr>
+<td align="left">FyCUS</td>
+<td align="left">Seville, Spain</td>
+</tr>
+<tr>
+<td align="left">Gaia+LEO</td>
+<td align="left">Seattle, WA, United States</td>
+</tr>
+<tr>
+<td align="left">GRIT-X Awa</td>
+<td align="left">Universal Event</td>
+</tr>
+<tr>
+<td align="left">HammerSpaceCraft</td>
+<td align="left">Addis Ababa, Ethiopia</td>
+</tr>
+<tr>
+<td align="left">HerCode Space</td>
+<td align="left">Universal Event</td>
+</tr>
+<tr>
+<td align="left">HUEI-YING-OH</td>
+<td align="left">Kaohsiung City, Taiwan</td>
+</tr>
+<tr>
+<td align="left">iNFINITY MISSION</td>
+<td align="left">Sohag, Egypt</td>
+</tr>
+<tr>
+<td align="left">Luminexus</td>
+<td align="left">Valencia City, Philippines</td>
+</tr>
+<tr>
+<td align="left">Memora-Lab</td>
+<td align="left">Lima, Peru</td>
+</tr>
+<tr>
+<td align="left">Meteor Rizzlers</td>
+<td align="left">Kochi, India</td>
+</tr>
+<tr>
+<td align="left">naiπ</td>
+<td align="left">Recife, Brazil</td>
+</tr>
+<tr>
+<td align="left">NEIL A</td>
+<td align="left">Ahmedabad, India</td>
+</tr>
+<tr>
+<td align="left">NUPS</td>
+<td align="left">Seoul, South Korea</td>
+</tr>
+<tr>
+<td align="left">Pana2Orbit</td>
+<td align="left">Universal Event</td>
+</tr>
+<tr>
+<td align="left">Photonics Odyssey</td>
+<td align="left">Chennai, India</td>
+</tr>
+<tr>
+<td align="left">PureFlow</td>
+<td align="left">Aracaju, Brazil</td>
+</tr>
+<tr>
+<td align="left">QUEÑARIS</td>
+<td align="left">Arequipa, Peru</td>
+</tr>
+<tr>
+<td align="left">Resonant Exoplanets</td>
+<td align="left">Mountain View, CA, USA</td>
+</tr>
+<tr>
+<td align="left">ROBOKIDS-SPACE-A</td>
+<td align="left">Neiva, Colombia</td>
+</tr>
+<tr>
+<td align="left">So-Cal 2025</td>
+<td align="left">Universal Event</td>
+</tr>
+<tr>
+<td align="left">SpaceGenes+</td>
+<td align="left">Berlin, Germany</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.spaceappschallenge.org/2025/find-a-team/jakdang-moui/" target="_blank" rel="external nofollow noopener noreferrer"><strong>SPACEWALK</strong></a></td>
+<td align="left">Seoul, South Korea</td>
+</tr>
+<tr>
+<td align="left">Stellar Minds</td>
+<td align="left">Universal Event</td>
+</tr>
+<tr>
+<td align="left">Stellar Narrators</td>
+<td align="left">Santo André, Brazil</td>
+</tr>
+<tr>
+<td align="left">Team Nomads</td>
+<td align="left">Cumilla, Bangladesh</td>
+</tr>
+<tr>
+<td align="left">TechNova</td>
+<td align="left">Ben Guerir, Morocco</td>
+</tr>
+<tr>
+<td align="left">TengriSpacers</td>
+<td align="left">Bishkek, Kyrgyzstan</td>
+</tr>
+<tr>
+<td align="left">The new Saraquatys</td>
+<td align="left">Campinas, Brazil</td>
+</tr>
+<tr>
+<td align="left">The Newtonians</td>
+<td align="left">Assiut, Egypt</td>
+</tr>
+<tr>
+<td align="left">ThinkSpace</td>
+<td align="left">Universal Event</td>
+</tr>
+<tr>
+<td align="left">Titan</td>
+<td align="left">Uberlândia, Brazil</td>
+</tr>
+<tr>
+<td align="left">Twisters</td>
+<td align="left">Monterrey, Mexico</td>
+</tr>
+<tr>
+<td align="left">Vitruvian 6</td>
+<td align="left">Dhaka, Bangladesh</td>
+</tr>
+<tr>
+<td align="left">Zumorroda-X</td>
+<td align="left">Cairo, Egypt</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>다음 단계로 진출하진 못했지만, 창의성이 돋보이는 프로젝트 23팀은 <a href="https://www.spaceappschallenge.org/2025/awards/honorable-mentions/" target="_blank" rel="external nofollow noopener noreferrer">우수상(Honorable Mention)</a>으로 언급되었습니다.</p>
+</blockquote>
+<h2 id="3단계-글로벌-우승자"><a href="#3단계-글로벌-우승자" class="headerlink" title="3단계: 글로벌 우승자"></a>3단계: 글로벌 우승자</h2><p><a href="https://www.spaceappschallenge.org/2025/awards/global-winners/" target="_blank" rel="external nofollow noopener noreferrer">Global Winners</a>는 NASA와 2025년 우주국 파트너 집행위원회의 심사를 통해 총 10팀이 선발되며, NASA 과학자와 일대일 가상 대화를 나누고 프로젝트를 축하할 기회를 가질 수 있습니다.</p>
+<table>
+<thead>
+<tr>
+<th align="left">부문</th>
+<th align="left">수상팀</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>과학의 최적 활용</strong></td>
+<td align="left"><a href="https://www.spaceappschallenge.org/2025/find-a-team/spacegenes/" target="_blank" rel="external nofollow noopener noreferrer">SpaceGenes+</a></td>
+</tr>
+<tr>
+<td align="left"><strong>데이터 활용 최적</strong></td>
+<td align="left"><a href="https://www.spaceappschallenge.org/2025/find-a-team/resonant-exoplanets/" target="_blank" rel="external nofollow noopener noreferrer">Resonant Exoplanets</a></td>
+</tr>
+<tr>
+<td align="left"><strong>기술 활용 최고</strong></td>
+<td align="left"><a href="https://www.spaceappschallenge.org/2025/find-a-team/twisters-1/" target="_blank" rel="external nofollow noopener noreferrer">Twisters</a></td>
+</tr>
+<tr>
+<td align="left"><strong>은하계 영향</strong></td>
+<td align="left"><a href="https://www.spaceappschallenge.org/2025/find-a-team/astro-sweepers/" target="_blank" rel="external nofollow noopener noreferrer">Astro Sweepers</a></td>
+</tr>
+<tr>
+<td align="left"><strong>최고의 미션 컨셉</strong></td>
+<td align="left"><a href="https://www.spaceappschallenge.org/2025/find-a-team/pureflow/" target="_blank" rel="external nofollow noopener noreferrer">PureFlow</a></td>
+</tr>
+<tr>
+<td align="left"><strong>가장 영감을 주는 인물</strong></td>
+<td align="left"><a href="https://www.spaceappschallenge.org/2025/find-a-team/photonics-odyssey/" target="_blank" rel="external nofollow noopener noreferrer">Photonics Odyssey</a></td>
+</tr>
+<tr>
+<td align="left"><strong>최우수 스토리텔링상</strong></td>
+<td align="left"><a href="https://www.spaceappschallenge.org/2025/find-a-team/hercode-space/" target="_blank" rel="external nofollow noopener noreferrer">HerCode Space</a></td>
+</tr>
+<tr>
+<td align="left"><strong>글로벌 커넥션 상</strong></td>
+<td align="left"><a href="https://www.spaceappschallenge.org/2025/find-a-team/gaialeo/" target="_blank" rel="external nofollow noopener noreferrer">Gaia+LEO</a></td>
+</tr>
+<tr>
+<td align="left"><strong>예술 및 기술상</strong></td>
+<td align="left"><a href="https://www.spaceappschallenge.org/2025/find-a-team/zumorroda-x/" target="_blank" rel="external nofollow noopener noreferrer">Zumorroda-X</a></td>
+</tr>
+<tr>
+<td align="left"><strong>지역 영향력 상</strong></td>
+<td align="left"><a href="https://www.spaceappschallenge.org/2025/find-a-team/quenaris/" target="_blank" rel="external nofollow noopener noreferrer">QUEÑARIS</a></td>
+</tr>
+</tbody></table>
+<h1 id="The-Three-Solar-Rascals"><a href="#The-Three-Solar-Rascals" class="headerlink" title="The Three Solar Rascals"></a>The Three Solar Rascals</h1><p>제가 속한 <a href="https://www.spaceappschallenge.org/2025/find-a-team/jakdang-moui/" target="_blank" rel="external nofollow noopener noreferrer">SPACEWALK팀</a>은 <a href="https://www.spaceappschallenge.org/2025/challenges/stellar-stories-space-weather-through-the-eyes-of-earthlings/" target="_blank" rel="external nofollow noopener noreferrer">Stellar Stories: Space Weather Through the Eyes of Earthlings</a> 챌린지를 선택했습니다. 해당 챌린지는 <strong>우주 날씨가 무엇이고, 그것이 다양한 공동체에 미치는 영향을 어린이들에게 설명하는 챌린지</strong>입니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/nasa-space-app-challenge/thumbnail.png" title="The Three Solar Rascals" data-caption="The Three Solar Rascals" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/nasa-space-app-challenge/thumbnail.png" alt="The Three Solar Rascals"></a><span class="caption">The Three Solar Rascals</span></div>
+
+<p>챌린지 결과물로 태양에서 나오는 Flare, Radiation Storm, CME(Coronal Mass Ejection)를 의인화하여 지구에 미치는 영향을 인터랙티브한 iPad 앱인 “The Three Solar Rascals”를 만들었고, 해커톤 기간 내에 App Store 등록까지 완료하였습니다.</p>
+<blockquote>
+<p><strong>The Three Solar Rascals</strong><br>👉 <a href="https://github.com/chxhyxn/SpacerWalker" target="_blank" rel="external nofollow noopener noreferrer">Github</a><br>👉 <a href="https://apps.apple.com/us/app/id6754827360" target="_blank" rel="external nofollow noopener noreferrer">App Store</a><br>👉 <a href="https://www.figma.com/proto/VHPtVpSCcvzyb6A8DfDbMU/%EC%9A%B0%EC%A3%BC%EC%A0%95%EB%B3%B5-%EC%9E%A5%ED%91%9C?page-id=26%3A634&node-id=152-4208&viewport=-2627%2C-527%2C0.17&t=oOFDs7zjxGFsM4ur-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=152%3A4208" target="_blank" rel="external nofollow noopener noreferrer">Presentation</a><br>👉 <a href="https://www.spaceappschallenge.org/2025/find-a-team/jakdang-moui/?tab=details" target="_blank" rel="external nofollow noopener noreferrer">SPACEWALK Team Profile</a></p>
+</blockquote>
+<p>첫 화면에선 모찌모찌한 HERMES 캐릭터가 등장해 내레이션을 시작합니다. 이 캐릭터는 달 궤도를 도는 국제 우주 정거장인 <a href="https://www.nasa.gov/mission/gateway/" target="_blank" rel="external nofollow noopener noreferrer">Gateway</a>에 탑재된 NASA의 우주 기상 관측 장비인 <a href="https://science.nasa.gov/mission/hermes/" target="_blank" rel="external nofollow noopener noreferrer">HERMES</a>를 의인화한 캐릭터입니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/nasa-space-app-challenge/hermes.png" title="Flare & Radi & CME 캐릭터" data-caption="Flare & Radi & CME 캐릭터" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/nasa-space-app-challenge/hermes.png" alt="Flare & Radi & CME 캐릭터"></a><span class="caption">Flare & Radi & CME 캐릭터</span></div>
+
+<p><strong>태양 폭풍</strong>은 태양이 자전할 때 <strong>적도가 극보다 더 빠르게 회전하는 차등 자전으로 인해</strong> 자기장이 점차 뒤틀리고 불안정해지는 과정에서 <strong>입자, 에너지, 자기장 및 물질이 태양계로 방출되는 현상</strong>입니다. 약 <strong>11년 주기</strong>로 태양 활동이 강해지고 약해지는 과정을 반복하며, 흑점(Sunspot, 태양 표면의 온도가 상대적으로 낮은 부위)의 수는 태양 활동이 활발해질수록 증가합니다.</p>
+<p>위와 같은 과학적 사실을 앱에선 <strong>스와이프 제스처로 지구를 태양 주위로 돌리면, 시간이 흐름에 따라 흑점 수도 늘어나고 태양의 활동이 활발해지도록 표현</strong>했습니다.</p>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="11년 주기로 강해지는 태양풍">
+<source src="/post/nasa-space-app-challenge/sun.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">11년 주기로 강해지는 태양풍</span>
+</div>
+
+<p>태양에서 방출되는 요소는 크게 <strong>플레어(Flare), 방사선 폭풍(Radiation Storm), 코로나 질량 방출(Coronal Mass Ejection)</strong> 세 가지로 나뉘며, Flare는 불꽃 모양, Radi는 입자를 흘리고 다니는 과자 캐릭터, CME는 가스를 내뿜는 방귀쟁이 캐릭터 등 <strong>각 요소의 특징을 살려 캐릭터화</strong>했습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/nasa-space-app-challenge/characters.png" title="태양에서 지구로 날아오는 세 친구들" data-caption="태양에서 지구로 날아오는 세 친구들" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/nasa-space-app-challenge/characters.png" alt="태양에서 지구로 날아오는 세 친구들"></a><span class="caption">태양에서 지구로 날아오는 세 친구들</span></div>
+
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>Flare</th>
+<th>Radi</th>
+<th>CME</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>정식 명칭</td>
+<td>Solar Flare</td>
+<td>Radiation Storm</td>
+<td>Coronal Mass Ejection</td>
+</tr>
+<tr>
+<td>주요 구성</td>
+<td>전자기파</td>
+<td>전자 &amp; 양성자</td>
+<td>플라즈마 &amp; 자기장</td>
+</tr>
+<tr>
+<td>지구 도달 시간</td>
+<td>약 8분</td>
+<td>약 30분 이내</td>
+<td>약 15시간 ~ 수일</td>
+</tr>
+<tr>
+<td>대표 영향</td>
+<td>무선 통신 장애</td>
+<td>위성 회로 손상</td>
+<td>대규모 정전 가능</td>
+</tr>
+</tbody></table>
+<p>가장 빠른 Flare는 <strong>iPad를 지구 방향으로 기울이면</strong> 미끄러지도록, 입자를 흘리고 다니는 과자 캐릭터 Radi는 <strong>iPad를 흔들면</strong> 과자 가루를 흘리며 지나가도록, 그리고 가스 형태의 CME는 <strong>iPad를 후 불면</strong> 빙글빙글 돌며 날아가도록 구현하여 아이가 동화를 즐길 수 있도록 인터랙션을 넣었습니다. 또한 <strong>캐릭터들이 지구에 미치는 영향</strong>도 알 수 있도록 스토리를 구성하였습니다.</p>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="iPad를 기울이면 Flare가 미끄러집니다.">
+<source src="/post/nasa-space-app-challenge/flare.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">iPad를 기울이면 Flare가 미끄러집니다.</span>
+</div>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="iPad를 흔들면 Radi가 쿠키(입자)를 흘리며 지나갑니다.">
+<source src="/post/nasa-space-app-challenge/radi.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">iPad를 흔들면 Radi가 쿠키(입자)를 흘리며 지나갑니다.</span>
+</div>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="iPad를 후! 불면 CME가 빙글빙글 날아갑니다.">
+<source src="/post/nasa-space-app-challenge/cme.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">iPad를 후! 불면 CME가 빙글빙글 날아갑니다.</span>
+</div>
+
+<p>세 친구들이 지구에 나쁜 영향만 주는 것 같지만, 우리 은하계에 <a href="https://science.nasa.gov/heliophysics/focus-areas/heliosphere/" target="_blank" rel="external nofollow noopener noreferrer">Heliosphere</a>를 형성하여 <strong>외계에서 오는 우주 방사선과 자기장으로부터 행성을 보호하는 역할</strong>도 하고, 아름다운 <strong>오로라도 이 친구들 때문에 만들어진 것</strong>을 보여주며 동화가 마무리 됩니다. 오로라 장면은 Video 프레임을 잘라서 화면을 드래그함에 따라 각 프레임이 재생되도록 구현하였습니다.</p>
+<div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="드래그를 하면 Aurora가 나타납니다.">
+<source src="/post/nasa-space-app-challenge/aurora.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">드래그를 하면 Aurora가 나타납니다.</span>
+</div>
+
+<h2 id="시연"><a href="#시연" class="headerlink" title="시연"></a>시연</h2><p><strong>아이가 우주 날씨가 지구에 미치는 영향을 지루하지 않고 즐겁게 배울 수 있도록 다양한 인터랙션과 함께 구현</strong>하였습니다.</p>
+<iframe width="100%" height="422px" src="https://youtube.com/embed/4Pa26MBTxoo" title="The Three Solar Rascals demo video" frameborder="0" allowfullscreen></iframe>
+
+<p>동화에 사용된 과학적 사실들은 NASA에서 제공하는 자료들을 참고하여 만들어졌습니다.</p>
+<ul>
+<li><a href="https://science.nasa.gov/mission/hermes/" target="_blank" rel="external nofollow noopener noreferrer">HERMES - NASA Science</a></li>
+<li><a href="https://science.nasa.gov/sun/solar-storms-and-flares/" target="_blank" rel="external nofollow noopener noreferrer">Solar Storms and Flares - NASA Science</a></li>
+<li><a href="https://science.nasa.gov/sun/sunspots/" target="_blank" rel="external nofollow noopener noreferrer">Sunspots - NASA Science</a></li>
+<li><a href="https://science.nasa.gov/heliophysics/focus-areas/heliosphere/" target="_blank" rel="external nofollow noopener noreferrer">Heliosphere - NASA Science</a></li>
+<li><a href="https://www.weather.gov/media/nws/Results-of-the-First-National-Survey-of-User-Needs-for-Space-Weather-2024.pdf" target="_blank" rel="external nofollow noopener noreferrer">Results of the First National Survey of User Needs for Space Weather (NASA resource)</a></li>
+<li><a href="https://science.nasa.gov/heliophysics/focus-areas/space-weather/" target="_blank" rel="external nofollow noopener noreferrer">Space Weather - NASA Science</a></li>
+<li><a href="https://www.youtube.com/watch?v=oOXVZo7KikE" target="_blank" rel="external nofollow noopener noreferrer">NASA | X-Class: A Guide to Solar Flares</a></li>
+<li><a href="https://science.nasa.gov/learn/heat/resource/how-does-the-suns-magnetosphere-cause-aurora-by-rachel-geiter/" target="_blank" rel="external nofollow noopener noreferrer">How Does the Sun’s Magnetosphere Cause Aurora by Rachel Geiter - NASA Science</a></li>
+<li><a href="https://www.nasa.gov/solar-cycle-progression-and-forecast/" target="_blank" rel="external nofollow noopener noreferrer">NASA, NOAA: Sun Reaches Maximum Phase in 11-Year Solar Cycle</a></li>
+<li><a href="https://www.nasa.gov/solar-cycle-progression-and-forecast/" target="_blank" rel="external nofollow noopener noreferrer">Solar Cycle Progression and Forecast - NASA Science</a></li>
+<li><a href="https://www.swpc.noaa.gov/products/solar-cycle-progression" target="_blank" rel="external nofollow noopener noreferrer">Solar Cycle Progression - NOAA Scales</a></li>
+<li><a href="https://www.swpc.noaa.gov/content/aurora-tutorial" target="_blank" rel="external nofollow noopener noreferrer">Aurora Tutorial - NOAA Scales</a></li>
+</ul>
+<blockquote>
+<p>이번 해커톤에선 AI를 적극 활용하는 것이 권장되어, TTS(Text To Speech) 음성이나 이미지 에셋 제작에 생성형 AI를 활용하였습니다.</p>
+</blockquote>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><div class="nero-grid">  <div class="flex-2"><div class="figure " style><a class="fancybox" href="/post/nasa-space-app-challenge/spacewalk.png" title="SPACEWALK 팀" data-caption="SPACEWALK 팀" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/nasa-space-app-challenge/spacewalk.png" alt="SPACEWALK 팀"></a><span class="caption">SPACEWALK 팀</span></div></div>
+  <div class="flex-3"><p><a href="https://www.spaceappschallenge.org/2025/find-a-team/jakdang-moui/?tab=details" target="_blank" rel="external nofollow noopener noreferrer">SPACEWALK팀</a>은 <strong>총 18,860개 팀 중 45개 팀에 선정되며 Global Finalist</strong>에 이름을 올렸습니다. 비록 Global Winner로 이어지지는 못했지만, Apple Developer Academy 4기 러너들과 함께 도전하며 값진 경험과 소중한 추억을 쌓을 수 있어 더욱 뜻깊은 시간이었습니다.</p>
+<p><strong>The Three Solar Rascals</strong><br>👉 <a href="https://github.com/chxhyxn/SpacerWalker" target="_blank" rel="external nofollow noopener noreferrer">Github</a><br>👉 <a href="https://apps.apple.com/us/app/id6754827360" target="_blank" rel="external nofollow noopener noreferrer">App Store</a><br>👉 <a href="https://www.figma.com/proto/VHPtVpSCcvzyb6A8DfDbMU/%EC%9A%B0%EC%A3%BC%EC%A0%95%EB%B3%B5-%EC%9E%A5%ED%91%9C?page-id=26%3A634&node-id=152-4208&viewport=-2627%2C-527%2C0.17&t=oOFDs7zjxGFsM4ur-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=152%3A4208" target="_blank" rel="external nofollow noopener noreferrer">Presentation</a><br>👉 <a href="https://www.spaceappschallenge.org/2025/find-a-team/jakdang-moui/?tab=details" target="_blank" rel="external nofollow noopener noreferrer">SPACEWALK Team Profile</a></p>
+</div></div>
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">태그</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/tags/Apple-Developer-Academy-4th/" rel="tag">Apple Developer Academy 4th</a> <a class="tag tag--primary tag--small t-link" href="/tags/Global-Finalist/" rel="tag">Global Finalist</a> <a class="tag tag--primary tag--small t-link" href="/tags/NASA-Space-App-Challenge/" rel="tag">NASA Space App Challenge</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/ada-4th-tadak/" data-tooltip="타닥 - 나만의 백색소음 플레이어" aria-label="다음: 타닥 - 나만의 백색소음 플레이어">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/nasa-space-app-challenge/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/nasa-space-app-challenge/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2026 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/ada-4th-tadak/" data-tooltip="타닥 - 나만의 백색소음 플레이어" aria-label="다음: 타닥 - 나만의 백색소음 플레이어">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/nasa-space-app-challenge/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/nasa-space-app-challenge/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/nasa-space-app-challenge/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/nasa-space-app-challenge/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-zopekdehkbpzh1m7gcq1i7jdorrmcp2zgbp29d1g1fwauumfdqs4bpgagooz.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

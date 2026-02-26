@@ -20,7 +20,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"맞춤형 백색소음 플레이어 타닥을 소개합니다.👉 English Version\n\n타닥 - 나만의 백색소음 플레이어\n취향과 목적에 맞게 소리를 쌓아 나만의 공간 음향을 디자인해 보세요.👉 App Store\n\n타닥은 Apple Developer Academy 4기 팀원들과 3개월간 진행한 iOS 프로젝트로, 나에게 맞는 소리들을 여러 레이어로 쌓고 공간 속에 배치하여 자신만의 사운드 환경을 만들고 즐기는 앱입니다.\n유튜브에서 백색소음 검색 시 나오는 영상들\n\n많은 사람들이 유튜브에서 백색소음 영상을 찾습니다. 타닥은 유튜브에서 인기 있는 백색소음 영상들의 댓글을 분석하여 백색소음을 듣는 사용자의 니즈를 파악하는 것으로 시작되었습니다.\nPhysical Audio Spatialization Engine - 출처\n\n프랙탈 차원프랙탈 차원(Fractal Dimension)은 구조가 얼마나 불규칙적이고 자기유사적인지를 수치로 나타내는 이론입니다. 이를 이용하여 자연에 있는 소리들을 분석해 보면, 완전한 랜덤에 가깝지도 않고, 단순 주기 신호에도 가깝지 않은 적당히 복잡한 중간 영역에 위치해 있습니다.\nNoise Color\n\n이와 같이 어떤 주파수 대역이 강조되었는지에 따라 구분되는 유형을 노이즈 컬러(Noise Color)라고 부르며, 어떤 주파수 대역이 더 강하게 포함되는지에 따라 청감상의 질감과 피로도, 집중도에 영향을 줍니다.\n\n\n\nNoise Color\n특성\n청감\n\n\n\nViolet\n주파수 증가시 +6dB/oct\n매우 날카로움\n\n\nBlue\n주파수 증가시 +3dB/oct\n밝고 선명함\n\n\nWhite\n전 대역 동일 에너지\n균등\n\n\nPink\n주파수 증가시 -3dB/oct\n부드럽고 자연스러움\n\n\nBrown\n주파수 증가시 -6dB/oct\n저음 강조, 묵직함\n\n\n사람마다 편안함을 느끼는 주파수 대역은 서로 다릅니다. 같은 빗소리라도 누군가에게는 안정감을 주지만, 다른 누군가에게는 거슬리는 고주파로 느껴질 수 있습니다.\n타닥은 이러한 개인차를 고려하여, 주파수 특성 자체를 조정할 수 있는 이퀄라이저 구조를 설계했습니다.\n이퀄라이저기존의 일반적인 이퀄라이저는 특정 대역(저음·중음·고음)을 증폭하거나 감쇠하는 방식으로 동작합니다. 반면 타닥은 음원을 짧은 구간으로 나눈 뒤 주파수 영역으로 변환하여, 노이즈 컬러에 따른 스펙트럼 특성을 직접 재구성하는 방식으로 설계하였습니다.\n    \n\n\nYour browser doesn't support HTML5 Video :/\n이퀄라이저 (🎧)\n\n\n  이 과정은 iOS의 Accelerate(vDSP) 프레임워크를 활용한 FFT(Fast Fourier Transform) 기반 처리로 구현되었으며, 이를 통해 단순한 “톤 조절”이 아니라, 소리의 질감 자체를 재설계할 수 있습니다.\n이퀄라이징 이후에는 주파수 조정 과정에서 발생할 수 있는 음량 왜곡이나 피크 클리핑을 방지하기 위해 RMS 기반 게인 보정과 소프트 클리핑을 적용하였습니다.\n성능 측면에서도 대용량 오디오 파일을 부드럽게 처리할 수 있도록 벡터 연산(vDSP)을 활용해 윈도잉, 스케일링, 누적 합산 과정을 SIMD 기반으로 처리했고, 반복적인 메모리 할당을 제거하여 연산 오버헤드 최적화를 진행했습니다.\n그 결과, 실시간에 가까운 처리 속도를 확보할 수 있었습니다.\n\n\n시연\n\n마무리타닥은 Apple Developer Academy 4기의 마지막 프로젝트로 우여곡절이 많았지만, 많은 것들을 배우고 완성도 높은 결과물을 만들 수 있었습니다. 함께 고생한 샐리, 아일라, 리나, 파란, 제제 그리고 물심양면으로 도와주신 제이슨, 도라, 섭에게 감사를 전합니다. 🫶🏻\n\n타닥 - 나만의 백색소음 플레이어👉 App Store👉 Youtube👉 Project Wiki\n\n","dateCreated":"2026-02-23T09:49:00+09:00","dateModified":"2026-02-25T03:50:02+09:00","datePublished":"2026-02-23T09:49:00+09:00","description":"맞춤형 백색소음 플레이어 타닥을 소개합니다.👉 English Version","headline":"타닥 - 나만의 백색소음 플레이어","image":["/post/ada-4th-tadak/thumbnail.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/ada-4th-tadak/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/ada-4th-tadak/","keywords":"Apple Developer Academy 4th, 타닥, iOS, Spatial Audio","thumbnailUrl":"/post/ada-4th-tadak/thumbnail.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"맞춤형 백색소음 플레이어 타닥을 소개합니다.👉 English Version\n\n타닥 - 나만의 백색소음 플레이어\n취향과 목적에 맞게 소리를 쌓아 나만의 공간 음향을 디자인해 보세요.👉 App Store\n\n타닥은 Apple Developer Academy 4기 팀원들과 3개월간 진행한 iOS 프로젝트로, 나에게 맞는 소리들을 여러 레이어로 쌓고 공간 속에 배치하여 자신만의 사운드 환경을 만들고 즐기는 앱입니다.\n유튜브에서 백색소음 검색 시 나오는 영상들\n\n많은 사람들이 유튜브에서 백색소음 영상을 찾습니다. 타닥은 유튜브에서 인기 있는 백색소음 영상들의 댓글을 분석하여 백색소음을 듣는 사용자의 니즈를 파악하는 것으로 시작되었습니다.\nPhysical Audio Spatialization Engine - 출처\n\n프랙탈 차원프랙탈 차원(Fractal Dimension)은 구조가 얼마나 불규칙적이고 자기유사적인지를 수치로 나타내는 이론입니다. 이를 이용하여 자연에 있는 소리들을 분석해 보면, 완전한 랜덤에 가깝지도 않고, 단순 주기 신호에도 가깝지 않은 적당히 복잡한 중간 영역에 위치해 있습니다.\nNoise Color\n\n이와 같이 어떤 주파수 대역이 강조되었는지에 따라 구분되는 유형을 노이즈 컬러(Noise Color)라고 부르며, 어떤 주파수 대역이 더 강하게 포함되는지에 따라 청감상의 질감과 피로도, 집중도에 영향을 줍니다.\n\n\n\nNoise Color\n특성\n청감\n\n\n\nViolet\n주파수 증가시 +6dB/oct\n매우 날카로움\n\n\nBlue\n주파수 증가시 +3dB/oct\n밝고 선명함\n\n\nWhite\n전 대역 동일 에너지\n균등\n\n\nPink\n주파수 증가시 -3dB/oct\n부드럽고 자연스러움\n\n\nBrown\n주파수 증가시 -6dB/oct\n저음 강조, 묵직함\n\n\n사람마다 편안함을 느끼는 주파수 대역은 서로 다릅니다. 같은 빗소리라도 누군가에게는 안정감을 주지만, 다른 누군가에게는 거슬리는 고주파로 느껴질 수 있습니다.\n타닥은 이러한 개인차를 고려하여, 주파수 특성 자체를 조정할 수 있는 이퀄라이저 구조를 설계했습니다.\n이퀄라이저기존의 일반적인 이퀄라이저는 특정 대역(저음·중음·고음)을 증폭하거나 감쇠하는 방식으로 동작합니다. 반면 타닥은 음원을 짧은 구간으로 나눈 뒤 주파수 영역으로 변환하여, 노이즈 컬러에 따른 스펙트럼 특성을 직접 재구성하는 방식으로 설계하였습니다.\n    \n\n\nYour browser doesn't support HTML5 Video :/\n이퀄라이저 (🎧)\n\n\n  이 과정은 iOS의 Accelerate(vDSP) 프레임워크를 활용한 FFT(Fast Fourier Transform) 기반 처리로 구현되었으며, 이를 통해 단순한 “톤 조절”이 아니라, 소리의 질감 자체를 재설계할 수 있습니다.\n이퀄라이징 이후에는 주파수 조정 과정에서 발생할 수 있는 음량 왜곡이나 피크 클리핑을 방지하기 위해 RMS 기반 게인 보정과 소프트 클리핑을 적용하였습니다.\n성능 측면에서도 대용량 오디오 파일을 부드럽게 처리할 수 있도록 벡터 연산(vDSP)을 활용해 윈도잉, 스케일링, 누적 합산 과정을 SIMD 기반으로 처리했고, 반복적인 메모리 할당을 제거하여 연산 오버헤드 최적화를 진행했습니다.\n그 결과, 실시간에 가까운 처리 속도를 확보할 수 있었습니다.\n\n\n시연\n\n마치며타닥은 Apple Developer Academy 4기의 마지막 프로젝트로 우여곡절이 많았지만, 많은 것들을 배우고 완성도 높은 결과물을 만들 수 있었습니다. 함께 고생한 샐리, 아일라, 리나, 파란, 제제 그리고 물심양면으로 도와주신 제이슨, 도라, 섭에게 감사를 전합니다. 🫶🏻\n\n타닥 - 나만의 백색소음 플레이어👉 App Store👉 Youtube👉 Project Wiki\n\n","dateCreated":"2026-02-23T09:49:00+09:00","dateModified":"2026-02-27T00:49:38+09:00","datePublished":"2026-02-23T09:49:00+09:00","description":"맞춤형 백색소음 플레이어 타닥을 소개합니다.👉 English Version","headline":"타닥 - 나만의 백색소음 플레이어","image":["/post/ada-4th-tadak/thumbnail.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/ada-4th-tadak/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/ada-4th-tadak/","keywords":"타닥, Apple Developer Academy 4th, iOS, Spatial Audio","thumbnailUrl":"/post/ada-4th-tadak/thumbnail.png"}</script>
     <meta name="description" content="맞춤형 백색소음 플레이어 타닥을 소개합니다.👉 English Version">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="타닥 - 나만의 백색소음 플레이어">
@@ -30,10 +30,10 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://blog.devstory.co.kr/post/ada-4th-tadak/thumbnail.png">
 <meta property="article:published_time" content="2026-02-23T00:49:00.000Z">
-<meta property="article:modified_time" content="2026-02-24T18:50:02.574Z">
+<meta property="article:modified_time" content="2026-02-26T15:49:38.066Z">
 <meta property="article:author" content="DevStory">
-<meta property="article:tag" content="Apple Developer Academy 4th">
 <meta property="article:tag" content="타닥">
+<meta property="article:tag" content="Apple Developer Academy 4th">
 <meta property="article:tag" content="iOS">
 <meta property="article:tag" content="Spatial Audio">
 <meta name="twitter:card" content="summary">
@@ -44,7 +44,7 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-polahoe9q4ftkjbyyt3vntcmn4fmygwd78iimm9z3vg8njotz20cyqsxuryv.min.css">
+<link rel="stylesheet" href="/assets/css/style-km3ppccb68fyxtbrn4miqqjht5aox4vpmpgkiydtymknyxsgemcr5wotechj.min.css">
 
     <!--STYLES END-->
 
@@ -257,7 +257,7 @@
                 <strong>목차
                 </strong>
             </blockquote>
-            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#타닥-나만의-백색소음-플레이어"><span class="nero-toc-text">타닥 - 나만의 백색소음 플레이어</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#디자인"><span class="nero-toc-text">디자인</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#맞춤형-공간-음향"><span class="nero-toc-text">맞춤형 공간 음향</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#프랙탈-차원"><span class="nero-toc-text">프랙탈 차원</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#노이즈-컬러"><span class="nero-toc-text">노이즈 컬러</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#이퀄라이저"><span class="nero-toc-text">이퀄라이저</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#시연"><span class="nero-toc-text">시연</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마무리"><span class="nero-toc-text">마무리</span></a></li></ol>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#타닥-나만의-백색소음-플레이어"><span class="nero-toc-text">타닥 - 나만의 백색소음 플레이어</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#디자인"><span class="nero-toc-text">디자인</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#맞춤형-공간-음향"><span class="nero-toc-text">맞춤형 공간 음향</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#프랙탈-차원"><span class="nero-toc-text">프랙탈 차원</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#노이즈-컬러"><span class="nero-toc-text">노이즈 컬러</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#이퀄라이저"><span class="nero-toc-text">이퀄라이저</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#시연"><span class="nero-toc-text">시연</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마치며"><span class="nero-toc-text">마치며</span></a></li></ol>
             <hr class="nero-toc-line">
             <style>
                 .nero-toc-line {
@@ -418,7 +418,7 @@ a-short-history-of-fractal-dimension/>출처</a>"></a><span class="caption">Frac
 
 <h1 id="시연"><a href="#시연" class="headerlink" title="시연"></a>시연</h1><iframe width="100%" height="422px" src="https://youtube.com/embed/ZA_64BGj3Ps" title="타닥 시연 영상" frameborder="0" allowfullscreen></iframe>
 
-<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>타닥은 Apple Developer Academy 4기의 마지막 프로젝트로 우여곡절이 많았지만, 많은 것들을 배우고 완성도 높은 결과물을 만들 수 있었습니다. 함께 고생한 샐리, 아일라, 리나, 파란, 제제 그리고 물심양면으로 도와주신 제이슨, 도라, 섭에게 감사를 전합니다. 🫶🏻</p>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>타닥은 Apple Developer Academy 4기의 마지막 프로젝트로 우여곡절이 많았지만, 많은 것들을 배우고 완성도 높은 결과물을 만들 수 있었습니다. 함께 고생한 샐리, 아일라, 리나, 파란, 제제 그리고 물심양면으로 도와주신 제이슨, 도라, 섭에게 감사를 전합니다. 🫶🏻</p>
 <blockquote>
 <p>타닥 - 나만의 백색소음 플레이어<br>👉 <a href="https://apps.apple.com/kr/app/id6754827360" target="_blank" rel="external nofollow noopener noreferrer">App Store</a><br>👉 <a href="https://m.youtube.com/@LPNoise-TaDak" target="_blank" rel="external nofollow noopener noreferrer">Youtube</a><br>👉 <a href="https://jup.notion.site/25aab240aa18802bbbe2d22788b5d68a?v=2b4ab240aa188006a923000c5b7aa9f6" target="_blank" rel="external nofollow noopener noreferrer">Project Wiki</a></p>
 </blockquote>
@@ -442,8 +442,9 @@ a-short-history-of-fractal-dimension/>출처</a>"></a><span class="caption">Frac
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
-                        
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/nasa-space-app-challenge/" data-tooltip="2025 NASA Space App Challenge" aria-label="이전: 2025 NASA Space App Challenge">
+                    
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
@@ -521,8 +522,9 @@ a-short-history-of-fractal-dimension/>출처</a>"></a><span class="caption">Frac
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
-                        
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/nasa-space-app-challenge/" data-tooltip="2025 NASA Space App Challenge" aria-label="이전: 2025 NASA Space App Challenge">
+                    
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
@@ -651,7 +653,7 @@ a-short-history-of-fractal-dimension/>출처</a>"></a><span class="caption">Frac
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-8yk2rkph1z4hubjk8sibxkifzebd5jeskqt6ptboxrycfm6xsfmec1y1rwuq.min.js"></script>
+<script src="/assets/js/script-zopekdehkbpzh1m7gcq1i7jdorrmcp2zgbp29d1g1fwauumfdqs4bpgagooz.min.js"></script>
 
 <!--SCRIPTS END-->
 
