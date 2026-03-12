@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>MLC-LLM으로 iOS에서 로컬 LLM 실행하기 - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/post/mlc-llm-ios/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,딥러닝,모바일,Android,iOS,플루터,플러터,고양이,nero-angela,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"MLC-LLM을 활용하여 iOS 기기에서 로컬 LLM을 실행하는 방법을 공유합니다.👉 English Version\n\n\n\nMLC-LLMMLC-LLM은 기계 학습 모델을 모든 하드웨어 장치(모바일, 브라우저, 데스크톱 등)에서 범용적으로 배포하고 고성능으로 실행할 수 있도록 돕는 솔루션입니다. 특히 iOS 환경에서는 Metal API를 활용하여 하드웨어 가속을 지원하므로, 상대적으로 사양이 낮은 모바일 기기에서도 LLM을 효율적으로 돌릴 수 있습니다.\nXcode에서 My Mac (Designed for iPad) 설정\n\n서명 및 기능(Signing &amp; Capabilities): iOS 앱은 보안 상 반드시 서명이 필요합니다. 본인의 Apple ID 팀을 선택하고, Bundle Identifier를 파일이 겹치지 않도록 유니크한 값으로 수정해 줍니다.\n MLCChat 기본 모델 목록\n\n\n\n\n모델 명 (Model)\n주요 특징 (Characteristics)\n\n\n\nLlama-3.2-3B\nMeta 개발, 최신 고성능 소형 모델, 4비트 양자화, 2K Context\n\n\nGemma-2-2B\nGoogle 개발, 효율적인 아키텍처, 4비트 양자화\n\n\nPhi-3.5-mini\nMicrosoft 개발, 강력한 추론 성능, 4비트 양자화\n\n\nQwen3-0.6B\nAlibaba 개발, 극도로 가벼운 초경량 모델, FP16 정밀도\n\n\nQwen3-1.7B\nAlibaba 개발, 밸런스 잡힌 성능, 4비트 양자화, 2K Context\n\n\n다음은 구글의 Gemma2 2B 모델을 iOS에서 직접 구동한 시연 영상입니다.\nGemma2 2B 모델 데모\n\n\nYour browser doesn't support HTML5 Video :/\nGemma2 2B q4f16 모델 iOS 실구동 데모 영상\n\n\nGoogle에서 공개한 Gemma2 2B 모델은 비교적 가벼운 20억 개의 파라미터를 가졌음에도 불구하고, 최적화된 아키텍처 덕분에 동급 대비 매우 뛰어난 성능을 보여주는 모델입니다. \n특히 이번 데모에서 사용한 q4f16_1 양자화 방식은 모델의 가중치를 4비트(q4)로 압축하여 용량을 줄이되, 연산 정밀도는 16비트(f16)로 유지하여 성능 하락을 최소화한 방식입니다. 이러한 최적화 덕분에 모바일 기기의 제한된 RAM 환경에서도 원활한 구동이 가능하며, 실제 실행 시 약 2.4GB 정도의 메모리를 점유하며 안정적으로 동작하는 것을 확인할 수 있습니다.\nHugging Face Access Tokens 설정 이동\nCreate new token 버튼을 클릭합니다. Read 권한 선택 및 이름 입력\n생성된 토큰을 복사하여 터미널에 입력하면 로그인이 완료됩니다. Hugging Face 모델 다운로드 완료\n\n\n명령어 실행시 모델 사용 라이선스에 동의를 하지 않은 경우, 아래와 같이 403 에러가 발생할 수 있습니다.\n1huggingface_hub.errors.GatedRepoError: 403 Client Error.\n\ngemma-3-1b-it에 접속해보면 아래와 같이 권한을 수락해야 한다고 나옵니다.\n라이선스 동의 진행\n\nHugging Face Gated Repos에서 Request Status를 보시면 Accepted 상태로 표시되는 것을 확인할 수 있습니다. 이후 위 명령어를 다시 실행하여 다운로드를 진행하시면 됩니다.\n모델 가중치 변환 및 양자화 과정\n\n\n모델 설정 생성모델 가중치만으로는 대화가 불가능합니다. 각 LLM마다 ‘어떻게 질문하고 답변해야 하는지’에 대한 약속인 대화 템플릿(Conversation Template)이 다르기 때문입니다. 이 단계에서는 변환된 가중치 폴더 안에 mlc-chat-config.json 등 필요한 설정 파일들을 생성합니다. 특히 Gemma 3 모델의 지시 사항(Instruction)을 정확히 따르기 위해 --conv-template gemma3_instruction 옵션을 지정해야 합니다.\n1234python3 -m mlc_llm gen_config ./dist/models/gemma-3-1b-it \\    --quantization q4f16_1 \\    --conv-template gemma3_instruction \\    -o ./dist/models/gemma-3-1b-it-q4f16_1-MLC/\n\niPhone용 모델 컴파일 완료\n\n\n\n패키징 및 최종 실행마지막으로 mlc-package-config.json에 새로 빌드한 모델 정보를 추가해야 합니다.\n12345678910111213141516&#123;  \"device\": \"iphone\",  \"model_list\": [    ..., // 기존 모델들    &#123;      \"model\": \"./dist/models/gemma-3-1b-it-q4f16_1-MLC\",      \"model_id\": \"gemma-3-1b-it-q4f16_1\",      \"model_lib\": \"gemma3_text_q4f16_1\",      \"estimated_vram_bytes\": 1500000000,      \"bundle_weight\": true    &#125;  ],  \"model_lib_path-for-prepare-libs\": &#123;    \"gemma3_text_q4f16_1\": \"./dist/models/gemma-3-1b-it-q4f16_1-iphone.tar\"  &#125;&#125;\n\n이후 다시 패키징 명령어를 실행해 주세요.\n1python3 -m mlc_llm package\n\n패키징 후 Xcode에서 앱을 실행하면 gemma-3-1b-it-q4f16_1 모델이 추가된 것을 확인할 수 있습니다.\nGemma 3 1B q4f16 모델 약 1.14GB의 메모리 점유\n\n\n마치며MLC LLM을 활용하면 고성능 LLM을 iOS 기기에 직접 이식하여 개인 정보 보호와 오프라인 실행이라는 장점을 모두 챙길 수 있습니다. 특히 최신 모델인 Gemma 3 시리즈도 위와 같은 워크플로우를 통해 손쉽게 올릴 수 있다는 점이 매력적입니다.\n다만 한 가지 아쉬운 점은, 위에서 시연한 소형 모델(SLM)들은 On-Device 환경에서 JSON 포맷과 같이 구조화된 응답을 생성하는 것을 다소 어려워하는 모습을 보였습니다. 복잡한 시스템 프롬프트가 필요한 기능이나 데이터 추출 업무에 활용하기 위해서는 프롬프트 엔지니어링이나 추가적인 파인튜닝 등의 보완 작업이 수반되어야 할 것 같습니다.\n앞으로 모델 전용 파이프라인 연결과 프로젝트 최적화 작업이 병행된다면, 더욱 실용적인 On-Device AI 서비스를 구축할 수 있을 것으로 기대됩니다.\n","dateCreated":"2026-03-12T15:30:00+09:00","dateModified":"2026-03-12T17:20:09+09:00","datePublished":"2026-03-12T15:30:00+09:00","description":"MLC-LLM을 활용하여 iOS 기기에서 로컬 LLM을 실행하는 방법을 공유합니다.👉 English Version","headline":"MLC-LLM으로 iOS에서 로컬 LLM 실행하기","image":["/post/mlc-llm-ios/thumbnail.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/post/mlc-llm-ios/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/post/mlc-llm-ios/","keywords":"MLC-LLM, On-Device AI","thumbnailUrl":"/post/mlc-llm-ios/thumbnail.png"}</script>
+    <meta name="description" content="MLC-LLM을 활용하여 iOS 기기에서 로컬 LLM을 실행하는 방법을 공유합니다.👉 English Version">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="MLC-LLM으로 iOS에서 로컬 LLM 실행하기">
+<meta property="og:url" content="https://blog.devstory.co.kr/post/mlc-llm-ios/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="MLC-LLM을 활용하여 iOS 기기에서 로컬 LLM을 실행하는 방법을 공유합니다.👉 English Version">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://blog.devstory.co.kr/post/mlc-llm-ios/thumbnail.png">
+<meta property="article:published_time" content="2026-03-12T06:30:00.000Z">
+<meta property="article:modified_time" content="2026-03-12T08:20:09.313Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="MLC-LLM">
+<meta property="article:tag" content="On-Device AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.devstory.co.kr/post/mlc-llm-ios/thumbnail.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-km3ppccb68fyxtbrn4miqqjht5aox4vpmpgkiydtymknyxsgemcr5wotechj.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="링크 열기: /#about">
+        
+        
+            <img class="header-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about" aria-label="저자에 대해 더 알아보기">
+                    <img class="sidebar-profile-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/" title="홈">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">홈</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="카테고리">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="태그">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="아카이브">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="깃허브">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">깃허브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="프로젝트">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">프로젝트</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="강의">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">강의</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            MLC-LLM으로 iOS에서 로컬 LLM 실행하기
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2026-03-12T15:30:00+09:00">
+	
+		    2026/03/12
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Tech/">Tech</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>목차
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#MLC-LLM"><span class="nero-toc-text">MLC-LLM</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#초기-세팅"><span class="nero-toc-text">초기 세팅</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#빌드-및-실행"><span class="nero-toc-text">빌드 및 실행</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#기본-모델"><span class="nero-toc-text">기본 모델</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Gemma2-2B-모델-데모"><span class="nero-toc-text">Gemma2 2B 모델 데모</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#커스텀-모델-iOS-빌드하기"><span class="nero-toc-text">커스텀 모델 iOS 빌드하기</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#모델-다운로드"><span class="nero-toc-text">모델 다운로드</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#모델-가중치-변환-및-양자화"><span class="nero-toc-text">모델 가중치 변환 및 양자화</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#모델-설정-생성"><span class="nero-toc-text">모델 설정 생성</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#컴파일"><span class="nero-toc-text">컴파일</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#패키징-및-최종-실행"><span class="nero-toc-text">패키징 및 최종 실행</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Gemma-3-1B-모델-실행-데모"><span class="nero-toc-text">Gemma 3 1B 모델 실행 데모</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마치며"><span class="nero-toc-text">마치며</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p><strong>MLC-LLM</strong>을 활용하여 iOS 기기에서 로컬 LLM을 실행하는 방법을 공유합니다.<br><a href="/en/post/mlc-llm-ios/">👉 English Version</a><br></p>
+<a id="more"></a>
+
+<hr>
+<h1 id="MLC-LLM"><a href="#MLC-LLM" class="headerlink" title="MLC-LLM"></a>MLC-LLM</h1><p><strong><a href="https://mlc.ai/mlc-llm/" target="_blank" rel="external nofollow noopener noreferrer">MLC-LLM</a></strong>은 기계 학습 모델을 모든 하드웨어 장치(모바일, 브라우저, 데스크톱 등)에서 범용적으로 배포하고 고성능으로 실행할 수 있도록 돕는 솔루션입니다. 특히 iOS 환경에서는 Metal API를 활용하여 하드웨어 가속을 지원하므로, 상대적으로 사양이 낮은 모바일 기기에서도 LLM을 효율적으로 돌릴 수 있습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/mlc-llm-ios/mlc-llm.png" title="MLC-LLM (<a href=https://llm.mlc.ai/>출처</a>)" data-caption="MLC-LLM (<a href=https://llm.mlc.ai/>출처</a>)" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/mlc-llm.png" alt="MLC-LLM (<a href=https://llm.mlc.ai/>출처</a>)"></a><span class="caption">MLC-LLM (<a href="https://llm.mlc.ai/" rel="external nofollow noopener noreferrer" target="_blank">출처</a>)</span></div>
+
+<p>이번 포스팅에선 <strong>MLC-LLM</strong>을 활용하여 <strong>iOS 기기에서 로컬 LLM을 실행하는 방법</strong>을 공유하겠습니다.</p>
+<h2 id="초기-세팅"><a href="#초기-세팅" class="headerlink" title="초기 세팅"></a>초기 세팅</h2><p>먼저 MLC-LLM 프로젝트를 클론합니다. 이 프로젝트는 핵심 컴파일 엔진인 TVM Unity 등을 서브모듈로 포함하고 있으므로, <code>--recursive</code> 옵션을 사용하거나 클론 후 서브모듈 업데이트를 반드시 진행해야 합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/mlc-ai/mlc-llm.git</span><br><span class="line"><span class="built_in">cd</span> mlc-llm</span><br><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
+
+<p>다음으로 LLM 컴파일 및 모델 변환을 위한 Python 가상 환경을 구축합니다. MLC-LLM은 모델을 기기에 최적화된 코드로 변환하는 과정이 필요한데, 시스템 환경과의 충돌을 방지하기 위해 가상 환경 사용을 권장합니다. 특히 <code>mlc-llm-nightly</code> 패키지는 빈번하게 업데이트되므로 pre-built된 nightly wheel 엔진을 설치하는 것이 가장 효율적입니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -m venv .venv</span><br><span class="line"><span class="built_in">source</span> .venv/bin/activate</span><br><span class="line">python3 -m pip install --pre -U -f https://mlc.ai/wheels mlc-llm-nightly-cpu mlc-ai-nightly-cpu</span><br></pre></td></tr></table></figure>
+
+<p>마지막으로 대용량 가중치 파일 관리와 iOS 성능 가속을 위한 도구들을 설치합니다. LLM 모델은 수 GB에 달하는 가중치를 포함하므로 <code>git-lfs</code>가 필수적이며, iOS 기기에서 Metal GPU를 통해 모델을 빠르게 돌리기 위해 <code>MetalToolchain</code> 구성 요소가 필요합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install git-lfs</span><br><span class="line">git lfs install</span><br><span class="line">xcodebuild -downloadComponent MetalToolchain</span><br></pre></td></tr></table></figure>
+
+<h2 id="빌드-및-실행"><a href="#빌드-및-실행" class="headerlink" title="빌드 및 실행"></a>빌드 및 실행</h2><blockquote>
+<p>이제 설치된 도구들을 이용해 iOS 앱에 포함될 라이브러리를 패키징합니다. 이 단계에서는 앞서 설치한 MLC-LLM 엔진을 iOS 프로젝트가 인식할 수 있는 정적 라이브러리 형태로 묶어주는 과정이 진행됩니다.</p>
+</blockquote>
+<p>먼저, 빌드 스크립트가 소스 코드의 위치를 알 수 있도록 <code>MLC_LLM_SOURCE_DIR</code> 환경 변수를 설정해야 합니다. 일시적으로 적용할 수도 있지만, 추후 편리한 사용을 위해 <code>~/.zshrc</code> 또는 <code>~/.bash_profile</code>에 추가하는 것을 권장합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ~/.zshrc 등에 추가 (경로는 본인의 mlc-llm 클론 경로로 수정)</span></span><br><span class="line"><span class="built_in">export</span> MLC_LLM_SOURCE_DIR=<span class="string">"/Users/yourname/projects/mlc-llm"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 설정 적용</span></span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>환경 변수가 설정되었다면, <code>mlc-llm/ios/MLCChat</code> 폴더로 이동하여 패키징 명령을 실행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ios/MLCChat</span><br><span class="line">python3 -m mlc_llm package</span><br></pre></td></tr></table></figure>
+
+<p>패키징이 완료되면 <code>ios/MLCChat</code> 폴더에 Xcode 프로젝트가 준비됩니다. 터미널에서 다음 명령어를 입력하면 즉시 Xcode가 실행됩니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xed .</span><br></pre></td></tr></table></figure>
+
+<p>Xcode 프로젝트가 열리면 실제 기기나 시뮬레이터에서 실행하기 위한 몇 가지 필수 설정이 필요합니다.</p>
+<ol>
+<li><p><strong>대상 기기(Destination) 설정</strong>: 실제 iPhone에서 실행할 수도 있지만, <code>My Mac (Designed for iPad)</code> 옵션을 선택하여 Mac의 실리콘 칩 가속을 활용해 테스트해볼 수 있습니다.</p>
+ <div class="figure " style><a class="fancybox" href="/post/mlc-llm-ios/designed-for-ipad.png" title="Xcode에서 My Mac (Designed for iPad) 설정" data-caption="Xcode에서 My Mac (Designed for iPad) 설정" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/designed-for-ipad.png" alt="Xcode에서 My Mac (Designed for iPad) 설정"></a><span class="caption">Xcode에서 My Mac (Designed for iPad) 설정</span></div>
+</li>
+<li><p><strong>서명 및 기능(Signing &amp; Capabilities)</strong>: iOS 앱은 보안 상 반드시 서명이 필요합니다. 본인의 Apple ID 팀을 선택하고, <code>Bundle Identifier</code>를 파일이 겹치지 않도록 유니크한 값으로 수정해 줍니다.</p>
+ <div class="figure " style><a class="fancybox" href="/post/mlc-llm-ios/signing.png" title="Xcode Signing 및 Bundle Identifier 설정" data-caption="Xcode Signing 및 Bundle Identifier 설정" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/signing.png" alt="Xcode Signing 및 Bundle Identifier 설정"></a><span class="caption">Xcode Signing 및 Bundle Identifier 설정</span></div>
+
+</li>
+</ol>
+<p>모든 설정이 완료된 후 <strong>Run(Cmd + R)</strong> 버튼을 누르면 앱이 실행됩니다. 초기 실행 시에는 모델 목록이 비어 있으므로, 앱 내의 모델 관리자(Model Manager)를 통해 기본적으로 지원되는 모델들을 다운로드할 수 있습니다.</p>
+<h2 id="기본-모델"><a href="#기본-모델" class="headerlink" title="기본 모델"></a>기본 모델</h2><p>iOS MLCChat 프로젝트에서 기본적으로 지원하는 모델 구성은 다음과 같습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/mlc-llm-ios/mlc-llm-ios-models.png" title="MLCChat 기본 모델 목록" data-caption="MLCChat 기본 모델 목록" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/mlc-llm-ios-models.png" alt="MLCChat 기본 모델 목록"></a><span class="caption">MLCChat 기본 모델 목록</span></div>
+
+<table>
+<thead>
+<tr>
+<th align="left">모델 명 (Model)</th>
+<th align="left">주요 특징 (Characteristics)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Llama-3.2-3B</strong></td>
+<td align="left">Meta 개발, 최신 고성능 소형 모델, 4비트 양자화, 2K Context</td>
+</tr>
+<tr>
+<td align="left"><strong>Gemma-2-2B</strong></td>
+<td align="left">Google 개발, 효율적인 아키텍처, 4비트 양자화</td>
+</tr>
+<tr>
+<td align="left"><strong>Phi-3.5-mini</strong></td>
+<td align="left">Microsoft 개발, 강력한 추론 성능, 4비트 양자화</td>
+</tr>
+<tr>
+<td align="left"><strong>Qwen3-0.6B</strong></td>
+<td align="left">Alibaba 개발, 극도로 가벼운 초경량 모델, FP16 정밀도</td>
+</tr>
+<tr>
+<td align="left"><strong>Qwen3-1.7B</strong></td>
+<td align="left">Alibaba 개발, 밸런스 잡힌 성능, 4비트 양자화, 2K Context</td>
+</tr>
+</tbody></table>
+<p>다음은 구글의 <strong>Gemma2 2B</strong> 모델을 iOS에서 직접 구동한 시연 영상입니다.</p>
+<h2 id="Gemma2-2B-모델-데모"><a href="#Gemma2-2B-모델-데모" class="headerlink" title="Gemma2 2B 모델 데모"></a>Gemma2 2B 모델 데모</h2><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Gemma2 2B q4f16 모델 iOS 실구동 데모 영상">
+<source src="/post/mlc-llm-ios/gemma2-2b-demo.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Gemma2 2B q4f16 모델 iOS 실구동 데모 영상</span>
+</div>
+
+<p>Google에서 공개한 <strong>Gemma2 2B</strong> 모델은 비교적 가벼운 20억 개의 파라미터를 가졌음에도 불구하고, 최적화된 아키텍처 덕분에 동급 대비 매우 뛰어난 성능을 보여주는 모델입니다. </p>
+<p>특히 이번 데모에서 사용한 <strong>q4f16_1</strong> 양자화 방식은 모델의 가중치를 4비트(<code>q4</code>)로 압축하여 용량을 줄이되, 연산 정밀도는 16비트(<code>f16</code>)로 유지하여 성능 하락을 최소화한 방식입니다. 이러한 최적화 덕분에 모바일 기기의 제한된 RAM 환경에서도 원활한 구동이 가능하며, 실제 실행 시 <strong>약 2.4GB 정도의 메모리를 점유</strong>하며 안정적으로 동작하는 것을 확인할 수 있습니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/mlc-llm-ios/gemma2-2b-memory.png" title="Gemma2 2B q4f16 모델 약 2.4GB의 메모리 점유" data-caption="Gemma2 2B q4f16 모델 약 2.4GB의 메모리 점유" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/gemma2-2b-memory.png" alt="Gemma2 2B q4f16 모델 약 2.4GB의 메모리 점유"></a><span class="caption">Gemma2 2B q4f16 모델 약 2.4GB의 메모리 점유</span></div>
+
+<p>영상을 보시면 On-Device 환경임에도 불구하고 지연 시간(Latency)이 거의 느껴지지 않을 정도로 실시간에 가까운 빠른 응답 속도를 보여주는 것을 확인할 수 있습니다.</p>
+<hr>
+<h1 id="커스텀-모델-iOS-빌드하기"><a href="#커스텀-모델-iOS-빌드하기" class="headerlink" title="커스텀 모델 iOS 빌드하기"></a>커스텀 모델 iOS 빌드하기</h1><blockquote>
+<p>기본 모델 외에 원하는 모델을 iOS에 최적화하여 올리는 방법을 소개합니다.<br>이 과정은 <code>ios/MLCChat</code> 폴더 밑에서 가상 환경(<code>.venv</code>)이 활성화된 상태를 가정으로 진행됩니다.</p>
+</blockquote>
+<h2 id="모델-다운로드"><a href="#모델-다운로드" class="headerlink" title="모델 다운로드"></a>모델 다운로드</h2><p>모델 다운로드를 위해 <code>huggingface_hub</code>를 설치하고 로그인합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install huggingface_hub --upgrade</span><br><span class="line">python3 -c <span class="string">"from huggingface_hub import login; login()"</span></span><br></pre></td></tr></table></figure>
+
+<p>로그인 시 액세스 토큰 입력창이 나타납니다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">❯ python3 -c &quot;from huggingface_hub import login; login()&quot;</span><br><span class="line"></span><br><span class="line">    _|    _|  _|    _|    _|_|_|    _|_|_|  _|_|_|  _|      _|    _|_|_|      _|_|_|_|    _|_|      _|_|_|  _|_|_|_|</span><br><span class="line">    _|    _|  _|    _|  _|        _|          _|    _|_|    _|  _|            _|        _|    _|  _|        _|</span><br><span class="line">    _|_|_|_|  _|    _|  _|  _|_|  _|  _|_|    _|    _|  _|  _|  _|  _|_|      _|_|_|    _|_|_|_|  _|        _|_|_|</span><br><span class="line">    _|    _|  _|    _|  _|    _|  _|    _|    _|    _|    _|_|  _|    _|      _|        _|    _|  _|        _|</span><br><span class="line">    _|    _|    _|_|      _|_|_|    _|_|_|  _|_|_|  _|      _|    _|_|_|      _|        _|    _|    _|_|_|  _|_|_|_|</span><br><span class="line"></span><br><span class="line">Enter your token (input will not be visible):</span><br><span class="line">Add token as git credential? [y&#x2F;N]: y</span><br></pre></td></tr></table></figure>
+
+<p><strong>Hugging Face READ 토큰 발행</strong></p>
+<ol>
+<li><a href="https://huggingface.co/" target="_blank" rel="external nofollow noopener noreferrer">Hugging Face</a> 로그인 후 설정 페이지에서 <strong>Access Tokens</strong> 메뉴를 선택합니다. <div class="figure " style><a class="fancybox" href="/post/mlc-llm-ios/hugging-face-access-token-1.png" title="Hugging Face Access Tokens 설정 이동" data-caption="Hugging Face Access Tokens 설정 이동" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/hugging-face-access-token-1.png" alt="Hugging Face Access Tokens 설정 이동"></a><span class="caption">Hugging Face Access Tokens 설정 이동</span></div></li>
+<li><strong>Create new token</strong> 버튼을 클릭합니다. <div class="figure " style><a class="fancybox" href="/post/mlc-llm-ios/hugging-face-access-token-2.png" title="새 토큰 생성 버튼 클릭" data-caption="새 토큰 생성 버튼 클릭" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/hugging-face-access-token-2.png" alt="새 토큰 생성 버튼 클릭"></a><span class="caption">새 토큰 생성 버튼 클릭</span></div></li>
+<li><strong>Read</strong> 권한을 선택하고 토큰의 이름을 입력한 뒤 발행합니다. <div class="figure " style><a class="fancybox" href="/post/mlc-llm-ios/hugging-face-access-token-3.png" title="Read 권한 선택 및 이름 입력" data-caption="Read 권한 선택 및 이름 입력" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/hugging-face-access-token-3.png" alt="Read 권한 선택 및 이름 입력"></a><span class="caption">Read 권한 선택 및 이름 입력</span></div></li>
+<li>생성된 토큰을 복사하여 터미널에 입력하면 로그인이 완료됩니다. <div class="figure " style><a class="fancybox" href="/post/mlc-llm-ios/hugging-face-access-token-4.png" title="발행된 토큰 복사" data-caption="발행된 토큰 복사" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/hugging-face-access-token-4.png" alt="발행된 토큰 복사"></a><span class="caption">발행된 토큰 복사</span></div>
+
+
+</li>
+</ol>
+<p>본 포스팅에서는 <strong><a href="https://huggingface.co/google/gemma-3-1b-it" target="_blank" rel="external nofollow noopener noreferrer">Gemma-3-1b-it</a></strong> 모델을 다운받아서 양자화한 뒤 iOS에서 실행해 보겠습니다. 다음 명령어를 실행해 모델을 다운받아 주세요.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c <span class="string">"from huggingface_hub import snapshot_download; snapshot_download(repo_id='google/gemma-3-1b-it', local_dir='./dist/models/gemma-3-1b-it', local_dir_use_symlinks=False)"</span></span><br></pre></td></tr></table></figure>
+
+<div class="figure center" style><a class="fancybox" href="/post/mlc-llm-ios/gemma3-1.png" title="Hugging Face 모델 다운로드 완료" data-caption="Hugging Face 모델 다운로드 완료" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/gemma3-1.png" alt="Hugging Face 모델 다운로드 완료"></a><span class="caption">Hugging Face 모델 다운로드 완료</span></div>
+
+
+<p>명령어 실행시 모델 사용 라이선스에 동의를 하지 않은 경우, 아래와 같이 403 에러가 발생할 수 있습니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">huggingface_hub.errors.GatedRepoError: 403 Client Error.</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://huggingface.co/google/gemma-3-1b-it" target="_blank" rel="external nofollow noopener noreferrer">gemma-3-1b-it</a>에 접속해보면 아래와 같이 권한을 수락해야 한다고 나옵니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/mlc-llm-ios/gemma3-403-1.png" title="Hugging Face Gated Repo 권한 필요 메세지" data-caption="Hugging Face Gated Repo 권한 필요 메세지" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/gemma3-403-1.png" alt="Hugging Face Gated Repo 권한 필요 메세지"></a><span class="caption">Hugging Face Gated Repo 권한 필요 메세지</span></div>
+
+<p><a href="https://www.kaggle.com/models/google/gemma-3/license/consent" target="_blank" rel="external nofollow noopener noreferrer">Kaggle의 Gemma 라이선스 동의 페이지</a>에서 접속하신 뒤, Hugging Face를 선택한 뒤 동의를 진행해 주세요.</p>
+<div class="figure " style><a class="fancybox" href="/post/mlc-llm-ios/gemma3-403-2.png" title="라이선스 동의 진행" data-caption="라이선스 동의 진행" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/gemma3-403-2.png" alt="라이선스 동의 진행"></a><span class="caption">라이선스 동의 진행</span></div>
+
+<p><a href="https://huggingface.co/settings/gated-repos" target="_blank" rel="external nofollow noopener noreferrer">Hugging Face Gated Repos</a>에서 Request Status를 보시면 <strong>Accepted</strong> 상태로 표시되는 것을 확인할 수 있습니다. 이후 위 명령어를 다시 실행하여 다운로드를 진행하시면 됩니다.</p>
+<div class="figure " style><a class="fancybox" href="/post/mlc-llm-ios/gemma3-403-3.png" title="Hugging Face에서 승인된 상태 확인" data-caption="Hugging Face에서 승인된 상태 확인" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/gemma3-403-3.png" alt="Hugging Face에서 승인된 상태 확인"></a><span class="caption">Hugging Face에서 승인된 상태 확인</span></div>
+
+
+<h2 id="모델-가중치-변환-및-양자화"><a href="#모델-가중치-변환-및-양자화" class="headerlink" title="모델 가중치 변환 및 양자화"></a>모델 가중치 변환 및 양자화</h2><p>Hugging Face에서 다운로드한 원본 <code>safetensors</code> 파일들은 대규모 서버급 GPU에 최적화된 FP16 또는 BF16 포맷입니다. 이를 iPhone의 제한된 RAM에서 실행하기 위해서는 <strong>양자화(Quantization)</strong> 과정이 필수적입니다. 이 단계에서 MLC-LLM은 가중치를 기기가 이해할 수 있는 작은 조각으로 나누고, 용량을 약 1/4 수준으로 압축하면서도 성능 하락을 최소화하는 작업을 수행합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -m mlc_llm convert_weight ./dist/models/gemma-3-1b-it \</span><br><span class="line">    --quantization q4f16_1 \</span><br><span class="line">    -o ./dist/models/gemma-3-1b-it-q4f16_1-MLC/</span><br></pre></td></tr></table></figure>
+
+<div class="figure center" style><a class="fancybox" href="/post/mlc-llm-ios/gemma3-2.png" title="모델 가중치 변환 및 양자화 과정" data-caption="모델 가중치 변환 및 양자화 과정" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/gemma3-2.png" alt="모델 가중치 변환 및 양자화 과정"></a><span class="caption">모델 가중치 변환 및 양자화 과정</span></div>
+
+
+<h2 id="모델-설정-생성"><a href="#모델-설정-생성" class="headerlink" title="모델 설정 생성"></a>모델 설정 생성</h2><p>모델 가중치만으로는 대화가 불가능합니다. 각 LLM마다 ‘어떻게 질문하고 답변해야 하는지’에 대한 약속인 <strong>대화 템플릿(Conversation Template)</strong>이 다르기 때문입니다. 이 단계에서는 변환된 가중치 폴더 안에 <code>mlc-chat-config.json</code> 등 필요한 설정 파일들을 생성합니다. 특히 Gemma 3 모델의 지시 사항(Instruction)을 정확히 따르기 위해 <code>--conv-template gemma3_instruction</code> 옵션을 지정해야 합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python3 -m mlc_llm gen_config ./dist/models/gemma-3-1b-it \</span><br><span class="line">    --quantization q4f16_1 \</span><br><span class="line">    --conv-template gemma3_instruction \</span><br><span class="line">    -o ./dist/models/gemma-3-1b-it-q4f16_1-MLC/</span><br></pre></td></tr></table></figure>
+
+<div class="figure center" style><a class="fancybox" href="/post/mlc-llm-ios/gemma3-3.png" title="모델 설정 생성 완료" data-caption="모델 설정 생성 완료" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/gemma3-3.png" alt="모델 설정 생성 완료"></a><span class="caption">모델 설정 생성 완료</span></div>
+
+
+<h2 id="컴파일"><a href="#컴파일" class="headerlink" title="컴파일"></a>컴파일</h2><p>마지막으로 최적화된 가중치를 실제로 구동할 <strong>실행 엔진(Metal 커널)</strong>을 생성하는 단계입니다. 이 과정은 모델의 연산 구조를 iPhone의 GPU(Metal)가 가장 효율적으로 처리할 수 있는 형태의 라이브러리로 변환합니다. <code>device iphone</code> 옵션을 통해 대상 기기의 하드웨어 가속 성능을 최대한 이끌어낼 수 있는 최종 빌드 결과물이 만들어집니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -m mlc_llm compile ./dist/models/gemma-3-1b-it-q4f16_1-MLC \</span><br><span class="line">    --device iphone \</span><br><span class="line">    --output ./dist/models/gemma-3-1b-it-q4f16_1-iphone.tar</span><br></pre></td></tr></table></figure>
+
+<div class="figure center" style><a class="fancybox" href="/post/mlc-llm-ios/gemma3-4.png" title="iPhone용 모델 컴파일 완료" data-caption="iPhone용 모델 컴파일 완료" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/gemma3-4.png" alt="iPhone용 모델 컴파일 완료"></a><span class="caption">iPhone용 모델 컴파일 완료</span></div>
+
+
+
+<h2 id="패키징-및-최종-실행"><a href="#패키징-및-최종-실행" class="headerlink" title="패키징 및 최종 실행"></a>패키징 및 최종 실행</h2><p>마지막으로 <code>mlc-package-config.json</code>에 새로 빌드한 모델 정보를 추가해야 합니다.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"device"</span>: <span class="string">"iphone"</span>,</span><br><span class="line">  <span class="attr">"model_list"</span>: [</span><br><span class="line">    ..., <span class="comment">// 기존 모델들</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"model"</span>: <span class="string">"./dist/models/gemma-3-1b-it-q4f16_1-MLC"</span>,</span><br><span class="line">      <span class="attr">"model_id"</span>: <span class="string">"gemma-3-1b-it-q4f16_1"</span>,</span><br><span class="line">      <span class="attr">"model_lib"</span>: <span class="string">"gemma3_text_q4f16_1"</span>,</span><br><span class="line">      <span class="attr">"estimated_vram_bytes"</span>: <span class="number">1500000000</span>,</span><br><span class="line">      <span class="attr">"bundle_weight"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"model_lib_path-for-prepare-libs"</span>: &#123;</span><br><span class="line">    <span class="attr">"gemma3_text_q4f16_1"</span>: <span class="string">"./dist/models/gemma-3-1b-it-q4f16_1-iphone.tar"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이후 다시 패키징 명령어를 실행해 주세요.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m mlc_llm package</span><br></pre></td></tr></table></figure>
+
+<p>패키징 후 Xcode에서 앱을 실행하면 <code>gemma-3-1b-it-q4f16_1</code> 모델이 추가된 것을 확인할 수 있습니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/mlc-llm-ios/gemma3-1b.png" title="Gemma 3 1B 모델 실행" data-caption="Gemma 3 1B 모델 실행" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/gemma3-1b.png" alt="Gemma 3 1B 모델 실행"></a><span class="caption">Gemma 3 1B 모델 실행</span></div>
+
+<h2 id="Gemma-3-1B-모델-실행-데모"><a href="#Gemma-3-1B-모델-실행-데모" class="headerlink" title="Gemma 3 1B 모델 실행 데모"></a>Gemma 3 1B 모델 실행 데모</h2><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Gemma 3 1B q4f16 모델 iOS 실구동 데모 영상">
+<source src="/post/mlc-llm-ios/gemma3-1b-demo.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Gemma 3 1B q4f16 모델 iOS 실구동 데모 영상</span>
+</div>
+
+<p>Google의 <strong>Gemma 3 1B</strong>는 앞서 살펴본 2B 모델보다도 더 가볍고 효율적인 10억 개의 파라미터를 갖춘 모델입니다. 최신 아키텍처가 적용되어 크기는 작지만 일상적인 대화나 간단한 태스크에서 놀라운 성능을 보여줍니다.</p>
+<p>동일한 <strong>q4f16_1</strong> 양자화 방식을 적용했을 때, 메모리 점유율은 <strong>약 1.14GB</strong> 수준으로 대폭 낮아집니다. 이는 구형 기기나 다양한 앱을 동시에 사용하는 환경에서도 모델이 강제 종료되지 않고 훨씬 안정적으로 돌아갈 수 있음을 의미합니다.</p>
+<div class="figure center" style><a class="fancybox" href="/post/mlc-llm-ios/gemma3-1b-memory.png" title="Gemma 3 1B q4f16 모델 약 1.14GB의 메모리 점유" data-caption="Gemma 3 1B q4f16 모델 약 1.14GB의 메모리 점유" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/mlc-llm-ios/gemma3-1b-memory.png" alt="Gemma 3 1B q4f16 모델 약 1.14GB의 메모리 점유"></a><span class="caption">Gemma 3 1B q4f16 모델 약 1.14GB의 메모리 점유</span></div>
+
+<hr>
+<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>MLC LLM을 활용하면 고성능 LLM을 iOS 기기에 직접 이식하여 개인 정보 보호와 오프라인 실행이라는 장점을 모두 챙길 수 있습니다. 특히 최신 모델인 Gemma 3 시리즈도 위와 같은 워크플로우를 통해 손쉽게 올릴 수 있다는 점이 매력적입니다.</p>
+<p>다만 한 가지 아쉬운 점은, 위에서 시연한 소형 모델(SLM)들은 On-Device 환경에서 <strong>JSON 포맷과 같이 구조화된 응답을 생성하는 것을 다소 어려워하는 모습</strong>을 보였습니다. 복잡한 시스템 프롬프트가 필요한 기능이나 데이터 추출 업무에 활용하기 위해서는 프롬프트 엔지니어링이나 추가적인 파인튜닝 등의 보완 작업이 수반되어야 할 것 같습니다.</p>
+<p>앞으로 모델 전용 파이프라인 연결과 프로젝트 최적화 작업이 병행된다면, 더욱 실용적인 On-Device AI 서비스를 구축할 수 있을 것으로 기대됩니다.</p>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">태그</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/tags/MLC-LLM/" rel="tag">MLC-LLM</a> <a class="tag tag--primary tag--small t-link" href="/tags/On-Device-AI/" rel="tag">On-Device AI</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/nasa-space-app-challenge/" data-tooltip="2025 NASA Space App Challenge" aria-label="다음: 2025 NASA Space App Challenge">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/mlc-llm-ios/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/mlc-llm-ios/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2026 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/post/nasa-space-app-challenge/" data-tooltip="2025 NASA Space App Challenge" aria-label="다음: 2025 NASA Space App Challenge">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="이 포스트 공유하기">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/mlc-llm-ios/" title="Facebook에 공유하기" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/mlc-llm-ios/" title="Twitter에 공유하기" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/post/mlc-llm-ios/" aria-label="Facebook에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/post/mlc-llm-ios/" aria-label="Twitter에 공유하기" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/devstory.png" alt="저자 이미지">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-zopekdehkbpzh1m7gcq1i7jdorrmcp2zgbp29d1g1fwauumfdqs4bpgagooz.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

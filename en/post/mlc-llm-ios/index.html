@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="DevStory">
+    <title>Running Local LLMs on iOS with MLC-LLM - DevStory</title>
+    <meta name="author" content="DevStory">
+    <meta name="naver-site-verification" content="9cd2c28d10d5ac702817eb9a6a748a2c838afe44">
+    <meta name="msvalidate.01" content="43351327233A3A9F48E0D1E5C5F2E834">
+    <link rel="canonical" href="https://blog.devstory.co.kr/en/post/mlc-llm-ios/">
+    
+        <meta name="keywords" content="DevStory,Flutter,ML,VoCat,Deep Learning,Mobile,Android,iOS,cat,AR,">
+    
+    
+        <link rel="icon" href="https://blog.devstory.co.kr/en/assets/images/favicon.ico">
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"Sharing how to run local LLMs on iOS devices using MLC-LLM.👉 한국어 버전\n\n\n\nMLC-LLMMLC-LLM is a solution that helps universally deploy and run machine learning models with high performance on any hardware device (mobile, browser, desktop, etc.). Especially in the iOS environment, it supports hardware acceleration using the Metal API, allowing LLMs to run efficiently even on mobile devices with relatively low specifications.\nSetting My Mac (Designed for iPad) in Xcode\n\nSigning &amp; Capabilities: iOS apps must be signed for security. Choose your Apple ID team and modify the Bundle Identifier to a unique value to avoid file conflicts.\n MLCChat Default Model List\n\n\n\n\nModel\nCharacteristics\n\n\n\nLlama-3.2-3B\nDeveloped by Meta, latest high-performance small model, 4-bit quantization, 2K Context\n\n\nGemma-2-2B\nDeveloped by Google, efficient architecture, 4-bit quantization\n\n\nPhi-3.5-mini\nDeveloped by Microsoft, strong reasoning performance, 4-bit quantization\n\n\nQwen3-0.6B\nDeveloped by Alibaba, ultra-lightweight model, FP16 precision\n\n\nQwen3-1.7B\nDeveloped by Alibaba, balanced performance, 4-bit quantization, 2K Context\n\n\nThe following is a demonstration video of Google’s Gemma2 2B model running directly on iOS.\nGemma2 2B Model Demo\n\n\nYour browser doesn't support HTML5 Video :/\nGemma2 2B q4f16 model iOS running demo video\n\n\nThe Gemma2 2B model released by Google has relatively light 2 billion parameters, but it shows very outstanding performance compared to its class thanks to its optimized architecture.\nIn particular, the q4f16_1 quantization method used in this demo compresses model weights to 4 bits (q4) to reduce capacity while maintaining 16-bit (f16) operation precision to minimize performance degradation. Thanks to these optimizations, smooth operation is possible even in the limited RAM environment of mobile devices, and it can be confirmed that it operates stably while occupying about 2.4GB of memory during actual execution.\nNavigating to Hugging Face Access Tokens setup\nClick the Create new token button. Selecting Read permission and entering name\nCopy the generated token and enter it in the terminal to complete login. Hugging Face model download completed\n\nIf you do not agree to the model license when running the command, a 403 error may occur as shown below.\n1huggingface_hub.errors.GatedRepoError: 403 Client Error.\n\nIf you access gemma-3-1b-it, it says that you need to accept permissions as shown below.\nProceeding with license consent\n\nIn Hugging Face Gated Repos, you can check that the Request Status is displayed as Accepted. Afterward, run the above command again to proceed with the download.\nModel weight conversion and quantization process\n\nCreating Model ConfigurationConversation is not possible with model weights alone. This is because Conversation Templates, which are agreements on ‘how to ask and answer’, are different for each LLM. In this step, necessary configuration files such as mlc-chat-config.json are created within the converted weights folder. In particular, it is important to specify the --conv-template gemma3_instruction option to follow the instruction format of the Gemma 3 model accurately.\n1234python3 -m mlc_llm gen_config ./dist/models/gemma-3-1b-it \\    --quantization q4f16_1 \\    --conv-template gemma3_instruction \\    -o ./dist/models/gemma-3-1b-it-q4f16_1-MLC/\n\nModel compilation for iPhone completed\n\nPackaging and Final ExecutionFinally, you need to add the newly built model information to mlc-package-config.json.\n12345678910111213141516&#123;  \"device\": \"iphone\",  \"model_list\": [    ..., // Existing models    &#123;      \"model\": \"./dist/models/gemma-3-1b-it-q4f16_1-MLC\",      \"model_id\": \"gemma-3-1b-it-q4f16_1\",      \"model_lib\": \"gemma3_text_q4f16_1\",      \"estimated_vram_bytes\": 1500000000,      \"bundle_weight\": true    &#125;  ],  \"model_lib_path-for-prepare-libs\": &#123;    \"gemma3_text_q4f16_1\": \"./dist/models/gemma-3-1b-it-q4f16_1-iphone.tar\"  &#125;&#125;\n\nThen, run the packaging command again.\n1python3 -m mlc_llm package\n\nWhen you run the app in Xcode after packaging, you can confirm that the gemma-3-1b-it-q4f16_1 model has been added.\nGemma 3 1B q4f16 model occupying about 1.14GB of memory\n\n\nConclusionUsing MLC-LLM, you can directly port high-performance LLMs to iOS devices to gain both privacy and offline execution benefits. Especially, it is attractive that the latest models like the Gemma 3 series can be easily uploaded through the workflow above.\nHowever, one disappointing point is that the small models (SLMs) demonstrated above showed some difficulty in generating structured responses like JSON format in an On-Device environment. To utilize them for functions requiring complex system prompts or data extraction tasks, supplementary work such as prompt engineering or additional fine-tuning seems to be necessary.\nIn the future, if model-dedicated pipeline connections and project optimization tasks are carried out in parallel, it is expected that more practical On-Device AI services can be built.\n","dateCreated":"2026-03-12T15:30:00+09:00","dateModified":"2026-03-12T17:20:43+09:00","datePublished":"2026-03-12T15:30:00+09:00","description":"Sharing how to run local LLMs on iOS devices using MLC-LLM.👉 한국어 버전","headline":"Running Local LLMs on iOS with MLC-LLM","image":["/en/post/mlc-llm-ios/thumbnail.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/mlc-llm-ios/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/mlc-llm-ios/","keywords":"MLC-LLM, On-Device AI","thumbnailUrl":"/en/post/mlc-llm-ios/thumbnail.png"}</script>
+    <meta name="description" content="Sharing how to run local LLMs on iOS devices using MLC-LLM.👉 한국어 버전">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Running Local LLMs on iOS with MLC-LLM">
+<meta property="og:url" content="https://blog.devstory.co.kr/en/post/mlc-llm-ios/index.html">
+<meta property="og:site_name" content="DevStory">
+<meta property="og:description" content="Sharing how to run local LLMs on iOS devices using MLC-LLM.👉 한국어 버전">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://blog.devstory.co.kr/en/post/mlc-llm-ios/thumbnail.png">
+<meta property="article:published_time" content="2026-03-12T06:30:00.000Z">
+<meta property="article:modified_time" content="2026-03-12T08:20:43.001Z">
+<meta property="article:author" content="DevStory">
+<meta property="article:tag" content="MLC-LLM">
+<meta property="article:tag" content="On-Device AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.devstory.co.kr/en/post/mlc-llm-ios/thumbnail.png">
+    
+    
+        
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/en/assets/css/style-km3ppccb68fyxtbrn4miqqjht5aox4vpmpgkiydtymknyxsgemcr5wotechj.min.css">
+
+    <!--STYLES END-->
+
+    <!-- NERO google adsense -->
+    <meta name="google-adsense-account" content="ca-pub-2282734164072819">
+
+<!-- side script -->
+<script data-ad-client="ca-pub-2282734164072819" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- ads -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <!-- analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151594285-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-151594285-1');
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/en/" aria-label>
+            DevStory
+        </a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about" aria-label="Open the link: /en/#about">
+        
+        
+            <img class="header-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/en/#about" aria-label="Read more about the author">
+                    <img class="sidebar-profile-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">DevStory</h4>
+                
+                    <h5 class="sidebar-profile-bio"></h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/" title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/nero-angela" target="_blank" rel="external nofollow noopener noreferrer" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr" target="_blank" rel="external nofollow noopener noreferrer" title="Projects">
+                    
+                        <i class="sidebar-button-icon fas fa-mobile" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Projects</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://devstory.co.kr/portfolio/lecture" target="_blank" rel="external nofollow noopener noreferrer" title="Lecture">
+                    
+                        <i class="sidebar-button-icon fas fa-graduation-cap" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Lecture</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/en/rss.xml" title="RSS">
+                    
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="5" class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Running Local LLMs on iOS with MLC-LLM
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2026-03-12T15:30:00+09:00">
+	
+		    Mar 12, 2026
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/en/categories/Tech/">Tech</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- NERO google adsense -->
+
+            <!-- NERO :: Add TOC -->
+            <hr class="nero-toc-line">
+            <blockquote>
+                <strong>Table of Contents
+                </strong>
+            </blockquote>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#MLC-LLM"><span class="nero-toc-text">MLC-LLM</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Initial-Setup"><span class="nero-toc-text">Initial Setup</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Build-and-Run"><span class="nero-toc-text">Build and Run</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Default-Models"><span class="nero-toc-text">Default Models</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Gemma2-2B-Model-Demo"><span class="nero-toc-text">Gemma2 2B Model Demo</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Building-Custom-Models-for-iOS"><span class="nero-toc-text">Building Custom Models for iOS</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Downloading-Models"><span class="nero-toc-text">Downloading Models</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Model-Weight-Conversion-and-Quantization"><span class="nero-toc-text">Model Weight Conversion and Quantization</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Creating-Model-Configuration"><span class="nero-toc-text">Creating Model Configuration</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Compilation"><span class="nero-toc-text">Compilation</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Packaging-and-Final-Execution"><span class="nero-toc-text">Packaging and Final Execution</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#Gemma-3-1B-Model-Execution-Demo"><span class="nero-toc-text">Gemma 3 1B Model Execution Demo</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#Conclusion"><span class="nero-toc-text">Conclusion</span></a></li></ol>
+            <hr class="nero-toc-line">
+            <style>
+                .nero-toc-line {
+                    margin: 0;
+                }
+
+                .nero-toc-item {
+                    list-style-type: none;
+                }
+
+                .nero-toc {
+                    padding: 6px 20px;
+                }
+            </style>
+            <!-- NERO -->
+            
+
+
+            <p>Sharing how to run local LLMs on iOS devices using <strong>MLC-LLM</strong>.<br><a href="/en/post/mlc-llm-ios/">👉 한국어 버전</a><br></p>
+<a id="more"></a>
+
+<hr>
+<h1 id="MLC-LLM"><a href="#MLC-LLM" class="headerlink" title="MLC-LLM"></a>MLC-LLM</h1><p><strong><a href="https://mlc.ai/mlc-llm/" target="_blank" rel="external nofollow noopener noreferrer">MLC-LLM</a></strong> is a solution that helps universally deploy and run machine learning models with high performance on any hardware device (mobile, browser, desktop, etc.). Especially in the iOS environment, it supports hardware acceleration using the Metal API, allowing LLMs to run efficiently even on mobile devices with relatively low specifications.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/mlc-llm-ios/mlc-llm.png" title="MLC-LLM (<a href=https://llm.mlc.ai/>Source</a>)" data-caption="MLC-LLM (<a href=https://llm.mlc.ai/>Source</a>)" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/mlc-llm.png" alt="MLC-LLM (<a href=https://llm.mlc.ai/>Source</a>)"></a><span class="caption">MLC-LLM (<a href="https://llm.mlc.ai/" rel="external nofollow noopener noreferrer" target="_blank">Source</a>)</span></div>
+
+<p>In this post, I will share <strong>how to run local LLMs on iOS devices</strong> using <strong>MLC-LLM</strong>.</p>
+<h2 id="Initial-Setup"><a href="#Initial-Setup" class="headerlink" title="Initial Setup"></a>Initial Setup</h2><p>First, clone the MLC-LLM project. This project includes TVM Unity, the core compilation engine, as a submodule, so you must use the <code>--recursive</code> option or update submodules after cloning.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/mlc-ai/mlc-llm.git</span><br><span class="line"><span class="built_in">cd</span> mlc-llm</span><br><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
+
+<p>Next, set up a Python virtual environment for LLM compilation and model conversion. MLC-LLM requires a process to convert models into optimized code for the device, and using a virtual environment is recommended to avoid conflicts with the system environment. In particular, the <code>mlc-llm-nightly</code> package is updated frequently, so installing the pre-built nightly wheel engine is most efficient.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -m venv .venv</span><br><span class="line"><span class="built_in">source</span> .venv/bin/activate</span><br><span class="line">python3 -m pip install --pre -U -f https://mlc.ai/wheels mlc-llm-nightly-cpu mlc-ai-nightly-cpu</span><br></pre></td></tr></table></figure>
+
+<p>Finally, install tools for managing large weight files and accelerating performance on iOS. Since LLM models include weights reaching several GBs, <code>git-lfs</code> is essential, and the <code>MetalToolchain</code> component is required to run models quickly through the Metal GPU on iOS devices.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install git-lfs</span><br><span class="line">git lfs install</span><br><span class="line">xcodebuild -downloadComponent MetalToolchain</span><br></pre></td></tr></table></figure>
+
+<h2 id="Build-and-Run"><a href="#Build-and-Run" class="headerlink" title="Build and Run"></a>Build and Run</h2><blockquote>
+<p>Now, package the libraries to be included in the iOS app using the installed tools. This step bundles the previously installed MLC-LLM engine into a static library format that the iOS project can recognize.</p>
+</blockquote>
+<p>First, you need to set the <code>MLC_LLM_SOURCE_DIR</code> environment variable so the build script knows the location of the source code. While you can apply it temporarily, it is recommended to add it to <code>~/.zshrc</code> or <code>~/.bash_profile</code> for future convenience.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add to ~/.zshrc, etc. (Modify the path to your own mlc-llm clone path)</span></span><br><span class="line"><span class="built_in">export</span> MLC_LLM_SOURCE_DIR=<span class="string">"/Users/yourname/projects/mlc-llm"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Apply settings</span></span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p>Once the environment variable is set, move to the <code>ios/MLCChat</code> folder and execute the packaging command.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ios/MLCChat</span><br><span class="line">python3 -m mlc_llm package</span><br></pre></td></tr></table></figure>
+
+<p>After packaging is complete, the Xcode project will be ready in the <code>ios/MLCChat</code> folder. Enter the following command in the terminal to launch Xcode immediately.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xed .</span><br></pre></td></tr></table></figure>
+
+<p>When the Xcode project opens, some essential settings are required to run it on a real device or simulator.</p>
+<ol>
+<li><p><strong>Destination Setting</strong>: You can run it on a real iPhone, but you can also choose the <code>My Mac (Designed for iPad)</code> option to test using the Mac’s Silicon chip acceleration.</p>
+ <div class="figure " style><a class="fancybox" href="/en/post/mlc-llm-ios/designed-for-ipad.png" title="Setting My Mac (Designed for iPad) in Xcode" data-caption="Setting My Mac (Designed for iPad) in Xcode" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/designed-for-ipad.png" alt="Setting My Mac (Designed for iPad) in Xcode"></a><span class="caption">Setting My Mac (Designed for iPad) in Xcode</span></div>
+</li>
+<li><p><strong>Signing &amp; Capabilities</strong>: iOS apps must be signed for security. Choose your Apple ID team and modify the <code>Bundle Identifier</code> to a unique value to avoid file conflicts.</p>
+ <div class="figure " style><a class="fancybox" href="/en/post/mlc-llm-ios/signing.png" title="Xcode Signing and Bundle Identifier Setup" data-caption="Xcode Signing and Bundle Identifier Setup" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/signing.png" alt="Xcode Signing and Bundle Identifier Setup"></a><span class="caption">Xcode Signing and Bundle Identifier Setup</span></div>
+
+</li>
+</ol>
+<p>After all settings are complete, press the <strong>Run (Cmd + R)</strong> button to launch the app. Upon initial launch, the model list will be empty, so you can download basically supported models through the Model Manager within the app.</p>
+<h2 id="Default-Models"><a href="#Default-Models" class="headerlink" title="Default Models"></a>Default Models</h2><p>The model configurations basically supported by the iOS MLCChat project are as follows.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/mlc-llm-ios/mlc-llm-ios-models.png" title="MLCChat Default Model List" data-caption="MLCChat Default Model List" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/mlc-llm-ios-models.png" alt="MLCChat Default Model List"></a><span class="caption">MLCChat Default Model List</span></div>
+
+<table>
+<thead>
+<tr>
+<th align="left">Model</th>
+<th align="left">Characteristics</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Llama-3.2-3B</strong></td>
+<td align="left">Developed by Meta, latest high-performance small model, 4-bit quantization, 2K Context</td>
+</tr>
+<tr>
+<td align="left"><strong>Gemma-2-2B</strong></td>
+<td align="left">Developed by Google, efficient architecture, 4-bit quantization</td>
+</tr>
+<tr>
+<td align="left"><strong>Phi-3.5-mini</strong></td>
+<td align="left">Developed by Microsoft, strong reasoning performance, 4-bit quantization</td>
+</tr>
+<tr>
+<td align="left"><strong>Qwen3-0.6B</strong></td>
+<td align="left">Developed by Alibaba, ultra-lightweight model, FP16 precision</td>
+</tr>
+<tr>
+<td align="left"><strong>Qwen3-1.7B</strong></td>
+<td align="left">Developed by Alibaba, balanced performance, 4-bit quantization, 2K Context</td>
+</tr>
+</tbody></table>
+<p>The following is a demonstration video of Google’s <strong>Gemma2 2B</strong> model running directly on iOS.</p>
+<h2 id="Gemma2-2B-Model-Demo"><a href="#Gemma2-2B-Model-Demo" class="headerlink" title="Gemma2 2B Model Demo"></a>Gemma2 2B Model Demo</h2><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Gemma2 2B q4f16 model iOS running demo video">
+<source src="/en/post/mlc-llm-ios/gemma2-2b-demo.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Gemma2 2B q4f16 model iOS running demo video</span>
+</div>
+
+<p>The <strong>Gemma2 2B</strong> model released by Google has relatively light 2 billion parameters, but it shows very outstanding performance compared to its class thanks to its optimized architecture.</p>
+<p>In particular, the <strong>q4f16_1</strong> quantization method used in this demo compresses model weights to 4 bits (<code>q4</code>) to reduce capacity while maintaining 16-bit (<code>f16</code>) operation precision to minimize performance degradation. Thanks to these optimizations, smooth operation is possible even in the limited RAM environment of mobile devices, and it can be confirmed that it operates stably while <strong>occupying about 2.4GB of memory</strong> during actual execution.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/mlc-llm-ios/gemma2-2b-memory.png" title="Gemma2 2B q4f16 model occupying about 2.4GB of memory" data-caption="Gemma2 2B q4f16 model occupying about 2.4GB of memory" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/gemma2-2b-memory.png" alt="Gemma2 2B q4f16 model occupying about 2.4GB of memory"></a><span class="caption">Gemma2 2B q4f16 model occupying about 2.4GB of memory</span></div>
+
+<p>As you can see in the video, it shows a fast response speed close to real-time with almost no latency felt despite being in an On-Device environment.</p>
+<hr>
+<h1 id="Building-Custom-Models-for-iOS"><a href="#Building-Custom-Models-for-iOS" class="headerlink" title="Building Custom Models for iOS"></a>Building Custom Models for iOS</h1><blockquote>
+<p>Here we introduce how to optimize and upload models other than the default ones to iOS.<br>This process assumes that the virtual environment (<code>.venv</code>) is activated under the <code>ios/MLCChat</code> folder.</p>
+</blockquote>
+<h2 id="Downloading-Models"><a href="#Downloading-Models" class="headerlink" title="Downloading Models"></a>Downloading Models</h2><p>Install <code>huggingface_hub</code> and log in to download models.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install huggingface_hub --upgrade</span><br><span class="line">python3 -c <span class="string">"from huggingface_hub import login; login()"</span></span><br></pre></td></tr></table></figure>
+
+<p>An access token input window appears during login.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">❯ python3 -c &quot;from huggingface_hub import login; login()&quot;</span><br><span class="line"></span><br><span class="line">    _|    _|  _|    _|    _|_|_|    _|_|_|  _|_|_|  _|      _|    _|_|_|      _|_|_|_|    _|_|      _|_|_|  _|_|_|_|</span><br><span class="line">    _|    _|  _|    _|  _|        _|          _|    _|_|    _|  _|            _|        _|    _|  _|        _|</span><br><span class="line">    _|_|_|_|  _|    _|  _|  _|_|  _|  _|_|    _|    _|  _|  _|  _|  _|_|      _|_|_|    _|_|_|_|  _|        _|_|_|</span><br><span class="line">    _|    _|  _|    _|  _|    _|  _|    _|    _|    _|    _|_|  _|    _|      _|        _|    _|  _|        _|</span><br><span class="line">    _|    _|    _|_|      _|_|_|    _|_|_|  _|_|_|  _|      _|    _|_|_|      _|        _|    _|    _|_|_|  _|_|_|_|</span><br><span class="line"></span><br><span class="line">Enter your token (input will not be visible):</span><br><span class="line">Add token as git credential? [y&#x2F;N]: y</span><br></pre></td></tr></table></figure>
+
+<p><strong>Issuing a Hugging Face READ Token</strong></p>
+<ol>
+<li>After logging into <a href="https://huggingface.co/" target="_blank" rel="external nofollow noopener noreferrer">Hugging Face</a>, select the <strong>Access Tokens</strong> menu on the settings page. <div class="figure " style><a class="fancybox" href="/en/post/mlc-llm-ios/hugging-face-access-token-1.png" title="Navigating to Hugging Face Access Tokens setup" data-caption="Navigating to Hugging Face Access Tokens setup" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/hugging-face-access-token-1.png" alt="Navigating to Hugging Face Access Tokens setup"></a><span class="caption">Navigating to Hugging Face Access Tokens setup</span></div></li>
+<li>Click the <strong>Create new token</strong> button. <div class="figure " style><a class="fancybox" href="/en/post/mlc-llm-ios/hugging-face-access-token-2.png" title="Clicking Create new token button" data-caption="Clicking Create new token button" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/hugging-face-access-token-2.png" alt="Clicking Create new token button"></a><span class="caption">Clicking Create new token button</span></div></li>
+<li>Select <strong>Read</strong> permission, enter a name for the token, and issue it. <div class="figure " style><a class="fancybox" href="/en/post/mlc-llm-ios/hugging-face-access-token-3.png" title="Selecting Read permission and entering name" data-caption="Selecting Read permission and entering name" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/hugging-face-access-token-3.png" alt="Selecting Read permission and entering name"></a><span class="caption">Selecting Read permission and entering name</span></div></li>
+<li>Copy the generated token and enter it in the terminal to complete login. <div class="figure " style><a class="fancybox" href="/en/post/mlc-llm-ios/hugging-face-access-token-4.png" title="Copying issued token" data-caption="Copying issued token" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/hugging-face-access-token-4.png" alt="Copying issued token"></a><span class="caption">Copying issued token</span></div>
+
+</li>
+</ol>
+<p>In this post, we will download the <strong><a href="https://huggingface.co/google/gemma-3-1b-it" target="_blank" rel="external nofollow noopener noreferrer">Gemma-3-1b-it</a></strong> model, quantize it, and run it on iOS. Please run the following command to download the model.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c <span class="string">"from huggingface_hub import snapshot_download; snapshot_download(repo_id='google/gemma-3-1b-it', local_dir='./dist/models/gemma-3-1b-it', local_dir_use_symlinks=False)"</span></span><br></pre></td></tr></table></figure>
+
+<div class="figure center" style><a class="fancybox" href="/en/post/mlc-llm-ios/gemma3-1.png" title="Hugging Face model download completed" data-caption="Hugging Face model download completed" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/gemma3-1.png" alt="Hugging Face model download completed"></a><span class="caption">Hugging Face model download completed</span></div>
+
+<p>If you do not agree to the model license when running the command, a 403 error may occur as shown below.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">huggingface_hub.errors.GatedRepoError: 403 Client Error.</span><br></pre></td></tr></table></figure>
+
+<p>If you access <a href="https://huggingface.co/google/gemma-3-1b-it" target="_blank" rel="external nofollow noopener noreferrer">gemma-3-1b-it</a>, it says that you need to accept permissions as shown below.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/mlc-llm-ios/gemma3-403-1.png" title="Hugging Face Gated Repo permission required message" data-caption="Hugging Face Gated Repo permission required message" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/gemma3-403-1.png" alt="Hugging Face Gated Repo permission required message"></a><span class="caption">Hugging Face Gated Repo permission required message</span></div>
+
+<p>After accessing <a href="https://www.kaggle.com/models/google/gemma-3/license/consent" target="_blank" rel="external nofollow noopener noreferrer">Kaggle’s Gemma License Consent Page</a>, select Hugging Face and proceed with consent.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/mlc-llm-ios/gemma3-403-2.png" title="Proceeding with license consent" data-caption="Proceeding with license consent" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/gemma3-403-2.png" alt="Proceeding with license consent"></a><span class="caption">Proceeding with license consent</span></div>
+
+<p>In <a href="https://huggingface.co/settings/gated-repos" target="_blank" rel="external nofollow noopener noreferrer">Hugging Face Gated Repos</a>, you can check that the Request Status is displayed as <strong>Accepted</strong>. Afterward, run the above command again to proceed with the download.</p>
+<div class="figure " style><a class="fancybox" href="/en/post/mlc-llm-ios/gemma3-403-3.png" title="Checking Accepted status on Hugging Face" data-caption="Checking Accepted status on Hugging Face" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/gemma3-403-3.png" alt="Checking Accepted status on Hugging Face"></a><span class="caption">Checking Accepted status on Hugging Face</span></div>
+
+<h2 id="Model-Weight-Conversion-and-Quantization"><a href="#Model-Weight-Conversion-and-Quantization" class="headerlink" title="Model Weight Conversion and Quantization"></a>Model Weight Conversion and Quantization</h2><p>The original <code>safetensors</code> files downloaded from Hugging Face are in FP16 or BF16 formats optimized for large server-class GPUs. To run them on the iPhone’s limited RAM, a <strong>Quantization</strong> process is essential. In this step, MLC-LLM divides weights into small pieces that the device can understand, compressing the capacity by about 1/4 while minimizing performance degradation.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -m mlc_llm convert_weight ./dist/models/gemma-3-1b-it \</span><br><span class="line">    --quantization q4f16_1 \</span><br><span class="line">    -o ./dist/models/gemma-3-1b-it-q4f16_1-MLC/</span><br></pre></td></tr></table></figure>
+
+<div class="figure center" style><a class="fancybox" href="/en/post/mlc-llm-ios/gemma3-2.png" title="Model weight conversion and quantization process" data-caption="Model weight conversion and quantization process" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/gemma3-2.png" alt="Model weight conversion and quantization process"></a><span class="caption">Model weight conversion and quantization process</span></div>
+
+<h2 id="Creating-Model-Configuration"><a href="#Creating-Model-Configuration" class="headerlink" title="Creating Model Configuration"></a>Creating Model Configuration</h2><p>Conversation is not possible with model weights alone. This is because <strong>Conversation Templates</strong>, which are agreements on ‘how to ask and answer’, are different for each LLM. In this step, necessary configuration files such as <code>mlc-chat-config.json</code> are created within the converted weights folder. In particular, it is important to specify the <code>--conv-template gemma3_instruction</code> option to follow the instruction format of the Gemma 3 model accurately.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python3 -m mlc_llm gen_config ./dist/models/gemma-3-1b-it \</span><br><span class="line">    --quantization q4f16_1 \</span><br><span class="line">    --conv-template gemma3_instruction \</span><br><span class="line">    -o ./dist/models/gemma-3-1b-it-q4f16_1-MLC/</span><br></pre></td></tr></table></figure>
+
+<div class="figure center" style><a class="fancybox" href="/en/post/mlc-llm-ios/gemma3-3.png" title="Model configuration creation completed" data-caption="Model configuration creation completed" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/gemma3-3.png" alt="Model configuration creation completed"></a><span class="caption">Model configuration creation completed</span></div>
+
+<h2 id="Compilation"><a href="#Compilation" class="headerlink" title="Compilation"></a>Compilation</h2><p>The final step is to create the <strong>Execution Engine (Metal Kernel)</strong> that will actually drive the optimized weights. This process converts the model’s operation structure into a library format that the iPhone’s GPU (Metal) can process most efficiently. Through the <code>device iphone</code> option, final build results are created that can maximize the hardware acceleration performance of the target device.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -m mlc_llm compile ./dist/models/gemma-3-1b-it-q4f16_1-MLC \</span><br><span class="line">    --device iphone \</span><br><span class="line">    --output ./dist/models/gemma-3-1b-it-q4f16_1-iphone.tar</span><br></pre></td></tr></table></figure>
+
+<div class="figure center" style><a class="fancybox" href="/en/post/mlc-llm-ios/gemma3-4.png" title="Model compilation for iPhone completed" data-caption="Model compilation for iPhone completed" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/gemma3-4.png" alt="Model compilation for iPhone completed"></a><span class="caption">Model compilation for iPhone completed</span></div>
+
+<h2 id="Packaging-and-Final-Execution"><a href="#Packaging-and-Final-Execution" class="headerlink" title="Packaging and Final Execution"></a>Packaging and Final Execution</h2><p>Finally, you need to add the newly built model information to <code>mlc-package-config.json</code>.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"device"</span>: <span class="string">"iphone"</span>,</span><br><span class="line">  <span class="attr">"model_list"</span>: [</span><br><span class="line">    ..., <span class="comment">// Existing models</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"model"</span>: <span class="string">"./dist/models/gemma-3-1b-it-q4f16_1-MLC"</span>,</span><br><span class="line">      <span class="attr">"model_id"</span>: <span class="string">"gemma-3-1b-it-q4f16_1"</span>,</span><br><span class="line">      <span class="attr">"model_lib"</span>: <span class="string">"gemma3_text_q4f16_1"</span>,</span><br><span class="line">      <span class="attr">"estimated_vram_bytes"</span>: <span class="number">1500000000</span>,</span><br><span class="line">      <span class="attr">"bundle_weight"</span>: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"model_lib_path-for-prepare-libs"</span>: &#123;</span><br><span class="line">    <span class="attr">"gemma3_text_q4f16_1"</span>: <span class="string">"./dist/models/gemma-3-1b-it-q4f16_1-iphone.tar"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Then, run the packaging command again.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m mlc_llm package</span><br></pre></td></tr></table></figure>
+
+<p>When you run the app in Xcode after packaging, you can confirm that the <code>gemma-3-1b-it-q4f16_1</code> model has been added.</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/mlc-llm-ios/gemma3-1b.png" title="Running Gemma 3 1B Model" data-caption="Running Gemma 3 1B Model" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/gemma3-1b.png" alt="Running Gemma 3 1B Model"></a><span class="caption">Running Gemma 3 1B Model</span></div>
+
+<h2 id="Gemma-3-1B-Model-Execution-Demo"><a href="#Gemma-3-1B-Model-Execution-Demo" class="headerlink" title="Gemma 3 1B Model Execution Demo"></a>Gemma 3 1B Model Execution Demo</h2><div class="figure " style>
+<video class="fig-video" autoplay playsinline loop muted controls alt="Gemma 3 1B q4f16 model iOS running demo video">
+<source src="/en/post/mlc-llm-ios/gemma3-1b-demo.mov" type="video/mp4">
+<p>Your browser doesn't support HTML5 Video :/</p></video>
+<span class="caption">Gemma 3 1B q4f16 model iOS running demo video</span>
+</div>
+
+<p>Google’s <strong>Gemma 3 1B</strong> is a model with 1 billion parameters that is even lighter and more efficient than the 2B model we saw earlier. With the latest architecture applied, it shows surprising performance in daily conversations or simple tasks despite its small size.</p>
+<p>When applying the same <strong>q4f16_1</strong> quantization method, the memory occupancy is significantly reduced to about <strong>1.14GB</strong>. This means that the model can run much more stably without being forced to close even on older devices or in environments where various apps are used simultaneously.</p>
+<div class="figure center" style><a class="fancybox" href="/en/post/mlc-llm-ios/gemma3-1b-memory.png" title="Gemma 3 1B q4f16 model occupying about 1.14GB of memory" data-caption="Gemma 3 1B q4f16 model occupying about 1.14GB of memory" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/en/post/mlc-llm-ios/gemma3-1b-memory.png" alt="Gemma 3 1B q4f16 model occupying about 1.14GB of memory"></a><span class="caption">Gemma 3 1B q4f16 model occupying about 1.14GB of memory</span></div>
+
+<hr>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>Using MLC-LLM, you can directly port high-performance LLMs to iOS devices to gain both privacy and offline execution benefits. Especially, it is attractive that the latest models like the Gemma 3 series can be easily uploaded through the workflow above.</p>
+<p>However, one disappointing point is that the small models (SLMs) demonstrated above showed <strong>some difficulty in generating structured responses like JSON format</strong> in an On-Device environment. To utilize them for functions requiring complex system prompts or data extraction tasks, supplementary work such as prompt engineering or additional fine-tuning seems to be necessary.</p>
+<p>In the future, if model-dedicated pipeline connections and project optimization tasks are carried out in parallel, it is expected that more practical On-Device AI services can be built.</p>
+
+
+            <!-- NERO google adsense -->
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        <div class="post-footer-tags">
+            <span class="text-color-light text-small">TAGGED IN</span><br>
+            
+    <a class="tag tag--primary tag--small t-link" href="/en/tags/MLC-LLM/" rel="tag">MLC-LLM</a> <a class="tag tag--primary tag--small t-link" href="/en/tags/On-Device-AI/" rel="tag">On-Device AI</a>
+
+        </div>
+        
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/nasa-space-app-challenge/" data-tooltip="2025 NASA Space Apps Challenge" aria-label="NEXT: 2025 NASA Space Apps Challenge">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/mlc-llm-ios/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/mlc-llm-ios/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+        
+        
+    </div>
+</article>
+<!-- utterances comment -->
+
+  <script src="https://utteranc.es/client.js" repo="devstory-co-kr/devstory-co-kr.github.io" label="🐱" theme="github-light" crossorigin="anonymous" issue-term="pathname" async>
+  </script>
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2026 DevStory. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled" aria-hidden="true">
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a class="post-action-btn btn btn--default tooltip--top" href="/en/post/nasa-space-app-challenge/" data-tooltip="2025 NASA Space Apps Challenge" aria-label="NEXT: 2025 NASA Space Apps Challenge">
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/mlc-llm-ios/" title="Share on Facebook" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/mlc-llm-ios/" title="Share on Twitter" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.devstory.co.kr/en/post/mlc-llm-ios/" aria-label="Share on Facebook" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="_blank" href="https://twitter.com/intent/tweet?text=https://blog.devstory.co.kr/en/post/mlc-llm-ios/" aria-label="Share on Twitter" rel="external nofollow noopener noreferrer">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/en/assets/images/devstory.png" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">DevStory</h4>
+        
+            <div id="about-card-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                devstory.co.kr@gmail.com
+            </div>
+        
+        
+            <div id="about-card-bio"></div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>Developer</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Seoul/Korea
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/en/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/en/assets/js/script-zopekdehkbpzh1m7gcq1i7jdorrmcp2zgbp29d1g1fwauumfdqs4bpgagooz.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

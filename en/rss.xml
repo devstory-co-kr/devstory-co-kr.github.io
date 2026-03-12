@@ -9,8 +9,23 @@
     <atom:link href="/en/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Thu, 26 Feb 2026 16:16:11 GMT</pubDate>
+    <pubDate>Thu, 12 Mar 2026 08:20:43 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Running Local LLMs on iOS with MLC-LLM</title>
+      <link>https://blog.devstory.co.kr/en/post/mlc-llm-ios/</link>
+      <guid>https://blog.devstory.co.kr/en/post/mlc-llm-ios/</guid>
+      <pubDate>Thu, 12 Mar 2026 06:30:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;Sharing how to run local LLMs on iOS devices using &lt;strong&gt;MLC-LLM&lt;/strong&gt;.&lt;br&gt;&lt;a href=&quot;/en/post/mlc-llm-ios/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/en/post/mlc-llm-ios/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>2025 NASA Space Apps Challenge</title>
@@ -295,21 +310,6 @@
       
       
       <comments>https://blog.devstory.co.kr/en/post/too-real-02/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>3부. Custom YOLO v3 모델 만들기</title>
-      <link>https://blog.devstory.co.kr/en/post/too-real-03/</link>
-      <guid>https://blog.devstory.co.kr/en/post/too-real-03/</guid>
-      <pubDate>Mon, 23 Dec 2019 07:44:28 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;실시간 객체 탐지 모델인 YOLO 모델을 학습하는 방법에 대해 공유합니다.&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/en/post/too-real-03/#disqus_thread</comments>
     </item>
     
   </channel>
