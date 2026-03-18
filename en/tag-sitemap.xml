@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/tags/I18n/</loc>
+        <lastmod>2026-03-18T15:33:06.280Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Flutter/</loc>
+        <lastmod>2026-03-18T15:33:06.280Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/tags/On-Device-AI/</loc>
         <lastmod>2026-03-12T09:13:49.828Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -80,13 +94,6 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Flutter/</loc>
-        <lastmod>2026-02-23T02:34:11.689Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://blog.devstory.co.kr/en/tags/Prography-8%25EA%25B8%25B0/</loc>
         <lastmod>2026-02-23T02:32:53.350Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -96,13 +103,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Project/</loc>
         <lastmod>2026-02-23T02:32:53.350Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/I18n/</loc>
-        <lastmod>2026-02-23T02:32:16.662Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
