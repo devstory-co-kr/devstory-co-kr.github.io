@@ -8,8 +8,16 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/post/trouble-painter-01/</loc>
+        <lastmod>2026-06-23T06:58:39.604Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/post/trouble-painter-02/</loc>
-        <lastmod>2026-06-23T06:29:52.937Z</lastmod>
+        <lastmod>2026-06-23T06:58:22.259Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -98,14 +106,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/post/draw-my-today/</loc>
         <lastmod>2026-02-23T02:28:51.549Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/post/trouble-painter-01/</loc>
-        <lastmod>2026-02-23T02:28:01.741Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
