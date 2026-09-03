@@ -3,6 +3,41 @@
 
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/tags/NASA-Space-Apps-Challenge/</loc>
+        <lastmod>2026-09-03T07:20:31.508Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Global-Finalist/</loc>
+        <lastmod>2026-09-03T07:20:31.508Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Apple-Developer-Academy-4th/</loc>
+        <lastmod>2026-09-03T07:20:31.508Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Accessibility/</loc>
+        <lastmod>2026-09-03T07:18:49.580Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Guita/</loc>
+        <lastmod>2026-09-03T07:18:49.580Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/tags/Trouble-Painter/</loc>
         <lastmod>2026-06-23T06:58:39.604Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -12,27 +47,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Project/</loc>
         <lastmod>2026-06-23T06:58:39.604Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/NASA-Space-Apps-Challenge/</loc>
-        <lastmod>2026-05-20T14:39:49.065Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Global-Finalist/</loc>
-        <lastmod>2026-05-20T14:39:49.065Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Apple-Developer-Academy-4th/</loc>
-        <lastmod>2026-05-20T14:39:49.065Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -89,20 +103,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/iOS/</loc>
         <lastmod>2026-02-24T18:59:18.783Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Accessibility/</loc>
-        <lastmod>2026-02-24T18:22:11.964Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Guita/</loc>
-        <lastmod>2026-02-24T18:22:11.964Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
