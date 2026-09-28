@@ -9,8 +9,23 @@
     <atom:link href="/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Thu, 12 Mar 2026 09:13:34 GMT</pubDate>
+    <pubDate>Mon, 28 Sep 2026 07:44:31 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>약속 - 시각장애인을 위한 의약품 식별 앱</title>
+      <link>https://blog.devstory.co.kr/post/ifeel-yaksok/</link>
+      <guid>https://blog.devstory.co.kr/post/ifeel-yaksok/</guid>
+      <pubDate>Tue, 15 Sep 2026 05:33:00 GMT</pubDate>
+      <description>
+      
+        &lt;p&gt;온디바이스 AI를 활용하여 시각장애인을 위한 의약품 식별 앱을 만들어 보았습니다.&lt;br&gt;&lt;a href=&quot;/en/post/ifeel-yaksok/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
+      
+      </description>
+      
+      
+      <comments>https://blog.devstory.co.kr/post/ifeel-yaksok/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>MLC-LLM으로 iOS에서 로컬 LLM 실행하기</title>
@@ -295,21 +310,6 @@
       
       
       <comments>https://blog.devstory.co.kr/post/too-real-01/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>2부. ARKit을 이용하여 iOS AR앱 만들기</title>
-      <link>https://blog.devstory.co.kr/post/too-real-02/</link>
-      <guid>https://blog.devstory.co.kr/post/too-real-02/</guid>
-      <pubDate>Tue, 24 Dec 2019 07:44:28 GMT</pubDate>
-      <description>
-      
-        &lt;p&gt;ARKit을 이용하여 현실감 있는 iOS AR 어플리케이션 개발 내용을 공유합니다.&lt;br&gt;
-      
-      </description>
-      
-      
-      <comments>https://blog.devstory.co.kr/post/too-real-02/#disqus_thread</comments>
     </item>
     
   </channel>

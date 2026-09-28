@@ -3309,6 +3309,7 @@ figure.highlight,
   gap: 16px;
   width: 100%;
   justify-content: center;
+  align-items: flex-start;
   margin-top: 8px; }
   .nero-grid > div {
     max-width: 500px;
@@ -3331,6 +3332,12 @@ figure.highlight,
     .nero-grid > div.flex-5 {
       flex: 5;
       max-width: none; }
+    .nero-grid > div.v-start {
+      align-self: flex-start; }
+    .nero-grid > div.v-center {
+      align-self: center; }
+    .nero-grid > div.v-end {
+      align-self: flex-end; }
   .nero-grid li {
     margin-left: 16px; }
 

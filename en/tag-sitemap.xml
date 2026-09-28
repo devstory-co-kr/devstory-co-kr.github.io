@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>https://blog.devstory.co.kr/en/tags/On-Device-AI/</loc>
+        <lastmod>2026-09-28T07:44:31.376Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/en/tags/Accessibility/</loc>
+        <lastmod>2026-09-28T07:44:31.376Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/en/tags/NASA-Space-Apps-Challenge/</loc>
         <lastmod>2026-09-10T05:32:38.922Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -19,13 +33,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Apple-Developer-Academy-4th/</loc>
         <lastmod>2026-09-10T05:32:38.922Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/Accessibility/</loc>
-        <lastmod>2026-09-03T07:18:49.580Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -61,13 +68,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/en/tags/Flutter/</loc>
         <lastmod>2026-04-17T07:46:33.916Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/en/tags/On-Device-AI/</loc>
-        <lastmod>2026-03-12T09:13:49.828Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
