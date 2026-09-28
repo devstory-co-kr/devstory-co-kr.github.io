@@ -9,7 +9,7 @@
     <atom:link href="/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Mon, 28 Sep 2026 07:44:31 GMT</pubDate>
+    <pubDate>Mon, 28 Sep 2026 07:50:20 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -19,7 +19,8 @@
       <pubDate>Tue, 15 Sep 2026 05:33:00 GMT</pubDate>
       <description>
       
-        &lt;p&gt;온디바이스 AI를 활용하여 시각장애인을 위한 의약품 식별 앱을 만들어 보았습니다.&lt;br&gt;&lt;a href=&quot;/en/post/ifeel-yaksok/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
+        &lt;p&gt;온디바이스 AI를 활용하여 시각장애인을 위한 의약품 식별 앱을 만들어 보았습니다.&lt;/p&gt;
+&lt;!-- &lt;br&gt;&lt;a href=&quot;/en/post/ifeel-yaksok/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt; --&gt;
       
       </description>
       
