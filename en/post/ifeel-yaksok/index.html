@@ -20,7 +20,7 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/en/rss.xml">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"온디바이스 AI를 활용하여 시각장애인을 위한 의약품 식별 앱을 만들어 보았습니다.\n\n\n\n\n\n약속 - 시각장애인을 위한 의약품 식별 앱\n의약품·사용기한 식별부터 AI 쉬운 복약 설명까지 ‘약속’과 함께하세요.👉 Homepage👉 App Store👉 Play Store\n\n약속은 서울시자원봉사센터와 한국보건의료연구원이 함께한 서울 청년 기획 봉사단 3기로 진행한 프로젝트입니다.\nWhy YAKSOK\n\n이러한 위험은 급격한 고령화와 맞물려 사회 전체의 문제로 확대되고 있습니다. 시력 저하를 겪는 고령자부터 하루 10종 이상의 약을 복용하는 다제약물 복용자까지, 문자 중심의 과도한 전문 정보는 정보 취약계층의 의약품 접근성을 저해하고 건강 안전을 위협하고 있습니다.\n시각장애인 41명이 응답한 약 복약시 불편한 점\n\n더욱 심각한 점은, 이러한 문제로 인해 약물을 오투약하거나 아예 복약을 포기한 경험이 있는 비율이 절반을 넘었다는 사실입니다.\n시각장애인들이 약을 구별할 때 사용하는 방법 응답\n\n조사 결과, ‘특정 위치나 공간에 보관(65.9%)’하거나 ‘가족, 활동지원사 등 타인의 도움을 받는다(61%)’는 응답이 가장 높게 나타났습니다.\n결국 약을 제자리에 두는 개인적인 습관에 의존하거나, 타인의 도움 없이 스스로 약을 구별하기는 매우 어려운 현실임을 알 수 있습니다. 스마트폰 앱이나 고무줄·테이프 표시, 촉감·기억에 의존하는 등 다양한 방법을 시도하고 계시지만, 여전히 안전하고 근본적인 해결책이 되지 못하고 있는 상황입니다.\n위 설문에서 눈여겨볼 점은 스마트폰 글자 읽기(41.5%) 응답도 적지 않다는 사실이었습니다. 스마트폰 글자 읽기 기능을 이용하면 사용기한 확인도 가능할 것 같은데, “왜 사용기한 확인을 가장 큰 불편 요소로 꼽혔을까?” 하는 의문이 생겼고, 그 원인을 밝히기 위해 직접 기술 검증을 진행하였습니다.\nOCR 기술의 한계OCR(광학 문자 인식, Optical Character Recognition) 기능을 실제 의약품 OCR 데이터 161건으로 테스트한 결과, 20%는 전혀 인식하지 못했습니다. 대부분이 비닐 포장의 빛 반사 또는 경계가 불분명한 음각 표기 날짜에 해당하는 경우였는데, 기술적 한계로 이를 극복하기 위해선 정밀도가 높은 인식 기술이 필요해 보였습니다.\n제각각인 사용기한 표기 위치\n\n디자인‘약속’의 디자인은 ‘잘 보이는 것’에서 출발했습니다. 시각장애인 중에는 전맹뿐 아니라 저시력 사용자도 많고, 고령자나 다제약물 복용자에게도 작은 글씨와 흐릿한 화면은 큰 장벽입니다. 그래서 화려함보다 가독성을 디자인의 첫 번째 기준으로 삼았습니다.\n디자인은 심플한 타이포그래피 잡지에서 영감을 받아 글자 자체가 화면의 중심이 되도록 했습니다. 장식을 덜어내고 글자의 크기와 굵기만으로 정보의 위계를 나타내며, 저시력 사용자를 위해 가변 폰트를 지원합니다.\n색상은 WCAG AA 기준(4.5:1) 이상의 명도 대비로 정의했고, 라이트·다크 모드를 모두 지원합니다. 빛 반사가 심한 곳이나 어두운 방처럼 약을 먹는 환경은 제각각이기 때문에, 어느 환경에서든 글자가 또렷하게 읽히는 것이 중요했습니다.\n스크린 리더로 조작하기 어려운 화면에는 음성 안내 버튼을 두어, 온보딩도 버튼 하나로 듣기만 하면 되도록 했습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n음성 안내(라이트 모드)\n\n\n\n\nYour browser doesn't support HTML5 Video :/\n음성 안내(다크 모드)\n\n\n스크린 리더 사용자가 소리만으로도 길을 잃지 않도록 다음 세 가지에 신경 썼습니다.\nTTS와 스크린 리더 음성이 겹치지 않도록 처리\n\n이전 프로젝트인 Guita에서는 스크린 리더가 켜져 있으면 TTS를 아예 사용하지 않는 방식으로 음성 겹침을 피했음\n이번에는 TTS 음성 안내가 핵심 기능이므로 스크린 리더의 포커스가 이동하면 재생 중이던 TTS를 정지하는 방식으로 해결\n\n접근성 라벨은 최대한 간결하게\n\n스크린 리더 사용자는 정보를 하나씩 소리로 들어야 하므로, 라벨이 길어질수록 원하는 정보까지 도달하는 시간이 길어짐\n핵심 정보만 남겨 탐색 부담을 최소화\n\n페이지 이동 시 포커스 순서 고정\n\n새 페이지로 이동하면 제목 → 뒤로 가기 버튼 순서로 포커싱\n어떤 화면인지 먼저 알려주고, 바로 돌아갈 수 있는 위치를 예측할 수 있게 함\n\n핵심 기능이렇게 다듬은 화면 위에 하나의 질문에서 시작한 기능들을 담았습니다. “어떻게 하면 누군가의 도움 없이, 스스로 안전하고 편안하게 약을 복용할 수 있을까?” 이 질문에서 나온 ‘약속’ 앱의 4가지 핵심 기능은 다음과 같습니다.\n\n바코드 스캔을 통한 의약품 식별\n빠르고 정확한 사용기한 탐지\n쉬운 복약 설명\n사진 설명\n\n의약품 식별 기능\n앱을 실행하면 바로 바코드 스캔이 시작됩니다. 시각장애인이 셔터를 누를 필요 없이 실시간으로 스캔하여, 카메라에 바코드가 비춰지는 순간 의약품을 식별하고 이름을 TTS(Text To Speech)로 읽어줍니다.\n식별에는 식약처의 의약품 제품 허가 상세정보 API를 사용했습니다. 포장재의 QR 코드나 바코드로 41,442개 의약품을 식별할 수 있습니다.\n다만 공공데이터포털 API가 자주 다운되는 문제가 있어, 안정적인 서비스를 위해 직접 API 서버를 구축하고 배치 작업으로 신규 데이터를 주기적으로 갱신하도록 했습니다. 또한 한 번 식별된 의약품은 로컬에 캐싱하여 오프라인에서도 식별할 수 있습니다.\n\n\n쉬운 복약 설명\n\n사용기한 확인\n사용기한 확인도 셔터를 누를 필요 없이, 카메라에 날짜가 보이면 자동으로 스캔하여 사용기한인지 확인하고 TTS로 읽어줍니다.\n온디바이스 AI가 꺼져 있는 경우에는 OCR 결과를 규칙(Rule) 기반으로 검사하여 날짜를 추출합니다. 켜져 있는 경우에는 Gemma4 E2B 모델이 이미지를 직접 분석하여 날짜를 추출합니다.\n의약품 OCR 데이터 161건으로 테스트한 결과, Gemma4 E2B는 93%의 인식률로 기존 OCR(80%) 대비 13%p 향상된 성능을 보였습니다.\n\n\n사진 설명\n\n모두에게, 어디서나, 안전하게\n\n\n\n\n\n\n마치며‘약속’을 만들며 가장 크게 배운 것은, 앱을 만드는 것만큼 앱을 ‘배우게 하는 것’도 중요하다는 점입니다. 모든 시각장애인이 스크린 리더 사용법에 익숙한 것은 아니어서, 다른 사람의 도움 없이 새로운 앱을 익히는 것 자체가 쉽지 않았습니다. 그래서 온보딩을 음성 안내 버튼 하나로 들을 수 있게 했고, 시각장애인 쉼터에서 ‘약속’ 사용법을 직접 알려드리는 시연회도 진행했습니다.\n서울시 자원 봉사센터 & 한국보건의료연구원과 함께한 프로젝트\n\n시연회에서 시각장애인분들이 가장 어려워하신 것은 앱 조작보다도 의약품마다 표준화되지 않은 바코드와 사용기한의 위치를 찾는 일이었습니다. 그래서 시연회에서는 바코드와 사용기한 위치에 촉각 스티커를 붙여 쉽게 찾을 수 있도록 안내했습니다. 앱이 아무리 잘 인식해도 카메라를 어디에 비춰야 하는지 알 수 없다면 첫 단계부터 막히기 때문입니다. 이 부분은 개별 앱이 해결할 수 있는 영역이 아니므로, 사회적으로 표기 위치에 대한 표준화가 이뤄지면 좋겠다는 생각이 들었습니다.\n또한 온디바이스 AI는 아직까지 기기 제약이 심하지만 점차 활성화되고 있는 기술인데, 이번 프로젝트에서 직접 활용해 볼 수 있어 좋았습니다. 앞으로 기기 성능과 모델이 더 발전하면 더 많은 사용자가 오프라인에서도 안전하게 AI의 도움을 받을 수 있으리라 기대합니다.\n‘약속’이 시각장애인과 고령자, 다제약물 복용자분들의 안전한 복약에 조금이나마 도움이 되기를 바랍니다.\n\n약속 - 시각장애인을 위한 의약품 식별 앱👉 Homepage👉 App Store👉 Play Store\n\n","dateCreated":"2026-09-15T14:33:00+09:00","dateModified":"2026-09-28T16:50:20+09:00","datePublished":"2026-09-15T14:33:00+09:00","description":"온디바이스 AI를 활용하여 시각장애인을 위한 의약품 식별 앱을 만들어 보았습니다.\n","headline":"약속 - 시각장애인을 위한 의약품 식별 앱","image":["/post/ifeel-yaksok/thumbnail.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/ifeel-yaksok/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/ifeel-yaksok/","keywords":"Accessibility, On-Device AI","thumbnailUrl":"/post/ifeel-yaksok/thumbnail.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png"},"articleBody":"온디바이스 AI를 활용하여 시각장애인을 위한 의약품 식별 앱을 만들어 보았습니다.\n\n\n\n\n\n약속 - 시각장애인을 위한 의약품 식별 앱\n의약품·사용기한 식별부터 AI 쉬운 복약 설명까지 ‘약속’과 함께하세요.👉 Homepage👉 App Store👉 Play Store\n\n약속은 서울시자원봉사센터와 한국보건의료연구원이 함께한 서울 청년 기획 봉사단 3기로 진행한 프로젝트입니다.\nWhy YAKSOK\n\n이러한 위험은 급격한 고령화와 맞물려 사회 전체의 문제로 확대되고 있습니다. 시력 저하를 겪는 고령자부터 하루 10종 이상의 약을 복용하는 다제약물 복용자까지, 문자 중심의 과도한 전문 정보는 정보 취약계층의 의약품 접근성을 저해하고 건강 안전을 위협하고 있습니다.\n시각장애인 41명이 응답한 약 복약시 불편한 점\n\n더욱 심각한 점은, 이러한 문제로 인해 약물을 오투약하거나 아예 복약을 포기한 경험이 있는 비율이 절반을 넘었다는 사실입니다.\n시각장애인들이 약을 구별할 때 사용하는 방법 응답\n\n조사 결과, ‘특정 위치나 공간에 보관(65.9%)’하거나 ‘가족, 활동지원사 등 타인의 도움을 받는다(61%)’는 응답이 가장 높게 나타났습니다.\n결국 약을 제자리에 두는 개인적인 습관에 의존하거나, 타인의 도움 없이 스스로 약을 구별하기는 매우 어려운 현실임을 알 수 있습니다. 스마트폰 앱이나 고무줄·테이프 표시, 촉감·기억에 의존하는 등 다양한 방법을 시도하고 계시지만, 여전히 안전하고 근본적인 해결책이 되지 못하고 있는 상황입니다.\n위 설문에서 눈여겨볼 점은 스마트폰 글자 읽기(41.5%) 응답도 적지 않다는 사실이었습니다. 스마트폰 글자 읽기 기능을 이용하면 사용기한 확인도 가능할 것 같은데, “왜 사용기한 확인을 가장 큰 불편 요소로 꼽혔을까?” 하는 의문이 생겼고, 그 원인을 밝히기 위해 직접 기술 검증을 진행하였습니다.\nOCR 기술의 한계OCR(광학 문자 인식, Optical Character Recognition) 기능을 실제 의약품 OCR 데이터 161건으로 테스트한 결과, 20%는 전혀 인식하지 못했습니다. 대부분이 비닐 포장의 빛 반사 또는 경계가 불분명한 음각 표기 날짜에 해당하는 경우였는데, 기술적 한계로 이를 극복하기 위해선 정밀도가 높은 인식 기술이 필요해 보였습니다.\n제각각인 사용기한 표기 위치\n\n디자인‘약속’의 디자인은 ‘잘 보이는 것’에서 출발했습니다. 시각장애인 중에는 전맹뿐 아니라 저시력 사용자도 많고, 고령자나 다제약물 복용자에게도 작은 글씨와 흐릿한 화면은 큰 장벽입니다. 그래서 화려함보다 가독성을 디자인의 첫 번째 기준으로 삼았습니다.\n디자인은 심플한 타이포그래피 잡지에서 영감을 받아 글자 자체가 화면의 중심이 되도록 했습니다. 장식을 덜어내고 글자의 크기와 굵기만으로 정보의 위계를 나타내며, 저시력 사용자를 위해 가변 폰트를 지원합니다.\n색상은 WCAG AA 기준(4.5:1) 이상의 명도 대비로 정의했고, 라이트·다크 모드를 모두 지원합니다. 빛 반사가 심한 곳이나 어두운 방처럼 약을 먹는 환경은 제각각이기 때문에, 어느 환경에서든 글자가 또렷하게 읽히는 것이 중요했습니다.\n스크린 리더로 조작하기 어려운 화면에는 음성 안내 버튼을 두어, 온보딩도 버튼 하나로 듣기만 하면 되도록 했습니다.\n\n\n\nYour browser doesn't support HTML5 Video :/\n음성 안내(라이트 모드)\n\n\n\n\nYour browser doesn't support HTML5 Video :/\n음성 안내(다크 모드)\n\n\n스크린 리더 사용자가 소리만으로도 길을 잃지 않도록 다음 세 가지에 신경 썼습니다.\nTTS와 스크린 리더 음성이 겹치지 않도록 처리\n\n이전 프로젝트인 Guita에서는 스크린 리더가 켜져 있으면 TTS를 아예 사용하지 않는 방식으로 음성 겹침을 피했음\n이번에는 TTS 음성 안내가 핵심 기능이므로 스크린 리더의 포커스가 이동하면 재생 중이던 TTS를 정지하는 방식으로 해결\n\n접근성 라벨은 최대한 간결하게\n\n스크린 리더 사용자는 정보를 하나씩 소리로 들어야 하므로, 라벨이 길어질수록 원하는 정보까지 도달하는 시간이 길어짐\n핵심 정보만 남겨 탐색 부담을 최소화\n\n페이지 이동 시 포커스 순서 고정\n\n새 페이지로 이동하면 제목 → 뒤로 가기 버튼 순서로 포커싱\n어떤 화면인지 먼저 알려주고, 바로 돌아갈 수 있는 위치를 예측할 수 있게 함\n\n핵심 기능이렇게 다듬은 화면 위에 하나의 질문에서 시작한 기능들을 담았습니다. “어떻게 하면 누군가의 도움 없이, 스스로 안전하고 편안하게 약을 복용할 수 있을까?” 이 질문에서 나온 ‘약속’ 앱의 4가지 핵심 기능은 다음과 같습니다.\n\n바코드 스캔을 통한 의약품 식별\n빠르고 정확한 사용기한 탐지\n쉬운 복약 설명\n사진 설명\n\n의약품 식별 기능 -->\n\n앱을 실행하면 바로 바코드 스캔이 시작됩니다. 시각장애인이 셔터를 누를 필요 없이 실시간으로 스캔하여, 카메라에 바코드가 비춰지는 순간 의약품을 식별하고 이름을 TTS(Text To Speech)로 읽어줍니다.\n식별에는 식약처의 의약품 제품 허가 상세정보 API를 사용했습니다. 포장재의 QR 코드나 바코드로 41,442개 의약품을 식별할 수 있습니다.\n다만 공공데이터포털 API가 자주 다운되는 문제가 있어, 안정적인 서비스를 위해 직접 API 서버를 구축하고 배치 작업으로 신규 데이터를 주기적으로 갱신하도록 했습니다. 또한 한 번 식별된 의약품은 로컬에 캐싱하여 오프라인에서도 식별할 수 있습니다.\n\n\n쉬운 복약 설명\n\n\nYour browser doesn't support HTML5 Video :/\nAI 쉬운 복약 설명\n\n\n\n\n식별된 의약품의 복약 설명서를 볼 수 있으며, AI가 쉬운 말로 번역한 설명과 원문 중 원하는 것을 선택해 볼 수 있습니다.\n쉬운 말 번역은 온디바이스 AI 설치 여부에 따라 다르게 동작합니다. 설치하지 않은 경우 Gemini API를 이용하고, 설치한 경우 기기 내에서 Gemma4 E2B 모델로 번역합니다.\n또한 식별된 약과 함께 먹으면 안 되는 병용금기 의약품 정보도 확인할 수 있습니다. 식약처의 DUR 품목정보 API를 사용했으며, 현재 기기에서 식별한 의약품 중 병용금기에 해당하는 약이 있으면 알려줍니다.\n음성 안내 버튼을 누르면 전체 내용을 쉽게 들을 수 있습니다.\n\n\n사용기한 탐지\n\n\nYour browser doesn't support HTML5 Video :/\n사용기한 확인\n\n\n\n\n사용기한 확인도 셔터를 누를 필요 없이, 카메라에 날짜가 보이면 자동으로 스캔하여 사용기한인지 확인하고 TTS로 읽어줍니다.\n온디바이스 AI가 꺼져 있는 경우에는 OCR 결과를 규칙(Rule) 기반으로 검사하여 날짜를 추출합니다. 켜져 있는 경우에는 Gemma4 E2B 모델이 이미지를 직접 분석하여 날짜를 추출합니다.\n의약품 OCR 데이터 161건으로 테스트한 결과, Gemma4 E2B는 93%의 인식률로 기존 OCR(80%) 대비 13%p 향상된 성능을 보였습니다.\n\n\n사진 설명\n\n\nYour browser doesn't support HTML5 Video :/\n사진 설명\n\n\n\n\n사용자가 촬영한 사진에 대한 정보를 음성으로 알려주는 기능입니다.\n온디바이스 AI가 꺼져 있는 경우에는 비용 문제로 인해 사진 속 글씨를 OCR로 읽어주는 방식으로 동작합니다. 켜져 있는 경우에는 Gemma4 E2B 모델이 사진의 시각적 배치와 상황을 마치 옆에서 도슨트가 설명해주듯 해설해 줍니다.\n다만 AI 모델이 이미지를 분석해 결과를 내놓기까지는 시간이 다소 걸리며, iPhone 16 기준 5~10초 정도 소요되었습니다.\n\n\n온디바이스 AIAndroid와 iOS를 모두 지원하기 위해 Flutter로 개발했습니다. 온디바이스 AI 모델로는 이미지와 텍스트를 함께 다루는 멀티모달 모델 Gemma4 E2B를 사용했습니다. 사용기한 탐지와 사진 설명처럼 이미지를 직접 입력받아야 하는 기능이 핵심이라, 멀티모달 지원 여부를 모델 선정의 기준으로 삼았습니다.\n자체 테스트 결과 AI 모델을 쾌적하게 이용하려면 6GB 이상의 메모리가 필요했습니다. 따라서 6GB 미만의 기기에서는 온디바이스 AI 대신 OCR과 Gemini API를 사용하도록 구현했습니다.\n또한 모델 파일이 약 2.5GB로 작지 않아, 다운로드가 끝날 때까지 앱을 켜 두고 기다려야 한다면 이용 장벽이 됩니다. 이를 해결하기 위해 앱을 벗어나도 다운로드가 계속되는 백그라운드 다운로드와, 네트워크가 끊겨도 처음부터 다시 받지 않도록 이어받기 기능을 구현했습니다.\n온디바이스 AI를 도입하여 얻은 이점은 다음과 같습니다.\n\n오프라인 지원 - 인터넷 연결 없이도 AI 기능을 사용할 수 있습니다.\n비용 절감 - AI 토큰 비용이 들지 않아 사용자에게 무료로 제공할 수 있습니다.\n개인정보 보호 - 촬영한 사진이 기기 밖으로 전송되지 않습니다.\n\n한국보건의료연구원과 함께한 시연회\n\n이번 프로젝트는 서울시자원봉사센터와 한국보건의료연구원과 함께했습니다. 한국보건의료연구원은 시연회 자원봉사와 손소독제 90개 물품 기부를 지원해 주었고, 블로그에 앱 홍보 글도 게시해 주었습니다. 함께해 주신 분들 덕분에 앱이 실제로 쓰일 수 있었습니다.\n","dateCreated":"2026-09-15T14:33:00+09:00","dateModified":"2026-09-29T13:44:10+09:00","datePublished":"2026-09-15T14:33:00+09:00","description":"온디바이스 AI를 활용하여 시각장애인을 위한 의약품 식별 앱을 만들어 보았습니다.\n","headline":"약속 - 시각장애인을 위한 의약품 식별 앱","image":["/post/ifeel-yaksok/thumbnail.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.devstory.co.kr/en/post/ifeel-yaksok/"},"publisher":{"@type":"Organization","name":"DevStory","sameAs":["https://github.com/nero-angela","https://devstory.co.kr","https://devstory.co.kr/portfolio/lecture"],"image":"devstory.png","logo":{"@type":"ImageObject","url":"devstory.png"}},"url":"https://blog.devstory.co.kr/en/post/ifeel-yaksok/","keywords":"Accessibility, On-Device AI","thumbnailUrl":"/post/ifeel-yaksok/thumbnail.png"}</script>
     <meta name="description" content="온디바이스 AI를 활용하여 시각장애인을 위한 의약품 식별 앱을 만들어 보았습니다.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="약속 - 시각장애인을 위한 의약품 식별 앱">
@@ -30,7 +30,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://blog.devstory.co.kr/post/ifeel-yaksok/thumbnail.png">
 <meta property="article:published_time" content="2026-09-15T05:33:00.000Z">
-<meta property="article:modified_time" content="2026-09-28T07:50:20.543Z">
+<meta property="article:modified_time" content="2026-09-29T04:44:10.256Z">
 <meta property="article:author" content="DevStory">
 <meta property="article:tag" content="Accessibility">
 <meta property="article:tag" content="On-Device AI">
@@ -255,7 +255,7 @@
                 <strong>목차
                 </strong>
             </blockquote>
-            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#약속-시각장애인을-위한-의약품-식별-앱"><span class="nero-toc-text">약속 - 시각장애인을 위한 의약품 식별 앱</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#기존-솔루션의-문제점"><span class="nero-toc-text">기존 솔루션의 문제점</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#OCR-기술의-한계"><span class="nero-toc-text">OCR 기술의 한계</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#불편한-유저-경험"><span class="nero-toc-text">불편한 유저 경험</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#디자인"><span class="nero-toc-text">디자인</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#핵심-기능"><span class="nero-toc-text">핵심 기능</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#의약품-식별"><span class="nero-toc-text">의약품 식별</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#쉬운-복약-설명"><span class="nero-toc-text">쉬운 복약 설명</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#사용기한-탐지"><span class="nero-toc-text">사용기한 탐지</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#사진-설명"><span class="nero-toc-text">사진 설명</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#온디바이스-AI"><span class="nero-toc-text">온디바이스 AI</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마치며"><span class="nero-toc-text">마치며</span></a></li></ol>
+            <ol class="nero-toc"><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#약속-시각장애인을-위한-의약품-식별-앱"><span class="nero-toc-text">약속 - 시각장애인을 위한 의약품 식별 앱</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#기존-솔루션의-문제점"><span class="nero-toc-text">기존 솔루션의 문제점</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#OCR-기술의-한계"><span class="nero-toc-text">OCR 기술의 한계</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#불편한-유저-경험"><span class="nero-toc-text">불편한 유저 경험</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#디자인"><span class="nero-toc-text">디자인</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#핵심-기능"><span class="nero-toc-text">핵심 기능</span></a><ol class="nero-toc-child"><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#의약품-식별"><span class="nero-toc-text">의약품 식별</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#쉬운-복약-설명"><span class="nero-toc-text">쉬운 복약 설명</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#사용기한-탐지"><span class="nero-toc-text">사용기한 탐지</span></a></li><li class="nero-toc-item nero-toc-level-2"><a class="nero-toc-link" href="#사진-설명"><span class="nero-toc-text">사진 설명</span></a></li></ol></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#온디바이스-AI"><span class="nero-toc-text">온디바이스 AI</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#시연"><span class="nero-toc-text">시연</span></a></li><li class="nero-toc-item nero-toc-level-1"><a class="nero-toc-link" href="#마치며"><span class="nero-toc-text">마치며</span></a></li></ol>
             <hr class="nero-toc-line">
             <style>
                 .nero-toc-line {
@@ -356,27 +356,28 @@
 </ol>
 <div class="figure center" style><a class="fancybox" href="/post/ifeel-yaksok/yaksok-09.png" title="약속 앱의 4가지 기능" data-caption="약속 앱의 4가지 기능" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ifeel-yaksok/yaksok-09.png" alt="약속 앱의 4가지 기능"></a><span class="caption">약속 앱의 4가지 기능</span></div>
 
-<h2 id="의약품-식별"><a href="#의약품-식별" class="headerlink" title="의약품 식별"></a>의약품 식별</h2><div class="nero-grid"><div class="flex-2"><!-- <div class="figure " style="">
+<h2 id="의약품-식별"><a href="#의약품-식별" class="headerlink" title="의약품 식별"></a>의약품 식별</h2><div class="nero-grid"><div class="flex-2"><div class="figure " style>
 <video class="fig-video" autoplay playsinline loop muted controls alt="의약품 식별 기능">
-<source src="/post/ifeel-yaksok/scanner-barcode.mp4" type="video/mp4">
+<source src="/post/ifeel-yaksok/yaksok-barcode.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
 <span class="caption">의약품 식별 기능</span>
-</div> -->
+</div>
 
-<div class="figure center" style><a class="fancybox" href="/post/ifeel-yaksok/yaksok-barcode.png" title="의약품 식별 기능" data-caption="의약품 식별 기능" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ifeel-yaksok/yaksok-barcode.png" alt="의약품 식별 기능"></a><span class="caption">의약품 식별 기능</span></div></div>
+<!-- <div class="figure center" style=""><a class="fancybox" href="/post/ifeel-yaksok/yaksok-barcode.png" title="의약품 식별 기능" data-caption="의약품 식별 기능" data-fancybox="default style="visible: hidden;"><img class="fig-img" src="/post/ifeel-yaksok/yaksok-barcode.png" alt="의약품 식별 기능"></a><span class="caption">의약품 식별 기능</span></div> -->
+</div>
 <div class="flex-3"><p>앱을 실행하면 <strong>바로 바코드 스캔이 시작</strong>됩니다. 시각장애인이 셔터를 누를 필요 없이 <strong>실시간으로 스캔</strong>하여, 카메라에 바코드가 비춰지는 순간 의약품을 식별하고 <strong>이름을 TTS(Text To Speech)로 읽어줍니다.</strong></p>
 <p>식별에는 식약처의 <a href="https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService07/getDrugPrdtPrmsnDtlInq06" target="_blank" rel="external nofollow noopener noreferrer">의약품 제품 허가 상세정보 API</a>를 사용했습니다. 포장재의 QR 코드나 바코드로 <strong>41,442개 의약품</strong>을 식별할 수 있습니다.</p>
 <p>다만 공공데이터포털 API가 자주 다운되는 문제가 있어, 안정적인 서비스를 위해 <strong>직접 API 서버를 구축</strong>하고 <strong>배치 작업으로 신규 데이터를 주기적으로 갱신</strong>하도록 했습니다. 또한 한 번 식별된 의약품은 <strong>로컬에 캐싱</strong>하여 오프라인에서도 식별할 수 있습니다.</p>
 </div></div>
 
-<h2 id="쉬운-복약-설명"><a href="#쉬운-복약-설명" class="headerlink" title="쉬운 복약 설명"></a>쉬운 복약 설명</h2><div class="nero-grid"><div class="flex-2"><!-- <div class="figure " style="">
+<h2 id="쉬운-복약-설명"><a href="#쉬운-복약-설명" class="headerlink" title="쉬운 복약 설명"></a>쉬운 복약 설명</h2><div class="nero-grid"><div class="flex-2"><div class="figure " style>
 <video class="fig-video" autoplay playsinline loop muted controls alt="AI 쉬운 복약 설명">
-<source src="/post/ifeel-yaksok/scanner-ai-desc.mp4" type="video/mp4">
+<source src="/post/ifeel-yaksok/yaksok-ai-desc.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
 <span class="caption">AI 쉬운 복약 설명</span>
-</div> -->
+</div>
 
-<div class="figure center" style><a class="fancybox" href="/post/ifeel-yaksok/yaksok-ai-desc.png" title="AI 쉬운 복약 설명" data-caption="AI 쉬운 복약 설명" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ifeel-yaksok/yaksok-ai-desc.png" alt="AI 쉬운 복약 설명"></a><span class="caption">AI 쉬운 복약 설명</span></div>
+<!-- <div class="figure center" style=""><a class="fancybox" href="/post/ifeel-yaksok/yaksok-ai-desc.png" title="AI 쉬운 복약 설명" data-caption="AI 쉬운 복약 설명" data-fancybox="default style="visible: hidden;"><img class="fig-img" src="/post/ifeel-yaksok/yaksok-ai-desc.png" alt="AI 쉬운 복약 설명"></a><span class="caption">AI 쉬운 복약 설명</span></div> -->
 </div>
 <div class="flex-3"><p>식별된 의약품의 <strong>복약 설명서</strong>를 볼 수 있으며, <strong>AI가 쉬운 말로 번역한 설명</strong>과 <strong>원문</strong> 중 원하는 것을 선택해 볼 수 있습니다.</p>
 <p>쉬운 말 번역은 <strong>온디바이스 AI 설치 여부에 따라</strong> 다르게 동작합니다. 설치하지 않은 경우 <strong>Gemini API</strong>를 이용하고, 설치한 경우 기기 내에서 <strong>Gemma4 E2B 모델</strong>로 번역합니다.</p>
@@ -384,29 +385,32 @@
 <p><strong>음성 안내 버튼</strong>을 누르면 전체 내용을 쉽게 들을 수 있습니다.</p>
 </div></div>
 
-<h2 id="사용기한-탐지"><a href="#사용기한-탐지" class="headerlink" title="사용기한 탐지"></a>사용기한 탐지</h2><div class="nero-grid"><div class="flex-2"><!-- <div class="figure " style="">
+<h2 id="사용기한-탐지"><a href="#사용기한-탐지" class="headerlink" title="사용기한 탐지"></a>사용기한 탐지</h2><div class="nero-grid"><div class="flex-2"><div class="figure " style>
 <video class="fig-video" autoplay playsinline loop muted controls alt="사용기한 확인">
-<source src="/post/ifeel-yaksok/scanner-expiry.mp4" type="video/mp4">
+<source src="/post/ifeel-yaksok/yaksok-expiry.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
 <span class="caption">사용기한 확인</span>
-</div> -->
+</div>
 
-<div class="figure center" style><a class="fancybox" href="/post/ifeel-yaksok/yaksok-expiry.png" title="사용기한 확인" data-caption="사용기한 확인" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ifeel-yaksok/yaksok-expiry.png" alt="사용기한 확인"></a><span class="caption">사용기한 확인</span></div></div>
+<!-- <div class="figure center" style=""><a class="fancybox" href="/post/ifeel-yaksok/yaksok-expiry.png" title="사용기한 확인" data-caption="사용기한 확인" data-fancybox="default style="visible: hidden;"><img class="fig-img" src="/post/ifeel-yaksok/yaksok-expiry.png" alt="사용기한 확인"></a><span class="caption">사용기한 확인</span></div> -->
+</div>
 <div class="flex-3"><p>사용기한 확인도 <strong>셔터를 누를 필요 없이</strong>, 카메라에 날짜가 보이면 자동으로 스캔하여 사용기한인지 확인하고 <strong>TTS로 읽어줍니다.</strong></p>
 <p><strong>온디바이스 AI가 꺼져 있는 경우</strong>에는 OCR 결과를 <strong>규칙(Rule) 기반으로 검사</strong>하여 날짜를 추출합니다. <strong>켜져 있는 경우</strong>에는 <strong>Gemma4 E2B 모델이 이미지를 직접 분석</strong>하여 날짜를 추출합니다.</p>
 <p><a href="https://aihub.or.kr/aihubdata/data/view.do?dataSetSn=633" target="_blank" rel="external nofollow noopener noreferrer"><strong>의약품 OCR 데이터 161건</strong></a>으로 테스트한 결과, Gemma4 E2B는 <strong>93%의 인식률로 기존 OCR(80%) 대비 13%p 향상된 성능</strong>을 보였습니다.</p>
 </div></div>
 
-<h2 id="사진-설명"><a href="#사진-설명" class="headerlink" title="사진 설명"></a>사진 설명</h2><div class="nero-grid"><div class="flex-2"><!-- <div class="figure " style="">
+<h2 id="사진-설명"><a href="#사진-설명" class="headerlink" title="사진 설명"></a>사진 설명</h2><div class="nero-grid"><div class="flex-2"><div class="figure " style>
 <video class="fig-video" autoplay playsinline loop muted controls alt="사진 설명">
-<source src="/post/ifeel-yaksok/scanner-image-desc.mp4" type="video/mp4">
+<source src="/post/ifeel-yaksok/yaksok-img-desc.mp4" type="video/mp4">
 <p>Your browser doesn't support HTML5 Video :/</p></video>
 <span class="caption">사진 설명</span>
-</div> -->
+</div>
 
-<div class="figure center" style><a class="fancybox" href="/post/ifeel-yaksok/yaksok-img-desc.png" title="사진 설명" data-caption="사진 설명" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ifeel-yaksok/yaksok-img-desc.png" alt="사진 설명"></a><span class="caption">사진 설명</span></div></div>
+<!-- <div class="figure center" style=""><a class="fancybox" href="/post/ifeel-yaksok/yaksok-img-desc.png" title="사진 설명" data-caption="사진 설명" data-fancybox="default style="visible: hidden;"><img class="fig-img" src="/post/ifeel-yaksok/yaksok-img-desc.png" alt="사진 설명"></a><span class="caption">사진 설명</span></div> -->
+</div>
 <div class="flex-3"><p>사용자가 촬영한 사진에 대한 정보를 <strong>음성으로 알려주는 기능</strong>입니다.</p>
 <p><strong>온디바이스 AI가 꺼져 있는 경우</strong>에는 비용 문제로 인해 사진 속 글씨를 <strong>OCR로 읽어주는 방식</strong>으로 동작합니다. <strong>켜져 있는 경우</strong>에는 <strong>Gemma4 E2B 모델</strong>이 사진의 시각적 배치와 상황을 <strong>마치 옆에서 도슨트가 설명해주듯</strong> 해설해 줍니다.</p>
+<p>다만 AI 모델이 이미지를 분석해 결과를 내놓기까지는 시간이 다소 걸리며, iPhone 16 기준 5~10초 정도 소요되었습니다.</p>
 </div></div>
 
 <h1 id="온디바이스-AI"><a href="#온디바이스-AI" class="headerlink" title="온디바이스 AI"></a>온디바이스 AI</h1><p>Android와 iOS를 모두 지원하기 위해 <strong>Flutter</strong>로 개발했습니다. 온디바이스 AI 모델로는 이미지와 텍스트를 함께 다루는 멀티모달 모델 <strong>Gemma4 E2B</strong>를 사용했습니다. 사용기한 탐지와 사진 설명처럼 <strong>이미지를 직접 입력받아야 하는 기능</strong>이 핵심이라, 멀티모달 지원 여부를 모델 선정의 기준으로 삼았습니다.</p>
@@ -420,10 +424,7 @@
 </ol>
 <div class="figure center" style><a class="fancybox" href="/post/ifeel-yaksok/yaksok-10.png" title="모두에게, 어디서나, 안전하게" data-caption="모두에게, 어디서나, 안전하게" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ifeel-yaksok/yaksok-10.png" alt="모두에게, 어디서나, 안전하게"></a><span class="caption">모두에게, 어디서나, 안전하게</span></div>
 
-<!-- # 시연 -->
-
-<!-- TODO: 시연 영상 -->
-<!-- <iframe width="100%" height="422px" src="https://youtube.com/embed/VIDEO_ID" title="약속 시연 영상" frameborder="0" allowfullscreen></iframe> -->
+<h1 id="시연"><a href="#시연" class="headerlink" title="시연"></a>시연</h1><iframe width="100%" height="422px" src="https://youtube.com/embed/ViBkHarciso?cc_load_policy=0" title="약속 앱 시연 영상" frameborder="0" allowfullscreen></iframe>
 
 <h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>‘약속’을 만들며 가장 크게 배운 것은, <strong>앱을 만드는 것만큼 앱을 ‘배우게 하는 것’도 중요하다</strong>는 점입니다. 모든 시각장애인이 스크린 리더 사용법에 익숙한 것은 아니어서, 다른 사람의 도움 없이 새로운 앱을 익히는 것 자체가 쉽지 않았습니다. 그래서 온보딩을 음성 안내 버튼 하나로 들을 수 있게 했고, 시각장애인 쉼터에서 ‘약속’ 사용법을 직접 알려드리는 시연회도 진행했습니다.</p>
 <div class="figure center" style><a class="fancybox" href="/post/ifeel-yaksok/yaksok-11.png" title="한국보건의료연구원과 함께한 시연회" data-caption="한국보건의료연구원과 함께한 시연회" data-fancybox="default style=" visible: hidden;"><img class="fig-img" src="/post/ifeel-yaksok/yaksok-11.png" alt="한국보건의료연구원과 함께한 시연회"></a><span class="caption">한국보건의료연구원과 함께한 시연회</span></div>
@@ -668,7 +669,7 @@
 
 <script src="/en/assets/js/script-rms7mc9flr34dhyubvifhgcga2rovhwqov2lhh56capgazomepbfiyqolh90.min.js"></script>
 
-<!--SCRIPTS END--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<!--SCRIPTS END-->
 
 
     
@@ -676,5 +677,5 @@
 
 
 
-    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script></body>
+    <script src="/en/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/en/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":1}});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 </html>
