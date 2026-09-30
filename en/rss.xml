@@ -9,18 +9,17 @@
     <atom:link href="/en/rss.xml" rel="self" type="application/rss+xml"/>
     
     <description>DevStory Blog</description>
-    <pubDate>Tue, 29 Sep 2026 04:44:10 GMT</pubDate>
+    <pubDate>Tue, 29 Sep 2026 08:13:36 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>약속 - 시각장애인을 위한 의약품 식별 앱</title>
+      <title>YAKSOK - A Medicine Identification App for the Visually Impaired</title>
       <link>https://blog.devstory.co.kr/en/post/ifeel-yaksok/</link>
       <guid>https://blog.devstory.co.kr/en/post/ifeel-yaksok/</guid>
       <pubDate>Tue, 15 Sep 2026 05:33:00 GMT</pubDate>
       <description>
       
-        &lt;p&gt;온디바이스 AI를 활용하여 시각장애인을 위한 의약품 식별 앱을 만들어 보았습니다.&lt;/p&gt;
-&lt;!-- &lt;br&gt;&lt;a href=&quot;/en/post/ifeel-yaksok/&quot;&gt;👉 English Version&lt;/a&gt;&lt;br&gt; --&gt;
+        &lt;p&gt;An on-device AI medicine identification app built for the visually impaired.&lt;br&gt;&lt;a href=&quot;/post/ifeel-yaksok/&quot;&gt;👉 한국어 버전&lt;/a&gt;&lt;br&gt;
       
       </description>
       
