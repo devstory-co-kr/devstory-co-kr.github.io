@@ -80,6 +80,14 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/post/ada-4th-my-mallow/</loc>
+        <lastmod>2026-02-26T15:49:38.066Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/post/draw-my-today/</loc>
         <lastmod>2026-02-26T15:49:38.066Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -96,7 +104,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/ada-4th-my-mallow/</loc>
+        <loc>https://blog.devstory.co.kr/post/worcation-sokcho/</loc>
         <lastmod>2026-02-26T15:49:38.066Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -105,14 +113,6 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/post/worcation-yeongwol/</loc>
-        <lastmod>2026-02-26T15:49:38.066Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/worcation-sokcho/</loc>
         <lastmod>2026-02-26T15:49:38.066Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
