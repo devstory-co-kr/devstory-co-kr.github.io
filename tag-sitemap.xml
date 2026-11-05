@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>https://blog.devstory.co.kr/tags/On-Device-AI/</loc>
+        <lastmod>2026-11-05T02:41:57.004Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/tags/Accessibility/</loc>
+        <lastmod>2026-11-05T02:41:57.004Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/tags/Global-Finalist/</loc>
         <lastmod>2026-11-01T11:54:12.799Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -24,28 +38,14 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/tags/On-Device-AI/</loc>
-        <lastmod>2026-09-29T06:27:45.729Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/tags/Accessibility/</loc>
-        <lastmod>2026-09-29T06:27:45.729Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/tags/Guita/</loc>
+        <loc>https://blog.devstory.co.kr/tags/Apple-Developer-Acedemy-4th/</loc>
         <lastmod>2026-09-03T07:18:57.478Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/tags/Apple-Developer-Acedemy-4th/</loc>
+        <loc>https://blog.devstory.co.kr/tags/Guita/</loc>
         <lastmod>2026-09-03T07:18:57.478Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
