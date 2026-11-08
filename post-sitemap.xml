@@ -8,16 +8,16 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/ifeel-yaksok/</loc>
-        <lastmod>2026-11-05T02:49:31.315Z</lastmod>
+        <loc>https://blog.devstory.co.kr/post/nasa-space-app-challenge/</loc>
+        <lastmod>2026-11-08T07:38:35.893Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/nasa-space-app-challenge/</loc>
-        <lastmod>2026-11-01T11:54:12.799Z</lastmod>
+        <loc>https://blog.devstory.co.kr/post/ifeel-yaksok/</loc>
+        <lastmod>2026-11-05T02:49:31.315Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -80,14 +80,6 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/ada-4th-my-mallow/</loc>
-        <lastmod>2026-02-26T15:49:38.066Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://blog.devstory.co.kr/post/ada-4th-tadak/</loc>
         <lastmod>2026-02-26T15:49:38.066Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -97,6 +89,14 @@
 
     <url>
         <loc>https://blog.devstory.co.kr/post/draw-my-today/</loc>
+        <lastmod>2026-02-26T15:49:38.066Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.devstory.co.kr/post/ada-4th-my-mallow/</loc>
         <lastmod>2026-02-26T15:49:38.066Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
