@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/post/trouble-painter-01/</loc>
+        <lastmod>2026-11-19T01:02:17.512Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/post/nasa-space-app-challenge/</loc>
         <lastmod>2026-11-08T07:38:35.893Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -26,14 +34,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/post/ada-4th-guita-01/</loc>
         <lastmod>2026-09-03T07:18:57.478Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/trouble-painter-01/</loc>
-        <lastmod>2026-06-23T06:58:42.718Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -88,7 +88,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/draw-my-today/</loc>
+        <loc>https://blog.devstory.co.kr/post/ada-4th-my-mallow/</loc>
         <lastmod>2026-02-26T15:49:38.066Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -96,7 +96,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/ada-4th-my-mallow/</loc>
+        <loc>https://blog.devstory.co.kr/post/draw-my-today/</loc>
         <lastmod>2026-02-26T15:49:38.066Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -152,7 +152,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-03/</loc>
+        <loc>https://blog.devstory.co.kr/post/too-real-04/</loc>
         <lastmod>2025-04-30T10:54:58.092Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -160,7 +160,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-04/</loc>
+        <loc>https://blog.devstory.co.kr/post/too-real-03/</loc>
         <lastmod>2025-04-30T10:54:58.092Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
