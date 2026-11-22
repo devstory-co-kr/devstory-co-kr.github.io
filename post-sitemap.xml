@@ -8,8 +8,16 @@
     </url>
 
     <url>
+        <loc>https://blog.devstory.co.kr/post/trouble-painter-02/</loc>
+        <lastmod>2026-11-22T08:38:10.498Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://blog.devstory.co.kr/post/trouble-painter-01/</loc>
-        <lastmod>2026-11-19T01:02:17.512Z</lastmod>
+        <lastmod>2026-11-22T08:35:10.168Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -34,14 +42,6 @@
     <url>
         <loc>https://blog.devstory.co.kr/post/ada-4th-guita-01/</loc>
         <lastmod>2026-09-03T07:18:57.478Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://blog.devstory.co.kr/post/trouble-painter-02/</loc>
-        <lastmod>2026-06-23T06:55:44.720Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -104,7 +104,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/worcation-sokcho/</loc>
+        <loc>https://blog.devstory.co.kr/post/worcation-yeongwol/</loc>
         <lastmod>2026-02-26T15:49:38.066Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -112,7 +112,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/worcation-yeongwol/</loc>
+        <loc>https://blog.devstory.co.kr/post/worcation-sokcho/</loc>
         <lastmod>2026-02-26T15:49:38.066Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -152,7 +152,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-04/</loc>
+        <loc>https://blog.devstory.co.kr/post/too-real-03/</loc>
         <lastmod>2025-04-30T10:54:58.092Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -160,7 +160,7 @@
     </url>
 
     <url>
-        <loc>https://blog.devstory.co.kr/post/too-real-03/</loc>
+        <loc>https://blog.devstory.co.kr/post/too-real-04/</loc>
         <lastmod>2025-04-30T10:54:58.092Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
